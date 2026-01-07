@@ -1,0 +1,292 @@
+🔥 Improved Replit Prompt for SkyStack.sa Website
+
+Objective:
+Build a premium, classical, enterprise-grade corporate website for SkyStack.sa, a technology & digital solutions company.
+The website must look trustworthy, global, and high-end, comparable to top European & Middle Eastern IT consulting firms.
+
+🎨 Design & Branding
+
+Primary color: #003CFF
+
+Style:
+
+Classical, elegant, corporate (NOT startup flashy)
+
+Clean layouts, strong typography
+
+European consulting + Middle East enterprise feel
+
+Use:
+
+Serif or modern corporate fonts for headings
+
+Plenty of white space
+
+Professional icons & subtle animations
+
+No “template-looking” sections
+
+🌍 Multi-Language Support (Mandatory)
+
+English (default)
+
+Arabic (RTL support)
+
+European language ready (structure prepared for French / German / Spanish)
+
+Language switcher in header
+
+Arabic layout must be RTL and visually polished
+
+🧭 Website Structure & Pages
+Global Sections (on almost all pages)
+
+Sticky header with CTA
+
+Strong hero section
+
+Trust indicators
+
+Conversion-focused CTAs
+
+Professional footer with:
+
+Company info
+
+Services
+
+Quick links
+
+Privacy / Terms
+
+Contact details
+
+Homepage (Highly Detailed)
+
+Must include ALL of the following:
+
+Hero Section
+
+Clear value proposition
+
+Subheading explaining what SkyStack does
+
+2 CTAs:
+
+“Get a Free Consultation”
+
+“View Our Services”
+
+Who We Are
+
+Short company intro
+
+Mission & vision feel
+
+Core Services Overview
+
+Cards linking to:
+
+Custom Mobile App Development
+
+Custom Web Development
+
+On-Demand App Development
+
+Clone App Development
+
+UI/UX Design
+
+Technology Consulting
+
+Digital Marketing
+
+Industries We Serve
+
+Enterprise
+
+Startups
+
+E-commerce
+
+Logistics
+
+Healthcare
+
+Fintech
+
+On-Demand Services
+
+Why Choose SkyStack
+
+Saudi presence + global delivery
+
+Enterprise-grade architecture
+
+Scalable & secure solutions
+
+Long-term partnership mindset
+
+Process / How We Work
+
+Discovery
+
+Strategy
+
+Design
+
+Development
+
+Launch
+
+Support
+
+Pre-Built Apps Highlight
+
+Quick-launch solutions
+
+Faster time-to-market
+
+Call to Action Section
+
+Large, bold, conversion-focused
+
+“Let’s Build Your Product”
+
+“Schedule a Strategy Call”
+
+Services Pages (Each Should Be Rich & Long)
+
+For:
+
+Custom Mobile App Development
+
+Custom Web Development
+
+On-Demand App Development
+
+Clone App Development
+
+UI/UX Design Services
+
+Technology Consulting Services
+
+Digital Marketing Services
+
+Each service page must include:
+
+Hero section
+
+Problem → Solution explanation
+
+Features & benefits
+
+Use cases
+
+Technologies used
+
+Engagement models
+
+CTA at top & bottom
+
+Pre-Built Apps
+
+Categories
+
+App cards
+
+Benefits
+
+Ideal for startups & SMEs
+
+CTA: “Request Demo”
+
+Business Models
+
+Fixed Price
+
+Dedicated Team
+
+Time & Material
+
+Comparison table
+
+Pricing
+
+Transparent structure (no exact numbers required)
+
+Packages / engagement types
+
+CTA: “Get Custom Quote”
+
+About Us
+
+Company story
+
+Vision & mission
+
+Values
+
+Global delivery model
+
+Saudi + international positioning
+
+Contact Us
+
+Professional contact form
+
+CTA-driven copy
+
+Map placeholder
+
+Email & phone sections
+
+Legal Pages
+
+Privacy Policy
+
+Terms & Conditions
+
+🚀 Calls to Action (VERY IMPORTANT)
+
+CTAs must be:
+
+Visually strong
+
+Repeated across pages
+
+Examples:
+
+Get a Free Consultation
+
+Talk to Our Experts
+
+Request a Quote
+
+Schedule a Call
+
+Start Your Project
+
+⚙️ Technical Requirements
+
+SEO-friendly structure
+
+Accessible (WCAG-friendly)
+
+Mobile-first design
+
+Clean reusable components
+
+Prepared for CMS or future backend
+
+Next.js or modern React-based setup preferred
+
+❌ What to Avoid
+
+No basic single-section pages
+
+No generic placeholder text
+
+No startup-style flashy gradients
+
+No minimal landing-page layouts
