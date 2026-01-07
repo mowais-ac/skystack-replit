@@ -184,8 +184,7 @@ export default function Home() {
           }} />
 
           <div className="container-width relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
-              {/* Left Column - Text Content */}
+            <div className="max-w-4xl mx-auto text-center">
               <motion.div 
                 initial="initial"
                 animate="animate"
@@ -201,11 +200,11 @@ export default function Home() {
                   <span className="gradient-text">{t("hero.titleHighlight")}</span>
                 </motion.h1>
                 
-                <motion.p variants={fadeIn} className="text-lg lg:text-xl text-slate-300 mb-8 leading-relaxed max-w-xl">
+                <motion.p variants={fadeIn} className="text-lg lg:text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl mx-auto">
                   {t("hero.subtitle")}
                 </motion.p>
                 
-                <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mb-10">
+                <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mb-10 justify-center">
                   <Link href="/contact-us">
                     <button className="btn-primary-gradient text-lg flex items-center justify-center gap-2 group" data-testid="button-hero-cta1">
                       {t("hero.cta1")} 
@@ -221,7 +220,7 @@ export default function Home() {
                 </motion.div>
 
                 {/* Trust badges */}
-                <motion.div variants={fadeIn} className="flex flex-wrap items-center gap-4">
+                <motion.div variants={fadeIn} className="flex flex-wrap items-center gap-4 justify-center">
                   <div className="flex items-center gap-2 text-slate-400 text-sm">
                     <Shield className="w-4 h-4 text-green-400" />
                     <span>ISO 27001</span>
@@ -237,45 +236,6 @@ export default function Home() {
                     <span>Vision 2030</span>
                   </div>
                 </motion.div>
-              </motion.div>
-
-              {/* Right Column - Stats Glass Card */}
-              <motion.div 
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="relative"
-              >
-                <div className="bg-white/5 backdrop-blur-xl rounded-md border border-white/10 p-8 shadow-2xl">
-                  <div className="grid grid-cols-2 gap-6">
-                    {stats.map((stat, i) => (
-                      <div key={i} className="text-center p-4 rounded-md bg-white/5 border border-white/5" data-testid={`card-stat-${i}`}>
-                        <div className="text-3xl lg:text-4xl font-bold gradient-text mb-1" data-testid={`text-stat-${i}`}>{stat.value}</div>
-                        <div className="text-slate-400 text-sm">{language === "ar" ? stat.labelAr : stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  {/* Feature highlights */}
-                  <div className="mt-6 pt-6 border-t border-white/10 space-y-3">
-                    {[
-                      { icon: Zap, text: language === "ar" ? "تسليم سريع" : "Fast Delivery" },
-                      { icon: Shield, text: language === "ar" ? "حماية بيانات متقدمة" : "Enterprise Security" },
-                      { icon: HeartHandshake, text: language === "ar" ? "دعم على مدار الساعة" : "24/7 Support" },
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-3 text-slate-300">
-                        <div className="w-8 h-8 rounded-md bg-gradient-to-br from-primary/30 to-blue-400/20 flex items-center justify-center">
-                          <item.icon className="w-4 h-4 text-primary" />
-                        </div>
-                        <span className="text-sm">{item.text}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Decorative elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/30 rounded-full blur-2xl" />
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl" />
               </motion.div>
             </div>
           </div>
