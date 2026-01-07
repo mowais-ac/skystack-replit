@@ -1,16 +1,22 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { useState } from "react";
 import { 
   ArrowRight, Check, Shield, Users, Zap, Target, Lightbulb, Code, Rocket, 
   HeartHandshake, Award, Building2, Briefcase, Globe, Clock, Star, 
   ChevronRight, Play, CheckCircle2, TrendingUp, Layers, Database, 
-  Smartphone, Cloud, Lock, Cpu
+  Smartphone, Cloud, Lock, Cpu, Fuel, ShoppingCart, Stethoscope, 
+  Landmark, Truck, Home as HomeIcon, Settings, Send
 } from "lucide-react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { services, businessModels, industries } from "@/lib/data";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/lib/i18n";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -74,6 +80,21 @@ const techStack = [
   { name: "Docker", icon: Layers },
 ];
 
+const saudiIndustries = [
+  { key: "oilgas", icon: Fuel },
+  { key: "retail", icon: ShoppingCart },
+  { key: "healthcare", icon: Stethoscope },
+  { key: "finance", icon: Landmark },
+  { key: "logistics", icon: Truck },
+  { key: "realestate", icon: HomeIcon },
+];
+
+const transformationItems = [
+  { key: "automation", icon: Settings },
+  { key: "efficiency", icon: TrendingUp },
+  { key: "vision2030", icon: Target },
+];
+
 const caseStudies = [
   {
     title: "E-Commerce Platform",
@@ -109,6 +130,20 @@ const caseStudies = [
 
 export default function Home() {
   const { t, language } = useLanguage();
+  const [leadForm, setLeadForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    industry: "",
+    challenge: ""
+  });
+
+  const handleLeadSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const message = `New Lead:\nName: ${leadForm.name}\nEmail: ${leadForm.email}\nPhone: ${leadForm.phone}\nCompany: ${leadForm.company}\nIndustry: ${leadForm.industry}\nChallenge: ${leadForm.challenge}`;
+    window.open(`https://wa.me/966537430455?text=${encodeURIComponent(message)}`, '_blank');
+  };
 
   const processSteps = [
     { key: "discovery", icon: Lightbulb, number: "01" },
@@ -157,7 +192,7 @@ export default function Home() {
                 {t("hero.badge")}
               </motion.div>
               
-              <motion.h1 variants={fadeIn} className="text-4xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.1] mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <motion.h1 variants={fadeIn} className="text-5xl lg:text-7xl xl:text-8xl font-bold text-slate-900 leading-[1.1] mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {t("hero.title")}{" "}
                 <span className="text-primary">{t("hero.titleHighlight")}</span>
               </motion.h1>
@@ -217,7 +252,7 @@ export default function Home() {
         </section>
 
         {/* About Section - Enhanced */}
-        <section className="py-20 lg:py-28 bg-white">
+        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-br from-white via-slate-50/50 to-white">
           <div className="container-width">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
@@ -271,7 +306,7 @@ export default function Home() {
         </section>
 
         {/* Services Section */}
-        <section className="py-20 lg:py-28 bg-slate-50">
+        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
           <div className="container-width">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="text-primary font-semibold tracking-wider uppercase text-sm">
@@ -327,29 +362,168 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Industries Section */}
+        {/* Saudi Market Transformation */}
+        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-slate-50">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-blue-100/50 rounded-full blur-3xl" />
+          </div>
+          <div className="container-width relative z-10">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+                {language === "ar" ? "رؤية 2030" : "Vision 2030"}
+              </span>
+              <h2 className="section-heading mt-2">{t("transformation.title")}</h2>
+              <p className="section-subheading mx-auto mt-4">{t("transformation.subtitle")}</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {transformationItems.map((item, i) => (
+                <div key={i} className="bg-white p-8 rounded-md shadow-sm hover:shadow-lg transition-all border border-slate-100" data-testid={`card-transformation-${i}`}>
+                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                    <item.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3" data-testid={`text-transformation-title-${i}`}>
+                    {t(`transformation.${item.key}`)}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed" data-testid={`text-transformation-desc-${i}`}>
+                    {t(`transformation.${item.key}Text`)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Saudi Industries Section */}
         <section className="py-20 lg:py-28 bg-white">
           <div className="container-width">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="text-primary font-semibold tracking-wider uppercase text-sm">
-                {language === "ar" ? "القطاعات" : "Sectors"}
+                {language === "ar" ? "الصناعات السعودية" : "Saudi Industries"}
               </span>
-              <h2 className="section-heading mt-2">{t("industries.title")}</h2>
-              <p className="section-subheading mx-auto mt-4">{t("industries.subtitle")}</p>
+              <h2 className="section-heading mt-2">{t("saudiIndustries.title")}</h2>
+              <p className="section-subheading mx-auto mt-4">{t("saudiIndustries.subtitle")}</p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {industries.map((industry, i) => (
-                <div key={i} className="group text-center p-6 bg-slate-50 rounded-md hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer">
-                  <industry.icon className="w-10 h-10 text-primary group-hover:text-white mx-auto mb-4 transition-colors" />
-                  <h4 className="font-semibold group-hover:text-white transition-colors" data-testid={`text-industry-${i}`}>
-                    {language === "ar" ? industry.titleAr : industry.title}
-                  </h4>
-                  <p className="text-sm text-slate-500 group-hover:text-blue-100 mt-1 transition-colors">
-                    {language === "ar" ? industry.descriptionAr : industry.description}
-                  </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {saudiIndustries.map((industry, i) => (
+                <div key={i} className="group p-8 bg-gradient-to-br from-slate-50 to-white rounded-md border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300" data-testid={`card-saudi-industry-${i}`}>
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 shrink-0 rounded-md bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                      <industry.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-900 mb-2" data-testid={`text-saudi-industry-title-${i}`}>
+                        {t(`saudiIndustries.${industry.key}`)}
+                      </h4>
+                      <p className="text-slate-600 text-sm leading-relaxed" data-testid={`text-saudi-industry-desc-${i}`}>
+                        {t(`saudiIndustries.${industry.key}Text`)}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Lead Generation Form */}
+        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-primary/5 via-blue-50/50 to-white">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-20 left-20 w-[300px] h-[300px] bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-20 w-[400px] h-[400px] bg-blue-100/40 rounded-full blur-3xl" />
+          </div>
+          <div className="container-width relative z-10">
+            <div className="max-w-3xl mx-auto">
+              <div className="text-center mb-12">
+                <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+                  {language === "ar" ? "ابدأ الآن" : "Get Started"}
+                </span>
+                <h2 className="section-heading mt-2">{t("leadForm.title")}</h2>
+                <p className="section-subheading mx-auto mt-4">{t("leadForm.subtitle")}</p>
+              </div>
+
+              <form onSubmit={handleLeadSubmit} className="bg-white rounded-md shadow-xl p-8 lg:p-12 border border-slate-100">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">{t("leadForm.name")}</label>
+                    <Input 
+                      placeholder={language === "ar" ? "أدخل اسمك الكامل" : "Enter your full name"}
+                      value={leadForm.name}
+                      onChange={(e) => setLeadForm({...leadForm, name: e.target.value})}
+                      required
+                      data-testid="input-lead-name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">{t("leadForm.email")}</label>
+                    <Input 
+                      type="email"
+                      placeholder={language === "ar" ? "أدخل بريدك الإلكتروني" : "Enter your work email"}
+                      value={leadForm.email}
+                      onChange={(e) => setLeadForm({...leadForm, email: e.target.value})}
+                      required
+                      data-testid="input-lead-email"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">{t("leadForm.phone")}</label>
+                    <Input 
+                      type="tel"
+                      placeholder={language === "ar" ? "+966" : "+966"}
+                      value={leadForm.phone}
+                      onChange={(e) => setLeadForm({...leadForm, phone: e.target.value})}
+                      required
+                      data-testid="input-lead-phone"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">{t("leadForm.company")}</label>
+                    <Input 
+                      placeholder={language === "ar" ? "اسم شركتك" : "Your company name"}
+                      value={leadForm.company}
+                      onChange={(e) => setLeadForm({...leadForm, company: e.target.value})}
+                      required
+                      data-testid="input-lead-company"
+                    />
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <label className="block text-sm font-medium text-slate-700 mb-2">{t("leadForm.industry")}</label>
+                  <Select value={leadForm.industry} onValueChange={(value) => setLeadForm({...leadForm, industry: value})}>
+                    <SelectTrigger data-testid="select-lead-industry">
+                      <SelectValue placeholder={language === "ar" ? "اختر القطاع" : "Select your industry"} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="oil-gas">{language === "ar" ? "النفط والغاز" : "Oil & Gas"}</SelectItem>
+                      <SelectItem value="retail">{language === "ar" ? "التجزئة" : "Retail & E-commerce"}</SelectItem>
+                      <SelectItem value="healthcare">{language === "ar" ? "الرعاية الصحية" : "Healthcare"}</SelectItem>
+                      <SelectItem value="finance">{language === "ar" ? "البنوك والتمويل" : "Banking & Finance"}</SelectItem>
+                      <SelectItem value="logistics">{language === "ar" ? "اللوجستيات" : "Logistics & Supply Chain"}</SelectItem>
+                      <SelectItem value="realestate">{language === "ar" ? "العقارات" : "Real Estate & Construction"}</SelectItem>
+                      <SelectItem value="other">{language === "ar" ? "أخرى" : "Other"}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="mb-8">
+                  <label className="block text-sm font-medium text-slate-700 mb-2">{t("leadForm.challenge")}</label>
+                  <Textarea 
+                    placeholder={language === "ar" ? "صف التحدي الذي تواجهه..." : "Describe your biggest operational challenge..."}
+                    value={leadForm.challenge}
+                    onChange={(e) => setLeadForm({...leadForm, challenge: e.target.value})}
+                    rows={4}
+                    data-testid="textarea-lead-challenge"
+                  />
+                </div>
+                <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90" data-testid="button-lead-submit">
+                  {t("leadForm.submit")} <Send className="w-5 h-5 ml-2" />
+                </Button>
+                <p className="text-center text-sm text-slate-500 mt-4">
+                  <Lock className="w-4 h-4 inline mr-1" />
+                  {t("leadForm.privacy")}
+                </p>
+              </form>
             </div>
           </div>
         </section>
@@ -389,7 +563,7 @@ export default function Home() {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-20 lg:py-28 bg-white">
+        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-white">
           <div className="container-width">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="text-primary font-semibold tracking-wider uppercase text-sm">
@@ -470,7 +644,7 @@ export default function Home() {
         </section>
 
         {/* Process Section */}
-        <section className="py-20 lg:py-28 bg-slate-50">
+        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/20 to-slate-50">
           <div className="container-width">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="text-primary font-semibold tracking-wider uppercase text-sm">
