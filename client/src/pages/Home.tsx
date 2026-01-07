@@ -131,12 +131,18 @@ export default function Home() {
       <Navigation />
       
       <main className="flex-grow">
-        {/* Hero Section - Enhanced */}
-        <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-primary/20 text-white">
-          <div className="absolute inset-0">
-            <div className="absolute top-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+        {/* Hero Section - Light & Clean */}
+        <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-blue-50/30">
+          {/* Subtle tech pattern background */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23003cff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+          
+          {/* Soft gradient orbs */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-blue-100/50 rounded-full blur-3xl" />
+            <div className="absolute top-1/3 left-1/3 w-[300px] h-[300px] bg-blue-50 rounded-full blur-3xl" />
           </div>
 
           <div className="container-width relative z-10">
@@ -146,39 +152,39 @@ export default function Home() {
               variants={staggerContainer}
               className="max-w-4xl"
             >
-              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-medium text-sm mb-8 border border-white/20 backdrop-blur-sm">
-                <Shield className="w-4 h-4 text-primary" />
+              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm mb-8 border border-primary/20">
+                <Shield className="w-4 h-4" />
                 {t("hero.badge")}
               </motion.div>
               
-              <motion.h1 variants={fadeIn} className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-8">
+              <motion.h1 variants={fadeIn} className="text-4xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.1] mb-8">
                 {t("hero.title")}{" "}
                 <span className="text-primary">{t("hero.titleHighlight")}</span>
               </motion.h1>
               
-              <motion.p variants={fadeIn} className="text-lg lg:text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
+              <motion.p variants={fadeIn} className="text-lg lg:text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl">
                 {t("hero.subtitle")}
               </motion.p>
               
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact-us">
-                  <button className="bg-primary text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/30 flex items-center justify-center gap-2" data-testid="button-hero-cta1">
+                  <button className="bg-primary text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2" data-testid="button-hero-cta1">
                     {t("hero.cta1")} <ArrowRight className="w-5 h-5" />
                   </button>
                 </Link>
                 <Link href="/services">
-                  <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-md font-semibold text-lg hover:bg-white/20 transition-all" data-testid="button-hero-cta2">
+                  <button className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-md font-semibold text-lg hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm" data-testid="button-hero-cta2">
                     {t("hero.cta2")}
                   </button>
                 </Link>
               </motion.div>
 
               {/* Stats in hero */}
-              <motion.div variants={fadeIn} className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 pt-10 border-t border-white/10">
+              <motion.div variants={fadeIn} className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 pt-10 border-t border-slate-200">
                 {stats.map((stat, i) => (
                   <div key={i} className="text-center lg:text-left">
                     <div className="text-3xl lg:text-4xl font-bold text-primary mb-1" data-testid={`text-stat-${i}`}>{stat.value}</div>
-                    <div className="text-slate-400 text-sm">{language === "ar" ? stat.labelAr : stat.label}</div>
+                    <div className="text-slate-500 text-sm">{language === "ar" ? stat.labelAr : stat.label}</div>
                   </div>
                 ))}
               </motion.div>
