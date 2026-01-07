@@ -157,7 +157,7 @@ export default function Home() {
                 {t("hero.badge")}
               </motion.div>
               
-              <motion.h1 variants={fadeIn} className="text-4xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.1] mb-8">
+              <motion.h1 variants={fadeIn} className="text-4xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.1] mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {t("hero.title")}{" "}
                 <span className="text-primary">{t("hero.titleHighlight")}</span>
               </motion.h1>
