@@ -1,0 +1,247 @@
+Build a modern, high-performance corporate website for SkyStack (https://skystack.sa
+) — a Saudi-based technology and software development company.
+
+1. Tech Stack & Setup
+
+Framework: Next.js (App Router)
+
+Language: TypeScript
+
+Styling: Tailwind CSS
+
+SEO: Built-in Next.js SEO (metadata, Open Graph, sitemap, robots.txt)
+
+Animations: Framer Motion
+
+Icons: Lucide React
+
+Forms: React Hook Form + Zod validation
+
+Deployment ready for Vercel
+
+Clean folder structure with reusable components
+
+2. Branding & Design
+
+Primary Color: #003cff
+
+Use a clean, enterprise SaaS design
+
+Professional, premium, and trustworthy look
+
+Support logo upload (logo will be attached)
+
+Typography: Modern sans-serif (Inter or similar)
+
+Rounded cards, subtle shadows, soft gradients using primary color
+
+Fully responsive (mobile, tablet, desktop)
+
+3. Global Layout
+
+Sticky Header with mega-menu for Services & Solutions
+
+Footer with:
+
+Company info
+
+Quick links
+
+Services
+
+Legal pages
+
+Social links
+
+CTA buttons: “Get a Quote”, “Contact Us”
+
+4. Pages & Routing (Must Implement All)
+Core Pages
+
+/ (Home)
+
+/about-us
+
+/services
+
+/pre-built-apps
+
+/contact-us
+
+/pricing
+
+/privacy-policy
+
+/terms-condition
+
+Service Pages
+
+/clone-app-development
+
+/on-demand-app-development
+
+/custom-mobile-app-development
+
+/custom-web-development
+
+/technology-consulting-services
+
+/ui-ux-design-services
+
+/digital-marketing-services
+
+/offshore-office-services
+
+App & Solution Pages
+
+/hq-trivia-app-development
+
+/hazzi-lottery-app-development
+
+/spot-the-ball-game-development
+
+/houzz-app-development
+
+/cricden-cricket-app-development
+
+/gojek-app-development
+
+/rakuten-app-development
+
+/bogo-app-development
+
+/local-tour-guide-app-development
+
+/opinion-trading-app-development
+
+/ilmyst-app-development
+
+/easycoin-app-development
+
+/food-delivery-app-development
+
+/car-wash-app-development
+
+/laundry-app-development
+
+/elearning-app-development
+
+/ecommerce-app-development
+
+/trivia-game-show-app-development
+
+5. Dynamic Routes (Important)
+
+Implement dynamic routing with slug-based pages:
+
+Services
+
+/services/custom-mobile-app-development
+
+/services/custom-web-development
+
+/services/clone-app-development
+
+/services/on-demand-app-development
+
+/services/ui-ux-design
+
+/services/digital-marketing-services
+
+/services/technology-consulting
+
+/services/pre-built-apps
+
+/services/[slug]
+
+Business Models / Case Studies
+
+/business-models
+
+/business-models/hq-trivia-clone
+
+/business-models/hazzi-case-study
+
+/business-models/portfolio-rakuten
+
+/business-models/gojek-app
+
+/business-models/portfolio-bogo
+
+/business-models/portfolio-With-locals
+
+/business-models/case-study-the-future-of-opinion-trading
+
+/business-models/ilmyst
+
+/business-models/easy-coin
+
+/business-models/services
+
+/business-models/pre-built-apps
+
+/business-models/[slug]
+
+Use JSON or TS data files to power dynamic pages.
+
+6. Page Content Structure (Reusable)
+
+Each service / app page should include:
+
+Hero section with title + subtitle
+
+Problem statement
+
+Solution overview
+
+Features & benefits
+
+Tech stack used
+
+Process / workflow
+
+Use cases
+
+CTA section (Contact / Quote)
+
+7. SEO & Performance
+
+Unique meta title & description per page
+
+Schema markup (Organization, Service)
+
+Image optimization using next/image
+
+Lighthouse score target: 90+
+
+8. Contact Page
+
+Contact form with validation
+
+Fields: Name, Email, Phone, Company, Message
+
+Display Saudi business presence
+
+Google Map placeholder
+
+9. Code Quality
+
+Modular components
+
+Reusable UI sections
+
+Clean naming conventions
+
+Comments where needed
+
+No dummy broken links
+
+10. Final Output
+
+Fully working Next.js project
+
+Ready to deploy
+
+Easy to scale with CMS later
+
+Professional enterprise-grade result
