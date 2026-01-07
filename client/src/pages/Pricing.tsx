@@ -154,8 +154,8 @@ export default function Pricing() {
                 { value: "10+", label: language === "ar" ? "سنوات الخبرة" : "Years Experience" },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className="text-3xl font-bold text-primary">{stat.value}</div>
-                  <div className="text-slate-400 text-sm">{stat.label}</div>
+                  <div className="text-3xl font-bold text-primary" data-testid={`text-pricing-stat-value-${i}`}>{stat.value}</div>
+                  <div className="text-slate-400 text-sm" data-testid={`text-pricing-stat-label-${i}`}>{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -249,14 +249,14 @@ export default function Pricing() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {guarantees.map((item, i) => (
-                <div key={i} className="bg-white p-8 rounded-md shadow-sm text-center hover:shadow-lg transition-shadow">
+                <div key={i} className="bg-white p-8 rounded-md shadow-sm text-center hover:shadow-lg transition-shadow" data-testid={`card-guarantee-${i}`}>
                   <div className="w-14 h-14 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
                     <item.icon className="w-7 h-7" />
                   </div>
-                  <h4 className="font-bold text-lg mb-2">
+                  <h4 className="font-bold text-lg mb-2" data-testid={`text-guarantee-title-${i}`}>
                     {language === "ar" ? item.titleAr : item.title}
                   </h4>
-                  <p className="text-slate-600 text-sm">
+                  <p className="text-slate-600 text-sm" data-testid={`text-guarantee-desc-${i}`}>
                     {language === "ar" ? item.descriptionAr : item.description}
                   </p>
                 </div>
@@ -315,11 +315,15 @@ export default function Pricing() {
                       {language === "ar" ? "جدول مكالمة" : "Schedule a Call"}
                     </button>
                   </Link>
-                  <a href="https://wa.me/966537430455" target="_blank" rel="noopener noreferrer">
-                    <button className="w-full bg-[#25D366] text-white py-4 rounded-md font-bold hover:bg-[#20BD5A] transition-colors flex items-center justify-center gap-2 mt-4" data-testid="button-whatsapp-pricing">
-                      <MessageCircle className="w-5 h-5" />
-                      {language === "ar" ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
-                    </button>
+                  <a 
+                    href="https://wa.me/966537430455" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-full bg-[#25D366] text-white py-4 rounded-md font-bold hover:bg-[#20BD5A] transition-colors flex items-center justify-center gap-2 mt-4"
+                    data-testid="link-whatsapp-pricing"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    {language === "ar" ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
                   </a>
                 </div>
                 
@@ -427,9 +431,9 @@ export default function Pricing() {
                     : "We accept bank transfers and credit cards. We also offer flexible payment plans for larger projects."
                 },
               ].map((faq, i) => (
-                <div key={i} className="bg-slate-50 p-6 rounded-md">
-                  <h4 className="font-bold text-slate-900 mb-3">{faq.q}</h4>
-                  <p className="text-slate-600 leading-relaxed">{faq.a}</p>
+                <div key={i} className="bg-slate-50 p-6 rounded-md" data-testid={`card-faq-${i}`}>
+                  <h4 className="font-bold text-slate-900 mb-3" data-testid={`text-faq-question-${i}`}>{faq.q}</h4>
+                  <p className="text-slate-600 leading-relaxed" data-testid={`text-faq-answer-${i}`}>{faq.a}</p>
                 </div>
               ))}
             </div>

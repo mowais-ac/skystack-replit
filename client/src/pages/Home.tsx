@@ -201,7 +201,7 @@ export default function Home() {
                   "GDPR Compliant",
                   "AWS Partner"
                 ].map((partner, i) => (
-                  <span key={i} className="text-slate-400 font-semibold text-sm px-4 py-2 bg-slate-50 rounded-md">
+                  <span key={i} className="text-slate-400 font-semibold text-sm px-4 py-2 bg-slate-50 rounded-md" data-testid={`badge-partner-${i}`}>
                     {partner}
                   </span>
                 ))}
@@ -362,17 +362,17 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {caseStudies.map((study, i) => (
-                <div key={i} className="bg-slate-800 rounded-md p-8 hover:bg-slate-700 transition-colors group">
-                  <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+                <div key={i} className="bg-slate-800 rounded-md p-8 hover:bg-slate-700 transition-colors group" data-testid={`card-casestudy-${i}`}>
+                  <span className="text-xs font-semibold text-primary uppercase tracking-wider" data-testid={`text-casestudy-category-${i}`}>
                     {language === "ar" ? study.categoryAr : study.category}
                   </span>
-                  <h3 className="text-xl font-bold mt-3 mb-2" data-testid={`text-case-${i}`}>
+                  <h3 className="text-xl font-bold mt-3 mb-2" data-testid={`text-casestudy-title-${i}`}>
                     {language === "ar" ? study.titleAr : study.title}
                   </h3>
-                  <p className="text-slate-400 text-sm mb-4">
+                  <p className="text-slate-400 text-sm mb-4" data-testid={`text-casestudy-client-${i}`}>
                     {language === "ar" ? study.clientAr : study.client}
                   </p>
-                  <div className="flex items-center gap-2 text-green-400">
+                  <div className="flex items-center gap-2 text-green-400" data-testid={`text-casestudy-result-${i}`}>
                     <TrendingUp className="w-5 h-5" />
                     <span className="font-semibold">{language === "ar" ? study.resultAr : study.result}</span>
                   </div>
@@ -417,7 +417,7 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               {techStack.map((tech, i) => (
-                <div key={i} className="flex items-center gap-2 px-6 py-3 bg-white rounded-md shadow-sm">
+                <div key={i} className="flex items-center gap-2 px-6 py-3 bg-white rounded-md shadow-sm" data-testid={`badge-tech-${i}`}>
                   <tech.icon className="w-5 h-5 text-primary" />
                   <span className="font-medium text-slate-700">{tech.name}</span>
                 </div>
@@ -440,20 +440,20 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, i) => (
-                <div key={i} className="bg-slate-50 p-8 rounded-md relative">
+                <div key={i} className="bg-slate-50 p-8 rounded-md relative" data-testid={`card-testimonial-${i}`}>
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, j) => (
                       <Star key={j} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-slate-700 leading-relaxed mb-6 italic">
+                  <p className="text-slate-700 leading-relaxed mb-6 italic" data-testid={`text-testimonial-quote-${i}`}>
                     "{language === "ar" ? testimonial.quoteAr : testimonial.quote}"
                   </p>
                   <div>
-                    <div className="font-bold text-slate-900">
+                    <div className="font-bold text-slate-900" data-testid={`text-testimonial-author-${i}`}>
                       {language === "ar" ? testimonial.authorAr : testimonial.author}
                     </div>
-                    <div className="text-sm text-slate-500">
+                    <div className="text-sm text-slate-500" data-testid={`text-testimonial-role-${i}`}>
                       {language === "ar" ? testimonial.roleAr : testimonial.role}
                     </div>
                   </div>
