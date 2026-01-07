@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle, Code, Layers, Users, Zap } from "lucide-react";
+import { ArrowRight, Check, Shield, Users, Zap, Target, Lightbulb, Code, Rocket, HeartHandshake, Award } from "lucide-react";
 import { ServiceCard } from "@/components/ServiceCard";
-import { services, businessModels } from "@/lib/data";
+import { services, businessModels, industries } from "@/lib/data";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { useLanguage } from "@/lib/i18n";
 
-// Animation variants
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+  transition: { duration: 0.5 }
 };
 
 const staggerContainer = {
@@ -22,16 +22,34 @@ const staggerContainer = {
 };
 
 export default function Home() {
+  const { t, language } = useLanguage();
+
+  const processSteps = [
+    { key: "discovery", icon: Lightbulb, number: "01" },
+    { key: "strategy", icon: Target, number: "02" },
+    { key: "design", icon: Code, number: "03" },
+    { key: "development", icon: Zap, number: "04" },
+    { key: "launch", icon: Rocket, number: "05" },
+    { key: "support", icon: HeartHandshake, number: "06" },
+  ];
+
+  const whyUsItems = [
+    { key: "saudi", icon: Shield },
+    { key: "enterprise", icon: Award },
+    { key: "partnership", icon: HeartHandshake },
+    { key: "quality", icon: Check },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <Navigation />
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-          <div className="absolute inset-0 bg-slate-50 -z-10">
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
+        <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl" />
           </div>
 
           <div className="container-width">
@@ -39,93 +57,77 @@ export default function Home() {
               initial="initial"
               animate="animate"
               variants={staggerContainer}
-              className="max-w-3xl"
+              className="max-w-4xl"
             >
-              <motion.div variants={fadeIn} className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-6 border border-primary/20">
-                🚀 Leading Digital Transformation Agency
+              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm mb-8 border border-primary/20">
+                <Shield className="w-4 h-4" />
+                {t("hero.badge")}
               </motion.div>
-              <motion.h1 variants={fadeIn} className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-8 font-display">
-                Building the Future of <span className="text-primary relative inline-block">
-                  Digital Business
-                  <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none">
-                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-                  </svg>
-                </span>
+              
+              <motion.h1 variants={fadeIn} className="text-4xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.1] mb-8">
+                {t("hero.title")}{" "}
+                <span className="text-primary">{t("hero.titleHighlight")}</span>
               </motion.h1>
-              <motion.p variants={fadeIn} className="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl">
-                We craft high-performance websites, mobile apps, and enterprise software solutions that drive growth and innovation.
+              
+              <motion.p variants={fadeIn} className="text-lg lg:text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl">
+                {t("hero.subtitle")}
               </motion.p>
+              
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact-us">
-                  <button className="btn-primary flex items-center justify-center gap-2 text-lg px-8 py-4">
-                    Get Started <ArrowRight className="w-5 h-5" />
+                  <button className="btn-primary flex items-center justify-center gap-2 text-base lg:text-lg px-8 py-4" data-testid="button-hero-cta1">
+                    {t("hero.cta1")} <ArrowRight className="w-5 h-5" />
                   </button>
                 </Link>
                 <Link href="/services">
-                  <button className="btn-secondary text-lg px-8 py-4">
-                    Explore Services
+                  <button className="btn-secondary text-base lg:text-lg px-8 py-4" data-testid="button-hero-cta2">
+                    {t("hero.cta2")}
                   </button>
                 </Link>
+              </motion.div>
+
+              {/* Trust badges */}
+              <motion.div variants={fadeIn} className="mt-16 flex flex-wrap gap-6 items-center text-slate-500 text-sm">
+                <span className="font-semibold text-slate-700">Trusted by:</span>
+                <span className="trust-badge">Enterprise Clients</span>
+                <span className="trust-badge">Saudi Vision 2030</span>
+                <span className="trust-badge">ISO Certified</span>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        {/* Services Section */}
-        <section className="py-24 bg-white">
+        {/* About Section */}
+        <section className="py-20 lg:py-28 bg-white">
           <div className="container-width">
-            <div className="text-center max-w-2xl mx-auto mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4 font-display">Our Core Expertise</h2>
-              <p className="text-slate-600 text-lg">Comprehensive digital solutions tailored to scale your business.</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {services.map((service, index) => (
-                <ServiceCard 
-                  key={index}
-                  {...service}
-                  baseUrl="/services"
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Why Us / Stats */}
-        <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-          <div className="container-width relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-3xl lg:text-4xl font-bold mb-6 font-display">Why Industry Leaders Choose Us</h2>
-                <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                  We don't just write code; we solve business problems. Our agile approach ensures rapid delivery without compromising on quality or security.
-                </p>
-                <ul className="space-y-4">
-                  {[
-                    "Enterprise-grade security standards",
-                    "Agile development methodology",
-                    "24/7 Support & Maintenance",
-                    "Dedicated project managers"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-lg font-medium">
-                      <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs">✓</div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <span className="text-primary font-semibold tracking-wider uppercase text-sm">{t("about.title")}</span>
+                <h2 className="section-heading mt-2">{t("about.subtitle")}</h2>
+                <p className="section-subheading mt-4">{t("about.text")}</p>
+                
+                <div className="mt-8 p-6 bg-slate-50 rounded-md border-l-4 border-primary">
+                  <h4 className="font-semibold text-slate-900 mb-2">{t("about.mission")}</h4>
+                  <p className="text-slate-600">{t("about.missionText")}</p>
+                </div>
+
+                <Link href="/about-us">
+                  <button className="btn-outline mt-8" data-testid="button-learn-more">
+                    Learn More About Us
+                  </button>
+                </Link>
               </div>
-              <div className="grid grid-cols-2 gap-6">
+              
+              <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: "Projects Delivered", value: "500+", icon: Layers },
-                  { label: "Happy Clients", value: "200+", icon: Users },
-                  { label: "Team Experts", value: "50+", icon: Code },
-                  { label: "Years Experience", value: "10+", icon: Zap },
+                  { label: "Years Experience", value: "10+" },
+                  { label: "Projects Delivered", value: "500+" },
+                  { label: "Happy Clients", value: "200+" },
+                  { label: "Team Experts", value: "50+" },
                 ].map((stat, i) => (
-                  <div key={i} className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:bg-slate-800 transition-colors">
-                    <stat.icon className="w-8 h-8 text-primary mb-4" />
-                    <div className="text-4xl font-bold mb-2 font-display">{stat.value}</div>
-                    <div className="text-slate-400">{stat.label}</div>
+                  <div key={i} className="bg-slate-50 p-8 rounded-md text-center">
+                    <div className="text-4xl lg:text-5xl font-bold text-primary mb-2" data-testid={`text-stat-${i}`}>{stat.value}</div>
+                    <div className="text-slate-600 font-medium">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -133,27 +135,139 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Pre-Built Apps Teaser */}
-        <section className="py-24 bg-slate-50">
+        {/* Services Section */}
+        <section className="py-20 lg:py-28 bg-slate-50">
           <div className="container-width">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <span className="text-primary font-semibold tracking-wider uppercase text-sm">What We Do</span>
+              <h2 className="section-heading mt-2">{t("services.title")}</h2>
+              <p className="section-subheading mx-auto mt-4">{t("services.subtitle")}</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {services.slice(0, 8).map((service, index) => (
+                <ServiceCard 
+                  key={index}
+                  {...service}
+                  title={language === "ar" ? service.titleAr : service.title}
+                  subtitle={language === "ar" ? service.subtitleAr : service.subtitle}
+                  baseUrl="/services"
+                />
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href="/services">
+                <button className="btn-primary inline-flex items-center gap-2" data-testid="button-view-all-services">
+                  View All Services <ArrowRight className="w-5 h-5" />
+                </button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Industries Section */}
+        <section className="py-20 lg:py-28 bg-white">
+          <div className="container-width">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <span className="text-primary font-semibold tracking-wider uppercase text-sm">Sectors</span>
+              <h2 className="section-heading mt-2">{t("industries.title")}</h2>
+              <p className="section-subheading mx-auto mt-4">{t("industries.subtitle")}</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {industries.map((industry, i) => (
+                <div key={i} className="text-center p-6 bg-slate-50 rounded-md hover:bg-slate-100 transition-colors">
+                  <industry.icon className="w-10 h-10 text-primary mx-auto mb-4" />
+                  <h4 className="font-semibold text-slate-900" data-testid={`text-industry-${i}`}>
+                    {language === "ar" ? industry.titleAr : industry.title}
+                  </h4>
+                  <p className="text-sm text-slate-500 mt-1">
+                    {language === "ar" ? industry.descriptionAr : industry.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="py-20 lg:py-28 bg-slate-900 text-white">
+          <div className="container-width">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <span className="text-primary font-semibold tracking-wider uppercase text-sm">Why Us</span>
+              <h2 className="section-heading mt-2 text-white">{t("whyUs.title")}</h2>
+              <p className="text-slate-400 text-lg mt-4">{t("whyUs.subtitle")}</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {whyUsItems.map((item, i) => (
+                <div key={i} className="bg-slate-800/50 p-8 rounded-md border border-slate-700 hover:border-primary/50 transition-colors">
+                  <item.icon className="w-10 h-10 text-primary mb-6" />
+                  <h4 className="text-xl font-semibold mb-3" data-testid={`text-whyus-${i}`}>{t(`whyUs.${item.key}`)}</h4>
+                  <p className="text-slate-400">{t(`whyUs.${item.key}Text`)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section className="py-20 lg:py-28 bg-white">
+          <div className="container-width">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <span className="text-primary font-semibold tracking-wider uppercase text-sm">Our Process</span>
+              <h2 className="section-heading mt-2">{t("process.title")}</h2>
+              <p className="section-subheading mx-auto mt-4">{t("process.subtitle")}</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {processSteps.map((step, i) => (
+                <div key={i} className="relative text-center">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <step.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <div className="text-xs text-primary font-bold mb-1">{step.number}</div>
+                  <h4 className="font-semibold text-slate-900" data-testid={`text-process-${i}`}>{t(`process.${step.key}`)}</h4>
+                  <p className="text-sm text-slate-500 mt-1">{t(`process.${step.key}Text`)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Pre-Built Apps Section */}
+        <section className="py-20 lg:py-28 bg-slate-50">
+          <div className="container-width">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
               <div className="max-w-2xl">
-                <span className="text-primary font-bold tracking-wider uppercase text-sm">Ready-to-Launch Solutions</span>
-                <h2 className="text-3xl lg:text-4xl font-bold mt-2 font-display">Pre-Built Business Models</h2>
-                <p className="text-slate-600 text-lg mt-4">Accelerate your time to market with our white-label app solutions.</p>
+                <span className="text-primary font-semibold tracking-wider uppercase text-sm">Quick Launch</span>
+                <h2 className="section-heading mt-2">{t("prebuilt.title")}</h2>
+                <p className="section-subheading mt-4">{t("prebuilt.subtitle")}</p>
+                
+                <div className="flex flex-wrap gap-4 mt-6">
+                  {["benefit1", "benefit2", "benefit3"].map((key, i) => (
+                    <span key={i} className="inline-flex items-center gap-2 text-sm text-slate-700">
+                      <Check className="w-4 h-4 text-primary" />
+                      {t(`prebuilt.${key}`)}
+                    </span>
+                  ))}
+                </div>
               </div>
               <Link href="/pre-built-apps">
-                <button className="text-primary font-bold hover:gap-3 flex items-center gap-2 transition-all">
+                <button className="text-primary font-semibold hover:gap-3 flex items-center gap-2 transition-all" data-testid="button-view-solutions">
                   View All Solutions <ArrowRight className="w-5 h-5" />
                 </button>
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {businessModels.map((model, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {businessModels.slice(0, 4).map((model, index) => (
                 <ServiceCard 
                   key={index}
                   {...model}
+                  title={language === "ar" ? model.titleAr : model.title}
+                  subtitle={language === "ar" ? model.subtitleAr : model.subtitle}
                   baseUrl="/business-models"
                 />
               ))}
@@ -161,23 +275,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA Banner */}
-        <section className="py-24">
+        {/* CTA Section */}
+        <section className="py-20 lg:py-28">
           <div className="container-width">
-            <div className="bg-primary rounded-3xl p-12 lg:p-20 text-center text-white relative overflow-hidden shadow-2xl shadow-primary/30">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/10 rounded-full blur-3xl -ml-32 -mb-32"></div>
+            <div className="bg-primary rounded-md p-12 lg:p-20 text-center text-white relative overflow-hidden shadow-2xl">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/10 rounded-full blur-3xl -ml-48 -mb-48"></div>
               
               <div className="relative z-10 max-w-3xl mx-auto">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-6 font-display">Ready to Start Your Project?</h2>
-                <p className="text-xl text-blue-100 mb-10">
-                  Let's discuss how we can help transform your business with our custom digital solutions.
-                </p>
-                <Link href="/contact-us">
-                  <button className="bg-white text-primary px-10 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 hover:scale-105 transition-all shadow-lg">
-                    Schedule a Consultation
-                  </button>
-                </Link>
+                <h2 className="text-3xl lg:text-5xl font-bold mb-6">{t("cta.title")}</h2>
+                <p className="text-lg lg:text-xl text-blue-100 mb-10">{t("cta.subtitle")}</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/contact-us">
+                    <button className="bg-white text-primary px-8 py-4 rounded-md font-semibold text-lg hover:bg-blue-50 transition-all" data-testid="button-cta-call">
+                      {t("cta.button1")}
+                    </button>
+                  </Link>
+                  <Link href="/pricing">
+                    <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-white/10 transition-all" data-testid="button-cta-quote">
+                      {t("cta.button2")}
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
