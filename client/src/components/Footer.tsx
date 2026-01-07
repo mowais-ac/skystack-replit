@@ -47,6 +47,7 @@ export function Footer() {
               <li><Link href="/pre-built-apps" className="hover:text-primary transition-colors" data-testid="link-footer-prebuilt">{t("nav.preBuiltApps")}</Link></li>
               <li><Link href="/business-models" className="hover:text-primary transition-colors" data-testid="link-footer-business">{t("nav.businessModels")}</Link></li>
               <li><Link href="/pricing" className="hover:text-primary transition-colors" data-testid="link-footer-pricing">{t("nav.pricing")}</Link></li>
+              <li><Link href="/outsourcing" className="hover:text-primary transition-colors" data-testid="link-footer-outsourcing">{language === "ar" ? "التعهيد" : "Outsourcing"}</Link></li>
               <li><Link href="/contact-us" className="hover:text-primary transition-colors" data-testid="link-footer-contact">{t("nav.contact")}</Link></li>
             </ul>
           </div>
@@ -77,7 +78,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span dir="ltr">+966 11 XXX XXXX</span>
+                <span dir="ltr">+966 537 430 455</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />

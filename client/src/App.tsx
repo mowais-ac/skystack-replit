@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "@/lib/i18n";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 import Home from "@/pages/Home";
 import ServicesList from "@/pages/ServicesList";
@@ -13,6 +14,7 @@ import ContactUs from "@/pages/ContactUs";
 import Pricing from "@/pages/Pricing";
 import StaticContent from "@/pages/StaticContent";
 import BusinessModels from "@/pages/BusinessModels";
+import Outsourcing from "@/pages/Outsourcing";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -47,6 +49,8 @@ function Router() {
       <Route path="/terms-condition">
         <StaticContent type="terms" />
       </Route>
+      
+      <Route path="/outsourcing" component={Outsourcing} />
 
       <Route component={NotFound} />
     </Switch>
@@ -60,6 +64,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <Router />
+            <WhatsAppButton />
             <Toaster />
           </TooltipProvider>
         </QueryClientProvider>

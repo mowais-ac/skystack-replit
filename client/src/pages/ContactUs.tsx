@@ -100,7 +100,7 @@ export default function ContactUs() {
                         <h4 className="font-semibold text-slate-900">
                           {language === "ar" ? "اتصل بنا" : "Call Us"}
                         </h4>
-                        <p className="text-slate-600 mt-1" dir="ltr">+966 11 XXX XXXX</p>
+                        <p className="text-slate-600 mt-1" dir="ltr">+966 537 430 455</p>
                       </div>
                     </div>
 
