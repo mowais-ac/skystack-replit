@@ -166,117 +166,177 @@ export default function Home() {
       <Navigation />
       
       <main className="flex-grow">
-        {/* Hero Section - Light & Clean */}
-        <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-blue-50/30">
-          {/* Subtle tech pattern background */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23003cff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-          
-          {/* Soft gradient orbs */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-blue-100/50 rounded-full blur-3xl" />
-            <div className="absolute top-1/3 left-1/3 w-[300px] h-[300px] bg-blue-50 rounded-full blur-3xl" />
+        {/* Hero Section - Premium IT Services Design */}
+        <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-slate-950">
+          {/* Animated gradient background */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+            <div className="absolute top-1/4 -right-1/4 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] animate-pulse" />
+            <div className="absolute bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-conic from-primary/10 via-transparent to-primary/5 rounded-full blur-3xl opacity-50" />
           </div>
+          
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }} />
 
           <div className="container-width relative z-10">
-            <motion.div 
-              initial="initial"
-              animate="animate"
-              variants={staggerContainer}
-              className="max-w-4xl"
-            >
-              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm mb-8 border border-primary/20">
-                <Shield className="w-4 h-4" />
-                {t("hero.badge")}
-              </motion.div>
-              
-              <motion.h1 variants={fadeIn} className="text-5xl lg:text-7xl xl:text-8xl font-bold text-slate-900 leading-[1.1] mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-                {t("hero.title")}{" "}
-                <span className="text-primary">{t("hero.titleHighlight")}</span>
-              </motion.h1>
-              
-              <motion.p variants={fadeIn} className="text-lg lg:text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl">
-                {t("hero.subtitle")}
-              </motion.p>
-              
-              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact-us">
-                  <button className="bg-primary text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2" data-testid="button-hero-cta1">
-                    {t("hero.cta1")} <ArrowRight className="w-5 h-5" />
-                  </button>
-                </Link>
-                <Link href="/services">
-                  <button className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-md font-semibold text-lg hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm" data-testid="button-hero-cta2">
-                    {t("hero.cta2")}
-                  </button>
-                </Link>
+            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+              {/* Left Column - Text Content */}
+              <motion.div 
+                initial="initial"
+                animate="animate"
+                variants={staggerContainer}
+              >
+                <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white font-medium text-sm mb-6 border border-white/10">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                  {t("hero.badge")}
+                </motion.div>
+                
+                <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.05] mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.02em' }}>
+                  {t("hero.title")}{" "}
+                  <span className="gradient-text">{t("hero.titleHighlight")}</span>
+                </motion.h1>
+                
+                <motion.p variants={fadeIn} className="text-lg lg:text-xl text-slate-300 mb-8 leading-relaxed max-w-xl">
+                  {t("hero.subtitle")}
+                </motion.p>
+                
+                <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mb-10">
+                  <Link href="/contact-us">
+                    <button className="btn-primary-gradient text-lg flex items-center justify-center gap-2 group" data-testid="button-hero-cta1">
+                      {t("hero.cta1")} 
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </Link>
+                  <Link href="/services">
+                    <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-md font-semibold text-lg hover:bg-white/20 transition-all flex items-center justify-center gap-2" data-testid="button-hero-cta2">
+                      <Play className="w-4 h-4" />
+                      {t("hero.cta2")}
+                    </button>
+                  </Link>
+                </motion.div>
+
+                {/* Trust badges */}
+                <motion.div variants={fadeIn} className="flex flex-wrap items-center gap-4">
+                  <div className="flex items-center gap-2 text-slate-400 text-sm">
+                    <Shield className="w-4 h-4 text-green-400" />
+                    <span>ISO 27001</span>
+                  </div>
+                  <div className="w-px h-4 bg-slate-700" />
+                  <div className="flex items-center gap-2 text-slate-400 text-sm">
+                    <Cloud className="w-4 h-4 text-blue-400" />
+                    <span>AWS Partner</span>
+                  </div>
+                  <div className="w-px h-4 bg-slate-700" />
+                  <div className="flex items-center gap-2 text-slate-400 text-sm">
+                    <Target className="w-4 h-4 text-primary" />
+                    <span>Vision 2030</span>
+                  </div>
+                </motion.div>
               </motion.div>
 
-              {/* Stats in hero */}
-              <motion.div variants={fadeIn} className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 pt-10 border-t border-slate-200">
-                {stats.map((stat, i) => (
-                  <div key={i} className="text-center lg:text-left">
-                    <div className="text-3xl lg:text-4xl font-bold text-primary mb-1" data-testid={`text-stat-${i}`}>{stat.value}</div>
-                    <div className="text-slate-500 text-sm">{language === "ar" ? stat.labelAr : stat.label}</div>
+              {/* Right Column - Stats Glass Card */}
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="relative"
+              >
+                <div className="bg-white/5 backdrop-blur-xl rounded-md border border-white/10 p-8 shadow-2xl">
+                  <div className="grid grid-cols-2 gap-6">
+                    {stats.map((stat, i) => (
+                      <div key={i} className="text-center p-4 rounded-md bg-white/5 border border-white/5" data-testid={`card-stat-${i}`}>
+                        <div className="text-3xl lg:text-4xl font-bold gradient-text mb-1" data-testid={`text-stat-${i}`}>{stat.value}</div>
+                        <div className="text-slate-400 text-sm">{language === "ar" ? stat.labelAr : stat.label}</div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                  
+                  {/* Feature highlights */}
+                  <div className="mt-6 pt-6 border-t border-white/10 space-y-3">
+                    {[
+                      { icon: Zap, text: language === "ar" ? "تسليم سريع" : "Fast Delivery" },
+                      { icon: Shield, text: language === "ar" ? "حماية بيانات متقدمة" : "Enterprise Security" },
+                      { icon: HeartHandshake, text: language === "ar" ? "دعم على مدار الساعة" : "24/7 Support" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3 text-slate-300">
+                        <div className="w-8 h-8 rounded-md bg-gradient-to-br from-primary/30 to-blue-400/20 flex items-center justify-center">
+                          <item.icon className="w-4 h-4 text-primary" />
+                        </div>
+                        <span className="text-sm">{item.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Decorative elements */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/30 rounded-full blur-2xl" />
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl" />
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* Trusted By / Partners */}
-        <section className="py-12 bg-white border-b border-slate-100">
+        {/* Trusted By / Partners - Premium */}
+        <section className="py-6 bg-slate-900 border-b border-slate-800">
           <div className="container-width">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-              <p className="text-slate-500 font-medium text-sm uppercase tracking-wider shrink-0">
-                {language === "ar" ? "موثوق من قبل الشركات الرائدة" : "Trusted by Leading Companies"}
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12">
+              <p className="text-slate-500 font-medium text-xs uppercase tracking-[0.2em] shrink-0">
+                {language === "ar" ? "موثوق من قبل" : "Trusted by"}
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
+              <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
                 {[
-                  "Enterprise Solutions",
-                  "Saudi Vision 2030",
-                  "ISO 27001 Certified",
-                  "GDPR Compliant",
-                  "AWS Partner"
+                  { name: "Enterprise Solutions", icon: Building2 },
+                  { name: "Vision 2030", icon: Target },
+                  { name: "ISO 27001", icon: Shield },
+                  { name: "AWS Partner", icon: Cloud },
                 ].map((partner, i) => (
-                  <span key={i} className="text-slate-400 font-semibold text-sm px-4 py-2 bg-slate-50 rounded-md" data-testid={`badge-partner-${i}`}>
-                    {partner}
-                  </span>
+                  <div key={i} className="flex items-center gap-2 text-slate-400" data-testid={`badge-partner-${i}`}>
+                    <partner.icon className="w-4 h-4" />
+                    <span className="font-medium text-sm">{partner.name}</span>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* About Section - Enhanced */}
-        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-br from-white via-slate-50/50 to-white">
-          <div className="container-width">
+        {/* About Section - Enhanced Premium */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-1/4 -right-20 w-[300px] h-[300px] bg-blue-100/50 rounded-full blur-3xl" />
+          </div>
+          <div className="container-width relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <span className="text-primary font-semibold tracking-wider uppercase text-sm">{t("about.title")}</span>
-                <h2 className="section-heading mt-2">{t("about.subtitle")}</h2>
+                <span className="section-eyebrow">{t("about.title")}</span>
+                <h2 className="section-heading mt-3">{t("about.subtitle")}</h2>
                 <p className="section-subheading mt-4">{t("about.text")}</p>
                 
-                <div className="mt-8 space-y-4">
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
                     { icon: CheckCircle2, text: language === "ar" ? "فريق سعودي محلي ذو خبرة عالمية" : "Saudi-based team with global expertise" },
                     { icon: CheckCircle2, text: language === "ar" ? "حلول مؤسسية مخصصة" : "Custom enterprise solutions" },
                     { icon: CheckCircle2, text: language === "ar" ? "دعم على مدار الساعة" : "24/7 dedicated support" },
                     { icon: CheckCircle2, text: language === "ar" ? "منهجية أجايل للتسليم السريع" : "Agile methodology for fast delivery" },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <item.icon className="w-5 h-5 text-primary shrink-0" />
-                      <span className="text-slate-600">{item.text}</span>
+                    <div key={i} className="flex items-center gap-3 p-3 bg-white rounded-md border border-slate-100 shadow-sm">
+                      <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
+                        <item.icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <span className="text-slate-700 text-sm font-medium">{item.text}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="flex flex-wrap gap-4 mt-10">
                   <Link href="/about-us">
-                    <button className="btn-primary" data-testid="button-learn-more">
+                    <button className="btn-primary-gradient" data-testid="button-learn-more">
                       {language === "ar" ? "اعرف المزيد عنا" : "Learn More About Us"}
                     </button>
                   </Link>
@@ -289,49 +349,70 @@ export default function Home() {
               </div>
               
               <div className="relative">
-                <div className="bg-gradient-to-br from-primary/10 to-blue-50 p-10 rounded-md">
+                <div className="bg-slate-900 p-8 lg:p-10 rounded-md shadow-2xl">
                   <div className="grid grid-cols-2 gap-4">
                     {stats.map((stat, i) => (
-                      <div key={i} className="bg-white p-6 rounded-md shadow-sm text-center">
-                        <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">{stat.value}</div>
-                        <div className="text-slate-600 text-sm font-medium">{language === "ar" ? stat.labelAr : stat.label}</div>
+                      <div key={i} className="bg-white/5 backdrop-blur p-6 rounded-md text-center border border-white/10">
+                        <div className="text-3xl lg:text-4xl font-bold gradient-text mb-2">{stat.value}</div>
+                        <div className="text-slate-400 text-sm font-medium">{language === "ar" ? stat.labelAr : stat.label}</div>
                       </div>
                     ))}
                   </div>
+                  <div className="mt-6 pt-6 border-t border-white/10">
+                    <div className="flex items-center justify-center gap-6">
+                      {techStack.slice(0, 4).map((tech, i) => (
+                        <div key={i} className="text-center">
+                          <tech.icon className="w-6 h-6 text-slate-400 mx-auto mb-1" />
+                          <span className="text-xs text-slate-500">{tech.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full -z-10"></div>
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/30 rounded-full blur-2xl" />
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl" />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Services Section */}
-        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
-          <div className="container-width">
+        {/* Services Section - Premium Design */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-slate-950">
+          {/* Background effects */}
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="absolute top-1/3 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px]" />
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[80px]" />
+          </div>
+          
+          <div className="container-width relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+              <span className="section-eyebrow">
                 {language === "ar" ? "ماذا نقدم" : "What We Do"}
               </span>
-              <h2 className="section-heading mt-2">{t("services.title")}</h2>
-              <p className="section-subheading mx-auto mt-4">{t("services.subtitle")}</p>
+              <h2 className="section-heading mt-3 text-white">{t("services.title")}</h2>
+              <p className="section-subheading mx-auto mt-4 text-slate-400">{t("services.subtitle")}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.slice(0, 8).map((service, index) => (
-                <ServiceCard 
-                  key={index}
-                  {...service}
-                  title={language === "ar" ? service.titleAr : service.title}
-                  subtitle={language === "ar" ? service.subtitleAr : service.subtitle}
-                  description={language === "ar" ? service.descriptionAr : service.description}
-                  baseUrl="/services"
-                />
+                <div key={index} className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-md p-6 hover:bg-white/10 hover:border-primary/30 transition-all duration-300" data-testid={`card-service-${index}`}>
+                  <div className="icon-badge mb-5">
+                    <service.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                    {language === "ar" ? service.titleAr : service.title}
+                  </h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {language === "ar" ? service.subtitleAr : service.subtitle}
+                  </p>
+                </div>
               ))}
             </div>
 
             <div className="text-center mt-12">
               <Link href="/services">
-                <button className="btn-primary inline-flex items-center gap-2" data-testid="button-view-all-services">
+                <button className="btn-primary-gradient inline-flex items-center gap-2" data-testid="button-view-all-services">
                   {language === "ar" ? "عرض جميع الخدمات" : "View All Services"} <ArrowRight className="w-5 h-5" />
                 </button>
               </Link>
@@ -339,22 +420,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Outsourcing CTA Banner */}
-        <section className="py-16 bg-gradient-to-r from-primary to-blue-700 text-white">
-          <div className="container-width">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+        {/* Outsourcing CTA Banner - Premium */}
+        <section className="py-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-blue-600 to-blue-700" />
+          <div className="absolute inset-0 opacity-20" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+          <div className="container-width relative z-10">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
               <div className="max-w-2xl">
-                <h3 className="text-2xl lg:text-3xl font-bold mb-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full text-white text-sm font-medium mb-4">
+                  <TrendingUp className="w-4 h-4" />
+                  {language === "ar" ? "وفر المال" : "Cost Savings"}
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   {language === "ar" ? "وفر حتى 70% مع فرق التعهيد" : "Save Up to 70% with Outsourced Teams"}
                 </h3>
-                <p className="text-blue-100 text-lg">
+                <p className="text-blue-100 text-lg leading-relaxed">
                   {language === "ar" 
                     ? "احصل على وصول لأفضل المواهب التقنية من باكستان وجنوب آسيا بتكلفة أقل."
                     : "Access top-tier tech talent from Pakistan and South Asia at a fraction of the cost."}
                 </p>
               </div>
               <Link href="/outsourcing">
-                <button className="bg-white text-primary px-8 py-4 rounded-md font-bold hover:bg-blue-50 transition-colors shrink-0 inline-flex items-center gap-2" data-testid="button-outsourcing-banner">
+                <button className="bg-white text-primary px-8 py-4 rounded-md font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all shrink-0 inline-flex items-center gap-2" data-testid="button-outsourcing-banner">
                   {language === "ar" ? "اكتشف المزيد" : "Learn More"} <ArrowRight className="w-5 h-5" />
                 </button>
               </Link>
@@ -362,28 +451,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Saudi Market Transformation */}
-        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-slate-50">
+        {/* Saudi Market Transformation - Premium */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
             <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-blue-100/50 rounded-full blur-3xl" />
           </div>
           <div className="container-width relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+              <span className="section-eyebrow">
                 {language === "ar" ? "رؤية 2030" : "Vision 2030"}
               </span>
-              <h2 className="section-heading mt-2">{t("transformation.title")}</h2>
+              <h2 className="section-heading mt-3">{t("transformation.title")}</h2>
               <p className="section-subheading mx-auto mt-4">{t("transformation.subtitle")}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {transformationItems.map((item, i) => (
-                <div key={i} className="bg-white p-8 rounded-md shadow-sm hover:shadow-lg transition-all border border-slate-100" data-testid={`card-transformation-${i}`}>
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                    <item.icon className="w-7 h-7 text-primary" />
+                <div key={i} className="group bg-white p-8 rounded-md border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300" data-testid={`card-transformation-${i}`}>
+                  <div className="icon-badge-lg mb-6 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all">
+                    <item.icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3" data-testid={`text-transformation-title-${i}`}>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors" data-testid={`text-transformation-title-${i}`}>
                     {t(`transformation.${item.key}`)}
                   </h3>
                   <p className="text-slate-600 leading-relaxed" data-testid={`text-transformation-desc-${i}`}>
@@ -395,29 +484,33 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Saudi Industries Section */}
-        <section className="py-20 lg:py-28 bg-white">
-          <div className="container-width">
+        {/* Saudi Industries Section - Premium */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-slate-950">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px]" />
+          </div>
+          <div className="container-width relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+              <span className="section-eyebrow">
                 {language === "ar" ? "الصناعات السعودية" : "Saudi Industries"}
               </span>
-              <h2 className="section-heading mt-2">{t("saudiIndustries.title")}</h2>
-              <p className="section-subheading mx-auto mt-4">{t("saudiIndustries.subtitle")}</p>
+              <h2 className="section-heading mt-3 text-white">{t("saudiIndustries.title")}</h2>
+              <p className="section-subheading mx-auto mt-4 text-slate-400">{t("saudiIndustries.subtitle")}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {saudiIndustries.map((industry, i) => (
-                <div key={i} className="group p-8 bg-gradient-to-br from-slate-50 to-white rounded-md border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300" data-testid={`card-saudi-industry-${i}`}>
+                <div key={i} className="group p-6 bg-white/5 backdrop-blur-sm rounded-md border border-white/10 hover:border-primary/40 hover:bg-white/10 transition-all duration-300" data-testid={`card-saudi-industry-${i}`}>
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 shrink-0 rounded-md bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-                      <industry.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors" />
+                    <div className="icon-badge-lg shrink-0 group-hover:shadow-primary/40">
+                      <industry.icon className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-slate-900 mb-2" data-testid={`text-saudi-industry-title-${i}`}>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors" data-testid={`text-saudi-industry-title-${i}`}>
                         {t(`saudiIndustries.${industry.key}`)}
                       </h4>
-                      <p className="text-slate-600 text-sm leading-relaxed" data-testid={`text-saudi-industry-desc-${i}`}>
+                      <p className="text-slate-400 text-sm leading-relaxed" data-testid={`text-saudi-industry-desc-${i}`}>
                         {t(`saudiIndustries.${industry.key}Text`)}
                       </p>
                     </div>
@@ -428,23 +521,25 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Lead Generation Form */}
-        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-primary/5 via-blue-50/50 to-white">
+        {/* Lead Generation Form - Premium */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-20 left-20 w-[300px] h-[300px] bg-primary/5 rounded-full blur-3xl" />
             <div className="absolute bottom-20 right-20 w-[400px] h-[400px] bg-blue-100/40 rounded-full blur-3xl" />
           </div>
           <div className="container-width relative z-10">
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+                <span className="section-eyebrow">
                   {language === "ar" ? "ابدأ الآن" : "Get Started"}
                 </span>
-                <h2 className="section-heading mt-2">{t("leadForm.title")}</h2>
+                <h2 className="section-heading mt-3">{t("leadForm.title")}</h2>
                 <p className="section-subheading mx-auto mt-4">{t("leadForm.subtitle")}</p>
               </div>
 
-              <form onSubmit={handleLeadSubmit} className="bg-white rounded-md shadow-xl p-8 lg:p-12 border border-slate-100">
+              <form onSubmit={handleLeadSubmit} className="bg-white rounded-md shadow-2xl p-8 lg:p-12 border border-slate-100 relative">
+                <div className="absolute -top-3 -right-3 w-20 h-20 bg-primary/20 rounded-full blur-2xl" />
+                <div className="absolute -bottom-3 -left-3 w-16 h-16 bg-blue-400/20 rounded-full blur-2xl" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">{t("leadForm.name")}</label>
@@ -516,9 +611,9 @@ export default function Home() {
                     data-testid="textarea-lead-challenge"
                   />
                 </div>
-                <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90" data-testid="button-lead-submit">
-                  {t("leadForm.submit")} <Send className="w-5 h-5 ml-2" />
-                </Button>
+                <button type="submit" className="btn-primary-gradient w-full text-lg flex items-center justify-center gap-2" data-testid="button-lead-submit">
+                  {t("leadForm.submit")} <Send className="w-5 h-5" />
+                </button>
                 <p className="text-center text-sm text-slate-500 mt-4">
                   <Lock className="w-4 h-4 inline mr-1" />
                   {t("leadForm.privacy")}
@@ -528,33 +623,37 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Case Studies */}
-        <section className="py-20 lg:py-28 bg-slate-900 text-white">
-          <div className="container-width">
+        {/* Case Studies - Premium */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-slate-950">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="absolute top-1/3 -left-20 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px]" />
+          </div>
+          <div className="container-width relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+              <span className="section-eyebrow">
                 {language === "ar" ? "قصص النجاح" : "Success Stories"}
               </span>
-              <h2 className="section-heading mt-2 text-white">
+              <h2 className="section-heading mt-3 text-white">
                 {language === "ar" ? "مشاريع حققت نتائج استثنائية" : "Projects That Delivered Results"}
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {caseStudies.map((study, i) => (
-                <div key={i} className="bg-slate-800 rounded-md p-8 hover:bg-slate-700 transition-colors group" data-testid={`card-casestudy-${i}`}>
-                  <span className="text-xs font-semibold text-primary uppercase tracking-wider" data-testid={`text-casestudy-category-${i}`}>
+                <div key={i} className="group bg-white/5 backdrop-blur-sm rounded-md p-8 border border-white/10 hover:border-primary/40 hover:bg-white/10 transition-all duration-300" data-testid={`card-casestudy-${i}`}>
+                  <span className="section-eyebrow" data-testid={`text-casestudy-category-${i}`}>
                     {language === "ar" ? study.categoryAr : study.category}
                   </span>
-                  <h3 className="text-xl font-bold mt-3 mb-2" data-testid={`text-casestudy-title-${i}`}>
+                  <h3 className="text-xl font-bold text-white mt-3 mb-2 group-hover:text-primary transition-colors" data-testid={`text-casestudy-title-${i}`}>
                     {language === "ar" ? study.titleAr : study.title}
                   </h3>
-                  <p className="text-slate-400 text-sm mb-4" data-testid={`text-casestudy-client-${i}`}>
+                  <p className="text-slate-400 text-sm mb-6" data-testid={`text-casestudy-client-${i}`}>
                     {language === "ar" ? study.clientAr : study.client}
                   </p>
-                  <div className="flex items-center gap-2 text-green-400" data-testid={`text-casestudy-result-${i}`}>
-                    <TrendingUp className="w-5 h-5" />
-                    <span className="font-semibold">{language === "ar" ? study.resultAr : study.result}</span>
+                  <div className="flex items-center gap-2 p-3 bg-green-500/10 rounded-md border border-green-500/20" data-testid={`text-casestudy-result-${i}`}>
+                    <TrendingUp className="w-5 h-5 text-green-400" />
+                    <span className="font-bold text-green-400">{language === "ar" ? study.resultAr : study.result}</span>
                   </div>
                 </div>
               ))}
@@ -562,78 +661,86 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Why Choose Us */}
-        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-white">
-          <div className="container-width">
+        {/* Why Choose Us - Premium */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 -right-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-1/4 -left-20 w-[300px] h-[300px] bg-blue-100/50 rounded-full blur-3xl" />
+          </div>
+          <div className="container-width relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+              <span className="section-eyebrow">
                 {language === "ar" ? "لماذا نحن" : "Why Us"}
               </span>
-              <h2 className="section-heading mt-2">{t("whyUs.title")}</h2>
+              <h2 className="section-heading mt-3">{t("whyUs.title")}</h2>
               <p className="section-subheading mx-auto mt-4">{t("whyUs.subtitle")}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {whyUsItems.map((item, i) => (
-                <div key={i} className="text-center p-8 bg-slate-50 rounded-md hover:shadow-lg transition-all">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                    <item.icon className="w-8 h-8 text-primary" />
+                <div key={i} className="group text-center p-8 bg-white rounded-md border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300">
+                  <div className="icon-badge-lg mx-auto mb-6 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all">
+                    <item.icon className="w-7 h-7 text-white" />
                   </div>
-                  <h4 className="text-xl font-semibold mb-3" data-testid={`text-whyus-${i}`}>{t(`whyUs.${item.key}`)}</h4>
-                  <p className="text-slate-600">{t(`whyUs.${item.key}Text`)}</p>
+                  <h4 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors" data-testid={`text-whyus-${i}`}>{t(`whyUs.${item.key}`)}</h4>
+                  <p className="text-slate-600 text-sm leading-relaxed">{t(`whyUs.${item.key}Text`)}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Technology Stack */}
-        <section className="py-16 bg-slate-50 border-y border-slate-100">
+        {/* Technology Stack - Premium */}
+        <section className="py-12 bg-slate-900 border-y border-slate-800">
           <div className="container-width">
-            <div className="text-center mb-12">
-              <h3 className="text-xl font-bold text-slate-900">
-                {language === "ar" ? "التقنيات التي نستخدمها" : "Technologies We Use"}
-              </h3>
-            </div>
-            <div className="flex flex-wrap justify-center gap-6">
-              {techStack.map((tech, i) => (
-                <div key={i} className="flex items-center gap-2 px-6 py-3 bg-white rounded-md shadow-sm" data-testid={`badge-tech-${i}`}>
-                  <tech.icon className="w-5 h-5 text-primary" />
-                  <span className="font-medium text-slate-700">{tech.name}</span>
-                </div>
-              ))}
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
+              <p className="text-slate-500 font-medium text-xs uppercase tracking-[0.2em] shrink-0">
+                {language === "ar" ? "التقنيات" : "Technologies"}
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                {techStack.map((tech, i) => (
+                  <div key={i} className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-md border border-white/10 hover:border-primary/30 hover:bg-white/10 transition-all" data-testid={`badge-tech-${i}`}>
+                    <tech.icon className="w-4 h-4 text-primary" />
+                    <span className="font-medium text-slate-300 text-sm">{tech.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-20 lg:py-28 bg-white">
-          <div className="container-width">
+        {/* Testimonials - Premium */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-slate-950">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="absolute bottom-1/3 -right-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px]" />
+          </div>
+          <div className="container-width relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+              <span className="section-eyebrow">
                 {language === "ar" ? "آراء العملاء" : "Client Testimonials"}
               </span>
-              <h2 className="section-heading mt-2">
+              <h2 className="section-heading mt-3 text-white">
                 {language === "ar" ? "ماذا يقول عملاؤنا" : "What Our Clients Say"}
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {testimonials.map((testimonial, i) => (
-                <div key={i} className="bg-slate-50 p-8 rounded-md relative" data-testid={`card-testimonial-${i}`}>
-                  <div className="flex gap-1 mb-4">
+                <div key={i} className="group bg-white/5 backdrop-blur-sm p-8 rounded-md border border-white/10 hover:border-primary/40 hover:bg-white/10 transition-all duration-300" data-testid={`card-testimonial-${i}`}>
+                  <div className="flex gap-1 mb-6">
                     {[...Array(testimonial.rating)].map((_, j) => (
                       <Star key={j} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-slate-700 leading-relaxed mb-6 italic" data-testid={`text-testimonial-quote-${i}`}>
+                  <p className="text-slate-300 leading-relaxed mb-8 text-lg" data-testid={`text-testimonial-quote-${i}`}>
                     "{language === "ar" ? testimonial.quoteAr : testimonial.quote}"
                   </p>
-                  <div>
-                    <div className="font-bold text-slate-900" data-testid={`text-testimonial-author-${i}`}>
+                  <div className="pt-6 border-t border-white/10">
+                    <div className="font-bold text-white" data-testid={`text-testimonial-author-${i}`}>
                       {language === "ar" ? testimonial.authorAr : testimonial.author}
                     </div>
-                    <div className="text-sm text-slate-500" data-testid={`text-testimonial-role-${i}`}>
+                    <div className="text-sm text-slate-400" data-testid={`text-testimonial-role-${i}`}>
                       {language === "ar" ? testimonial.roleAr : testimonial.role}
                     </div>
                   </div>
@@ -643,45 +750,52 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Process Section */}
-        <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/20 to-slate-50">
-          <div className="container-width">
+        {/* Process Section - Premium */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/3 -left-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+          </div>
+          <div className="container-width relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+              <span className="section-eyebrow">
                 {language === "ar" ? "منهجيتنا" : "Our Process"}
               </span>
-              <h2 className="section-heading mt-2">{t("process.title")}</h2>
+              <h2 className="section-heading mt-3">{t("process.title")}</h2>
               <p className="section-subheading mx-auto mt-4">{t("process.subtitle")}</p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {processSteps.map((step, i) => (
-                <div key={i} className="relative text-center bg-white p-6 rounded-md shadow-sm">
-                  <div className="w-14 h-14 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <step.icon className="w-6 h-6 text-primary" />
+                <div key={i} className="group relative text-center bg-white p-6 rounded-md border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                  <div className="text-xs font-bold text-primary mb-3 tracking-wider">{step.number}</div>
+                  <div className="icon-badge mx-auto mb-4 group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-blue-400 transition-all">
+                    <step.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
                   </div>
-                  <div className="text-xs text-primary font-bold mb-2">{step.number}</div>
-                  <h4 className="font-semibold text-slate-900 text-sm" data-testid={`text-process-${i}`}>{t(`process.${step.key}`)}</h4>
+                  <h4 className="font-bold text-slate-900 text-sm group-hover:text-primary transition-colors" data-testid={`text-process-${i}`}>{t(`process.${step.key}`)}</h4>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Pre-Built Apps Section */}
-        <section className="py-20 lg:py-28 bg-white">
-          <div className="container-width">
+        {/* Pre-Built Apps Section - Premium */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-slate-950">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="absolute bottom-1/3 -right-20 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px]" />
+          </div>
+          <div className="container-width relative z-10">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
               <div className="max-w-2xl">
-                <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+                <span className="section-eyebrow">
                   {language === "ar" ? "إطلاق سريع" : "Quick Launch"}
                 </span>
-                <h2 className="section-heading mt-2">{t("prebuilt.title")}</h2>
-                <p className="section-subheading mt-4">{t("prebuilt.subtitle")}</p>
+                <h2 className="section-heading mt-3 text-white">{t("prebuilt.title")}</h2>
+                <p className="section-subheading mt-4 text-slate-400">{t("prebuilt.subtitle")}</p>
                 
                 <div className="flex flex-wrap gap-4 mt-6">
                   {["benefit1", "benefit2", "benefit3"].map((key, i) => (
-                    <span key={i} className="inline-flex items-center gap-2 text-sm text-slate-700">
+                    <span key={i} className="inline-flex items-center gap-2 text-sm text-slate-300">
                       <Check className="w-4 h-4 text-primary" />
                       {t(`prebuilt.${key}`)}
                     </span>
@@ -689,22 +803,25 @@ export default function Home() {
                 </div>
               </div>
               <Link href="/pre-built-apps">
-                <button className="text-primary font-semibold hover:gap-3 flex items-center gap-2 transition-all" data-testid="button-view-solutions">
-                  {language === "ar" ? "عرض جميع الحلول" : "View All Solutions"} <ArrowRight className="w-5 h-5" />
+                <button className="btn-primary-gradient flex items-center gap-2 group" data-testid="button-view-solutions">
+                  {language === "ar" ? "عرض جميع الحلول" : "View All Solutions"} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {businessModels.slice(0, 4).map((model, index) => (
-                <ServiceCard 
-                  key={index}
-                  {...model}
-                  title={language === "ar" ? model.titleAr : model.title}
-                  subtitle={language === "ar" ? model.subtitleAr : model.subtitle}
-                  description={language === "ar" ? model.descriptionAr : model.description}
-                  baseUrl="/business-models"
-                />
+                <div key={index} className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-md p-6 hover:bg-white/10 hover:border-primary/30 transition-all duration-300">
+                  <div className="icon-badge mb-5">
+                    <model.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                    {language === "ar" ? model.titleAr : model.title}
+                  </h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {language === "ar" ? model.subtitleAr : model.subtitle}
+                  </p>
+                </div>
               ))}
             </div>
           </div>
