@@ -154,8 +154,8 @@ export default function Pricing() {
                 { value: "10+", label: language === "ar" ? "سنوات الخبرة" : "Years Experience" },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className="text-3xl font-bold text-primary" data-testid={`text-pricing-stat-value-${i}`}>{stat.value}</div>
-                  <div className="text-slate-400 text-sm" data-testid={`text-pricing-stat-label-${i}`}>{stat.label}</div>
+                  <div className="text-3xl font-bold text-white" data-testid={`text-pricing-stat-value-${i}`}>{stat.value}</div>
+                  <div className="text-slate-300 text-sm" data-testid={`text-pricing-stat-label-${i}`}>{stat.label}</div>
                 </div>
               ))}
             </div>

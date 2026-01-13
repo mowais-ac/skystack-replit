@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { 
   ArrowRight, Check, Shield, Clock, Users, Zap, Star, 
   MessageCircle, Phone, ChevronDown, Award, Target, Rocket,
-  CheckCircle2, Building2, HeartHandshake
+  CheckCircle2, Building2, HeartHandshake, Smartphone, Monitor, Tablet, Bike
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,6 +26,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const [match, params] = useRoute(type === "service" ? "/services/:slug" : "/business-models/:slug");
   const { language } = useLanguage();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<string>("mobile");
   
   if (!match || !params) return <NotFound />;
 
@@ -230,28 +231,291 @@ export default function DynamicPage({ type }: DynamicPageProps) {
           </div>
         </section>
 
+        {/* Portfolio Section - Services Only */}
+        {type === "service" && (
+          <section className="py-24 lg:py-32 bg-slate-950 relative overflow-hidden">
+            <div className="absolute inset-0">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+              <div className="absolute bottom-1/3 -left-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px]" />
+            </div>
+            <div className="container-width relative z-10">
+              <div className="text-center mb-16">
+                <span className="section-eyebrow">
+                  {language === "ar" ? "أعمالنا" : "Our Portfolio"}
+                </span>
+                <h2 className="section-heading mt-3 text-white">
+                  {language === "ar" ? "مشاريع منجزة" : "Completed Projects"}
+                </h2>
+                <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
+                  {language === "ar" 
+                    ? "نماذج من أعمالنا التي ساعدت عملاءنا على تحقيق أهدافهم التجارية"
+                    : "Examples of our work that helped clients achieve their business goals"}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[
+                  {
+                    title: language === "ar" ? "منصة التجارة الإلكترونية" : "E-Commerce Platform",
+                    category: language === "ar" ? "تجارة إلكترونية" : "E-Commerce",
+                    desc: language === "ar" ? "منصة متعددة البائعين مع أكثر من 10,000 منتج" : "Multi-vendor marketplace with 10,000+ products"
+                  },
+                  {
+                    title: language === "ar" ? "تطبيق توصيل الطعام" : "Food Delivery App",
+                    category: language === "ar" ? "تطبيق جوال" : "Mobile App",
+                    desc: language === "ar" ? "تطبيق iOS و Android مع تتبع GPS مباشر" : "iOS & Android app with live GPS tracking"
+                  },
+                  {
+                    title: language === "ar" ? "نظام إدارة المخزون" : "Inventory Management",
+                    category: language === "ar" ? "نظام مؤسسي" : "Enterprise System",
+                    desc: language === "ar" ? "إدارة مستودعات متعددة مع تحليلات متقدمة" : "Multi-warehouse management with advanced analytics"
+                  },
+                  {
+                    title: language === "ar" ? "بوابة العملاء" : "Customer Portal",
+                    category: language === "ar" ? "تطبيق ويب" : "Web Application",
+                    desc: language === "ar" ? "بوابة خدمة ذاتية للعملاء مع تكامل CRM" : "Self-service customer portal with CRM integration"
+                  },
+                  {
+                    title: language === "ar" ? "تطبيق الصحة واللياقة" : "Health & Fitness App",
+                    category: language === "ar" ? "تطبيق جوال" : "Mobile App",
+                    desc: language === "ar" ? "تتبع التمارين والتغذية مع مدرب AI" : "Workout & nutrition tracking with AI coach"
+                  },
+                  {
+                    title: language === "ar" ? "منصة الحجوزات" : "Booking Platform",
+                    category: language === "ar" ? "SaaS" : "SaaS",
+                    desc: language === "ar" ? "نظام حجز متكامل للخدمات المختلفة" : "Complete booking system for various services"
+                  }
+                ].map((project, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group bg-white/5 backdrop-blur-sm rounded-md border border-white/10 overflow-hidden hover:border-primary/30 transition-all duration-300"
+                    data-testid={`card-portfolio-${i}`}
+                  >
+                    <div className="aspect-video bg-gradient-to-br from-primary/20 to-blue-500/20 relative">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-md bg-white/10 flex items-center justify-center">
+                          <Building2 className="w-8 h-8 text-primary" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <span className="text-xs font-semibold text-primary uppercase tracking-wider">{project.category}</span>
+                      <h3 className="text-lg font-bold text-white mt-2 mb-2">{project.title}</h3>
+                      <p className="text-slate-400 text-sm">{project.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* App Platform Tabs - Pre-built Solutions Only */}
+        {type === "businessModel" && (
+          <section className="py-24 lg:py-32 bg-slate-950 relative overflow-hidden">
+            <div className="absolute inset-0">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+              <div className="absolute bottom-1/3 -left-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px]" />
+            </div>
+            <div className="container-width relative z-10">
+              <div className="text-center mb-16">
+                <span className="section-eyebrow">
+                  {language === "ar" ? "مكونات الحل" : "Solution Components"}
+                </span>
+                <h2 className="section-heading mt-3 text-white">
+                  {language === "ar" ? "ما الذي يتضمنه الحل" : "What's Included"}
+                </h2>
+              </div>
+
+              {/* Tabs */}
+              <div className="flex flex-wrap justify-center gap-4 mb-12">
+                {[
+                  { id: "mobile", icon: Smartphone, label: language === "ar" ? "تطبيق الجوال" : "Mobile App" },
+                  { id: "admin", icon: Monitor, label: language === "ar" ? "لوحة الإدارة" : "Admin Panel" },
+                  { id: "website", icon: Tablet, label: language === "ar" ? "الموقع الإلكتروني" : "Website" },
+                  ...(item.slug.includes("delivery") || item.slug.includes("gojek") || item.slug.includes("car-wash") || item.slug.includes("laundry") 
+                    ? [{ id: "rider", icon: Bike, label: language === "ar" ? "تطبيق السائق" : "Rider App" }] 
+                    : [])
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex items-center gap-3 px-6 py-4 rounded-md font-semibold transition-all ${
+                      activeTab === tab.id
+                        ? "bg-primary text-white"
+                        : "bg-white/5 text-slate-300 border border-white/10 hover:border-primary/30"
+                    }`}
+                    data-testid={`button-tab-${tab.id}`}
+                  >
+                    <tab.icon className="w-5 h-5" />
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Tab Content */}
+              <div className="max-w-4xl mx-auto">
+                {activeTab === "mobile" && (
+                  <motion.div 
+                    key="mobile"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                  >
+                    <div className="bg-white/5 backdrop-blur-sm rounded-md border border-white/10 p-8">
+                      <Smartphone className="w-12 h-12 text-primary mb-6" />
+                      <h3 className="text-xl font-bold text-white mb-4">
+                        {language === "ar" ? "تطبيق iOS & Android" : "iOS & Android App"}
+                      </h3>
+                      <ul className="space-y-3">
+                        {[
+                          language === "ar" ? "واجهة مستخدم سهلة وبديهية" : "User-friendly intuitive interface",
+                          language === "ar" ? "إشعارات فورية" : "Real-time push notifications",
+                          language === "ar" ? "دعم الوضع الداكن" : "Dark mode support",
+                          language === "ar" ? "دعم متعدد اللغات" : "Multi-language support",
+                          language === "ar" ? "تكامل الدفع الإلكتروني" : "Payment gateway integration",
+                          language === "ar" ? "تسجيل دخول اجتماعي" : "Social login options"
+                        ].map((feature, i) => (
+                          <li key={i} className="flex items-center gap-3 text-slate-300">
+                            <Check className="w-4 h-4 text-primary shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="aspect-[9/16] max-w-[280px] mx-auto bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-[2rem] border-4 border-white/10 flex items-center justify-center">
+                      <Smartphone className="w-24 h-24 text-primary/50" />
+                    </div>
+                  </motion.div>
+                )}
+
+                {activeTab === "admin" && (
+                  <motion.div 
+                    key="admin"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                  >
+                    <div className="bg-white/5 backdrop-blur-sm rounded-md border border-white/10 p-8">
+                      <Monitor className="w-12 h-12 text-primary mb-6" />
+                      <h3 className="text-xl font-bold text-white mb-4">
+                        {language === "ar" ? "لوحة تحكم المسؤول" : "Admin Dashboard"}
+                      </h3>
+                      <ul className="space-y-3">
+                        {[
+                          language === "ar" ? "إدارة المستخدمين والصلاحيات" : "User & role management",
+                          language === "ar" ? "تحليلات وتقارير شاملة" : "Comprehensive analytics & reports",
+                          language === "ar" ? "إدارة الطلبات والمعاملات" : "Order & transaction management",
+                          language === "ar" ? "إعدادات النظام" : "System configuration",
+                          language === "ar" ? "إدارة المحتوى" : "Content management",
+                          language === "ar" ? "سجلات النشاط" : "Activity logs"
+                        ].map((feature, i) => (
+                          <li key={i} className="flex items-center gap-3 text-slate-300">
+                            <Check className="w-4 h-4 text-primary shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="aspect-video bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-md border border-white/10 flex items-center justify-center">
+                      <Monitor className="w-24 h-24 text-primary/50" />
+                    </div>
+                  </motion.div>
+                )}
+
+                {activeTab === "website" && (
+                  <motion.div 
+                    key="website"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                  >
+                    <div className="bg-white/5 backdrop-blur-sm rounded-md border border-white/10 p-8">
+                      <Tablet className="w-12 h-12 text-primary mb-6" />
+                      <h3 className="text-xl font-bold text-white mb-4">
+                        {language === "ar" ? "الموقع الإلكتروني" : "Responsive Website"}
+                      </h3>
+                      <ul className="space-y-3">
+                        {[
+                          language === "ar" ? "تصميم متجاوب لجميع الأجهزة" : "Responsive design for all devices",
+                          language === "ar" ? "تحسين محركات البحث (SEO)" : "SEO optimized",
+                          language === "ar" ? "سرعة تحميل عالية" : "Fast loading speed",
+                          language === "ar" ? "تكامل مع التطبيق" : "App integration",
+                          language === "ar" ? "نظام إدارة المحتوى" : "Content management system",
+                          language === "ar" ? "تحليلات الزوار" : "Visitor analytics"
+                        ].map((feature, i) => (
+                          <li key={i} className="flex items-center gap-3 text-slate-300">
+                            <Check className="w-4 h-4 text-primary shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="aspect-video bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-md border border-white/10 flex items-center justify-center">
+                      <Tablet className="w-24 h-24 text-primary/50" />
+                    </div>
+                  </motion.div>
+                )}
+
+                {activeTab === "rider" && (
+                  <motion.div 
+                    key="rider"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                  >
+                    <div className="bg-white/5 backdrop-blur-sm rounded-md border border-white/10 p-8">
+                      <Bike className="w-12 h-12 text-primary mb-6" />
+                      <h3 className="text-xl font-bold text-white mb-4">
+                        {language === "ar" ? "تطبيق السائق / مقدم الخدمة" : "Driver / Provider App"}
+                      </h3>
+                      <ul className="space-y-3">
+                        {[
+                          language === "ar" ? "استقبال الطلبات في الوقت الحقيقي" : "Real-time order receiving",
+                          language === "ar" ? "التنقل GPS" : "GPS navigation",
+                          language === "ar" ? "إدارة الأرباح والمحفظة" : "Earnings & wallet management",
+                          language === "ar" ? "سجل الطلبات" : "Order history",
+                          language === "ar" ? "حالة التوفر" : "Availability toggle",
+                          language === "ar" ? "التواصل مع العملاء" : "Customer communication"
+                        ].map((feature, i) => (
+                          <li key={i} className="flex items-center gap-3 text-slate-300">
+                            <Check className="w-4 h-4 text-primary shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="aspect-[9/16] max-w-[280px] mx-auto bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-[2rem] border-4 border-white/10 flex items-center justify-center">
+                      <Bike className="w-24 h-24 text-primary/50" />
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Features - Premium */}
-        <section className="py-24 lg:py-32 bg-slate-950 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-            <div className="absolute bottom-1/3 -left-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px]" />
-          </div>
-          <div className="container-width relative z-10">
+        <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-50 via-white to-slate-50">
+          <div className="container-width">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div>
                 <span className="section-eyebrow">
                   {language === "ar" ? "المميزات" : "Features"}
                 </span>
-                <h2 className="section-heading mt-3 text-white mb-8">
+                <h2 className="section-heading mt-3 mb-8">
                   {language === "ar" ? "الميزات الرئيسية" : "Key Features"}
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-3 bg-white/5 backdrop-blur-sm p-4 rounded-md border border-white/10 hover:border-primary/30 transition-all">
-                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                    <div key={i} className="flex items-start gap-3 bg-white p-4 rounded-md border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
                         <Check className="w-3.5 h-3.5" />
                       </div>
-                      <span className="font-medium text-slate-300" data-testid={`text-feature-${i}`}>{feature}</span>
+                      <span className="font-medium text-slate-700" data-testid={`text-feature-${i}`}>{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -261,23 +525,23 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                 <span className="section-eyebrow">
                   {language === "ar" ? "التقنيات" : "Technology"}
                 </span>
-                <h2 className="section-heading mt-3 text-white mb-8">
+                <h2 className="section-heading mt-3 mb-8">
                   {language === "ar" ? "التقنيات المستخدمة" : "Technology Stack"}
                 </h2>
                 <div className="flex flex-wrap gap-3 mb-10">
                   {item.techStack.map((tech, i) => (
-                    <span key={i} className="px-4 py-2 bg-white/5 border border-white/10 rounded-md text-slate-300 font-medium hover:border-primary/30 transition-all">
+                    <span key={i} className="px-4 py-2 bg-white border border-slate-200 rounded-md text-slate-700 font-medium hover:border-primary/30 transition-all">
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <h3 className="font-bold text-white mb-4">
+                <h3 className="font-bold text-slate-900 mb-4">
                   {language === "ar" ? "حالات الاستخدام" : "Use Cases"}
                 </h3>
                 <ul className="space-y-3">
                   {useCases.map((useCase, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-400">
+                    <li key={i} className="flex items-center gap-3 text-slate-600">
                       <div className="w-2 h-2 rounded-full bg-primary" />
                       {useCase}
                     </li>

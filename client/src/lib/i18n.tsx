@@ -263,9 +263,9 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== "undefined") {
-      return (localStorage.getItem("language") as Language) || "en";
+      return (localStorage.getItem("language") as Language) || "ar";
     }
-    return "en";
+    return "ar";
   });
 
   const setLanguage = (lang: Language) => {
@@ -276,6 +276,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = language;
+    document.body.style.fontFamily = language === "ar" 
+      ? "'Cairo', 'Inter', sans-serif" 
+      : "'Inter', sans-serif";
   }, [language]);
 
   const t = (key: string): string => {

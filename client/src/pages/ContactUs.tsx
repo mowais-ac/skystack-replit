@@ -226,11 +226,11 @@ export default function ContactUs() {
                 ? "جدول مكالمة مع فريق المبيعات لمناقشة مشروعك"
                 : "Schedule a call with our sales team to discuss your project"}
             </p>
-            <Link href="/pricing">
-              <button className="bg-white text-primary px-8 py-3 rounded-md font-semibold hover:bg-blue-50 transition-all inline-flex items-center gap-2" data-testid="button-schedule">
-                {language === "ar" ? "عرض الباقات" : "View Packages"} <ArrowRight className="w-5 h-5" />
+            <a href="https://wa.me/966537430455" target="_blank" rel="noopener noreferrer">
+              <button className="bg-white text-primary px-8 py-3 rounded-md font-semibold hover:bg-blue-50 transition-all inline-flex items-center gap-2" data-testid="button-whatsapp-cta">
+                {language === "ar" ? "تواصل عبر واتساب" : "Chat on WhatsApp"} <ArrowRight className="w-5 h-5" />
               </button>
-            </Link>
+            </a>
           </div>
         </section>
       </main>
