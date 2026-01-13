@@ -113,16 +113,6 @@ export default function Outsourcing() {
     });
   };
 
-  const toggleRole = (roleId: string) => {
-    setRoleCounts(prev => {
-      if (roleId in prev) {
-        const { [roleId]: _, ...rest } = prev;
-        return rest;
-      }
-      return { ...prev, [roleId]: 1 };
-    });
-  };
-
   const selectedRoles = Object.keys(roleCounts);
   const totalEmployees = Object.values(roleCounts).reduce((sum, count) => sum + count, 0);
   
@@ -264,49 +254,46 @@ export default function Outsourcing() {
                     {language === "ar" ? "اختر الأدوار وعدد الموظفين" : "Select Roles & Employee Count"}
                   </h3>
                   <p className="text-slate-400 text-sm mb-6">
-                    {language === "ar" ? "انقر لتفعيل الدور واستخدم الأزرار لتعديل العدد" : "Click to toggle roles, use buttons to adjust count"}
+                    {language === "ar" ? "استخدم الأزرار لتعديل عدد الموظفين لكل دور" : "Use buttons to adjust employee count for each role"}
                   </p>
                   <div className="space-y-3 mb-6">
                     {roles.map(role => {
-                      const isSelected = role.id in roleCounts;
                       const count = roleCounts[role.id] || 0;
+                      const isActive = count > 0;
                       return (
                         <div
                           key={role.id}
                           className={`flex items-center justify-between p-3 rounded-md transition-all ${
-                            isSelected
+                            isActive
                               ? "bg-primary/20 border border-primary/50"
-                              : "bg-slate-700 border border-transparent hover:bg-slate-600"
+                              : "bg-slate-700 border border-transparent"
                           }`}
                         >
-                          <button
-                            onClick={() => toggleRole(role.id)}
-                            className="flex-1 text-left text-sm font-medium"
-                            data-testid={`button-role-${role.id}`}
-                          >
-                            <span className={isSelected ? "text-white" : "text-slate-300"}>
-                              {language === "ar" ? role.nameAr : role.name}
-                            </span>
-                          </button>
-                          {isSelected && (
-                            <div className="flex items-center gap-2">
-                              <button
-                                onClick={() => updateRoleCount(role.id, count - 1)}
-                                className="w-8 h-8 rounded-md bg-slate-600 hover:bg-slate-500 flex items-center justify-center text-white font-bold transition-colors"
-                                data-testid={`button-decrease-${role.id}`}
-                              >
-                                -
-                              </button>
-                              <span className="w-8 text-center text-white font-bold">{count}</span>
-                              <button
-                                onClick={() => updateRoleCount(role.id, count + 1)}
-                                className="w-8 h-8 rounded-md bg-primary hover:bg-primary/80 flex items-center justify-center text-white font-bold transition-colors"
-                                data-testid={`button-increase-${role.id}`}
-                              >
-                                +
-                              </button>
-                            </div>
-                          )}
+                          <span className={`text-sm font-medium ${isActive ? "text-white" : "text-slate-300"}`}>
+                            {language === "ar" ? role.nameAr : role.name}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => updateRoleCount(role.id, count - 1)}
+                              disabled={count === 0}
+                              className={`w-8 h-8 rounded-md flex items-center justify-center font-bold transition-colors ${
+                                count === 0 
+                                  ? "bg-slate-600/50 text-slate-500 cursor-not-allowed" 
+                                  : "bg-slate-600 hover:bg-slate-500 text-white"
+                              }`}
+                              data-testid={`button-decrease-${role.id}`}
+                            >
+                              -
+                            </button>
+                            <span className={`w-8 text-center font-bold ${isActive ? "text-white" : "text-slate-400"}`}>{count}</span>
+                            <button
+                              onClick={() => updateRoleCount(role.id, count + 1)}
+                              className="w-8 h-8 rounded-md bg-primary hover:bg-primary/80 flex items-center justify-center text-white font-bold transition-colors"
+                              data-testid={`button-increase-${role.id}`}
+                            >
+                              +
+                            </button>
+                          </div>
                         </div>
                       );
                     })}
