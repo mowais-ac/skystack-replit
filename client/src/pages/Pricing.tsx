@@ -133,7 +133,7 @@ export default function Pricing() {
           </div>
           
           <div className="container-width relative z-10 text-center">
-            <span className="inline-block px-4 py-2 bg-white/10 rounded-full text-white text-sm font-semibold mb-6 border border-white/20">
+            <span className="inline-block px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold mb-6 border border-emerald-500/30">
               {language === "ar" ? "الأسعار" : "Pricing"}
             </span>
             <h1 className="text-4xl lg:text-6xl font-bold mt-4 mb-6" data-testid="text-pricing-title">

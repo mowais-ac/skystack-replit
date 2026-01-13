@@ -191,7 +191,7 @@
   }
 
   .section-eyebrow {
-    @apply text-xs font-semibold tracking-[0.25em] uppercase text-primary;
+    @apply text-xs font-semibold tracking-[0.25em] uppercase text-emerald-400;
   }
 
   .section-subheading {

@@ -42,7 +42,7 @@ export default function StaticContent({ type }: StaticContentProps) {
             
             <div className="container-width relative z-10">
               <div className="max-w-3xl">
-                <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+                <span className="text-emerald-400 font-semibold tracking-wider uppercase text-sm">
                   {language === "ar" ? "من نحن" : "About Us"}
                 </span>
                 <h1 className="text-4xl lg:text-6xl font-bold mt-4 mb-6" data-testid="text-about-title">{data.title}</h1>

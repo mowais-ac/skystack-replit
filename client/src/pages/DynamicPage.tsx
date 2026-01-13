@@ -113,8 +113,8 @@ export default function DynamicPage({ type }: DynamicPageProps) {
           <div className="container-width relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div {...fadeIn}>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white font-medium text-sm mb-6 border border-white/10">
-                  <Icon className="w-4 h-4 text-primary" />
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 backdrop-blur-sm text-emerald-400 font-medium text-sm mb-6 border border-emerald-500/30">
+                  <Icon className="w-4 h-4" />
                   {type === "service" 
                     ? (language === "ar" ? "خدمة احترافية" : "Professional Service") 
                     : (language === "ar" ? "حل جاهز" : "Ready-to-Launch Solution")}

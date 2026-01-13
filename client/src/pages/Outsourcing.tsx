@@ -8,7 +8,6 @@ import {
   Globe, TrendingUp, Building2, Calculator, Briefcase,
   GraduationCap, Award, Headphones, Code, Database, Palette
 } from "lucide-react";
-import { Slider } from "@/components/ui/slider";
 
 const roles = [
   { id: "frontend", name: "Frontend Developer", nameAr: "مطور واجهة أمامية", avgSalary: 8000, outsourceCost: 2500 },
@@ -99,26 +98,48 @@ const whyPakistan = [
 
 export default function Outsourcing() {
   const { language } = useLanguage();
-  const [selectedRoles, setSelectedRoles] = useState<string[]>(["fullstack", "frontend"]);
-  const [teamSize, setTeamSize] = useState([3]);
+  const [roleCounts, setRoleCounts] = useState<Record<string, number>>({
+    fullstack: 1,
+    frontend: 1,
+  });
 
-  const toggleRole = (roleId: string) => {
-    setSelectedRoles(prev => 
-      prev.includes(roleId) 
-        ? prev.filter(r => r !== roleId)
-        : [...prev, roleId]
-    );
+  const updateRoleCount = (roleId: string, count: number) => {
+    setRoleCounts(prev => {
+      if (count <= 0) {
+        const { [roleId]: _, ...rest } = prev;
+        return rest;
+      }
+      return { ...prev, [roleId]: count };
+    });
   };
 
-  const selectedRolesData = roles.filter(r => selectedRoles.includes(r.id));
-  const avgInHouseCost = selectedRolesData.reduce((sum, r) => sum + r.avgSalary, 0) / (selectedRolesData.length || 1);
-  const avgOutsourceCost = selectedRolesData.reduce((sum, r) => sum + r.outsourceCost, 0) / (selectedRolesData.length || 1);
+  const toggleRole = (roleId: string) => {
+    setRoleCounts(prev => {
+      if (roleId in prev) {
+        const { [roleId]: _, ...rest } = prev;
+        return rest;
+      }
+      return { ...prev, [roleId]: 1 };
+    });
+  };
+
+  const selectedRoles = Object.keys(roleCounts);
+  const totalEmployees = Object.values(roleCounts).reduce((sum, count) => sum + count, 0);
   
-  const monthlyInHouse = avgInHouseCost * teamSize[0] * 1.35;
-  const monthlyOutsource = avgOutsourceCost * teamSize[0];
+  // Calculate costs based on each role's individual count
+  const monthlyInHouse = roles.reduce((sum, role) => {
+    const count = roleCounts[role.id] || 0;
+    return sum + (role.avgSalary * count * 1.35);
+  }, 0);
+  
+  const monthlyOutsource = roles.reduce((sum, role) => {
+    const count = roleCounts[role.id] || 0;
+    return sum + (role.outsourceCost * count);
+  }, 0);
+  
   const monthlySavings = monthlyInHouse - monthlyOutsource;
   const annualSavings = monthlySavings * 12;
-  const savingsPercent = Math.round((monthlySavings / monthlyInHouse) * 100);
+  const savingsPercent = monthlyInHouse > 0 ? Math.round((monthlySavings / monthlyInHouse) * 100) : 0;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -134,7 +155,7 @@ export default function Outsourcing() {
           
           <div className="container-width relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <span className="inline-block px-4 py-2 bg-primary/20 rounded-full text-primary text-sm font-semibold mb-6">
+              <span className="inline-block px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold mb-6">
                 {language === "ar" ? "حلول التعهيد" : "Outsourcing Solutions"}
               </span>
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight" data-testid="text-outsourcing-title">
@@ -168,7 +189,7 @@ export default function Outsourcing() {
                   { value: "98%", label: language === "ar" ? "معدل الرضا" : "Satisfaction Rate" },
                 ].map((stat, i) => (
                   <div key={i} className="text-center">
-                    <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">{stat.value}</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-white mb-2">{stat.value}</div>
                     <div className="text-slate-400 text-sm">{stat.label}</div>
                   </div>
                 ))}
@@ -216,7 +237,7 @@ export default function Outsourcing() {
         <section id="calculator" className="py-20 lg:py-28 bg-slate-900 text-white">
           <div className="container-width">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="text-primary font-semibold uppercase tracking-wider text-sm">
+              <span className="text-emerald-400 font-semibold uppercase tracking-wider text-sm">
                 {language === "ar" ? "حاسبة التوفير" : "Savings Calculator"}
               </span>
               <h2 className="section-heading mt-4 text-white">
@@ -233,41 +254,62 @@ export default function Outsourcing() {
               <div className="grid lg:grid-cols-2 gap-10">
                 {/* Configuration */}
                 <div className="bg-slate-800 rounded-md p-8">
-                  <h3 className="text-xl font-bold mb-6">
-                    {language === "ar" ? "اختر الأدوار المطلوبة" : "Select Required Roles"}
+                  <h3 className="text-xl font-bold mb-4">
+                    {language === "ar" ? "اختر الأدوار وعدد الموظفين" : "Select Roles & Employee Count"}
                   </h3>
-                  <div className="grid grid-cols-2 gap-3 mb-8">
-                    {roles.map(role => (
-                      <button
-                        key={role.id}
-                        onClick={() => toggleRole(role.id)}
-                        className={`p-3 rounded-md text-sm font-medium transition-all text-left ${
-                          selectedRoles.includes(role.id)
-                            ? "bg-primary text-white"
-                            : "bg-slate-700 text-slate-300 hover:bg-slate-600"
-                        }`}
-                        data-testid={`button-role-${role.id}`}
-                      >
-                        {language === "ar" ? role.nameAr : role.name}
-                      </button>
-                    ))}
+                  <p className="text-slate-400 text-sm mb-6">
+                    {language === "ar" ? "انقر لتفعيل الدور واستخدم الأزرار لتعديل العدد" : "Click to toggle roles, use buttons to adjust count"}
+                  </p>
+                  <div className="space-y-3 mb-6">
+                    {roles.map(role => {
+                      const isSelected = role.id in roleCounts;
+                      const count = roleCounts[role.id] || 0;
+                      return (
+                        <div
+                          key={role.id}
+                          className={`flex items-center justify-between p-3 rounded-md transition-all ${
+                            isSelected
+                              ? "bg-primary/20 border border-primary/50"
+                              : "bg-slate-700 border border-transparent hover:bg-slate-600"
+                          }`}
+                        >
+                          <button
+                            onClick={() => toggleRole(role.id)}
+                            className="flex-1 text-left text-sm font-medium"
+                            data-testid={`button-role-${role.id}`}
+                          >
+                            <span className={isSelected ? "text-white" : "text-slate-300"}>
+                              {language === "ar" ? role.nameAr : role.name}
+                            </span>
+                          </button>
+                          {isSelected && (
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => updateRoleCount(role.id, count - 1)}
+                                className="w-8 h-8 rounded-md bg-slate-600 hover:bg-slate-500 flex items-center justify-center text-white font-bold transition-colors"
+                                data-testid={`button-decrease-${role.id}`}
+                              >
+                                -
+                              </button>
+                              <span className="w-8 text-center text-white font-bold">{count}</span>
+                              <button
+                                onClick={() => updateRoleCount(role.id, count + 1)}
+                                className="w-8 h-8 rounded-md bg-primary hover:bg-primary/80 flex items-center justify-center text-white font-bold transition-colors"
+                                data-testid={`button-increase-${role.id}`}
+                              >
+                                +
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                   
-                  <div className="mb-6">
-                    <label className="block text-sm font-medium text-slate-300 mb-4">
-                      {language === "ar" ? "حجم الفريق" : "Team Size"}: <span className="text-primary text-xl font-bold">{teamSize[0]}</span> {language === "ar" ? "موظف" : "employees"}
-                    </label>
-                    <Slider
-                      value={teamSize}
-                      onValueChange={setTeamSize}
-                      min={1}
-                      max={20}
-                      step={1}
-                      className="w-full"
-                    />
-                    <div className="flex justify-between text-xs text-slate-500 mt-2">
-                      <span>1</span>
-                      <span>20</span>
+                  <div className="pt-4 border-t border-slate-700">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-400">{language === "ar" ? "إجمالي الموظفين" : "Total Employees"}</span>
+                      <span className="text-white font-bold">{totalEmployees}</span>
                     </div>
                   </div>
                 </div>
