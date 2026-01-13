@@ -13,16 +13,99 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
-const roles = [
-  { id: "frontend", name: "Frontend Developer", nameAr: "مطور واجهة أمامية", avgSalary: 30000, outsourceCost: 9500 },
-  { id: "backend", name: "Backend Developer", nameAr: "مطور خلفية", avgSalary: 34000, outsourceCost: 10500 },
-  { id: "fullstack", name: "Full Stack Developer", nameAr: "مطور متكامل", avgSalary: 37500, outsourceCost: 12000 },
-  { id: "mobile", name: "Mobile Developer", nameAr: "مطور تطبيقات", avgSalary: 35000, outsourceCost: 11000 },
-  { id: "designer", name: "UI/UX Designer", nameAr: "مصمم واجهات", avgSalary: 28000, outsourceCost: 8000 },
-  { id: "qa", name: "QA Engineer", nameAr: "مهندس جودة", avgSalary: 24000, outsourceCost: 7000 },
-  { id: "devops", name: "DevOps Engineer", nameAr: "مهندس DevOps", avgSalary: 41000, outsourceCost: 13000 },
-  { id: "pm", name: "Project Manager", nameAr: "مدير مشروع", avgSalary: 45000, outsourceCost: 14000 },
+const roleCategories = [
+  {
+    id: "leadership",
+    name: "Delivery & Leadership",
+    nameAr: "القيادة والتسليم",
+    icon: Briefcase,
+    roles: [
+      { id: "pm", name: "Project Manager", nameAr: "مدير مشروع", avgSalary: 45000, outsourceCost: 14000 },
+      { id: "product", name: "Product Manager", nameAr: "مدير منتج", avgSalary: 48000, outsourceCost: 15000 },
+      { id: "scrum", name: "Scrum Master", nameAr: "سكرم ماستر", avgSalary: 40000, outsourceCost: 12500 },
+      { id: "techLead", name: "Technical Lead", nameAr: "قائد تقني", avgSalary: 52000, outsourceCost: 16000 },
+    ]
+  },
+  {
+    id: "engineering",
+    name: "Software Engineering",
+    nameAr: "هندسة البرمجيات",
+    icon: Code,
+    roles: [
+      { id: "frontend", name: "Frontend Developer", nameAr: "مطور واجهة أمامية", avgSalary: 30000, outsourceCost: 9500 },
+      { id: "backend", name: "Backend Developer", nameAr: "مطور خلفية", avgSalary: 34000, outsourceCost: 10500 },
+      { id: "fullstack", name: "Full Stack Developer", nameAr: "مطور متكامل", avgSalary: 37500, outsourceCost: 12000 },
+      { id: "mobile", name: "Mobile Developer", nameAr: "مطور تطبيقات", avgSalary: 35000, outsourceCost: 11000 },
+      { id: "ios", name: "iOS Developer", nameAr: "مطور iOS", avgSalary: 36000, outsourceCost: 11500 },
+      { id: "android", name: "Android Developer", nameAr: "مطور أندرويد", avgSalary: 34000, outsourceCost: 10500 },
+      { id: "lowcode", name: "Low-Code Developer", nameAr: "مطور لو-كود", avgSalary: 28000, outsourceCost: 8500 },
+      { id: "embedded", name: "Embedded Developer", nameAr: "مطور أنظمة مدمجة", avgSalary: 38000, outsourceCost: 12000 },
+    ]
+  },
+  {
+    id: "data",
+    name: "Data & Intelligence",
+    nameAr: "البيانات والذكاء",
+    icon: Database,
+    roles: [
+      { id: "dataEngineer", name: "Data Engineer", nameAr: "مهندس بيانات", avgSalary: 42000, outsourceCost: 13000 },
+      { id: "mlEngineer", name: "ML Engineer", nameAr: "مهندس تعلم آلي", avgSalary: 50000, outsourceCost: 15500 },
+      { id: "biAnalyst", name: "BI Analyst", nameAr: "محلل ذكاء أعمال", avgSalary: 35000, outsourceCost: 10500 },
+      { id: "dataScientist", name: "Data Scientist", nameAr: "عالم بيانات", avgSalary: 48000, outsourceCost: 15000 },
+    ]
+  },
+  {
+    id: "cloud",
+    name: "Cloud & Platform",
+    nameAr: "السحابة والمنصات",
+    icon: Globe,
+    roles: [
+      { id: "devops", name: "DevOps Engineer", nameAr: "مهندس DevOps", avgSalary: 41000, outsourceCost: 13000 },
+      { id: "cloudArchitect", name: "Cloud Architect", nameAr: "مهندس سحابة", avgSalary: 55000, outsourceCost: 17000 },
+      { id: "sre", name: "Site Reliability Engineer", nameAr: "مهندس موثوقية", avgSalary: 45000, outsourceCost: 14000 },
+      { id: "platform", name: "Platform Engineer", nameAr: "مهندس منصات", avgSalary: 43000, outsourceCost: 13500 },
+    ]
+  },
+  {
+    id: "quality",
+    name: "Quality & Security",
+    nameAr: "الجودة والأمان",
+    icon: Shield,
+    roles: [
+      { id: "qa", name: "QA Engineer", nameAr: "مهندس جودة", avgSalary: 24000, outsourceCost: 7000 },
+      { id: "qaAutomation", name: "QA Automation", nameAr: "أتمتة الاختبارات", avgSalary: 32000, outsourceCost: 9500 },
+      { id: "security", name: "Security Analyst", nameAr: "محلل أمني", avgSalary: 45000, outsourceCost: 14000 },
+      { id: "penTester", name: "Penetration Tester", nameAr: "مختبر اختراق", avgSalary: 48000, outsourceCost: 15000 },
+      { id: "performance", name: "Performance Engineer", nameAr: "مهندس أداء", avgSalary: 38000, outsourceCost: 11500 },
+    ]
+  },
+  {
+    id: "design",
+    name: "Design & Experience",
+    nameAr: "التصميم والتجربة",
+    icon: Palette,
+    roles: [
+      { id: "designer", name: "UI/UX Designer", nameAr: "مصمم واجهات", avgSalary: 28000, outsourceCost: 8000 },
+      { id: "uxResearcher", name: "UX Researcher", nameAr: "باحث تجربة مستخدم", avgSalary: 35000, outsourceCost: 10500 },
+      { id: "productDesigner", name: "Product Designer", nameAr: "مصمم منتجات", avgSalary: 38000, outsourceCost: 11500 },
+      { id: "graphicDesigner", name: "Graphic Designer", nameAr: "مصمم جرافيك", avgSalary: 22000, outsourceCost: 6500 },
+    ]
+  },
+  {
+    id: "enterprise",
+    name: "Enterprise Systems",
+    nameAr: "أنظمة المؤسسات",
+    icon: Building2,
+    roles: [
+      { id: "salesforce", name: "Salesforce Developer", nameAr: "مطور سيلزفورس", avgSalary: 48000, outsourceCost: 15000 },
+      { id: "sap", name: "SAP Consultant", nameAr: "مستشار SAP", avgSalary: 55000, outsourceCost: 17000 },
+      { id: "oracle", name: "Oracle Developer", nameAr: "مطور أوراكل", avgSalary: 50000, outsourceCost: 15500 },
+      { id: "dynamics", name: "Dynamics 365", nameAr: "مطور دايناميكس", avgSalary: 47000, outsourceCost: 14500 },
+    ]
+  }
 ];
+
+const allRoles = roleCategories.flatMap(cat => cat.roles);
 
 const benefits = [
   {
@@ -100,31 +183,48 @@ const whyPakistan = [
   }
 ];
 
+interface RoleSelection {
+  roleId: string;
+  quantity: number;
+}
+
 interface OutsourcingFormData {
   name: string;
   email: string;
   phone: string;
   company: string;
-  roles: string;
-  teamSize: string;
+  selectedRoles: RoleSelection[];
   timeline: string;
   message: string;
 }
 
 function OutsourcingForm({ language }: { language: string }) {
   const { toast } = useToast();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<OutsourcingFormData>({
+  const [formRoleCounts, setFormRoleCounts] = useState<Record<string, number>>({});
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<Omit<OutsourcingFormData, 'selectedRoles'>>({
     defaultValues: {
       name: "",
       email: "",
       phone: "",
       company: "",
-      roles: "",
-      teamSize: "",
       timeline: "",
       message: ""
     }
   });
+
+  const updateFormRoleCount = (roleId: string, delta: number) => {
+    setFormRoleCounts(prev => {
+      const current = prev[roleId] || 0;
+      const newCount = Math.max(0, Math.min(20, current + delta));
+      if (newCount === 0) {
+        const { [roleId]: _, ...rest } = prev;
+        return rest;
+      }
+      return { ...prev, [roleId]: newCount };
+    });
+  };
+
+  const totalHeadcount = Object.values(formRoleCounts).reduce((sum, count) => sum + count, 0);
 
   const mutation = useMutation({
     mutationFn: async (data: OutsourcingFormData) => {
@@ -136,6 +236,7 @@ function OutsourcingForm({ language }: { language: string }) {
         description: language === "ar" ? "سنتواصل معك قريباً" : "We'll get back to you shortly."
       });
       reset();
+      setFormRoleCounts({});
     },
     onError: () => {
       toast({
@@ -146,27 +247,21 @@ function OutsourcingForm({ language }: { language: string }) {
     }
   });
 
-  const onSubmit = (data: OutsourcingFormData) => {
-    mutation.mutate(data);
+  const onSubmit = (data: Omit<OutsourcingFormData, 'selectedRoles'>) => {
+    if (totalHeadcount === 0) {
+      toast({
+        title: language === "ar" ? "يرجى اختيار الأدوار" : "Please select roles",
+        description: language === "ar" ? "اختر دوراً واحداً على الأقل" : "Select at least one role",
+        variant: "destructive"
+      });
+      return;
+    }
+    const selectedRoles: RoleSelection[] = Object.entries(formRoleCounts).map(([roleId, quantity]) => ({
+      roleId,
+      quantity
+    }));
+    mutation.mutate({ ...data, selectedRoles });
   };
-
-  const roleOptions = [
-    { value: "frontend", label: language === "ar" ? "مطور واجهة أمامية" : "Frontend Developer" },
-    { value: "backend", label: language === "ar" ? "مطور خلفية" : "Backend Developer" },
-    { value: "fullstack", label: language === "ar" ? "مطور متكامل" : "Full Stack Developer" },
-    { value: "mobile", label: language === "ar" ? "مطور تطبيقات" : "Mobile Developer" },
-    { value: "designer", label: language === "ar" ? "مصمم واجهات" : "UI/UX Designer" },
-    { value: "qa", label: language === "ar" ? "مهندس جودة" : "QA Engineer" },
-    { value: "devops", label: language === "ar" ? "مهندس DevOps" : "DevOps Engineer" },
-    { value: "pm", label: language === "ar" ? "مدير مشروع" : "Project Manager" }
-  ];
-
-  const teamSizeOptions = [
-    { value: "1-2", label: language === "ar" ? "1-2 موظفين" : "1-2 employees" },
-    { value: "3-5", label: language === "ar" ? "3-5 موظفين" : "3-5 employees" },
-    { value: "6-10", label: language === "ar" ? "6-10 موظفين" : "6-10 employees" },
-    { value: "10+", label: language === "ar" ? "أكثر من 10" : "10+ employees" }
-  ];
 
   const timelineOptions = [
     { value: "immediate", label: language === "ar" ? "فوري" : "Immediate" },
@@ -181,7 +276,7 @@ function OutsourcingForm({ language }: { language: string }) {
         {language === "ar" ? "احصل على عرض سعر مجاني" : "Get a Free Quote"}
       </h3>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
           <input
             {...register("name", { required: true })}
@@ -217,27 +312,62 @@ function OutsourcingForm({ language }: { language: string }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <select
-          {...register("roles", { required: true })}
-          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-          data-testid="select-outsourcing-roles"
-        >
-          <option value="">{language === "ar" ? "الأدوار المطلوبة *" : "Roles Needed *"}</option>
-          {roleOptions.map(opt => (
-            <option key={opt.value} value={opt.value}>{opt.label}</option>
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-3">
+          <label className="font-semibold text-slate-700">
+            {language === "ar" ? "اختر الأدوار والكميات *" : "Select Roles & Quantities *"}
+          </label>
+          {totalHeadcount > 0 && (
+            <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+              {language === "ar" ? `${totalHeadcount} موظف` : `${totalHeadcount} staff`}
+            </span>
+          )}
+        </div>
+        <div className="border border-slate-200 rounded-md max-h-64 overflow-y-auto">
+          {roleCategories.map(category => (
+            <div key={category.id} className="border-b border-slate-100 last:border-b-0">
+              <div className="px-4 py-2 bg-slate-50 text-sm font-semibold text-slate-600 flex items-center gap-2">
+                <category.icon className="w-4 h-4" />
+                {language === "ar" ? category.nameAr : category.name}
+              </div>
+              <div className="divide-y divide-slate-100">
+                {category.roles.map(role => {
+                  const count = formRoleCounts[role.id] || 0;
+                  return (
+                    <div key={role.id} className="flex items-center justify-between px-4 py-2 hover:bg-slate-50">
+                      <span className="text-sm text-slate-700">
+                        {language === "ar" ? role.nameAr : role.name}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => updateFormRoleCount(role.id, -1)}
+                          disabled={count === 0}
+                          className="w-7 h-7 rounded-md bg-slate-100 hover:bg-slate-200 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                          data-testid={`button-form-minus-${role.id}`}
+                        >
+                          -
+                        </button>
+                        <span className="w-8 text-center font-medium text-slate-800">{count}</span>
+                        <button
+                          type="button"
+                          onClick={() => updateFormRoleCount(role.id, 1)}
+                          className="w-7 h-7 rounded-md bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-colors"
+                          data-testid={`button-form-plus-${role.id}`}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           ))}
-        </select>
-        <select
-          {...register("teamSize", { required: true })}
-          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-          data-testid="select-outsourcing-teamsize"
-        >
-          <option value="">{language === "ar" ? "حجم الفريق *" : "Team Size *"}</option>
-          {teamSizeOptions.map(opt => (
-            <option key={opt.value} value={opt.value}>{opt.label}</option>
-          ))}
-        </select>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <select
           {...register("timeline", { required: true })}
           className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -248,15 +378,14 @@ function OutsourcingForm({ language }: { language: string }) {
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
+        <textarea
+          {...register("message")}
+          rows={1}
+          placeholder={language === "ar" ? "ملاحظات إضافية" : "Additional notes"}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="textarea-outsourcing-message"
+        />
       </div>
-
-      <textarea
-        {...register("message")}
-        rows={3}
-        placeholder={language === "ar" ? "ملاحظات إضافية" : "Additional notes"}
-        className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent mb-4"
-        data-testid="textarea-outsourcing-message"
-      />
 
       <button
         type="submit"
@@ -298,12 +427,12 @@ export default function Outsourcing() {
   const totalEmployees = Object.values(roleCounts).reduce((sum, count) => sum + count, 0);
   
   // Calculate costs based on each role's individual count
-  const monthlyInHouse = roles.reduce((sum, role) => {
+  const monthlyInHouse = allRoles.reduce((sum: number, role) => {
     const count = roleCounts[role.id] || 0;
     return sum + (role.avgSalary * count * 1.35);
   }, 0);
   
-  const monthlyOutsource = roles.reduce((sum, role) => {
+  const monthlyOutsource = allRoles.reduce((sum: number, role) => {
     const count = roleCounts[role.id] || 0;
     return sum + (role.outsourceCost * count);
   }, 0);
@@ -437,47 +566,57 @@ export default function Outsourcing() {
                   <p className="text-slate-400 text-sm mb-6">
                     {language === "ar" ? "استخدم الأزرار لتعديل عدد الموظفين لكل دور" : "Use buttons to adjust employee count for each role"}
                   </p>
-                  <div className="space-y-3 mb-6">
-                    {roles.map(role => {
-                      const count = roleCounts[role.id] || 0;
-                      const isActive = count > 0;
-                      return (
-                        <div
-                          key={role.id}
-                          className={`flex items-center justify-between p-3 rounded-md transition-all ${
-                            isActive
-                              ? "bg-primary/20 border border-primary/50"
-                              : "bg-slate-700 border border-transparent"
-                          }`}
-                        >
-                          <span className={`text-sm font-medium ${isActive ? "text-white" : "text-slate-300"}`}>
-                            {language === "ar" ? role.nameAr : role.name}
-                          </span>
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => updateRoleCount(role.id, count - 1)}
-                              disabled={count === 0}
-                              className={`w-8 h-8 rounded-md flex items-center justify-center font-bold transition-colors ${
-                                count === 0 
-                                  ? "bg-slate-600/50 text-slate-500 cursor-not-allowed" 
-                                  : "bg-slate-600 hover:bg-slate-500 text-white"
-                              }`}
-                              data-testid={`button-decrease-${role.id}`}
-                            >
-                              -
-                            </button>
-                            <span className={`w-8 text-center font-bold ${isActive ? "text-white" : "text-slate-400"}`}>{count}</span>
-                            <button
-                              onClick={() => updateRoleCount(role.id, count + 1)}
-                              className="w-8 h-8 rounded-md bg-primary hover:bg-primary/80 flex items-center justify-center text-white font-bold transition-colors"
-                              data-testid={`button-increase-${role.id}`}
-                            >
-                              +
-                            </button>
-                          </div>
+                  <div className="space-y-4 mb-6 max-h-80 overflow-y-auto pr-2">
+                    {roleCategories.map(category => (
+                      <div key={category.id}>
+                        <div className="flex items-center gap-2 mb-2 text-slate-400 text-xs font-semibold uppercase tracking-wider">
+                          <category.icon className="w-3 h-3" />
+                          {language === "ar" ? category.nameAr : category.name}
                         </div>
-                      );
-                    })}
+                        <div className="space-y-2">
+                          {category.roles.map(role => {
+                            const count = roleCounts[role.id] || 0;
+                            const isActive = count > 0;
+                            return (
+                              <div
+                                key={role.id}
+                                className={`flex items-center justify-between p-3 rounded-md transition-all ${
+                                  isActive
+                                    ? "bg-primary/20 border border-primary/50"
+                                    : "bg-slate-700 border border-transparent"
+                                }`}
+                              >
+                                <span className={`text-sm font-medium ${isActive ? "text-white" : "text-slate-300"}`}>
+                                  {language === "ar" ? role.nameAr : role.name}
+                                </span>
+                                <div className="flex items-center gap-2">
+                                  <button
+                                    onClick={() => updateRoleCount(role.id, count - 1)}
+                                    disabled={count === 0}
+                                    className={`w-8 h-8 rounded-md flex items-center justify-center font-bold transition-colors ${
+                                      count === 0 
+                                        ? "bg-slate-600/50 text-slate-500 cursor-not-allowed" 
+                                        : "bg-slate-600 hover:bg-slate-500 text-white"
+                                    }`}
+                                    data-testid={`button-decrease-${role.id}`}
+                                  >
+                                    -
+                                  </button>
+                                  <span className={`w-8 text-center font-bold ${isActive ? "text-white" : "text-slate-400"}`}>{count}</span>
+                                  <button
+                                    onClick={() => updateRoleCount(role.id, count + 1)}
+                                    className="w-8 h-8 rounded-md bg-primary hover:bg-primary/80 flex items-center justify-center text-white font-bold transition-colors"
+                                    data-testid={`button-increase-${role.id}`}
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                   
                   <div className="pt-4 border-t border-slate-700">
@@ -600,24 +739,32 @@ export default function Outsourcing() {
                 </div>
               </div>
               
-              <div className="bg-white p-10 rounded-md shadow-xl">
-                <h3 className="text-2xl font-bold mb-8">
-                  {language === "ar" ? "المهارات المتاحة" : "Available Skills"}
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { icon: Code, name: "React / Next.js" },
-                    { icon: Code, name: "Node.js / Python" },
-                    { icon: Database, name: "PostgreSQL / MongoDB" },
-                    { icon: Code, name: "React Native / Flutter" },
-                    { icon: Palette, name: "UI/UX Design" },
-                    { icon: Shield, name: "DevOps / AWS" },
-                    { icon: Code, name: "AI / Machine Learning" },
-                    { icon: Briefcase, name: "Agile / Scrum" },
-                  ].map((skill, i) => (
-                    <div key={i} className="flex items-center gap-3 p-3 bg-slate-50 rounded-md">
-                      <skill.icon className="w-5 h-5 text-primary" />
-                      <span className="text-sm font-medium text-slate-700">{skill.name}</span>
+              <div className="bg-white p-8 rounded-md shadow-xl">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold">
+                    {language === "ar" ? "الأدوار المتاحة" : "Available Roles"}
+                  </h3>
+                  <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full font-semibold">
+                    {allRoles.length}+ {language === "ar" ? "دور" : "roles"}
+                  </span>
+                </div>
+                <div className="space-y-4 max-h-80 overflow-y-auto pr-2">
+                  {roleCategories.map(category => (
+                    <div key={category.id}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <category.icon className="w-4 h-4 text-primary" />
+                        <span className="text-sm font-semibold text-slate-800">
+                          {language === "ar" ? category.nameAr : category.name}
+                        </span>
+                        <span className="text-xs text-slate-400">({category.roles.length})</span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {category.roles.map(role => (
+                          <span key={role.id} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-md">
+                            {language === "ar" ? role.nameAr : role.name}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -778,30 +925,30 @@ export default function Outsourcing() {
         {/* CTA with Form */}
         <section id="get-quote" className="py-20 lg:py-28 bg-gradient-to-r from-primary to-blue-700 text-white">
           <div className="container-width">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-                  {language === "ar" ? "هل أنت مستعد للتوفير؟" : "Ready to Start Saving?"}
-                </h2>
-                <p className="text-xl text-blue-100 mb-8">
-                  {language === "ar"
-                    ? "احجز استشارة مجانية اليوم واكتشف كيف يمكننا مساعدتك في بناء فريق تقني عالمي المستوى."
-                    : "Book a free consultation today and discover how we can help you build a world-class tech team."}
-                </p>
-                <div className="space-y-4">
-                  {[
-                    language === "ar" ? "استشارة مجانية بدون التزام" : "Free consultation with no obligation",
-                    language === "ar" ? "عرض سعر مفصل خلال 24 ساعة" : "Detailed quote within 24 hours",
-                    language === "ar" ? "فريق جاهز للبدء خلال 48 ساعة" : "Team ready to start within 48 hours"
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-green-300" />
-                      <span className="text-blue-100">{item}</span>
-                    </div>
-                  ))}
-                </div>
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+                {language === "ar" ? "هل أنت مستعد للتوفير؟" : "Ready to Start Saving?"}
+              </h2>
+              <p className="text-xl text-blue-100 mb-8">
+                {language === "ar"
+                  ? "احجز استشارة مجانية اليوم واكتشف كيف يمكننا مساعدتك في بناء فريق تقني عالمي المستوى."
+                  : "Book a free consultation today and discover how we can help you build a world-class tech team."}
+              </p>
+              <div className="flex flex-wrap justify-center gap-6">
+                {[
+                  language === "ar" ? "استشارة مجانية بدون التزام" : "Free consultation with no obligation",
+                  language === "ar" ? "عرض سعر مفصل خلال 24 ساعة" : "Detailed quote within 24 hours",
+                  language === "ar" ? "فريق جاهز للبدء خلال 48 ساعة" : "Team ready to start within 48 hours"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-green-300" />
+                    <span className="text-blue-100">{item}</span>
+                  </div>
+                ))}
               </div>
-              
+            </div>
+            
+            <div className="max-w-4xl mx-auto">
               <OutsourcingForm language={language} />
             </div>
           </div>

@@ -63,13 +63,17 @@ async function sendToSlack(title: string, fields: SlackField[], additionalInfo?:
   }
 }
 
+const roleSelectionSchema = z.object({
+  roleId: z.string(),
+  quantity: z.number().int().positive().max(50)
+});
+
 const outsourcingInquirySchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
   phone: z.string().min(9),
   company: z.string().optional(),
-  roles: z.string(),
-  teamSize: z.string(),
+  selectedRoles: z.array(roleSelectionSchema).min(1),
   timeline: z.string(),
   message: z.string().optional()
 });
@@ -123,6 +127,9 @@ export async function registerRoutes(
     try {
       const data = outsourcingInquirySchema.parse(req.body);
       
+      const totalHeadcount = data.selectedRoles.reduce((sum, r) => sum + r.quantity, 0);
+      const rolesFormatted = data.selectedRoles.map(r => `- ${r.roleId} x ${r.quantity}`).join("\n");
+      
       await sendToSlack(
         "New Outsourcing Inquiry",
         [
@@ -130,11 +137,10 @@ export async function registerRoutes(
           { type: "mrkdwn", text: `*Email:*\n${data.email}` },
           { type: "mrkdwn", text: `*Phone:*\n${data.phone}` },
           { type: "mrkdwn", text: `*Company:*\n${data.company || "Not provided"}` },
-          { type: "mrkdwn", text: `*Roles Needed:*\n${data.roles}` },
-          { type: "mrkdwn", text: `*Team Size:*\n${data.teamSize}` },
+          { type: "mrkdwn", text: `*Total Headcount:*\n${totalHeadcount}` },
           { type: "mrkdwn", text: `*Timeline:*\n${data.timeline}` }
         ],
-        data.message ? `*Additional Notes:*\n${data.message}` : undefined
+        `*Roles Requested:*\n${rolesFormatted}${data.message ? `\n\n*Additional Notes:*\n${data.message}` : ""}`
       );
       
       res.status(201).json({ success: true, message: "Inquiry sent successfully" });
