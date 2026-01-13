@@ -129,29 +129,6 @@ export default function ServicesList({ type }: ServicesListProps) {
           </div>
         </section>
 
-        {/* Trust Bar */}
-        <section className="py-4 bg-slate-900 border-y border-slate-800">
-          <div className="container-width">
-            <div className="flex flex-wrap items-center justify-center gap-8 text-slate-500 text-sm">
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4" />
-                <span>ISO 27001</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Target className="w-4 h-4" />
-                <span>Vision 2030</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Building2 className="w-4 h-4" />
-                <span>Saudi-Based</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4" />
-                <span>5+ Years</span>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Benefits Section */}
         <section className="py-16 bg-gradient-to-b from-slate-50 to-white">

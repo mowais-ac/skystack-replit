@@ -92,7 +92,7 @@ const saudiIndustries = [
 const transformationItems = [
   { key: "automation", icon: Settings },
   { key: "efficiency", icon: TrendingUp },
-  { key: "vision2030", icon: Target },
+  { key: "growth", icon: Rocket },
 ];
 
 const caseStudies = [
@@ -219,51 +219,11 @@ export default function Home() {
                   </Link>
                 </motion.div>
 
-                {/* Trust badges */}
-                <motion.div variants={fadeIn} className="flex flex-wrap items-center gap-4 justify-center">
-                  <div className="flex items-center gap-2 text-slate-400 text-sm">
-                    <Shield className="w-4 h-4 text-green-400" />
-                    <span>ISO 27001</span>
-                  </div>
-                  <div className="w-px h-4 bg-slate-700" />
-                  <div className="flex items-center gap-2 text-slate-400 text-sm">
-                    <Cloud className="w-4 h-4 text-blue-400" />
-                    <span>AWS Partner</span>
-                  </div>
-                  <div className="w-px h-4 bg-slate-700" />
-                  <div className="flex items-center gap-2 text-slate-400 text-sm">
-                    <Target className="w-4 h-4 text-primary" />
-                    <span>Vision 2030</span>
-                  </div>
-                </motion.div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Trusted By / Partners - Premium */}
-        <section className="py-6 bg-slate-900 border-b border-slate-800">
-          <div className="container-width">
-            <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12">
-              <p className="text-slate-500 font-medium text-xs uppercase tracking-[0.2em] shrink-0">
-                {language === "ar" ? "موثوق من قبل" : "Trusted by"}
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
-                {[
-                  { name: "Enterprise Solutions", icon: Building2 },
-                  { name: "Vision 2030", icon: Target },
-                  { name: "ISO 27001", icon: Shield },
-                  { name: "AWS Partner", icon: Cloud },
-                ].map((partner, i) => (
-                  <div key={i} className="flex items-center gap-2 text-slate-400" data-testid={`badge-partner-${i}`}>
-                    <partner.icon className="w-4 h-4" />
-                    <span className="font-medium text-sm">{partner.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* About Section - Enhanced Premium */}
         <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
@@ -420,7 +380,7 @@ export default function Home() {
           <div className="container-width relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="section-eyebrow">
-                {language === "ar" ? "رؤية 2030" : "Vision 2030"}
+                {language === "ar" ? "التحول الرقمي" : "Digital Transformation"}
               </span>
               <h2 className="section-heading mt-3">{t("transformation.title")}</h2>
               <p className="section-subheading mx-auto mt-4">{t("transformation.subtitle")}</p>

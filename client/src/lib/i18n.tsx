@@ -28,13 +28,13 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.subtitle": "We help Saudi companies build and modernize business software to automate operations and reduce manual work.",
     
     "transformation.title": "Saudi Market Transformation",
-    "transformation.subtitle": "Empowering Saudi businesses to embrace digital excellence and Vision 2030",
+    "transformation.subtitle": "Empowering Saudi businesses to embrace digital excellence",
     "transformation.automation": "Process Automation",
     "transformation.automationText": "Eliminate repetitive manual tasks and streamline workflows with intelligent automation solutions",
     "transformation.efficiency": "Operational Efficiency",
     "transformation.efficiencyText": "Reduce operational costs by up to 60% through digital transformation and smart systems",
-    "transformation.vision2030": "Vision 2030 Aligned",
-    "transformation.vision2030Text": "Solutions designed to support Saudi Arabia's digital transformation goals",
+    "transformation.growth": "Business Growth",
+    "transformation.growthText": "Solutions designed to accelerate your digital transformation journey",
     
     "saudiIndustries.title": "Industries We Transform",
     "saudiIndustries.subtitle": "Specialized solutions for key Saudi market sectors",
@@ -153,13 +153,13 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.cta2": "استعرض خدماتنا",
     
     "transformation.title": "التحول في السوق السعودي",
-    "transformation.subtitle": "تمكين الشركات السعودية لتبني التميز الرقمي ورؤية 2030",
+    "transformation.subtitle": "تمكين الشركات السعودية لتبني التميز الرقمي",
     "transformation.automation": "أتمتة العمليات",
     "transformation.automationText": "القضاء على المهام اليدوية المتكررة وتبسيط سير العمل بحلول الأتمتة الذكية",
     "transformation.efficiency": "الكفاءة التشغيلية",
     "transformation.efficiencyText": "تقليل التكاليف التشغيلية بنسبة تصل إلى 60% من خلال التحول الرقمي والأنظمة الذكية",
-    "transformation.vision2030": "متوافق مع رؤية 2030",
-    "transformation.vision2030Text": "حلول مصممة لدعم أهداف التحول الرقمي في المملكة العربية السعودية",
+    "transformation.growth": "نمو الأعمال",
+    "transformation.growthText": "حلول مصممة لتسريع رحلة التحول الرقمي الخاصة بك",
     
     "saudiIndustries.title": "الصناعات التي نحولها",
     "saudiIndustries.subtitle": "حلول متخصصة لقطاعات السوق السعودي الرئيسية",

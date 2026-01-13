@@ -349,29 +349,6 @@ export default function DynamicPage({ type }: DynamicPageProps) {
           </div>
         </section>
 
-        {/* Trust Bar */}
-        <section className="py-4 bg-slate-900 border-y border-slate-800">
-          <div className="container-width">
-            <div className="flex flex-wrap items-center justify-center gap-8 text-slate-500 text-sm">
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4" />
-                <span>ISO 27001</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Target className="w-4 h-4" />
-                <span>Vision 2030</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Building2 className="w-4 h-4" />
-                <span>50+ Enterprise Clients</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4" />
-                <span>5+ Years Experience</span>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Problem/Solution - Premium */}
         <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-50 via-white to-slate-50">
