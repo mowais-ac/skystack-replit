@@ -8,12 +8,188 @@ import { motion } from "framer-motion";
 import { 
   ArrowRight, Check, Shield, Clock, Users, Zap, Star, 
   MessageCircle, Phone, ChevronDown, Award, Target, Rocket,
-  CheckCircle2, Building2, HeartHandshake, Smartphone, Monitor, Tablet, Bike
+  CheckCircle2, Building2, HeartHandshake, Smartphone, Monitor, Tablet, Bike, Send
 } from "lucide-react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface DynamicPageProps {
   type: "service" | "businessModel";
+}
+
+interface ServiceFormData {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  serviceName: string;
+  projectType: string;
+  budget: string;
+  timeline: string;
+  message: string;
+}
+
+function ServiceInquiryForm({ language, serviceName }: { language: string; serviceName: string }) {
+  const { toast } = useToast();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ServiceFormData>({
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      serviceName: serviceName,
+      projectType: "",
+      budget: "",
+      timeline: "",
+      message: ""
+    }
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: ServiceFormData) => {
+      return apiRequest("POST", "/api/service-inquiry", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: language === "ar" ? "تم الإرسال بنجاح" : "Inquiry Sent!",
+        description: language === "ar" ? "سنتواصل معك قريباً" : "We'll get back to you shortly."
+      });
+      reset();
+    },
+    onError: () => {
+      toast({
+        title: language === "ar" ? "حدث خطأ" : "Error",
+        description: language === "ar" ? "يرجى المحاولة مرة أخرى" : "Please try again.",
+        variant: "destructive"
+      });
+    }
+  });
+
+  const onSubmit = (data: ServiceFormData) => {
+    mutation.mutate(data);
+  };
+
+  const projectTypeOptions = [
+    { value: "new", label: language === "ar" ? "مشروع جديد" : "New Project" },
+    { value: "redesign", label: language === "ar" ? "إعادة تصميم" : "Redesign/Revamp" },
+    { value: "migration", label: language === "ar" ? "ترحيل نظام" : "System Migration" },
+    { value: "integration", label: language === "ar" ? "تكامل" : "Integration" },
+    { value: "consulting", label: language === "ar" ? "استشارة" : "Consulting" }
+  ];
+
+  const budgetOptions = [
+    { value: "50k-100k", label: language === "ar" ? "50,000 - 100,000 ر.س" : "50,000 - 100,000 SAR" },
+    { value: "100k-250k", label: language === "ar" ? "100,000 - 250,000 ر.س" : "100,000 - 250,000 SAR" },
+    { value: "250k-500k", label: language === "ar" ? "250,000 - 500,000 ر.س" : "250,000 - 500,000 SAR" },
+    { value: "500k+", label: language === "ar" ? "أكثر من 500,000 ر.س" : "500,000+ SAR" },
+    { value: "discuss", label: language === "ar" ? "نناقش لاحقاً" : "Let's discuss" }
+  ];
+
+  const timelineOptions = [
+    { value: "asap", label: language === "ar" ? "في أقرب وقت" : "ASAP" },
+    { value: "1-month", label: language === "ar" ? "خلال شهر" : "Within 1 month" },
+    { value: "3-months", label: language === "ar" ? "خلال 3 أشهر" : "Within 3 months" },
+    { value: "6-months", label: language === "ar" ? "خلال 6 أشهر" : "Within 6 months" },
+    { value: "flexible", label: language === "ar" ? "مرن" : "Flexible" }
+  ];
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-md p-8 text-slate-900">
+      <h3 className="text-2xl font-bold mb-6">
+        {language === "ar" ? "احصل على عرض سعر مجاني" : "Get a Free Quote"}
+      </h3>
+      
+      <input type="hidden" {...register("serviceName")} />
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <input
+          {...register("name", { required: true })}
+          placeholder={language === "ar" ? "الاسم *" : "Name *"}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="input-service-name"
+        />
+        <input
+          {...register("email", { required: true })}
+          type="email"
+          placeholder={language === "ar" ? "البريد الإلكتروني *" : "Email *"}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="input-service-email"
+        />
+        <input
+          {...register("phone", { required: true })}
+          placeholder={language === "ar" ? "رقم الهاتف *" : "Phone *"}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="input-service-phone"
+        />
+        <input
+          {...register("company")}
+          placeholder={language === "ar" ? "اسم الشركة" : "Company"}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="input-service-company"
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <select
+          {...register("projectType", { required: true })}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="select-service-projecttype"
+        >
+          <option value="">{language === "ar" ? "نوع المشروع *" : "Project Type *"}</option>
+          {projectTypeOptions.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <select
+          {...register("budget", { required: true })}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="select-service-budget"
+        >
+          <option value="">{language === "ar" ? "الميزانية *" : "Budget *"}</option>
+          {budgetOptions.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <select
+          {...register("timeline", { required: true })}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="select-service-timeline"
+        >
+          <option value="">{language === "ar" ? "الجدول الزمني *" : "Timeline *"}</option>
+          {timelineOptions.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <textarea
+        {...register("message")}
+        rows={3}
+        placeholder={language === "ar" ? "تفاصيل المشروع" : "Project details"}
+        className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent mb-4"
+        data-testid="textarea-service-message"
+      />
+
+      <button
+        type="submit"
+        disabled={mutation.isPending}
+        className="w-full btn-primary py-4 flex items-center justify-center gap-2"
+        data-testid="button-service-submit"
+      >
+        {mutation.isPending ? (
+          language === "ar" ? "جاري الإرسال..." : "Sending..."
+        ) : (
+          <>
+            <Send className="w-5 h-5" />
+            {language === "ar" ? "إرسال الطلب" : "Submit Request"}
+          </>
+        )}
+      </button>
+    </form>
+  );
 }
 
 const fadeIn = {
@@ -655,38 +831,46 @@ export default function DynamicPage({ type }: DynamicPageProps) {
           </div>
         </section>
 
-        {/* Final CTA - Premium */}
-        <section className="py-24 lg:py-32 relative overflow-hidden bg-slate-950">
+        {/* Final CTA with Form */}
+        <section id="get-quote" className="py-24 lg:py-32 relative overflow-hidden bg-slate-950">
           <div className="absolute inset-0">
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
             <div className="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]" />
             <div className="absolute bottom-1/4 -left-20 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px]" />
           </div>
-          <div className="container-width relative z-10 text-center">
-            <span className="section-eyebrow">
-              {language === "ar" ? "ابدأ الآن" : "Get Started"}
-            </span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-white mt-4 mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              {language === "ar" ? `هل أنت مستعد لبناء ${title}؟` : `Ready to build your ${title}?`}
-            </h2>
-            <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
-              {language === "ar" 
-                ? "تواصل مع فريقنا للحصول على استشارة مجانية ومناقشة متطلبات مشروعك."
-                : "Contact our team for a free consultation and discuss your project requirements."}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact-us">
-                <button className="btn-primary-gradient flex items-center justify-center gap-2 group text-lg" data-testid="button-cta-quote">
-                  {language === "ar" ? "احصل على عرض سعر مجاني" : "Get Free Quote"}
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </Link>
-              <a href="tel:+966537430455">
-                <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-md font-semibold text-lg hover:bg-white/20 transition-all flex items-center justify-center gap-2" data-testid="button-cta-call">
+          <div className="container-width relative z-10">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="text-center lg:text-left">
+                <span className="section-eyebrow">
+                  {language === "ar" ? "ابدأ الآن" : "Get Started"}
+                </span>
+                <h2 className="text-3xl lg:text-5xl font-bold text-white mt-4 mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  {language === "ar" ? `هل أنت مستعد لبناء ${title}؟` : `Ready to build your ${title}?`}
+                </h2>
+                <p className="text-slate-400 text-lg mb-8">
+                  {language === "ar" 
+                    ? "تواصل مع فريقنا للحصول على استشارة مجانية ومناقشة متطلبات مشروعك."
+                    : "Contact our team for a free consultation and discuss your project requirements."}
+                </p>
+                <div className="space-y-4 mb-8">
+                  {[
+                    language === "ar" ? "استشارة مجانية بدون التزام" : "Free consultation with no obligation",
+                    language === "ar" ? "عرض سعر مفصل خلال 24 ساعة" : "Detailed quote within 24 hours",
+                    language === "ar" ? "فريق خبراء مخصص لمشروعك" : "Dedicated expert team for your project"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
+                      <Check className="w-5 h-5 text-emerald-400" />
+                      <span className="text-slate-300">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <a href="tel:+966537430455" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
                   <Phone className="w-5 h-5" />
-                  {language === "ar" ? "اتصل بنا" : "Call Us"}
-                </button>
-              </a>
+                  {language === "ar" ? "أو اتصل بنا: 966537430455+" : "Or call us: +966537430455"}
+                </a>
+              </div>
+              
+              <ServiceInquiryForm language={language} serviceName={title} />
             </div>
           </div>
         </section>

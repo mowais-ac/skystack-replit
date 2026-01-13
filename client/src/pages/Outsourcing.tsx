@@ -6,8 +6,12 @@ import { Link } from "wouter";
 import { 
   ArrowRight, Check, Users, DollarSign, Clock, Shield, 
   Globe, TrendingUp, Building2, Calculator, Briefcase,
-  GraduationCap, Award, Headphones, Code, Database, Palette
+  GraduationCap, Award, Headphones, Code, Database, Palette, Send
 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 const roles = [
   { id: "frontend", name: "Frontend Developer", nameAr: "مطور واجهة أمامية", avgSalary: 30000, outsourceCost: 9500 },
@@ -95,6 +99,183 @@ const whyPakistan = [
     descriptionAr: "خبرة قوية في التقنيات والأطر الحديثة"
   }
 ];
+
+interface OutsourcingFormData {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  roles: string;
+  teamSize: string;
+  timeline: string;
+  message: string;
+}
+
+function OutsourcingForm({ language }: { language: string }) {
+  const { toast } = useToast();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<OutsourcingFormData>({
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      roles: "",
+      teamSize: "",
+      timeline: "",
+      message: ""
+    }
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: OutsourcingFormData) => {
+      return apiRequest("POST", "/api/outsourcing-inquiry", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: language === "ar" ? "تم الإرسال بنجاح" : "Inquiry Sent!",
+        description: language === "ar" ? "سنتواصل معك قريباً" : "We'll get back to you shortly."
+      });
+      reset();
+    },
+    onError: () => {
+      toast({
+        title: language === "ar" ? "حدث خطأ" : "Error",
+        description: language === "ar" ? "يرجى المحاولة مرة أخرى" : "Please try again.",
+        variant: "destructive"
+      });
+    }
+  });
+
+  const onSubmit = (data: OutsourcingFormData) => {
+    mutation.mutate(data);
+  };
+
+  const roleOptions = [
+    { value: "frontend", label: language === "ar" ? "مطور واجهة أمامية" : "Frontend Developer" },
+    { value: "backend", label: language === "ar" ? "مطور خلفية" : "Backend Developer" },
+    { value: "fullstack", label: language === "ar" ? "مطور متكامل" : "Full Stack Developer" },
+    { value: "mobile", label: language === "ar" ? "مطور تطبيقات" : "Mobile Developer" },
+    { value: "designer", label: language === "ar" ? "مصمم واجهات" : "UI/UX Designer" },
+    { value: "qa", label: language === "ar" ? "مهندس جودة" : "QA Engineer" },
+    { value: "devops", label: language === "ar" ? "مهندس DevOps" : "DevOps Engineer" },
+    { value: "pm", label: language === "ar" ? "مدير مشروع" : "Project Manager" }
+  ];
+
+  const teamSizeOptions = [
+    { value: "1-2", label: language === "ar" ? "1-2 موظفين" : "1-2 employees" },
+    { value: "3-5", label: language === "ar" ? "3-5 موظفين" : "3-5 employees" },
+    { value: "6-10", label: language === "ar" ? "6-10 موظفين" : "6-10 employees" },
+    { value: "10+", label: language === "ar" ? "أكثر من 10" : "10+ employees" }
+  ];
+
+  const timelineOptions = [
+    { value: "immediate", label: language === "ar" ? "فوري" : "Immediate" },
+    { value: "1-month", label: language === "ar" ? "خلال شهر" : "Within 1 month" },
+    { value: "3-months", label: language === "ar" ? "خلال 3 أشهر" : "Within 3 months" },
+    { value: "exploring", label: language === "ar" ? "استكشاف" : "Just exploring" }
+  ];
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-md p-8 text-slate-900">
+      <h3 className="text-2xl font-bold mb-6">
+        {language === "ar" ? "احصل على عرض سعر مجاني" : "Get a Free Quote"}
+      </h3>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <input
+            {...register("name", { required: true })}
+            placeholder={language === "ar" ? "الاسم *" : "Name *"}
+            className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+            data-testid="input-outsourcing-name"
+          />
+        </div>
+        <div>
+          <input
+            {...register("email", { required: true })}
+            type="email"
+            placeholder={language === "ar" ? "البريد الإلكتروني *" : "Email *"}
+            className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+            data-testid="input-outsourcing-email"
+          />
+        </div>
+        <div>
+          <input
+            {...register("phone", { required: true })}
+            placeholder={language === "ar" ? "رقم الهاتف *" : "Phone *"}
+            className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+            data-testid="input-outsourcing-phone"
+          />
+        </div>
+        <div>
+          <input
+            {...register("company")}
+            placeholder={language === "ar" ? "اسم الشركة" : "Company"}
+            className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+            data-testid="input-outsourcing-company"
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <select
+          {...register("roles", { required: true })}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="select-outsourcing-roles"
+        >
+          <option value="">{language === "ar" ? "الأدوار المطلوبة *" : "Roles Needed *"}</option>
+          {roleOptions.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <select
+          {...register("teamSize", { required: true })}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="select-outsourcing-teamsize"
+        >
+          <option value="">{language === "ar" ? "حجم الفريق *" : "Team Size *"}</option>
+          {teamSizeOptions.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <select
+          {...register("timeline", { required: true })}
+          className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+          data-testid="select-outsourcing-timeline"
+        >
+          <option value="">{language === "ar" ? "الجدول الزمني *" : "Timeline *"}</option>
+          {timelineOptions.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <textarea
+        {...register("message")}
+        rows={3}
+        placeholder={language === "ar" ? "ملاحظات إضافية" : "Additional notes"}
+        className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent mb-4"
+        data-testid="textarea-outsourcing-message"
+      />
+
+      <button
+        type="submit"
+        disabled={mutation.isPending}
+        className="w-full btn-primary py-4 flex items-center justify-center gap-2"
+        data-testid="button-outsourcing-submit"
+      >
+        {mutation.isPending ? (
+          language === "ar" ? "جاري الإرسال..." : "Sending..."
+        ) : (
+          <>
+            <Send className="w-5 h-5" />
+            {language === "ar" ? "إرسال الطلب" : "Submit Request"}
+          </>
+        )}
+      </button>
+    </form>
+  );
+}
 
 export default function Outsourcing() {
   const { language } = useLanguage();
@@ -594,22 +775,35 @@ export default function Outsourcing() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-20 lg:py-28 bg-gradient-to-r from-primary to-blue-700 text-white">
-          <div className="container-width text-center">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              {language === "ar" ? "هل أنت مستعد للتوفير؟" : "Ready to Start Saving?"}
-            </h2>
-            <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
-              {language === "ar"
-                ? "احجز استشارة مجانية اليوم واكتشف كيف يمكننا مساعدتك في بناء فريق تقني عالمي المستوى."
-                : "Book a free consultation today and discover how we can help you build a world-class tech team."}
-            </p>
-            <Link href="/contact-us">
-              <button className="bg-white text-primary px-10 py-4 rounded-md font-bold text-lg hover:bg-blue-50 transition-colors inline-flex items-center gap-2" data-testid="button-book-consultation">
-                {language === "ar" ? "احجز استشارة مجانية" : "Book Free Consultation"} <ArrowRight className="w-5 h-5" />
-              </button>
-            </Link>
+        {/* CTA with Form */}
+        <section id="get-quote" className="py-20 lg:py-28 bg-gradient-to-r from-primary to-blue-700 text-white">
+          <div className="container-width">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+                  {language === "ar" ? "هل أنت مستعد للتوفير؟" : "Ready to Start Saving?"}
+                </h2>
+                <p className="text-xl text-blue-100 mb-8">
+                  {language === "ar"
+                    ? "احجز استشارة مجانية اليوم واكتشف كيف يمكننا مساعدتك في بناء فريق تقني عالمي المستوى."
+                    : "Book a free consultation today and discover how we can help you build a world-class tech team."}
+                </p>
+                <div className="space-y-4">
+                  {[
+                    language === "ar" ? "استشارة مجانية بدون التزام" : "Free consultation with no obligation",
+                    language === "ar" ? "عرض سعر مفصل خلال 24 ساعة" : "Detailed quote within 24 hours",
+                    language === "ar" ? "فريق جاهز للبدء خلال 48 ساعة" : "Team ready to start within 48 hours"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <Check className="w-5 h-5 text-green-300" />
+                      <span className="text-blue-100">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <OutsourcingForm language={language} />
+            </div>
           </div>
         </section>
       </main>
