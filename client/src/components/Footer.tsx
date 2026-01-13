@@ -3,7 +3,7 @@ import { Facebook, Twitter, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { useLanguage } from "@/lib/i18n";
 import { services } from "@/lib/data";
-import logo from "@assets/logo_1767806484099.png";
+import favicon from "@assets/favicon_1768282381800.png";
 
 export function Footer() {
   const { t, language } = useLanguage();
@@ -13,8 +13,9 @@ export function Footer() {
       <div className="container-width">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
-            <Link href="/">
-              <img src={logo} alt="SkyStack" className="h-10 w-auto brightness-0 invert" data-testid="img-footer-logo" />
+            <Link href="/" className="flex items-center gap-3">
+              <img src={favicon} alt="SkyStack" className="h-10 w-10 rounded-md" data-testid="img-footer-icon" />
+              <span className="text-white font-bold text-xl">SkyStack</span>
             </Link>
             <p className="text-slate-400 leading-relaxed">
               {t("footer.tagline")}
