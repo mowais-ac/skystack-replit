@@ -147,11 +147,17 @@ export default function Outsourcing() {
       
       <main className="flex-grow">
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-primary/20 text-white pt-32 pb-24 overflow-hidden">
+        <section className="relative bg-slate-950 text-white pt-40 pb-24 overflow-hidden">
           <div className="absolute inset-0">
-            <div className="absolute top-20 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-10 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px]" />
           </div>
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }} />
           
           <div className="container-width relative z-10">
             <div className="max-w-4xl mx-auto text-center">
