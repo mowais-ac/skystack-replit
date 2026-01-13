@@ -2,11 +2,22 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/lib/i18n";
 import { Link } from "wouter";
-import { ArrowRight, Shield, Target, Users, Award, Globe, Lightbulb } from "lucide-react";
+import { ArrowRight, Shield, Target, Users, Award, Globe, Lightbulb, Code, Zap, Heart, Rocket, CheckCircle2, Building2, TrendingUp, Clock } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface StaticContentProps {
   type: "about" | "privacy" | "terms";
 }
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+};
 
 export default function StaticContent({ type }: StaticContentProps) {
   const { language } = useLanguage();
@@ -28,64 +39,151 @@ export default function StaticContent({ type }: StaticContentProps) {
 
   const data = content[type];
 
+  const stats = [
+    { value: "10+", label: language === "ar" ? "سنوات الخبرة" : "Years Experience", icon: Clock },
+    { value: "500+", label: language === "ar" ? "المشاريع المنجزة" : "Projects Delivered", icon: CheckCircle2 },
+    { value: "200+", label: language === "ar" ? "العملاء السعداء" : "Happy Clients", icon: Building2 },
+    { value: "50+", label: language === "ar" ? "خبراء الفريق" : "Team Experts", icon: Users },
+  ];
+
+  const values = [
+    { 
+      icon: Award, 
+      title: language === "ar" ? "التميز" : "Excellence", 
+      text: language === "ar" ? "نسعى للكمال في كل مشروع نقدمه" : "We strive for perfection in every project we deliver",
+      gradient: "from-amber-500 to-orange-600"
+    },
+    { 
+      icon: Shield, 
+      title: language === "ar" ? "الشفافية" : "Transparency", 
+      text: language === "ar" ? "التواصل المفتوح والصادق مع عملائنا" : "Open and honest communication with our clients",
+      gradient: "from-emerald-500 to-teal-600"
+    },
+    { 
+      icon: Lightbulb, 
+      title: language === "ar" ? "الابتكار" : "Innovation", 
+      text: language === "ar" ? "نتبنى أحدث التقنيات لحلول مستقبلية" : "Embracing cutting-edge tech for future-proof solutions",
+      gradient: "from-violet-500 to-purple-600"
+    },
+    { 
+      icon: Heart, 
+      title: language === "ar" ? "الشراكة" : "Partnership", 
+      text: language === "ar" ? "نجاحك هو نجاحنا ونمونا معاً" : "Your success is our success, we grow together",
+      gradient: "from-rose-500 to-pink-600"
+    },
+  ];
+
+  const whyUs = [
+    { icon: Code, title: language === "ar" ? "خبرة تقنية عميقة" : "Deep Technical Expertise", desc: language === "ar" ? "فريق من المهندسين ذوي الخبرة في أحدث التقنيات" : "Team of engineers experienced in cutting-edge technologies" },
+    { icon: Zap, title: language === "ar" ? "تسليم سريع" : "Fast Delivery", desc: language === "ar" ? "منهجية أجايل لتسليم المشاريع في الوقت المحدد" : "Agile methodology for on-time project delivery" },
+    { icon: TrendingUp, title: language === "ar" ? "حلول قابلة للتوسع" : "Scalable Solutions", desc: language === "ar" ? "بنية تحتية تنمو مع نمو أعمالك" : "Infrastructure that grows with your business" },
+    { icon: Globe, title: language === "ar" ? "دعم على مدار الساعة" : "24/7 Support", desc: language === "ar" ? "فريق دعم متاح دائماً لمساعدتك" : "Support team always available to help you" },
+  ];
+
   if (type === "about") {
     return (
       <div className="min-h-screen flex flex-col">
         <Navigation />
         
         <main className="flex-grow">
-          {/* Hero */}
-          <section className="bg-slate-900 text-white pt-40 pb-20 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-20 right-20 w-72 h-72 bg-primary/30 rounded-full blur-3xl" />
+          {/* Premium Hero */}
+          <section className="relative min-h-[80vh] flex items-center bg-slate-950 text-white overflow-hidden">
+            {/* Background effects */}
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,60,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,60,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+              <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]" />
+              <div className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] bg-blue-600/20 rounded-full blur-[100px]" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
             </div>
             
-            <div className="container-width relative z-10">
-              <div className="max-w-3xl">
-                <span className="text-emerald-400 font-semibold tracking-wider uppercase text-sm">
-                  {language === "ar" ? "من نحن" : "About Us"}
-                </span>
-                <h1 className="text-4xl lg:text-6xl font-bold mt-4 mb-6" data-testid="text-about-title">{data.title}</h1>
-                <p className="text-xl text-slate-300 leading-relaxed">{data.subtitle}</p>
-              </div>
+            <div className="container-width relative z-10 py-32">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={staggerContainer}
+                className="max-w-4xl mx-auto text-center"
+              >
+                <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white font-medium text-sm mb-8 border border-white/10">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                  {language === "ar" ? "شريكك التقني الموثوق" : "Your Trusted Technology Partner"}
+                </motion.div>
+                
+                <motion.h1 variants={fadeIn} className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.02em' }} data-testid="text-about-title">
+                  {language === "ar" ? "نبني " : "We Build "}
+                  <span className="gradient-text">{language === "ar" ? "المستقبل الرقمي" : "Digital Future"}</span>
+                </motion.h1>
+                
+                <motion.p variants={fadeIn} className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+                  {language === "ar" 
+                    ? "سكاي ستاك هي شركة تقنية سعودية رائدة متخصصة في تطوير البرمجيات المؤسسية وحلول التحول الرقمي."
+                    : "SkyStack is a leading Saudi technology company specializing in enterprise software development and digital transformation solutions."}
+                </motion.p>
+
+                {/* Stats in hero */}
+                <motion.div variants={fadeIn} className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                  {stats.map((stat, i) => (
+                    <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-md p-6 text-center">
+                      <stat.icon className="w-6 h-6 text-primary mx-auto mb-2" />
+                      <div className="text-3xl font-bold gradient-text mb-1">{stat.value}</div>
+                      <div className="text-slate-400 text-sm">{stat.label}</div>
+                    </div>
+                  ))}
+                </motion.div>
+              </motion.div>
             </div>
           </section>
 
-          {/* Story */}
-          <section className="py-20 lg:py-28">
-            <div className="container-width">
+          {/* Story Section - Premium */}
+          <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+              <div className="absolute bottom-1/4 -right-20 w-[300px] h-[300px] bg-blue-100/50 rounded-full blur-3xl" />
+            </div>
+            <div className="container-width relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                  <h2 className="section-heading mb-6">
+                  <span className="section-eyebrow">
                     {language === "ar" ? "قصتنا" : "Our Story"}
+                  </span>
+                  <h2 className="section-heading mt-3 mb-6">
+                    {language === "ar" ? "رحلة نحو التميز التقني" : "A Journey Towards Technical Excellence"}
                   </h2>
-                  <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                    {language === "ar" 
-                      ? "تأسست سكاي ستاك في قلب المملكة العربية السعودية برؤية واضحة: تمكين الشركات من خلال حلول تقنية مبتكرة تلبي متطلبات العصر الرقمي."
-                      : "SkyStack was founded in the heart of Saudi Arabia with a clear vision: to empower businesses through innovative technology solutions that meet the demands of the digital age."}
-                  </p>
-                  <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                    {language === "ar"
-                      ? "نجمع بين الخبرة المحلية العميقة وأفضل الممارسات العالمية لتقديم حلول برمجية عالمية المستوى للمؤسسات في الشرق الأوسط وخارجه."
-                      : "We combine deep local expertise with global best practices to deliver world-class software solutions for enterprises across the Middle East and beyond."}
-                  </p>
-                  <p className="text-lg text-slate-600 leading-relaxed">
-                    {language === "ar"
-                      ? "فريقنا من المهندسين والمصممين والاستراتيجيين ملتزمون بدفع حدود ما هو ممكن في التكنولوجيا."
-                      : "Our team of engineers, designers, and strategists are committed to pushing the boundaries of what's possible in technology."}
-                  </p>
+                  <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
+                    <p>
+                      {language === "ar" 
+                        ? "تأسست سكاي ستاك في قلب المملكة العربية السعودية برؤية واضحة: تمكين الشركات من خلال حلول تقنية مبتكرة تلبي متطلبات العصر الرقمي."
+                        : "SkyStack was founded in the heart of Saudi Arabia with a clear vision: to empower businesses through innovative technology solutions that meet the demands of the digital age."}
+                    </p>
+                    <p>
+                      {language === "ar"
+                        ? "نجمع بين الخبرة المحلية العميقة وأفضل الممارسات العالمية لتقديم حلول برمجية عالمية المستوى للمؤسسات في الشرق الأوسط وخارجه."
+                        : "We combine deep local expertise with global best practices to deliver world-class software solutions for enterprises across the Middle East and beyond."}
+                    </p>
+                    <p>
+                      {language === "ar"
+                        ? "فريقنا من المهندسين والمصممين والاستراتيجيين ملتزمون بدفع حدود ما هو ممكن في التكنولوجيا."
+                        : "Our team of engineers, designers, and strategists are committed to pushing the boundaries of what's possible in technology."}
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-4 mt-8">
+                    <Link href="/services">
+                      <button className="btn-primary-gradient inline-flex items-center gap-2" data-testid="button-about-services">
+                        {language === "ar" ? "استكشف خدماتنا" : "Explore Our Services"} <ArrowRight className="w-5 h-5" />
+                      </button>
+                    </Link>
+                  </div>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { label: language === "ar" ? "سنوات الخبرة" : "Years Experience", value: "10+" },
-                    { label: language === "ar" ? "المشاريع المنجزة" : "Projects Delivered", value: "500+" },
-                    { label: language === "ar" ? "العملاء السعداء" : "Happy Clients", value: "200+" },
-                    { label: language === "ar" ? "خبراء الفريق" : "Team Experts", value: "50+" },
-                  ].map((stat, i) => (
-                    <div key={i} className="bg-slate-50 p-8 rounded-md text-center">
-                      <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
-                      <div className="text-slate-600 font-medium">{stat.label}</div>
+                {/* Why Choose Us Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {whyUs.map((item, i) => (
+                    <div key={i} className="group bg-white p-6 rounded-md border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300">
+                      <div className="icon-badge mb-4 group-hover:shadow-primary/30 transition-all">
+                        <item.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <h4 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">{item.title}</h4>
+                      <p className="text-slate-600 text-sm">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -93,79 +191,110 @@ export default function StaticContent({ type }: StaticContentProps) {
             </div>
           </section>
 
-          {/* Vision & Mission */}
-          <section className="py-20 lg:py-28 bg-slate-50">
-            <div className="container-width">
+          {/* Vision & Mission - Premium Dark */}
+          <section className="py-24 lg:py-32 bg-slate-950 text-white relative overflow-hidden">
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,60,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,60,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            </div>
+            <div className="container-width relative z-10">
+              <div className="text-center mb-16">
+                <span className="text-emerald-400 font-semibold tracking-wider uppercase text-sm">
+                  {language === "ar" ? "رؤيتنا ومهمتنا" : "Vision & Mission"}
+                </span>
+                <h2 className="text-3xl lg:text-5xl font-bold mt-4 text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  {language === "ar" ? "نحو مستقبل رقمي أفضل" : "Towards a Better Digital Future"}
+                </h2>
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-white p-10 rounded-md border border-slate-100">
-                  <Target className="w-12 h-12 text-primary mb-6" />
-                  <h3 className="text-2xl font-bold mb-4">
+                <div className="bg-white/5 backdrop-blur-sm p-10 rounded-md border border-white/10 hover:border-primary/40 transition-all group">
+                  <div className="w-16 h-16 rounded-md bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center mb-6 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all">
+                    <Target className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     {language === "ar" ? "رؤيتنا" : "Our Vision"}
                   </h3>
-                  <p className="text-slate-600 text-lg leading-relaxed">
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     {language === "ar"
-                      ? "أن نكون الشريك التقني الأول للمؤسسات في المنطقة، ندفع التحول الرقمي ونمكّن النمو المستدام."
-                      : "To be the leading technology partner for enterprises in the region, driving digital transformation and enabling sustainable growth."}
+                      ? "أن نكون الشريك التقني الأول للمؤسسات في المنطقة، ندفع التحول الرقمي ونمكّن النمو المستدام من خلال حلول مبتكرة تتجاوز التوقعات."
+                      : "To be the leading technology partner for enterprises in the region, driving digital transformation and enabling sustainable growth through innovative solutions that exceed expectations."}
                   </p>
                 </div>
-                <div className="bg-white p-10 rounded-md border border-slate-100">
-                  <Lightbulb className="w-12 h-12 text-primary mb-6" />
-                  <h3 className="text-2xl font-bold mb-4">
+                <div className="bg-white/5 backdrop-blur-sm p-10 rounded-md border border-white/10 hover:border-primary/40 transition-all group">
+                  <div className="w-16 h-16 rounded-md bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-6 group-hover:shadow-xl group-hover:shadow-emerald-500/30 transition-all">
+                    <Rocket className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     {language === "ar" ? "مهمتنا" : "Our Mission"}
                   </h3>
-                  <p className="text-slate-600 text-lg leading-relaxed">
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     {language === "ar"
-                      ? "تمكين المؤسسات بحلول رقمية مبتكرة وقابلة للتوسع وآمنة تحقق نتائج أعمال قابلة للقياس."
-                      : "To empower enterprises with innovative, scalable, and secure digital solutions that drive measurable business outcomes."}
+                      ? "تمكين المؤسسات بحلول رقمية مبتكرة وقابلة للتوسع وآمنة تحقق نتائج أعمال قابلة للقياس وتدفع عجلة النمو."
+                      : "To empower enterprises with innovative, scalable, and secure digital solutions that drive measurable business outcomes and accelerate growth."}
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Values */}
-          <section className="py-20 lg:py-28">
-            <div className="container-width">
+          {/* Values - Premium */}
+          <section className="py-24 lg:py-32 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+            </div>
+            <div className="container-width relative z-10">
               <div className="text-center max-w-2xl mx-auto mb-16">
-                <h2 className="section-heading">
-                  {language === "ar" ? "قيمنا" : "Our Values"}
+                <span className="section-eyebrow">
+                  {language === "ar" ? "قيمنا الأساسية" : "Our Core Values"}
+                </span>
+                <h2 className="section-heading mt-3">
+                  {language === "ar" ? "المبادئ التي توجهنا" : "The Principles That Guide Us"}
                 </h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {[
-                  { icon: Award, title: language === "ar" ? "التميز" : "Excellence", text: language === "ar" ? "لا نقبل بأقل من الأفضل" : "We never settle for less than the best" },
-                  { icon: Shield, title: language === "ar" ? "الشفافية" : "Transparency", text: language === "ar" ? "التواصل المفتوح أساس عملنا" : "Open communication is key to our process" },
-                  { icon: Lightbulb, title: language === "ar" ? "الابتكار" : "Innovation", text: language === "ar" ? "نبقى في المقدمة لتكون أنت كذلك" : "We stay ahead so you don't have to" },
-                  { icon: Users, title: language === "ar" ? "الشراكة" : "Partnership", text: language === "ar" ? "نجاحك هو نجاحنا" : "Your success is our success" },
-                ].map((value, i) => (
-                  <div key={i} className="text-center p-6 bg-slate-50 rounded-md">
-                    <value.icon className="w-10 h-10 text-primary mx-auto mb-4" />
-                    <h4 className="font-semibold text-slate-900 mb-2">{value.title}</h4>
-                    <p className="text-slate-600 text-sm">{value.text}</p>
+                {values.map((value, i) => (
+                  <div key={i} className="group text-center p-8 bg-white rounded-md border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300">
+                    <div className={`w-16 h-16 rounded-md bg-gradient-to-br ${value.gradient} flex items-center justify-center mx-auto mb-6 group-hover:shadow-xl transition-all group-hover:-translate-y-1`}>
+                      <value.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h4 className="font-bold text-xl text-slate-900 mb-3 group-hover:text-primary transition-colors">{value.title}</h4>
+                    <p className="text-slate-600">{value.text}</p>
                   </div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* Global Delivery */}
-          <section className="py-20 lg:py-28 bg-slate-900 text-white">
-            <div className="container-width text-center">
-              <Globe className="w-16 h-16 text-primary mx-auto mb-6" />
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+          {/* CTA - Premium */}
+          <section className="py-24 lg:py-32 bg-gradient-to-r from-primary to-blue-700 text-white relative overflow-hidden">
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:60px_60px]" />
+            </div>
+            <div className="container-width text-center relative z-10">
+              <Globe className="w-20 h-20 text-white/80 mx-auto mb-8" />
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 {language === "ar" ? "تواجد سعودي، تسليم عالمي" : "Saudi Presence, Global Delivery"}
               </h2>
-              <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
+              <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
                 {language === "ar"
-                  ? "مقرنا في الرياض، نخدم العملاء في جميع أنحاء الشرق الأوسط وأوروبا وأمريكا الشمالية."
-                  : "Headquartered in Riyadh, we serve clients across the Middle East, Europe, and North America."}
+                  ? "مقرنا في الرياض، نخدم العملاء في جميع أنحاء الشرق الأوسط وأوروبا وأمريكا الشمالية. فريقنا متاح على مدار الساعة لدعم أعمالك."
+                  : "Headquartered in Riyadh, we serve clients across the Middle East, Europe, and North America. Our team is available 24/7 to support your business."}
               </p>
-              <Link href="/contact-us">
-                <button className="btn-primary inline-flex items-center gap-2" data-testid="button-about-cta">
-                  {language === "ar" ? "تواصل معنا" : "Get in Touch"} <ArrowRight className="w-5 h-5" />
-                </button>
-              </Link>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link href="/contact-us">
+                  <button className="bg-white text-primary px-8 py-4 rounded-md font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all inline-flex items-center gap-2" data-testid="button-about-cta">
+                    {language === "ar" ? "تواصل معنا" : "Get in Touch"} <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Link>
+                <a href="https://wa.me/966537430455" target="_blank" rel="noopener noreferrer">
+                  <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-md font-semibold hover:bg-white/20 transition-all inline-flex items-center gap-2" data-testid="button-about-whatsapp">
+                    {language === "ar" ? "واتساب" : "WhatsApp"}
+                  </button>
+                </a>
+              </div>
             </div>
           </section>
         </main>
