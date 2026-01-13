@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/lib/i18n";
@@ -6,7 +6,7 @@ import { Link } from "wouter";
 import { 
   ArrowRight, Check, Users, DollarSign, Clock, Shield, 
   Globe, TrendingUp, Building2, Calculator, Briefcase,
-  GraduationCap, Award, Headphones, Code, Database, Palette, Send
+  GraduationCap, Award, Headphones, Code, Database, Palette, Send, Search
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -412,6 +412,19 @@ export default function Outsourcing() {
     fullstack: 1,
     frontend: 1,
   });
+  const [roleSearch, setRoleSearch] = useState("");
+
+  const filteredCategories = useMemo(() => {
+    if (!roleSearch.trim()) return roleCategories;
+    const search = roleSearch.toLowerCase();
+    return roleCategories.map(cat => ({
+      ...cat,
+      roles: cat.roles.filter(role => 
+        role.name.toLowerCase().includes(search) || 
+        role.nameAr.includes(search)
+      )
+    })).filter(cat => cat.roles.length > 0);
+  }, [roleSearch]);
 
   const updateRoleCount = (roleId: string, count: number) => {
     setRoleCounts(prev => {
@@ -476,11 +489,9 @@ export default function Outsourcing() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact-us">
-                  <button className="btn-primary text-lg px-8 py-4 inline-flex items-center gap-2" data-testid="button-get-quote">
-                    {language === "ar" ? "احصل على عرض سعر" : "Get a Quote"} <ArrowRight className="w-5 h-5" />
-                  </button>
-                </Link>
+                <a href="#get-quote" className="btn-primary text-lg px-8 py-4 inline-flex items-center gap-2" data-testid="button-get-quote">
+                  {language === "ar" ? "احصل على عرض سعر" : "Get a Quote"} <ArrowRight className="w-5 h-5" />
+                </a>
                 <a href="#calculator" className="btn-secondary text-lg px-8 py-4 inline-flex items-center gap-2">
                   <Calculator className="w-5 h-5" /> {language === "ar" ? "حاسبة التوفير" : "Calculate Savings"}
                 </a>
@@ -563,11 +574,29 @@ export default function Outsourcing() {
                   <h3 className="text-xl font-bold mb-4">
                     {language === "ar" ? "اختر الأدوار وعدد الموظفين" : "Select Roles & Employee Count"}
                   </h3>
-                  <p className="text-slate-400 text-sm mb-6">
+                  
+                  {/* Search Input */}
+                  <div className="relative mb-4">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <input
+                      type="text"
+                      value={roleSearch}
+                      onChange={(e) => setRoleSearch(e.target.value)}
+                      placeholder={language === "ar" ? "ابحث عن دور..." : "Search roles..."}
+                      className="w-full pl-10 pr-4 py-2.5 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                      data-testid="input-search-roles"
+                    />
+                  </div>
+                  
+                  <p className="text-slate-400 text-sm mb-4">
                     {language === "ar" ? "استخدم الأزرار لتعديل عدد الموظفين لكل دور" : "Use buttons to adjust employee count for each role"}
                   </p>
-                  <div className="space-y-4 mb-6 max-h-80 overflow-y-auto pr-2">
-                    {roleCategories.map(category => (
+                  <div className="space-y-4 mb-6 max-h-72 overflow-y-auto pr-2">
+                    {filteredCategories.length === 0 ? (
+                      <div className="text-center py-8 text-slate-400">
+                        {language === "ar" ? "لا توجد أدوار مطابقة" : "No matching roles found"}
+                      </div>
+                    ) : filteredCategories.map(category => (
                       <div key={category.id}>
                         <div className="flex items-center gap-2 mb-2 text-slate-400 text-xs font-semibold uppercase tracking-wider">
                           <category.icon className="w-3 h-3" />
@@ -656,11 +685,9 @@ export default function Outsourcing() {
                     </div>
                   </div>
                   
-                  <Link href="/contact-us">
-                    <button className="w-full mt-6 bg-white text-primary py-4 rounded-md font-bold hover:bg-blue-50 transition-colors" data-testid="button-get-started">
-                      {language === "ar" ? "ابدأ التوفير الآن" : "Start Saving Now"}
-                    </button>
-                  </Link>
+                  <a href="#get-quote" className="block w-full mt-6 bg-white text-primary py-4 rounded-md font-bold hover:bg-blue-50 transition-colors text-center" data-testid="button-get-started">
+                    {language === "ar" ? "ابدأ التوفير الآن" : "Start Saving Now"}
+                  </a>
                 </div>
               </div>
               
