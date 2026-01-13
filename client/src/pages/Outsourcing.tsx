@@ -357,7 +357,7 @@ export default function Outsourcing() {
                       <tr className="bg-slate-700/50">
                         <th className="text-left p-4 font-semibold">{language === "ar" ? "بند التكلفة" : "Cost Item"}</th>
                         <th className="text-center p-4 font-semibold">{language === "ar" ? "توظيف داخلي" : "In-House"}</th>
-                        <th className="text-center p-4 font-semibold text-primary">{language === "ar" ? "تعهيد SkyStack" : "SkyStack Outsourcing"}</th>
+                        <th className="text-center p-4 font-semibold text-emerald-400">{language === "ar" ? "تعهيد SkyStack" : "SkyStack Outsourcing"}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-700">
@@ -372,7 +372,7 @@ export default function Outsourcing() {
                         <tr key={i}>
                           <td className="p-4 text-slate-300">{row.item}</td>
                           <td className="p-4 text-center text-slate-400">{row.inhouse}</td>
-                          <td className="p-4 text-center text-primary font-semibold">{row.outsource}</td>
+                          <td className="p-4 text-center text-emerald-400 font-semibold">{row.outsource}</td>
                         </tr>
                       ))}
                     </tbody>
