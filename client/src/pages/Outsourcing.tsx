@@ -10,14 +10,14 @@ import {
 } from "lucide-react";
 
 const roles = [
-  { id: "frontend", name: "Frontend Developer", nameAr: "مطور واجهة أمامية", avgSalary: 8000, outsourceCost: 2500 },
-  { id: "backend", name: "Backend Developer", nameAr: "مطور خلفية", avgSalary: 9000, outsourceCost: 2800 },
-  { id: "fullstack", name: "Full Stack Developer", nameAr: "مطور متكامل", avgSalary: 10000, outsourceCost: 3200 },
-  { id: "mobile", name: "Mobile Developer", nameAr: "مطور تطبيقات", avgSalary: 9500, outsourceCost: 3000 },
-  { id: "designer", name: "UI/UX Designer", nameAr: "مصمم واجهات", avgSalary: 7500, outsourceCost: 2200 },
-  { id: "qa", name: "QA Engineer", nameAr: "مهندس جودة", avgSalary: 6500, outsourceCost: 1800 },
-  { id: "devops", name: "DevOps Engineer", nameAr: "مهندس DevOps", avgSalary: 11000, outsourceCost: 3500 },
-  { id: "pm", name: "Project Manager", nameAr: "مدير مشروع", avgSalary: 12000, outsourceCost: 3800 },
+  { id: "frontend", name: "Frontend Developer", nameAr: "مطور واجهة أمامية", avgSalary: 30000, outsourceCost: 9500 },
+  { id: "backend", name: "Backend Developer", nameAr: "مطور خلفية", avgSalary: 34000, outsourceCost: 10500 },
+  { id: "fullstack", name: "Full Stack Developer", nameAr: "مطور متكامل", avgSalary: 37500, outsourceCost: 12000 },
+  { id: "mobile", name: "Mobile Developer", nameAr: "مطور تطبيقات", avgSalary: 35000, outsourceCost: 11000 },
+  { id: "designer", name: "UI/UX Designer", nameAr: "مصمم واجهات", avgSalary: 28000, outsourceCost: 8000 },
+  { id: "qa", name: "QA Engineer", nameAr: "مهندس جودة", avgSalary: 24000, outsourceCost: 7000 },
+  { id: "devops", name: "DevOps Engineer", nameAr: "مهندس DevOps", avgSalary: 41000, outsourceCost: 13000 },
+  { id: "pm", name: "Project Manager", nameAr: "مدير مشروع", avgSalary: 45000, outsourceCost: 14000 },
 ];
 
 const benefits = [
@@ -316,20 +316,20 @@ export default function Outsourcing() {
                   <div className="space-y-6">
                     <div className="flex justify-between items-center pb-4 border-b border-white/20">
                       <span className="text-blue-100">{language === "ar" ? "التكلفة الداخلية / شهر" : "In-house Cost / Month"}</span>
-                      <span className="text-2xl font-bold">${monthlyInHouse.toLocaleString()}</span>
+                      <span className="text-2xl font-bold">{monthlyInHouse.toLocaleString()} {language === "ar" ? "ر.س" : "SAR"}</span>
                     </div>
                     <div className="flex justify-between items-center pb-4 border-b border-white/20">
                       <span className="text-blue-100">{language === "ar" ? "تكلفة التعهيد / شهر" : "Outsource Cost / Month"}</span>
-                      <span className="text-2xl font-bold">${monthlyOutsource.toLocaleString()}</span>
+                      <span className="text-2xl font-bold">{monthlyOutsource.toLocaleString()} {language === "ar" ? "ر.س" : "SAR"}</span>
                     </div>
                     <div className="flex justify-between items-center pb-4 border-b border-white/20">
                       <span className="text-blue-100">{language === "ar" ? "التوفير الشهري" : "Monthly Savings"}</span>
-                      <span className="text-2xl font-bold text-green-300">${monthlySavings.toLocaleString()}</span>
+                      <span className="text-2xl font-bold text-green-300">{monthlySavings.toLocaleString()} {language === "ar" ? "ر.س" : "SAR"}</span>
                     </div>
                     
                     <div className="bg-white/10 rounded-md p-6 text-center">
                       <div className="text-sm text-blue-100 mb-2">{language === "ar" ? "التوفير السنوي" : "Annual Savings"}</div>
-                      <div className="text-4xl font-bold text-white mb-2">${annualSavings.toLocaleString()}</div>
+                      <div className="text-4xl font-bold text-white mb-2">{annualSavings.toLocaleString()} {language === "ar" ? "ر.س" : "SAR"}</div>
                       <div className="inline-block px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm font-semibold">
                         {savingsPercent}% {language === "ar" ? "توفير" : "savings"}
                       </div>
