@@ -20,10 +20,10 @@ const roleCategories = [
     nameAr: "القيادة والتسليم",
     icon: Briefcase,
     roles: [
-      { id: "pm", name: "Project Manager", nameAr: "مدير مشروع", avgSalary: 45000, outsourceCost: 14000 },
-      { id: "product", name: "Product Manager", nameAr: "مدير منتج", avgSalary: 48000, outsourceCost: 15000 },
-      { id: "scrum", name: "Scrum Master", nameAr: "سكرم ماستر", avgSalary: 40000, outsourceCost: 12500 },
-      { id: "techLead", name: "Technical Lead", nameAr: "قائد تقني", avgSalary: 52000, outsourceCost: 16000 },
+      { id: "pm", name: "Project Manager", nameAr: "مدير مشروع", avgSalary: 25000, outsourceCost: 8000 },
+      { id: "product", name: "Product Manager", nameAr: "مدير منتج", avgSalary: 28000, outsourceCost: 9000 },
+      { id: "scrum", name: "Scrum Master", nameAr: "سكرم ماستر", avgSalary: 22000, outsourceCost: 7000 },
+      { id: "techLead", name: "Technical Lead", nameAr: "قائد تقني", avgSalary: 30000, outsourceCost: 10000 },
     ]
   },
   {
@@ -32,14 +32,14 @@ const roleCategories = [
     nameAr: "هندسة البرمجيات",
     icon: Code,
     roles: [
-      { id: "frontend", name: "Frontend Developer", nameAr: "مطور واجهة أمامية", avgSalary: 30000, outsourceCost: 9500 },
-      { id: "backend", name: "Backend Developer", nameAr: "مطور خلفية", avgSalary: 34000, outsourceCost: 10500 },
-      { id: "fullstack", name: "Full Stack Developer", nameAr: "مطور متكامل", avgSalary: 37500, outsourceCost: 12000 },
-      { id: "mobile", name: "Mobile Developer", nameAr: "مطور تطبيقات", avgSalary: 35000, outsourceCost: 11000 },
-      { id: "ios", name: "iOS Developer", nameAr: "مطور iOS", avgSalary: 36000, outsourceCost: 11500 },
-      { id: "android", name: "Android Developer", nameAr: "مطور أندرويد", avgSalary: 34000, outsourceCost: 10500 },
-      { id: "lowcode", name: "Low-Code Developer", nameAr: "مطور لو-كود", avgSalary: 28000, outsourceCost: 8500 },
-      { id: "embedded", name: "Embedded Developer", nameAr: "مطور أنظمة مدمجة", avgSalary: 38000, outsourceCost: 12000 },
+      { id: "frontend", name: "Frontend Developer", nameAr: "مطور واجهة أمامية", avgSalary: 15000, outsourceCost: 5000 },
+      { id: "backend", name: "Backend Developer", nameAr: "مطور خلفية", avgSalary: 18000, outsourceCost: 6000 },
+      { id: "fullstack", name: "Full Stack Developer", nameAr: "مطور متكامل", avgSalary: 20000, outsourceCost: 6500 },
+      { id: "mobile", name: "Mobile Developer", nameAr: "مطور تطبيقات", avgSalary: 18000, outsourceCost: 6000 },
+      { id: "ios", name: "iOS Developer", nameAr: "مطور iOS", avgSalary: 19000, outsourceCost: 6500 },
+      { id: "android", name: "Android Developer", nameAr: "مطور أندرويد", avgSalary: 18000, outsourceCost: 6000 },
+      { id: "lowcode", name: "Low-Code Developer", nameAr: "مطور لو-كود", avgSalary: 12000, outsourceCost: 4000 },
+      { id: "embedded", name: "Embedded Developer", nameAr: "مطور أنظمة مدمجة", avgSalary: 20000, outsourceCost: 7000 },
     ]
   },
   {
@@ -48,10 +48,10 @@ const roleCategories = [
     nameAr: "البيانات والذكاء",
     icon: Database,
     roles: [
-      { id: "dataEngineer", name: "Data Engineer", nameAr: "مهندس بيانات", avgSalary: 42000, outsourceCost: 13000 },
-      { id: "mlEngineer", name: "ML Engineer", nameAr: "مهندس تعلم آلي", avgSalary: 50000, outsourceCost: 15500 },
-      { id: "biAnalyst", name: "BI Analyst", nameAr: "محلل ذكاء أعمال", avgSalary: 35000, outsourceCost: 10500 },
-      { id: "dataScientist", name: "Data Scientist", nameAr: "عالم بيانات", avgSalary: 48000, outsourceCost: 15000 },
+      { id: "dataEngineer", name: "Data Engineer", nameAr: "مهندس بيانات", avgSalary: 22000, outsourceCost: 7500 },
+      { id: "mlEngineer", name: "ML Engineer", nameAr: "مهندس تعلم آلي", avgSalary: 28000, outsourceCost: 9000 },
+      { id: "biAnalyst", name: "BI Analyst", nameAr: "محلل ذكاء أعمال", avgSalary: 16000, outsourceCost: 5500 },
+      { id: "dataScientist", name: "Data Scientist", nameAr: "عالم بيانات", avgSalary: 26000, outsourceCost: 8500 },
     ]
   },
   {
@@ -60,10 +60,10 @@ const roleCategories = [
     nameAr: "السحابة والمنصات",
     icon: Globe,
     roles: [
-      { id: "devops", name: "DevOps Engineer", nameAr: "مهندس DevOps", avgSalary: 41000, outsourceCost: 13000 },
-      { id: "cloudArchitect", name: "Cloud Architect", nameAr: "مهندس سحابة", avgSalary: 55000, outsourceCost: 17000 },
-      { id: "sre", name: "Site Reliability Engineer", nameAr: "مهندس موثوقية", avgSalary: 45000, outsourceCost: 14000 },
-      { id: "platform", name: "Platform Engineer", nameAr: "مهندس منصات", avgSalary: 43000, outsourceCost: 13500 },
+      { id: "devops", name: "DevOps Engineer", nameAr: "مهندس DevOps", avgSalary: 22000, outsourceCost: 7500 },
+      { id: "cloudArchitect", name: "Cloud Architect", nameAr: "مهندس سحابة", avgSalary: 32000, outsourceCost: 10000 },
+      { id: "sre", name: "Site Reliability Engineer", nameAr: "مهندس موثوقية", avgSalary: 24000, outsourceCost: 8000 },
+      { id: "platform", name: "Platform Engineer", nameAr: "مهندس منصات", avgSalary: 23000, outsourceCost: 7500 },
     ]
   },
   {
@@ -72,11 +72,11 @@ const roleCategories = [
     nameAr: "الجودة والأمان",
     icon: Shield,
     roles: [
-      { id: "qa", name: "QA Engineer", nameAr: "مهندس جودة", avgSalary: 24000, outsourceCost: 7000 },
-      { id: "qaAutomation", name: "QA Automation", nameAr: "أتمتة الاختبارات", avgSalary: 32000, outsourceCost: 9500 },
-      { id: "security", name: "Security Analyst", nameAr: "محلل أمني", avgSalary: 45000, outsourceCost: 14000 },
-      { id: "penTester", name: "Penetration Tester", nameAr: "مختبر اختراق", avgSalary: 48000, outsourceCost: 15000 },
-      { id: "performance", name: "Performance Engineer", nameAr: "مهندس أداء", avgSalary: 38000, outsourceCost: 11500 },
+      { id: "qa", name: "QA Engineer", nameAr: "مهندس جودة", avgSalary: 12000, outsourceCost: 4000 },
+      { id: "qaAutomation", name: "QA Automation", nameAr: "أتمتة الاختبارات", avgSalary: 16000, outsourceCost: 5500 },
+      { id: "security", name: "Security Analyst", nameAr: "محلل أمني", avgSalary: 24000, outsourceCost: 8000 },
+      { id: "penTester", name: "Penetration Tester", nameAr: "مختبر اختراق", avgSalary: 26000, outsourceCost: 8500 },
+      { id: "performance", name: "Performance Engineer", nameAr: "مهندس أداء", avgSalary: 20000, outsourceCost: 6500 },
     ]
   },
   {
@@ -85,10 +85,10 @@ const roleCategories = [
     nameAr: "التصميم والتجربة",
     icon: Palette,
     roles: [
-      { id: "designer", name: "UI/UX Designer", nameAr: "مصمم واجهات", avgSalary: 28000, outsourceCost: 8000 },
-      { id: "uxResearcher", name: "UX Researcher", nameAr: "باحث تجربة مستخدم", avgSalary: 35000, outsourceCost: 10500 },
-      { id: "productDesigner", name: "Product Designer", nameAr: "مصمم منتجات", avgSalary: 38000, outsourceCost: 11500 },
-      { id: "graphicDesigner", name: "Graphic Designer", nameAr: "مصمم جرافيك", avgSalary: 22000, outsourceCost: 6500 },
+      { id: "designer", name: "UI/UX Designer", nameAr: "مصمم واجهات", avgSalary: 14000, outsourceCost: 4500 },
+      { id: "uxResearcher", name: "UX Researcher", nameAr: "باحث تجربة مستخدم", avgSalary: 18000, outsourceCost: 6000 },
+      { id: "productDesigner", name: "Product Designer", nameAr: "مصمم منتجات", avgSalary: 20000, outsourceCost: 6500 },
+      { id: "graphicDesigner", name: "Graphic Designer", nameAr: "مصمم جرافيك", avgSalary: 10000, outsourceCost: 3500 },
     ]
   },
   {
@@ -97,10 +97,10 @@ const roleCategories = [
     nameAr: "أنظمة المؤسسات",
     icon: Building2,
     roles: [
-      { id: "salesforce", name: "Salesforce Developer", nameAr: "مطور سيلزفورس", avgSalary: 48000, outsourceCost: 15000 },
-      { id: "sap", name: "SAP Consultant", nameAr: "مستشار SAP", avgSalary: 55000, outsourceCost: 17000 },
-      { id: "oracle", name: "Oracle Developer", nameAr: "مطور أوراكل", avgSalary: 50000, outsourceCost: 15500 },
-      { id: "dynamics", name: "Dynamics 365", nameAr: "مطور دايناميكس", avgSalary: 47000, outsourceCost: 14500 },
+      { id: "salesforce", name: "Salesforce Developer", nameAr: "مطور سيلزفورس", avgSalary: 26000, outsourceCost: 8500 },
+      { id: "sap", name: "SAP Consultant", nameAr: "مستشار SAP", avgSalary: 32000, outsourceCost: 10000 },
+      { id: "oracle", name: "Oracle Developer", nameAr: "مطور أوراكل", avgSalary: 28000, outsourceCost: 9000 },
+      { id: "dynamics", name: "Dynamics 365", nameAr: "مطور دايناميكس", avgSalary: 25000, outsourceCost: 8000 },
     ]
   }
 ];
