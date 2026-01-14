@@ -1,4 +1,5 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
+import { useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -6,6 +7,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "@/lib/i18n";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+
+function ScrollToTop() {
+  const [location] = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [location]);
+  
+  return null;
+}
 
 import Home from "@/pages/Home";
 import ServicesList from "@/pages/ServicesList";
@@ -63,6 +74,7 @@ function App() {
       <LanguageProvider>
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
+            <ScrollToTop />
             <Router />
             <WhatsAppButton />
             <Toaster />
