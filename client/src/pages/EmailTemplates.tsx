@@ -686,7 +686,7 @@ function TemplateBlock({ title, html, lang }: TemplateBlockProps) {
           <iframe
             srcDoc={html}
             title={title}
-            className="w-full h-[500px] border-0"
+            className="w-full min-h-[1400px] border-0"
             sandbox="allow-same-origin"
           />
         </div>
