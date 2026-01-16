@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, Copy, ChevronDown, ChevronUp, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const LOGO_URL = "https://skystack.sa/logo.png";
+const LOGO_URL = "https://www.skystack.sa/assets/logo_1767806484099-7PU0Cuvq.png";
 const WHATSAPP_LINK = "https://wa.me/966537430455";
 const WEBSITE_URL = "https://skystack.sa";
 
