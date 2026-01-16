@@ -26,6 +26,7 @@ import Pricing from "@/pages/Pricing";
 import StaticContent from "@/pages/StaticContent";
 import BusinessModels from "@/pages/BusinessModels";
 import Outsourcing from "@/pages/Outsourcing";
+import EmailTemplates from "@/pages/EmailTemplates";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -62,6 +63,8 @@ function Router() {
       </Route>
       
       <Route path="/outsourcing" component={Outsourcing} />
+      
+      <Route path="/email-templates" component={EmailTemplates} />
 
       <Route component={NotFound} />
     </Switch>
