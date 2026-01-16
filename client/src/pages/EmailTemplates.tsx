@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, Copy, ChevronDown, ChevronUp, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const LOGO_URL = "https://www.skystack.sa/logo-white-circle.png";
 const WHATSAPP_LINK = "https://wa.me/966537430455";
@@ -780,21 +779,18 @@ export default function EmailTemplates() {
         </div>
 
         <Tabs defaultValue="outsourcing" className="w-full">
-          <ScrollArea className="w-full whitespace-nowrap mb-6">
-            <TabsList className="inline-flex w-max">
-              {serviceTemplates.map((service) => (
-                <TabsTrigger 
-                  key={service.id} 
-                  value={service.id}
-                  data-testid={`tab-${service.id}`}
-                  className="px-4"
-                >
-                  {service.title}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          <TabsList className="flex flex-wrap h-auto gap-2 mb-6 bg-transparent">
+            {serviceTemplates.map((service) => (
+              <TabsTrigger 
+                key={service.id} 
+                value={service.id}
+                data-testid={`tab-${service.id}`}
+                className="px-4 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              >
+                {service.title}
+              </TabsTrigger>
+            ))}
+          </TabsList>
 
           {serviceTemplates.map((service) => (
             <TabsContent key={service.id} value={service.id}>
