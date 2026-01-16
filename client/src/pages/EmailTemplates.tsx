@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Check, Copy, ChevronDown, ChevronUp, AlertCircle } from "lucide-react";
+import { Check, Copy, ChevronDown, ChevronUp, AlertCircle, Languages } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const LOGO_URL = "https://www.skystack.sa/logo-white-circle.png";
@@ -654,9 +654,10 @@ interface TemplateBlockProps {
   title: string;
   html: string;
   lang: 'en' | 'ar';
+  onLanguageToggle?: () => void;
 }
 
-function TemplateBlock({ title, html, lang }: TemplateBlockProps) {
+function TemplateBlock({ title, html, lang, onLanguageToggle }: TemplateBlockProps) {
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const { toast } = useToast();
@@ -684,13 +685,24 @@ function TemplateBlock({ title, html, lang }: TemplateBlockProps) {
       <CardHeader className="flex flex-row items-center justify-between gap-4 pb-2">
         <CardTitle className="text-lg">{title} {lang === 'ar' ? '(عربي)' : '(English)'}</CardTitle>
         <div className="flex gap-2">
+          {onLanguageToggle && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onLanguageToggle}
+              data-testid="button-toggle-language"
+            >
+              <Languages className="h-4 w-4 mr-2" />
+              {lang === 'ar' ? 'English' : 'عربي'}
+            </Button>
+          )}
           <Button
             variant="outline"
             size="sm"
             onClick={() => setExpanded(!expanded)}
             data-testid={`button-expand-${title.toLowerCase().replace(/\s+/g, '-')}-${lang}`}
           >
-            {expanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            {expanded ? <ChevronUp className="h-4 w-4 mr-2" /> : <ChevronDown className="h-4 w-4 mr-2" />}
             {expanded ? (lang === 'ar' ? "إخفاء الكود" : "Hide Code") : (lang === 'ar' ? "إظهار الكود" : "Show Code")}
           </Button>
           <Button
@@ -726,6 +738,8 @@ function TemplateBlock({ title, html, lang }: TemplateBlockProps) {
 }
 
 function ServiceTemplateSection({ service }: { service: ServiceTemplate }) {
+  const [selectedLang, setSelectedLang] = useState<'en' | 'ar'>('en');
+  
   const enContent = {
     title: service.title,
     subtitle: service.subtitle,
@@ -760,17 +774,16 @@ function ServiceTemplateSection({ service }: { service: ServiceTemplate }) {
     stat3: { value: service.stat3.value, label: service.stat3.labelAr },
   };
 
+  const currentContent = selectedLang === 'en' ? enContent : arContent;
+  const currentTitle = selectedLang === 'en' ? service.title : service.titleAr;
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="max-w-[800px] mx-auto">
       <TemplateBlock
-        title={service.title}
-        html={generateEmailTemplate('en', enContent)}
-        lang="en"
-      />
-      <TemplateBlock
-        title={service.titleAr}
-        html={generateEmailTemplate('ar', arContent)}
-        lang="ar"
+        title={currentTitle}
+        html={generateEmailTemplate(selectedLang, currentContent)}
+        lang={selectedLang}
+        onLanguageToggle={() => setSelectedLang(selectedLang === 'en' ? 'ar' : 'en')}
       />
     </div>
   );
@@ -779,7 +792,7 @@ function ServiceTemplateSection({ service }: { service: ServiceTemplate }) {
 export default function EmailTemplates() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="w-full px-4 py-12 max-w-[1800px] mx-auto">
+      <div className="container mx-auto px-4 py-12 max-w-[1200px]">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4" data-testid="text-page-title">Email Campaign Templates</h1>
           <p className="text-muted-foreground text-lg mb-6">
