@@ -100,7 +100,7 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                       <tr>
                         <td align="${align}">
-                          <img src="${LOGO_URL}" alt="SkyStack" width="140" style="display: block; border: 0;" />
+                          <img src="${LOGO_URL}" alt="SkyStack" width="200" style="display: block; border: 0;" />
                         </td>
                         <td align="${alignOpp}">
                           <span style="color: #34d399; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">${content.subtitle}</span>
@@ -260,7 +260,7 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                   <td style="text-align: center; padding-bottom: 24px; border-bottom: 1px solid #1e293b;">
-                    <img src="${LOGO_URL}" alt="SkyStack" width="120" style="display: inline-block; border: 0;" />
+                    <img src="${LOGO_URL}" alt="SkyStack" width="160" style="display: inline-block; border: 0;" />
                     <p style="margin: 12px 0 0; color: #64748b; font-size: 14px;">${labels.tagline}</p>
                   </td>
                 </tr>
