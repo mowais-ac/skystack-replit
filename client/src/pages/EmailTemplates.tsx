@@ -106,22 +106,22 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
   <style>
     @media only screen and (max-width: 620px) {
       .email-container { width: 100% !important; max-width: 100% !important; }
-      .mobile-padding { padding: 24px 16px !important; }
-      .mobile-padding-header { padding: 20px 16px !important; }
-      .mobile-padding-hero { padding: 16px 16px 32px !important; }
-      .stat-cell { display: block !important; width: 100% !important; border-right: none !important; border-left: none !important; border-bottom: 1px solid rgba(255,255,255,0.2) !important; padding: 16px 20px !important; }
+      .mobile-padding { padding: 16px 12px !important; }
+      .mobile-padding-header { padding: 12px 12px !important; }
+      .mobile-padding-hero { padding: 12px 12px 20px !important; }
+      .stat-cell { display: block !important; width: 100% !important; border-right: none !important; border-left: none !important; border-bottom: 1px solid rgba(255,255,255,0.2) !important; padding: 10px 16px !important; }
       .stat-cell-last { border-bottom: none !important; }
-      .mobile-h1 { font-size: 24px !important; line-height: 1.3 !important; }
-      .mobile-h3 { font-size: 18px !important; }
-      .mobile-text { font-size: 15px !important; }
-      .mobile-text-sm { font-size: 13px !important; }
-      .logo-header { width: 140px !important; }
-      .logo-footer { width: 120px !important; }
-      .benefit-cell { display: block !important; width: 100% !important; padding: 10px 0 !important; text-align: center !important; }
-      .tech-badge { display: inline-block !important; margin: 4px 2px !important; }
-      .cta-button { padding: 14px 28px !important; font-size: 15px !important; }
-      .section-padding { padding: 32px 16px !important; }
-      .section-padding-sm { padding: 0 16px 32px !important; }
+      .mobile-h1 { font-size: 20px !important; line-height: 1.3 !important; }
+      .mobile-h3 { font-size: 16px !important; }
+      .mobile-text { font-size: 14px !important; }
+      .mobile-text-sm { font-size: 12px !important; }
+      .logo-header { width: 120px !important; }
+      .logo-footer { width: 100px !important; }
+      .benefit-cell { display: block !important; width: 100% !important; padding: 6px 0 !important; text-align: center !important; }
+      .tech-badge { display: inline-block !important; margin: 2px !important; }
+      .cta-button { padding: 12px 24px !important; font-size: 14px !important; }
+      .section-padding { padding: 20px 12px !important; }
+      .section-padding-sm { padding: 0 12px 20px !important; }
     }
   </style>
 </head>
@@ -130,7 +130,7 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
   
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f1f5f9;">
     <tr>
-      <td align="center" style="padding: 40px 20px;" class="mobile-padding">
+      <td align="center" style="padding: 20px 12px;" class="mobile-padding">
         <table role="presentation" width="600" cellspacing="0" cellpadding="0" class="email-container" style="background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);">
           
           <!-- Hero Header -->
@@ -138,7 +138,7 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
             <td style="background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%); padding: 0;">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td style="padding: 28px 40px 20px;" class="mobile-padding-header">
+                  <td style="padding: 16px 24px 12px;" class="mobile-padding-header">
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                       <tr>
                         <td align="${align}">
@@ -152,15 +152,15 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 20px 40px 50px; text-align: ${align};" class="mobile-padding-hero">
-                    <p style="margin: 0 0 12px; color: #34d399; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;" class="mobile-text-sm">${content.title}</p>
-                    <h1 style="margin: 0 0 20px; color: #ffffff; font-size: 32px; font-weight: 700; line-height: 1.3;" class="mobile-h1">${content.tagline}</h1>
-                    <p style="margin: 0 0 28px; color: #94a3b8; font-size: 17px; line-height: 1.7;" class="mobile-text">${content.description}</p>
+                  <td style="padding: 12px 24px 28px; text-align: ${align};" class="mobile-padding-hero">
+                    <p style="margin: 0 0 8px; color: #34d399; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;" class="mobile-text-sm">${content.title}</p>
+                    <h1 style="margin: 0 0 12px; color: #ffffff; font-size: 26px; font-weight: 700; line-height: 1.3;" class="mobile-h1">${content.tagline}</h1>
+                    <p style="margin: 0 0 16px; color: #94a3b8; font-size: 15px; line-height: 1.6;" class="mobile-text">${content.description}</p>
                     
                     <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
                       <tr>
-                        <td style="border-radius: 8px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); box-shadow: 0 4px 14px 0 rgba(0, 60, 255, 0.4);">
-                          <a href="${WEBSITE_URL}/services/${content.slug}" class="cta-button" style="display: inline-block; padding: 16px 36px; color: #ffffff; text-decoration: none; font-weight: 600; font-size: 16px;">${content.ctaText}</a>
+                        <td style="border-radius: 6px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); box-shadow: 0 4px 14px 0 rgba(0, 60, 255, 0.4);">
+                          <a href="${WEBSITE_URL}/services/${content.slug}" class="cta-button" style="display: inline-block; padding: 12px 28px; color: #ffffff; text-decoration: none; font-weight: 600; font-size: 14px;">${content.ctaText}</a>
                         </td>
                       </tr>
                     </table>
@@ -175,17 +175,17 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
             <td style="background-color: #003cff; padding: 0;">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td width="33.33%" class="stat-cell" style="padding: 24px 20px; text-align: center; border-${isRtl ? 'left' : 'right'}: 1px solid rgba(255,255,255,0.2);">
-                    <p style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">${content.stat1.value}</p>
-                    <p style="margin: 4px 0 0; color: rgba(255,255,255,0.8); font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">${content.stat1.label}</p>
+                  <td width="33.33%" class="stat-cell" style="padding: 14px 12px; text-align: center; border-${isRtl ? 'left' : 'right'}: 1px solid rgba(255,255,255,0.2);">
+                    <p style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700;">${content.stat1.value}</p>
+                    <p style="margin: 2px 0 0; color: rgba(255,255,255,0.8); font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">${content.stat1.label}</p>
                   </td>
-                  <td width="33.33%" class="stat-cell" style="padding: 24px 20px; text-align: center; border-${isRtl ? 'left' : 'right'}: 1px solid rgba(255,255,255,0.2);">
-                    <p style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">${content.stat2.value}</p>
-                    <p style="margin: 4px 0 0; color: rgba(255,255,255,0.8); font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">${content.stat2.label}</p>
+                  <td width="33.33%" class="stat-cell" style="padding: 14px 12px; text-align: center; border-${isRtl ? 'left' : 'right'}: 1px solid rgba(255,255,255,0.2);">
+                    <p style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700;">${content.stat2.value}</p>
+                    <p style="margin: 2px 0 0; color: rgba(255,255,255,0.8); font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">${content.stat2.label}</p>
                   </td>
-                  <td width="33.33%" class="stat-cell stat-cell-last" style="padding: 24px 20px; text-align: center;">
-                    <p style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">${content.stat3.value}</p>
-                    <p style="margin: 4px 0 0; color: rgba(255,255,255,0.8); font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">${content.stat3.label}</p>
+                  <td width="33.33%" class="stat-cell stat-cell-last" style="padding: 14px 12px; text-align: center;">
+                    <p style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700;">${content.stat3.value}</p>
+                    <p style="margin: 2px 0 0; color: rgba(255,255,255,0.8); font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">${content.stat3.label}</p>
                   </td>
                 </tr>
               </table>
@@ -194,12 +194,12 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Problem Section -->
           <tr>
-            <td style="padding: 50px 40px 40px;" class="section-padding">
+            <td style="padding: 24px 24px 16px;" class="section-padding">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td style="padding: 28px; background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%); border-radius: 12px; border-${isRtl ? 'right' : 'left'}: 4px solid #ef4444; text-align: ${align};" class="mobile-padding">
-                    <p style="margin: 0 0 8px; color: #dc2626; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">${labels.theChallenge}</p>
-                    <p style="margin: 0; color: #374151; font-size: 15px; line-height: 1.7;" class="mobile-text">${content.problem}</p>
+                  <td style="padding: 16px; background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%); border-radius: 8px; border-${isRtl ? 'right' : 'left'}: 3px solid #ef4444; text-align: ${align};" class="mobile-padding">
+                    <p style="margin: 0 0 4px; color: #dc2626; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">${labels.theChallenge}</p>
+                    <p style="margin: 0; color: #374151; font-size: 13px; line-height: 1.6;" class="mobile-text">${content.problem}</p>
                   </td>
                 </tr>
               </table>
@@ -208,12 +208,12 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Solution Section -->
           <tr>
-            <td style="padding: 0 40px 50px;" class="section-padding-sm">
+            <td style="padding: 0 24px 24px;" class="section-padding-sm">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td style="padding: 28px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-radius: 12px; border-${isRtl ? 'right' : 'left'}: 4px solid #22c55e; text-align: ${align};" class="mobile-padding">
-                    <p style="margin: 0 0 8px; color: #16a34a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">${labels.ourSolution}</p>
-                    <p style="margin: 0; color: #374151; font-size: 15px; line-height: 1.7;" class="mobile-text">${content.solution}</p>
+                  <td style="padding: 16px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-radius: 8px; border-${isRtl ? 'right' : 'left'}: 3px solid #22c55e; text-align: ${align};" class="mobile-padding">
+                    <p style="margin: 0 0 4px; color: #16a34a; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">${labels.ourSolution}</p>
+                    <p style="margin: 0; color: #374151; font-size: 13px; line-height: 1.6;" class="mobile-text">${content.solution}</p>
                   </td>
                 </tr>
               </table>
@@ -222,19 +222,19 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Features Section -->
           <tr>
-            <td style="padding: 0 40px 50px; text-align: ${align};" class="section-padding-sm">
-              <h3 style="margin: 0 0 24px; color: #0f172a; font-size: 22px; font-weight: 700;" class="mobile-h3">${labels.whatYouGet}</h3>
+            <td style="padding: 0 24px 24px; text-align: ${align};" class="section-padding-sm">
+              <h3 style="margin: 0 0 12px; color: #0f172a; font-size: 16px; font-weight: 700;" class="mobile-h3">${labels.whatYouGet}</h3>
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 ${content.features.map(feature => `
                 <tr>
-                  <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 6px 0; border-bottom: 1px solid #e2e8f0;">
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td width="32" style="vertical-align: top;">
-                          <div style="width: 24px; height: 24px; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); border-radius: 50%; text-align: center; line-height: 24px; color: #ffffff; font-size: 14px; font-weight: 700;">&#10003;</div>
+                        <td width="24" style="vertical-align: top;">
+                          <div style="width: 18px; height: 18px; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); border-radius: 50%; text-align: center; line-height: 18px; color: #ffffff; font-size: 11px; font-weight: 700;">&#10003;</div>
                         </td>
-                        <td style="padding-${isRtl ? 'right' : 'left'}: 12px;">
-                          <p style="margin: 0; color: #0f172a; font-size: 15px; font-weight: 500;" class="mobile-text">${feature}</p>
+                        <td style="padding-${isRtl ? 'right' : 'left'}: 8px;">
+                          <p style="margin: 0; color: #0f172a; font-size: 13px; font-weight: 500;" class="mobile-text">${feature}</p>
                         </td>
                       </tr>
                     </table>
@@ -246,14 +246,14 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Benefits Section -->
           <tr>
-            <td style="background-color: #f8fafc; padding: 50px 40px;" class="section-padding">
-              <h3 style="margin: 0 0 24px; color: #0f172a; font-size: 22px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.whyChoose}</h3>
+            <td style="background-color: #f8fafc; padding: 24px;" class="section-padding">
+              <h3 style="margin: 0 0 14px; color: #0f172a; font-size: 16px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.whyChoose}</h3>
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                   ${content.benefits.slice(0, 3).map(benefit => `
-                  <td width="33.33%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
-                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 12px; margin: 0 auto 16px; line-height: 48px; color: #ffffff; font-size: 20px;">&#9733;</div>
-                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 15px; line-height: 1.5;" class="mobile-text">${benefit}</p>
+                  <td width="33.33%" class="benefit-cell" style="padding: 0 6px; text-align: center; vertical-align: top;">
+                    <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 8px; margin: 0 auto 8px; line-height: 36px; color: #ffffff; font-size: 16px;">&#9733;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 12px; line-height: 1.4;" class="mobile-text">${benefit}</p>
                   </td>`).join('')}
                 </tr>
               </table>
@@ -262,30 +262,30 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Process Section -->
           <tr>
-            <td style="padding: 50px 40px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);" class="section-padding">
-              <p style="margin: 0 0 8px; color: #003cff; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; text-align: center;">${labels.howWeWork}</p>
-              <h3 style="margin: 0 0 32px; color: #0f172a; font-size: 22px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.ourProcess}</h3>
+            <td style="padding: 24px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);" class="section-padding">
+              <p style="margin: 0 0 4px; color: #003cff; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; text-align: center;">${labels.howWeWork}</p>
+              <h3 style="margin: 0 0 16px; color: #0f172a; font-size: 16px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.ourProcess}</h3>
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
-                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 50%; margin: 0 auto 12px; line-height: 50px; color: #ffffff; font-size: 18px; font-weight: 700;">1</div>
-                    <p style="margin: 0 0 4px; color: #0f172a; font-weight: 700; font-size: 14px;">${labels.step1Title}</p>
-                    <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.4;">${labels.step1Desc}</p>
+                  <td width="25%" class="benefit-cell" style="padding: 0 4px; text-align: center; vertical-align: top;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 50%; margin: 0 auto 6px; line-height: 32px; color: #ffffff; font-size: 14px; font-weight: 700;">1</div>
+                    <p style="margin: 0 0 2px; color: #0f172a; font-weight: 700; font-size: 11px;">${labels.step1Title}</p>
+                    <p style="margin: 0; color: #64748b; font-size: 10px; line-height: 1.3;">${labels.step1Desc}</p>
                   </td>
-                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
-                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 50%; margin: 0 auto 12px; line-height: 50px; color: #ffffff; font-size: 18px; font-weight: 700;">2</div>
-                    <p style="margin: 0 0 4px; color: #0f172a; font-weight: 700; font-size: 14px;">${labels.step2Title}</p>
-                    <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.4;">${labels.step2Desc}</p>
+                  <td width="25%" class="benefit-cell" style="padding: 0 4px; text-align: center; vertical-align: top;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 50%; margin: 0 auto 6px; line-height: 32px; color: #ffffff; font-size: 14px; font-weight: 700;">2</div>
+                    <p style="margin: 0 0 2px; color: #0f172a; font-weight: 700; font-size: 11px;">${labels.step2Title}</p>
+                    <p style="margin: 0; color: #64748b; font-size: 10px; line-height: 1.3;">${labels.step2Desc}</p>
                   </td>
-                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
-                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 50%; margin: 0 auto 12px; line-height: 50px; color: #ffffff; font-size: 18px; font-weight: 700;">3</div>
-                    <p style="margin: 0 0 4px; color: #0f172a; font-weight: 700; font-size: 14px;">${labels.step3Title}</p>
-                    <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.4;">${labels.step3Desc}</p>
+                  <td width="25%" class="benefit-cell" style="padding: 0 4px; text-align: center; vertical-align: top;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 50%; margin: 0 auto 6px; line-height: 32px; color: #ffffff; font-size: 14px; font-weight: 700;">3</div>
+                    <p style="margin: 0 0 2px; color: #0f172a; font-weight: 700; font-size: 11px;">${labels.step3Title}</p>
+                    <p style="margin: 0; color: #64748b; font-size: 10px; line-height: 1.3;">${labels.step3Desc}</p>
                   </td>
-                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
-                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); border-radius: 50%; margin: 0 auto 12px; line-height: 50px; color: #ffffff; font-size: 18px; font-weight: 700;">4</div>
-                    <p style="margin: 0 0 4px; color: #0f172a; font-weight: 700; font-size: 14px;">${labels.step4Title}</p>
-                    <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.4;">${labels.step4Desc}</p>
+                  <td width="25%" class="benefit-cell" style="padding: 0 4px; text-align: center; vertical-align: top;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); border-radius: 50%; margin: 0 auto 6px; line-height: 32px; color: #ffffff; font-size: 14px; font-weight: 700;">4</div>
+                    <p style="margin: 0 0 2px; color: #0f172a; font-weight: 700; font-size: 11px;">${labels.step4Title}</p>
+                    <p style="margin: 0; color: #64748b; font-size: 10px; line-height: 1.3;">${labels.step4Desc}</p>
                   </td>
                 </tr>
               </table>
@@ -294,16 +294,16 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Testimonial Section -->
           <tr>
-            <td style="padding: 50px 40px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);" class="section-padding">
-              <p style="margin: 0 0 20px; color: #34d399; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; text-align: center;">${labels.clientSuccess}</p>
+            <td style="padding: 24px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);" class="section-padding">
+              <p style="margin: 0 0 10px; color: #34d399; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; text-align: center;">${labels.clientSuccess}</p>
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td style="text-align: center; padding: 0 20px;">
-                    <div style="font-size: 48px; color: #003cff; line-height: 1; margin-bottom: 16px;">"</div>
-                    <p style="margin: 0 0 24px; color: #e2e8f0; font-size: 18px; line-height: 1.7; font-style: italic;" class="mobile-text">${labels.testimonialQuote}</p>
+                  <td style="text-align: center; padding: 0 12px;">
+                    <div style="font-size: 32px; color: #003cff; line-height: 1; margin-bottom: 8px;">"</div>
+                    <p style="margin: 0 0 12px; color: #e2e8f0; font-size: 14px; line-height: 1.6; font-style: italic;" class="mobile-text">${labels.testimonialQuote}</p>
                     <div style="display: inline-block;">
-                      <p style="margin: 0; color: #ffffff; font-weight: 700; font-size: 15px;">${labels.testimonialAuthor}</p>
-                      <p style="margin: 4px 0 0; color: #94a3b8; font-size: 13px;">${labels.testimonialRole}</p>
+                      <p style="margin: 0; color: #ffffff; font-weight: 700; font-size: 13px;">${labels.testimonialAuthor}</p>
+                      <p style="margin: 2px 0 0; color: #94a3b8; font-size: 11px;">${labels.testimonialRole}</p>
                     </div>
                   </td>
                 </tr>
@@ -313,25 +313,25 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Guarantee Section -->
           <tr>
-            <td style="padding: 50px 40px; background-color: #ffffff;" class="section-padding">
-              <h3 style="margin: 0 0 28px; color: #0f172a; font-size: 22px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.ourGuarantee}</h3>
+            <td style="padding: 24px; background-color: #ffffff;" class="section-padding">
+              <h3 style="margin: 0 0 14px; color: #0f172a; font-size: 16px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.ourGuarantee}</h3>
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
-                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 10px; margin: 0 auto 12px; line-height: 44px; font-size: 20px;">&#128176;</div>
-                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 13px; line-height: 1.4;">${labels.guarantee1}</p>
+                  <td width="25%" class="benefit-cell" style="padding: 0 4px; text-align: center; vertical-align: top;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 6px; margin: 0 auto 6px; line-height: 32px; font-size: 14px;">&#128176;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 10px; line-height: 1.3;">${labels.guarantee1}</p>
                   </td>
-                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
-                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 10px; margin: 0 auto 12px; line-height: 44px; font-size: 20px;">&#9202;</div>
-                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 13px; line-height: 1.4;">${labels.guarantee2}</p>
+                  <td width="25%" class="benefit-cell" style="padding: 0 4px; text-align: center; vertical-align: top;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 6px; margin: 0 auto 6px; line-height: 32px; font-size: 14px;">&#9202;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 10px; line-height: 1.3;">${labels.guarantee2}</p>
                   </td>
-                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
-                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 10px; margin: 0 auto 12px; line-height: 44px; font-size: 20px;">&#128274;</div>
-                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 13px; line-height: 1.4;">${labels.guarantee3}</p>
+                  <td width="25%" class="benefit-cell" style="padding: 0 4px; text-align: center; vertical-align: top;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 6px; margin: 0 auto 6px; line-height: 32px; font-size: 14px;">&#128274;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 10px; line-height: 1.3;">${labels.guarantee3}</p>
                   </td>
-                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
-                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-radius: 10px; margin: 0 auto 12px; line-height: 44px; font-size: 20px;">&#128736;</div>
-                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 13px; line-height: 1.4;">${labels.guarantee4}</p>
+                  <td width="25%" class="benefit-cell" style="padding: 0 4px; text-align: center; vertical-align: top;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-radius: 6px; margin: 0 auto 6px; line-height: 32px; font-size: 14px;">&#128736;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 10px; line-height: 1.3;">${labels.guarantee4}</p>
                   </td>
                 </tr>
               </table>
@@ -340,8 +340,8 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Industries Section -->
           <tr>
-            <td style="padding: 40px; background-color: #f8fafc;" class="section-padding">
-              <h3 style="margin: 0 0 20px; color: #0f172a; font-size: 16px; font-weight: 700; text-align: center;">${labels.industries}</h3>
+            <td style="padding: 20px 24px; background-color: #f8fafc;" class="section-padding">
+              <h3 style="margin: 0 0 10px; color: #0f172a; font-size: 12px; font-weight: 700; text-align: center;">${labels.industries}</h3>
               <table role="presentation" cellspacing="0" cellpadding="0" style="margin: 0 auto; text-align: center;" width="100%">
                 <tr>
                   <td style="text-align: center;">
@@ -352,7 +352,7 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
                       isRtl ? 'اللوجستيات' : 'Logistics',
                       isRtl ? 'العقارات' : 'Real Estate',
                       isRtl ? 'التعليم' : 'Education'
-                    ].map(industry => `<span style="display: inline-block; padding: 6px 14px; background-color: #ffffff; color: #475569; border: 1px solid #e2e8f0; border-radius: 20px; font-size: 12px; font-weight: 500; margin: 4px;">${industry}</span>`).join('')}
+                    ].map(industry => `<span style="display: inline-block; padding: 4px 10px; background-color: #ffffff; color: #475569; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 10px; font-weight: 500; margin: 2px;">${industry}</span>`).join('')}
                   </td>
                 </tr>
               </table>
@@ -361,12 +361,12 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Tech Stack -->
           <tr>
-            <td style="padding: 50px 40px;" class="section-padding">
-              <h3 style="margin: 0 0 20px; color: #0f172a; font-size: 18px; font-weight: 700; text-align: center;">${labels.techWeUse}</h3>
+            <td style="padding: 20px 24px;" class="section-padding">
+              <h3 style="margin: 0 0 10px; color: #0f172a; font-size: 12px; font-weight: 700; text-align: center;">${labels.techWeUse}</h3>
               <table role="presentation" cellspacing="0" cellpadding="0" style="margin: 0 auto; text-align: center;" width="100%">
                 <tr>
                   <td style="text-align: center;">
-                  ${content.techStack.slice(0, 6).map(tech => `<span class="tech-badge" style="display: inline-block; padding: 8px 16px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); color: #1d4ed8; border-radius: 6px; font-size: 13px; font-weight: 600; margin: 4px;">${tech}</span>`).join('')}
+                  ${content.techStack.slice(0, 6).map(tech => `<span class="tech-badge" style="display: inline-block; padding: 4px 10px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); color: #1d4ed8; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 2px;">${tech}</span>`).join('')}
                   </td>
                 </tr>
               </table>
@@ -375,22 +375,22 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- CTA Section -->
           <tr>
-            <td style="background: linear-gradient(135deg, #020617 0%, #0f172a 100%); padding: 50px 40px;" class="section-padding">
+            <td style="background: linear-gradient(135deg, #020617 0%, #0f172a 100%); padding: 28px 24px;" class="section-padding">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                   <td style="text-align: center;">
-                    <p style="margin: 0 0 8px; color: #34d399; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">${labels.freeConsultation}</p>
-                    <h3 style="margin: 0 0 16px; color: #ffffff; font-size: 26px; font-weight: 700;" class="mobile-h1">${labels.readyToStart}</h3>
-                    <p style="margin: 0 0 28px; color: #94a3b8; font-size: 16px; line-height: 1.6;" class="mobile-text">${labels.bookConsultation}</p>
+                    <p style="margin: 0 0 4px; color: #34d399; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">${labels.freeConsultation}</p>
+                    <h3 style="margin: 0 0 8px; color: #ffffff; font-size: 20px; font-weight: 700;" class="mobile-h1">${labels.readyToStart}</h3>
+                    <p style="margin: 0 0 16px; color: #94a3b8; font-size: 13px; line-height: 1.5;" class="mobile-text">${labels.bookConsultation}</p>
                     
                     <table role="presentation" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
                       <tr>
-                        <td style="border-radius: 8px; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); box-shadow: 0 4px 14px 0 rgba(52, 211, 153, 0.4);">
-                          <a href="${WHATSAPP_LINK}" class="cta-button" style="display: inline-block; padding: 18px 40px; color: #0f172a; text-decoration: none; font-weight: 700; font-size: 16px;">${labels.whatsappUs}</a>
+                        <td style="border-radius: 6px; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); box-shadow: 0 4px 14px 0 rgba(52, 211, 153, 0.4);">
+                          <a href="${WHATSAPP_LINK}" class="cta-button" style="display: inline-block; padding: 12px 28px; color: #0f172a; text-decoration: none; font-weight: 700; font-size: 14px;">${labels.whatsappUs}</a>
                         </td>
                       </tr>
                     </table>
-                    <p style="margin: 20px 0 0; color: #64748b; font-size: 13px;">${labels.orCall} <a href="tel:+966537430455" style="color: #34d399; text-decoration: none;">+966 53 743 0455</a></p>
+                    <p style="margin: 12px 0 0; color: #64748b; font-size: 11px;">${labels.orCall} <a href="tel:+966537430455" style="color: #34d399; text-decoration: none;">+966 53 743 0455</a></p>
                   </td>
                 </tr>
               </table>
@@ -399,21 +399,21 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
           
           <!-- Footer -->
           <tr>
-            <td style="background-color: #020617; padding: 40px;" class="section-padding">
+            <td style="background-color: #020617; padding: 20px 24px;" class="section-padding">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td style="text-align: center; padding-bottom: 24px; border-bottom: 1px solid #1e293b;">
-                    <img src="${LOGO_URL}" alt="SkyStack" width="160" class="logo-footer" style="display: inline-block; border: 0;" />
-                    <p style="margin: 12px 0 0; color: #64748b; font-size: 14px;" class="mobile-text-sm">${labels.tagline}</p>
+                  <td style="text-align: center; padding-bottom: 12px; border-bottom: 1px solid #1e293b;">
+                    <img src="${LOGO_URL}" alt="SkyStack" width="120" class="logo-footer" style="display: inline-block; border: 0;" />
+                    <p style="margin: 6px 0 0; color: #64748b; font-size: 11px;" class="mobile-text-sm">${labels.tagline}</p>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding-top: 24px; text-align: center;">
-                    <p style="margin: 0 0 8px; color: #94a3b8; font-size: 14px;" class="mobile-text-sm">
+                  <td style="padding-top: 12px; text-align: center;">
+                    <p style="margin: 0 0 4px; color: #94a3b8; font-size: 11px;" class="mobile-text-sm">
                       <a href="${WHATSAPP_LINK}" style="color: #34d399; text-decoration: none; font-weight: 600;">+966 53 743 0455</a> &nbsp;|&nbsp;
                       <a href="mailto:info@skystack.sa" style="color: #94a3b8; text-decoration: none;">info@skystack.sa</a>
                     </p>
-                    <p style="margin: 12px 0 0; color: #475569; font-size: 12px;">
+                    <p style="margin: 6px 0 0; color: #475569; font-size: 10px;">
                       ${labels.riyadh}<br>
                       <a href="${WEBSITE_URL}" style="color: #475569; text-decoration: none;">skystack.sa</a>
                     </p>
