@@ -73,6 +73,27 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
     orCall: isRtl ? 'أو اتصل بنا:' : 'Or call us:',
     tagline: isRtl ? 'نساعد الشركات السعودية على بناء برمجيات أفضل' : 'Helping Saudi companies build better software',
     riyadh: isRtl ? 'سكاي ستاك للتقنية | الرياض، المملكة العربية السعودية' : 'SkyStack Technology | Riyadh, Saudi Arabia',
+    howWeWork: isRtl ? 'كيف نعمل' : 'How We Work',
+    ourProcess: isRtl ? 'عمليتنا المُثبتة' : 'Our Proven Process',
+    step1Title: isRtl ? 'الاكتشاف' : 'Discovery',
+    step1Desc: isRtl ? 'نفهم أهدافك ومتطلباتك' : 'We understand your goals & requirements',
+    step2Title: isRtl ? 'الاستراتيجية' : 'Strategy',
+    step2Desc: isRtl ? 'نضع خطة تقنية مفصلة' : 'We create a detailed tech roadmap',
+    step3Title: isRtl ? 'التطوير' : 'Development',
+    step3Desc: isRtl ? 'نبني ونختبر بمنهجية أجايل' : 'We build & test with agile methodology',
+    step4Title: isRtl ? 'الإطلاق' : 'Launch',
+    step4Desc: isRtl ? 'ننشر ونقدم دعماً مستمراً' : 'We deploy & provide ongoing support',
+    clientSuccess: isRtl ? 'قصة نجاح' : 'Client Success Story',
+    testimonialQuote: isRtl ? 'سكاي ستاك حولت فكرتنا إلى منتج عالمي. احترافية استثنائية وجودة عالية في التسليم. نوصي بهم بشدة.' : 'SkyStack transformed our vision into a world-class product. Exceptional professionalism and high-quality delivery. Highly recommended.',
+    testimonialAuthor: isRtl ? 'خالد العمري' : 'Khalid Al-Omari',
+    testimonialRole: isRtl ? 'مدير التقنية، شركة تقنية سعودية' : 'CTO, Saudi Tech Company',
+    ourGuarantee: isRtl ? 'ضماناتنا' : 'Our Guarantee',
+    guarantee1: isRtl ? 'ضمان جودة 100%' : '100% Quality Guarantee',
+    guarantee2: isRtl ? 'التسليم في الوقت المحدد' : 'On-Time Delivery',
+    guarantee3: isRtl ? 'حماية الملكية الفكرية' : 'Full IP Protection',
+    guarantee4: isRtl ? 'دعم بعد الإطلاق' : 'Post-Launch Support',
+    trustedBy: isRtl ? 'موثوق من الشركات الرائدة' : 'Trusted by Leading Companies',
+    industries: isRtl ? 'الصناعات التي نخدمها' : 'Industries We Serve',
   };
 
   return `<!DOCTYPE html>
@@ -234,6 +255,105 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
                     <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 12px; margin: 0 auto 16px; line-height: 48px; color: #ffffff; font-size: 20px;">&#9733;</div>
                     <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 15px; line-height: 1.5;" class="mobile-text">${benefit}</p>
                   </td>`).join('')}
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          <!-- Process Section -->
+          <tr>
+            <td style="padding: 50px 40px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);" class="section-padding">
+              <p style="margin: 0 0 8px; color: #003cff; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; text-align: center;">${labels.howWeWork}</p>
+              <h3 style="margin: 0 0 32px; color: #0f172a; font-size: 22px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.ourProcess}</h3>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 50%; margin: 0 auto 12px; line-height: 50px; color: #ffffff; font-size: 18px; font-weight: 700;">1</div>
+                    <p style="margin: 0 0 4px; color: #0f172a; font-weight: 700; font-size: 14px;">${labels.step1Title}</p>
+                    <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.4;">${labels.step1Desc}</p>
+                  </td>
+                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 50%; margin: 0 auto 12px; line-height: 50px; color: #ffffff; font-size: 18px; font-weight: 700;">2</div>
+                    <p style="margin: 0 0 4px; color: #0f172a; font-weight: 700; font-size: 14px;">${labels.step2Title}</p>
+                    <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.4;">${labels.step2Desc}</p>
+                  </td>
+                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 50%; margin: 0 auto 12px; line-height: 50px; color: #ffffff; font-size: 18px; font-weight: 700;">3</div>
+                    <p style="margin: 0 0 4px; color: #0f172a; font-weight: 700; font-size: 14px;">${labels.step3Title}</p>
+                    <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.4;">${labels.step3Desc}</p>
+                  </td>
+                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); border-radius: 50%; margin: 0 auto 12px; line-height: 50px; color: #ffffff; font-size: 18px; font-weight: 700;">4</div>
+                    <p style="margin: 0 0 4px; color: #0f172a; font-weight: 700; font-size: 14px;">${labels.step4Title}</p>
+                    <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.4;">${labels.step4Desc}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          <!-- Testimonial Section -->
+          <tr>
+            <td style="padding: 50px 40px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);" class="section-padding">
+              <p style="margin: 0 0 20px; color: #34d399; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; text-align: center;">${labels.clientSuccess}</p>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="text-align: center; padding: 0 20px;">
+                    <div style="font-size: 48px; color: #003cff; line-height: 1; margin-bottom: 16px;">"</div>
+                    <p style="margin: 0 0 24px; color: #e2e8f0; font-size: 18px; line-height: 1.7; font-style: italic;" class="mobile-text">${labels.testimonialQuote}</p>
+                    <div style="display: inline-block;">
+                      <p style="margin: 0; color: #ffffff; font-weight: 700; font-size: 15px;">${labels.testimonialAuthor}</p>
+                      <p style="margin: 4px 0 0; color: #94a3b8; font-size: 13px;">${labels.testimonialRole}</p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          <!-- Guarantee Section -->
+          <tr>
+            <td style="padding: 50px 40px; background-color: #ffffff;" class="section-padding">
+              <h3 style="margin: 0 0 28px; color: #0f172a; font-size: 22px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.ourGuarantee}</h3>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
+                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 10px; margin: 0 auto 12px; line-height: 44px; font-size: 20px;">&#128176;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 13px; line-height: 1.4;">${labels.guarantee1}</p>
+                  </td>
+                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
+                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 10px; margin: 0 auto 12px; line-height: 44px; font-size: 20px;">&#9202;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 13px; line-height: 1.4;">${labels.guarantee2}</p>
+                  </td>
+                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
+                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 10px; margin: 0 auto 12px; line-height: 44px; font-size: 20px;">&#128274;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 13px; line-height: 1.4;">${labels.guarantee3}</p>
+                  </td>
+                  <td width="25%" class="benefit-cell" style="padding: 0 8px; text-align: center; vertical-align: top;">
+                    <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-radius: 10px; margin: 0 auto 12px; line-height: 44px; font-size: 20px;">&#128736;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 13px; line-height: 1.4;">${labels.guarantee4}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          <!-- Industries Section -->
+          <tr>
+            <td style="padding: 40px; background-color: #f8fafc;" class="section-padding">
+              <h3 style="margin: 0 0 20px; color: #0f172a; font-size: 16px; font-weight: 700; text-align: center;">${labels.industries}</h3>
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin: 0 auto; text-align: center;" width="100%">
+                <tr>
+                  <td style="text-align: center;">
+                    ${[
+                      isRtl ? 'التجزئة' : 'Retail',
+                      isRtl ? 'الرعاية الصحية' : 'Healthcare',
+                      isRtl ? 'المالية' : 'Finance',
+                      isRtl ? 'اللوجستيات' : 'Logistics',
+                      isRtl ? 'العقارات' : 'Real Estate',
+                      isRtl ? 'التعليم' : 'Education'
+                    ].map(industry => `<span style="display: inline-block; padding: 6px 14px; background-color: #ffffff; color: #475569; border: 1px solid #e2e8f0; border-radius: 20px; font-size: 12px; font-weight: 500; margin: 4px;">${industry}</span>`).join('')}
+                  </td>
                 </tr>
               </table>
             </td>
