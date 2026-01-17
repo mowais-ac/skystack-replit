@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, Copy, ChevronDown, ChevronUp, AlertCircle, Languages } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { SEO } from "@/components/SEO";
 
 const LOGO_URL = "https://www.skystack.sa/logo-white-circle.png";
 const WHATSAPP_LINK = "https://wa.me/966537430455";
@@ -792,6 +793,16 @@ function ServiceTemplateSection({ service }: { service: ServiceTemplate }) {
 export default function EmailTemplates() {
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Email Campaign Templates"
+        titleAr="قوالب حملات البريد الإلكتروني"
+        description="Professional HTML email templates for your paid marketing campaigns. Bilingual English and Arabic templates ready to use."
+        descriptionAr="قوالب بريد إلكتروني HTML احترافية لحملاتك التسويقية المدفوعة. قوالب ثنائية اللغة بالإنجليزية والعربية جاهزة للاستخدام."
+        keywords="email templates, marketing emails, HTML email templates, bilingual email templates"
+        keywordsAr="قوالب البريد الإلكتروني، رسائل تسويقية، قوالب بريد HTML، قوالب بريد ثنائية اللغة"
+        canonicalUrl="/email-templates"
+        noIndex={true}
+      />
       <div className="container mx-auto px-4 py-12 max-w-[1200px]">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4" data-testid="text-page-title">Email Campaign Templates</h1>

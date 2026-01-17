@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Check, X, ArrowRight, Shield, Clock, Users, Zap, HeartHandshake, Award, Phone, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/lib/i18n";
+import { SEO } from "@/components/SEO";
 
 const plans = [
   {
@@ -122,6 +123,15 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO 
+        title="Pricing & Plans"
+        titleAr="الأسعار والباقات"
+        description="Transparent pricing for software development services. Custom quotes for startups, enterprises, and dedicated teams. Get a free consultation today."
+        descriptionAr="أسعار شفافة لخدمات تطوير البرمجيات. عروض أسعار مخصصة للشركات الناشئة والمؤسسات والفرق المخصصة. احصل على استشارة مجانية اليوم."
+        keywords="software development pricing, web development cost, mobile app cost, Saudi Arabia IT pricing, dedicated team rates"
+        keywordsAr="أسعار تطوير البرمجيات، تكلفة تطوير الويب، تكلفة تطبيقات الجوال، أسعار تقنية المعلومات السعودية، أسعار الفريق المخصص"
+        canonicalUrl="/pricing"
+      />
       <Navigation />
       
       <main className="flex-grow">

@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useLanguage } from "@/lib/i18n";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 
 export default function ContactUs() {
   const { language, t } = useLanguage();
@@ -33,6 +34,15 @@ export default function ContactUs() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO 
+        title="Contact Us"
+        titleAr="تواصل معنا"
+        description="Get in touch with SkyStack for your software development needs. We're based in Riyadh, Saudi Arabia and ready to help with your next project."
+        descriptionAr="تواصل مع سكاي ستاك لاحتياجات تطوير البرمجيات الخاصة بك. نحن مقرنا في الرياض، المملكة العربية السعودية وجاهزون لمساعدتك في مشروعك القادم."
+        keywords="contact SkyStack, software development company, Riyadh tech company, Saudi Arabia IT services, get quote"
+        keywordsAr="تواصل سكاي ستاك، شركة تطوير البرمجيات، شركة تقنية الرياض، خدمات تقنية المعلومات السعودية، احصل على عرض سعر"
+        canonicalUrl="/contact-us"
+      />
       <Navigation />
       
       <main className="flex-grow">

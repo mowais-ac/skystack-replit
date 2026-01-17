@@ -13,6 +13,7 @@ import { services, businessModels, industries } from "@/lib/data";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/lib/i18n";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -163,6 +164,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
+      <SEO 
+        title="Software Development & IT Services"
+        titleAr="تطوير البرمجيات وخدمات تقنية المعلومات"
+        description="SkyStack helps Saudi companies build and modernize business software to automate operations and reduce manual work. Custom web apps, mobile apps, and enterprise solutions."
+        descriptionAr="سكاي ستاك تساعد الشركات السعودية على بناء وتحديث برمجيات الأعمال لأتمتة العمليات وتقليل العمل اليدوي. تطبيقات ويب وجوال مخصصة وحلول مؤسسية."
+        keywords="software development, web development, mobile app development, Saudi Arabia, Riyadh, enterprise software, custom software, IT services"
+        keywordsAr="تطوير البرمجيات، تطوير الويب، تطوير تطبيقات الجوال، المملكة العربية السعودية، الرياض، برمجيات المؤسسات، البرمجيات المخصصة، خدمات تقنية المعلومات"
+        canonicalUrl="/"
+      />
       <Navigation />
       
       <main className="flex-grow">

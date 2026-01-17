@@ -4,6 +4,7 @@ import { useLanguage } from "@/lib/i18n";
 import { Link } from "wouter";
 import { ArrowRight, Shield, Target, Users, Award, Globe, Lightbulb, Code, Zap, Heart, Rocket, CheckCircle2, Building2, TrendingUp, Clock } from "lucide-react";
 import { motion } from "framer-motion";
+import { SEO } from "@/components/SEO";
 
 interface StaticContentProps {
   type: "about" | "privacy" | "terms";
@@ -80,9 +81,50 @@ export default function StaticContent({ type }: StaticContentProps) {
     { icon: Globe, title: language === "ar" ? "دعم على مدار الساعة" : "24/7 Support", desc: language === "ar" ? "فريق دعم متاح دائماً لمساعدتك" : "Support team always available to help you" },
   ];
 
+  const seoContent = {
+    about: {
+      title: "About Us",
+      titleAr: "من نحن",
+      description: "SkyStack is a leading Saudi technology company specializing in enterprise software development and digital transformation. Learn about our mission, values, and team.",
+      descriptionAr: "سكاي ستاك هي شركة تقنية سعودية رائدة متخصصة في تطوير البرمجيات المؤسسية والتحول الرقمي. تعرف على مهمتنا وقيمنا وفريقنا.",
+      keywords: "about SkyStack, Saudi tech company, software development company Riyadh, enterprise software Saudi Arabia",
+      keywordsAr: "عن سكاي ستاك، شركة تقنية سعودية، شركة تطوير برمجيات الرياض، برمجيات المؤسسات السعودية",
+      canonicalUrl: "/about-us"
+    },
+    privacy: {
+      title: "Privacy Policy",
+      titleAr: "سياسة الخصوصية",
+      description: "SkyStack's privacy policy. Learn how we collect, use, and protect your personal information.",
+      descriptionAr: "سياسة الخصوصية لسكاي ستاك. تعرف على كيفية جمعنا واستخدامنا وحمايتنا لمعلوماتك الشخصية.",
+      keywords: "privacy policy, data protection, SkyStack privacy",
+      keywordsAr: "سياسة الخصوصية، حماية البيانات، خصوصية سكاي ستاك",
+      canonicalUrl: "/privacy-policy"
+    },
+    terms: {
+      title: "Terms & Conditions",
+      titleAr: "الشروط والأحكام",
+      description: "SkyStack's terms and conditions. Read our service agreement and usage policies.",
+      descriptionAr: "الشروط والأحكام لسكاي ستاك. اقرأ اتفاقية الخدمة وسياسات الاستخدام.",
+      keywords: "terms and conditions, service agreement, SkyStack terms",
+      keywordsAr: "الشروط والأحكام، اتفاقية الخدمة، شروط سكاي ستاك",
+      canonicalUrl: "/terms-condition"
+    }
+  };
+
+  const currentSeo = seoContent[type];
+
   if (type === "about") {
     return (
       <div className="min-h-screen flex flex-col">
+        <SEO 
+          title={currentSeo.title}
+          titleAr={currentSeo.titleAr}
+          description={currentSeo.description}
+          descriptionAr={currentSeo.descriptionAr}
+          keywords={currentSeo.keywords}
+          keywordsAr={currentSeo.keywordsAr}
+          canonicalUrl={currentSeo.canonicalUrl}
+        />
         <Navigation />
         
         <main className="flex-grow">
@@ -307,6 +349,15 @@ export default function StaticContent({ type }: StaticContentProps) {
   // Privacy & Terms pages
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO 
+        title={currentSeo.title}
+        titleAr={currentSeo.titleAr}
+        description={currentSeo.description}
+        descriptionAr={currentSeo.descriptionAr}
+        keywords={currentSeo.keywords}
+        keywordsAr={currentSeo.keywordsAr}
+        canonicalUrl={currentSeo.canonicalUrl}
+      />
       <Navigation />
       
       <main className="flex-grow pt-32 pb-24">

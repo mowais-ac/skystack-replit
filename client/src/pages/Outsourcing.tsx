@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { SEO } from "@/components/SEO";
 
 const roleCategories = [
   {
@@ -456,6 +457,15 @@ export default function Outsourcing() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO 
+        title="IT Outsourcing & Dedicated Teams"
+        titleAr="التعهيد التقني والفرق المخصصة"
+        description="Save up to 70% with world-class tech teams from Pakistan and South Asia. Build high-performing dedicated development teams at a fraction of the cost."
+        descriptionAr="وفر حتى 70% مع فرق تقنية عالمية المستوى من باكستان وجنوب آسيا. ابنِ فرق تطوير مخصصة عالية الأداء بتكلفة أقل بكثير."
+        keywords="IT outsourcing, dedicated teams, software outsourcing, offshore development, tech talent, Saudi Arabia outsourcing"
+        keywordsAr="التعهيد التقني، فرق مخصصة، تعهيد البرمجيات، تطوير خارجي، مواهب تقنية، التعهيد السعودي"
+        canonicalUrl="/outsourcing"
+      />
       <Navigation />
       
       <main className="flex-grow">

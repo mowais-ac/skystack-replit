@@ -9,6 +9,7 @@ import {
   ArrowRight, Shield, Clock, Users, Zap, Star, Award, 
   MessageCircle, Phone, CheckCircle2, Target, Rocket, Building2, HeartHandshake
 } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 interface ServicesListProps {
   type: "service" | "businessModel";
@@ -72,8 +73,30 @@ export default function ServicesList({ type }: ServicesListProps) {
     }
   ];
 
+  const seoTitle = isService ? "Our Services" : "Pre-Built Applications";
+  const seoTitleAr = isService ? "خدماتنا" : "التطبيقات الجاهزة";
+  const seoDescription = isService 
+    ? "Comprehensive software development services including web apps, mobile apps, AI solutions, and enterprise systems for Saudi businesses."
+    : "Launch faster with our white-label pre-built applications. E-commerce, healthcare, real estate, and more - ready to customize.";
+  const seoDescriptionAr = isService 
+    ? "خدمات تطوير برمجيات شاملة تشمل تطبيقات الويب والجوال وحلول الذكاء الاصطناعي وأنظمة المؤسسات للشركات السعودية."
+    : "أطلق بشكل أسرع مع تطبيقاتنا الجاهزة. التجارة الإلكترونية والرعاية الصحية والعقارات والمزيد - جاهزة للتخصيص.";
+
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO 
+        title={seoTitle}
+        titleAr={seoTitleAr}
+        description={seoDescription}
+        descriptionAr={seoDescriptionAr}
+        keywords={isService 
+          ? "software development services, web development, mobile app development, AI solutions, enterprise software, Saudi Arabia"
+          : "pre-built apps, white-label solutions, e-commerce platform, healthcare app, real estate software, Saudi Arabia"}
+        keywordsAr={isService 
+          ? "خدمات تطوير البرمجيات، تطوير الويب، تطوير تطبيقات الجوال، حلول الذكاء الاصطناعي، برمجيات المؤسسات، السعودية"
+          : "تطبيقات جاهزة، حلول وايت ليبل، منصة تجارة إلكترونية، تطبيق رعاية صحية، برمجيات عقارات، السعودية"}
+        canonicalUrl={isService ? "/services" : "/pre-built-apps"}
+      />
       <Navigation />
       
       <main className="flex-grow">

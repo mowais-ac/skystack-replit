@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { SEO } from "@/components/SEO";
 
 interface DynamicPageProps {
   type: "service" | "businessModel";
@@ -269,8 +270,24 @@ export default function DynamicPage({ type }: DynamicPageProps) {
     { icon: Clock, text: language === "ar" ? "تسليم في الوقت المحدد" : "On-time Delivery" },
   ];
 
+  const seoKeywords = type === "service" 
+    ? `${item.title}, software development, ${item.slug}, Saudi Arabia, custom software`
+    : `${item.title}, pre-built app, white-label, ${item.slug}, Saudi Arabia`;
+  const seoKeywordsAr = type === "service" 
+    ? `${item.titleAr}، تطوير البرمجيات، ${item.slug}، السعودية، برمجيات مخصصة`
+    : `${item.titleAr}، تطبيق جاهز، وايت ليبل، ${item.slug}، السعودية`;
+
   return (
     <div className="min-h-screen flex flex-col font-sans">
+      <SEO 
+        title={title}
+        titleAr={item.titleAr}
+        description={description}
+        descriptionAr={item.descriptionAr}
+        keywords={seoKeywords}
+        keywordsAr={seoKeywordsAr}
+        canonicalUrl={type === "service" ? `/services/${item.slug}` : `/business-models/${item.slug}`}
+      />
       <Navigation />
       
       <main className="flex-grow">

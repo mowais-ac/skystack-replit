@@ -4,12 +4,22 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { engagementModels } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
+import { SEO } from "@/components/SEO";
 
 export default function BusinessModels() {
   const { language } = useLanguage();
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
+      <SEO 
+        title="Business Models & Engagement"
+        titleAr="نماذج الأعمال والتعاون"
+        description="Choose the right engagement model for your project. Fixed price, time & materials, or dedicated team options available for Saudi businesses."
+        descriptionAr="اختر نموذج التعاون المناسب لمشروعك. خيارات السعر الثابت أو الوقت والمواد أو الفريق المخصص متاحة للشركات السعودية."
+        keywords="business models, engagement models, fixed price development, dedicated team, software outsourcing Saudi Arabia"
+        keywordsAr="نماذج الأعمال، نماذج التعاون، تطوير بسعر ثابت، فريق مخصص، الاستعانة بمصادر خارجية للبرمجيات السعودية"
+        canonicalUrl="/business-models"
+      />
       <Navigation />
       
       <main className="flex-grow">
