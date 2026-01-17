@@ -790,6 +790,31 @@ function ServiceTemplateSection({ service }: { service: ServiceTemplate }) {
   );
 }
 
+// Categorize templates
+const templateCategories = {
+  services: {
+    label: "Services",
+    description: "Custom development services for your business needs",
+    templates: serviceTemplates.filter(t => 
+      ["all-services", "mobile-app", "web-dev", "on-demand", "ui-ux", "consulting", "marketing"].includes(t.id)
+    )
+  },
+  solutions: {
+    label: "Solutions",
+    description: "Pre-built white-label applications ready to customize",
+    templates: serviceTemplates.filter(t => 
+      ["clone-app", "food-delivery", "ecommerce", "elearning"].includes(t.id)
+    )
+  },
+  outsourcing: {
+    label: "Outsourcing",
+    description: "Staff augmentation and dedicated team services",
+    templates: serviceTemplates.filter(t => 
+      ["outsourcing", "offshore"].includes(t.id)
+    )
+  }
+};
+
 export default function EmailTemplates() {
   return (
     <div className="min-h-screen bg-background">
@@ -825,23 +850,49 @@ export default function EmailTemplates() {
           </Card>
         </div>
 
+        {/* Main Category Tabs */}
         <Tabs defaultValue="outsourcing" className="w-full">
-          <TabsList className="flex flex-wrap h-auto gap-2 mb-6 bg-transparent">
-            {serviceTemplates.map((service) => (
+          <TabsList className="h-auto gap-2 mb-6 bg-muted/50 p-1">
+            {Object.entries(templateCategories).map(([key, category]) => (
               <TabsTrigger 
-                key={service.id} 
-                value={service.id}
-                data-testid={`tab-${service.id}`}
-                className="px-4 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                key={key} 
+                value={key}
+                data-testid={`tab-category-${key}`}
+                className="px-6 py-3 text-base font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
               >
-                {service.title}
+                {category.label}
+                <span className="ml-2 text-xs opacity-70">({category.templates.length})</span>
               </TabsTrigger>
             ))}
           </TabsList>
 
-          {serviceTemplates.map((service) => (
-            <TabsContent key={service.id} value={service.id}>
-              <ServiceTemplateSection service={service} />
+          {Object.entries(templateCategories).map(([key, category]) => (
+            <TabsContent key={key} value={key}>
+              <div className="mb-6">
+                <p className="text-muted-foreground">{category.description}</p>
+              </div>
+              
+              {/* Nested Template Tabs */}
+              <Tabs defaultValue={category.templates[0]?.id} className="w-full">
+                <TabsList className="flex flex-wrap h-auto gap-2 mb-6 bg-transparent">
+                  {category.templates.map((template) => (
+                    <TabsTrigger 
+                      key={template.id} 
+                      value={template.id}
+                      data-testid={`tab-${template.id}`}
+                      className="px-4 data-[state=active]:bg-slate-800 data-[state=active]:text-white"
+                    >
+                      {template.title}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {category.templates.map((template) => (
+                  <TabsContent key={template.id} value={template.id}>
+                    <ServiceTemplateSection service={template} />
+                  </TabsContent>
+                ))}
+              </Tabs>
             </TabsContent>
           ))}
         </Tabs>
