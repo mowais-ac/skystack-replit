@@ -83,10 +83,22 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
     step3Desc: isRtl ? 'نبني ونختبر بمنهجية أجايل' : 'We build & test with agile methodology',
     step4Title: isRtl ? 'الإطلاق' : 'Launch',
     step4Desc: isRtl ? 'ننشر ونقدم دعماً مستمراً' : 'We deploy & provide ongoing support',
-    clientSuccess: isRtl ? 'قصة نجاح' : 'Client Success Story',
-    testimonialQuote: isRtl ? 'سكاي ستاك حولت فكرتنا إلى منتج عالمي. احترافية استثنائية وجودة عالية في التسليم. نوصي بهم بشدة.' : 'SkyStack transformed our vision into a world-class product. Exceptional professionalism and high-quality delivery. Highly recommended.',
-    testimonialAuthor: isRtl ? 'خالد العمري' : 'Khalid Al-Omari',
-    testimonialRole: isRtl ? 'مدير التقنية، شركة تقنية سعودية' : 'CTO, Saudi Tech Company',
+    clientSuccess: isRtl ? 'قصص نجاح عملائنا' : 'Client Success Stories',
+    testimonialQuote: isRtl ? 'بنى سكاي ستاك منصة المطورين لدينا من الصفر. جودة الكود والبنية تجاوزت توقعاتنا.' : 'SkyStack built our entire developer platform from scratch. The code quality and architecture exceeded our expectations.',
+    testimonialRole: isRtl ? 'المدير التقني، يوني كودكس' : 'CTO, UniCodex',
+    caseStudies: isRtl ? 'مشاريع مختارة' : 'Featured Projects',
+    caseStudy1Client: 'ilmyst',
+    caseStudy1Title: isRtl ? 'منصة تعلم بالذكاء الاصطناعي' : 'AI-Powered Learning Platform',
+    caseStudy1Result: isRtl ? 'زيادة 150% في المشاركة' : '150% engagement increase',
+    caseStudy2Client: 'SparkAI',
+    caseStudy2Title: isRtl ? 'لوحة تحليلات المؤسسات' : 'Enterprise Analytics Dashboard',
+    caseStudy2Result: isRtl ? 'رؤى فورية لـ 100+ عميل' : 'Real-time insights for 100+ clients',
+    caseStudy3Client: 'BlueHat Solutions',
+    caseStudy3Title: isRtl ? 'بوابة الأمن السيبراني' : 'Cybersecurity Threat Portal',
+    caseStudy3Result: isRtl ? 'مليون+ تقييم تهديد يومياً' : '1M+ daily threat assessments',
+    caseStudy4Client: 'Thuraya Travel',
+    caseStudy4Title: isRtl ? 'نظام حجز السفر' : 'Travel Booking System',
+    caseStudy4Result: isRtl ? 'زيادة 10 أضعاف في سعة الحجز' : '10x booking capacity increase',
     ourGuarantee: isRtl ? 'ضماناتنا' : 'Our Guarantee',
     guarantee1: isRtl ? 'ضمان جودة 100%' : '100% Quality Guarantee',
     guarantee2: isRtl ? 'التسليم في الوقت المحدد' : 'On-Time Delivery',
@@ -301,9 +313,47 @@ const generateEmailTemplate = (lang: 'en' | 'ar', content: {
                   <td style="text-align: center; padding: 0 12px;">
                     <div style="font-size: 32px; color: #003cff; line-height: 1; margin-bottom: 8px;">"</div>
                     <p style="margin: 0 0 12px; color: #e2e8f0; font-size: 14px; line-height: 1.6; font-style: italic;" class="mobile-text">${labels.testimonialQuote}</p>
-                    <div style="display: inline-block;">
-                      <p style="margin: 0; color: #ffffff; font-weight: 700; font-size: 13px;">${labels.testimonialAuthor}</p>
-                      <p style="margin: 2px 0 0; color: #94a3b8; font-size: 11px;">${labels.testimonialRole}</p>
+                    <p style="margin: 0; color: #34d399; font-weight: 700; font-size: 12px;">${labels.testimonialRole}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          <!-- Case Studies Section -->
+          <tr>
+            <td style="padding: 24px; background-color: #ffffff;" class="section-padding">
+              <h3 style="margin: 0 0 16px; color: #0f172a; font-size: 14px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.caseStudies}</h3>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="50%" class="benefit-cell" style="padding: 6px; vertical-align: top;">
+                    <div style="background: #f8fafc; border-radius: 6px; padding: 12px; border-left: 3px solid #003cff;">
+                      <p style="margin: 0 0 2px; color: #003cff; font-size: 10px; font-weight: 700;">${labels.caseStudy1Client}</p>
+                      <p style="margin: 0 0 4px; color: #0f172a; font-size: 11px; font-weight: 600;">${labels.caseStudy1Title}</p>
+                      <p style="margin: 0; color: #16a34a; font-size: 10px; font-weight: 600;">${labels.caseStudy1Result}</p>
+                    </div>
+                  </td>
+                  <td width="50%" class="benefit-cell" style="padding: 6px; vertical-align: top;">
+                    <div style="background: #f8fafc; border-radius: 6px; padding: 12px; border-left: 3px solid #003cff;">
+                      <p style="margin: 0 0 2px; color: #003cff; font-size: 10px; font-weight: 700;">${labels.caseStudy2Client}</p>
+                      <p style="margin: 0 0 4px; color: #0f172a; font-size: 11px; font-weight: 600;">${labels.caseStudy2Title}</p>
+                      <p style="margin: 0; color: #16a34a; font-size: 10px; font-weight: 600;">${labels.caseStudy2Result}</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%" class="benefit-cell" style="padding: 6px; vertical-align: top;">
+                    <div style="background: #f8fafc; border-radius: 6px; padding: 12px; border-left: 3px solid #34d399;">
+                      <p style="margin: 0 0 2px; color: #003cff; font-size: 10px; font-weight: 700;">${labels.caseStudy3Client}</p>
+                      <p style="margin: 0 0 4px; color: #0f172a; font-size: 11px; font-weight: 600;">${labels.caseStudy3Title}</p>
+                      <p style="margin: 0; color: #16a34a; font-size: 10px; font-weight: 600;">${labels.caseStudy3Result}</p>
+                    </div>
+                  </td>
+                  <td width="50%" class="benefit-cell" style="padding: 6px; vertical-align: top;">
+                    <div style="background: #f8fafc; border-radius: 6px; padding: 12px; border-left: 3px solid #34d399;">
+                      <p style="margin: 0 0 2px; color: #003cff; font-size: 10px; font-weight: 700;">${labels.caseStudy4Client}</p>
+                      <p style="margin: 0 0 4px; color: #0f172a; font-size: 11px; font-weight: 600;">${labels.caseStudy4Title}</p>
+                      <p style="margin: 0; color: #16a34a; font-size: 10px; font-weight: 600;">${labels.caseStudy4Result}</p>
                     </div>
                   </td>
                 </tr>

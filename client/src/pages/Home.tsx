@@ -42,30 +42,48 @@ const stats = [
 
 const testimonials = [
   {
-    quote: "SkyStack transformed our digital presence completely. Their team delivered beyond expectations.",
-    quoteAr: "غير SkyStack حضورنا الرقمي بالكامل. فريقهم تجاوز توقعاتنا.",
-    author: "Mohammed Al-Saud",
-    authorAr: "محمد آل سعود",
-    role: "CTO, Leading Retail Company",
-    roleAr: "مدير التقنية، شركة تجزئة رائدة",
+    quote: "SkyStack built our entire developer platform from scratch. The code quality and architecture exceeded our expectations.",
+    quoteAr: "بنى سكاي ستاك منصة المطورين لدينا من الصفر. جودة الكود والبنية تجاوزت توقعاتنا.",
+    author: "",
+    authorAr: "",
+    role: "CTO, UniCodex",
+    roleAr: "المدير التقني، يوني كودكس",
     rating: 5
   },
   {
-    quote: "Professional, responsive, and truly understand enterprise requirements. Highly recommended.",
-    quoteAr: "محترفون ومتجاوبون ويفهمون متطلبات المؤسسات. أوصي بهم بشدة.",
-    author: "Sara Al-Rashid",
-    authorAr: "سارة الراشد",
-    role: "Digital Director, Healthcare Group",
-    roleAr: "مديرة رقمية، مجموعة رعاية صحية",
+    quote: "Their AI integration expertise transformed our educational platform. Student engagement increased by 150%.",
+    quoteAr: "خبرتهم في تكامل الذكاء الاصطناعي حولت منصتنا التعليمية. زادت مشاركة الطلاب بنسبة 150%.",
+    author: "",
+    authorAr: "",
+    role: "CEO, ilmyst",
+    roleAr: "الرئيس التنفيذي، إلمست",
     rating: 5
   },
   {
-    quote: "The dedicated team model saved us 60% on development costs while maintaining quality.",
-    quoteAr: "وفر نموذج الفريق المخصص 60% من تكاليف التطوير مع الحفاظ على الجودة.",
-    author: "Khalid Al-Otaibi",
-    authorAr: "خالد العتيبي",
-    role: "CEO, Fintech Startup",
-    roleAr: "الرئيس التنفيذي، شركة تقنية مالية",
+    quote: "SkyStack delivered our AI-powered analytics dashboard in record time. A true technology partner.",
+    quoteAr: "سلم سكاي ستاك لوحة التحليلات المدعومة بالذكاء الاصطناعي في وقت قياسي. شريك تقني حقيقي.",
+    author: "",
+    authorAr: "",
+    role: "CTO, SparkAI",
+    roleAr: "المدير التقني، سبارك إيه آي",
+    rating: 5
+  },
+  {
+    quote: "The cybersecurity portal they built handles millions of threat assessments daily. Exceptional work.",
+    quoteAr: "بوابة الأمن السيبراني التي بنوها تتعامل مع ملايين تقييمات التهديدات يومياً. عمل استثنائي.",
+    author: "",
+    authorAr: "",
+    role: "CEO, BlueHat Solutions",
+    roleAr: "الرئيس التنفيذي، بلو هات سوليوشنز",
+    rating: 5
+  },
+  {
+    quote: "Our booking platform now processes 10x more reservations. SkyStack modernized our entire tech stack.",
+    quoteAr: "منصة الحجز لدينا الآن تعالج 10 أضعاف الحجوزات. حدث سكاي ستاك مجموعة التقنيات لدينا بالكامل.",
+    author: "",
+    authorAr: "",
+    role: "COO, Thuraya Travel",
+    roleAr: "مدير العمليات، ثريا للسفر",
     rating: 5
   }
 ];
@@ -98,34 +116,54 @@ const transformationItems = [
 
 const caseStudies = [
   {
-    title: "E-Commerce Platform",
-    titleAr: "منصة تجارة إلكترونية",
-    client: "Major Retail Chain",
-    clientAr: "سلسلة تجزئة كبرى",
-    result: "300% increase in online sales",
-    resultAr: "زيادة 300% في المبيعات",
-    category: "Retail",
-    categoryAr: "تجزئة"
+    title: "Developer Collaboration Platform",
+    titleAr: "منصة تعاون المطورين",
+    client: "UniCodex",
+    clientAr: "يوني كودكس",
+    result: "50K+ developers onboarded",
+    resultAr: "50 ألف+ مطور مسجل",
+    category: "Technology",
+    categoryAr: "تقنية"
   },
   {
-    title: "Banking Mobile App",
-    titleAr: "تطبيق بنكي",
-    client: "Regional Bank",
-    clientAr: "بنك إقليمي",
-    result: "1M+ active users",
-    resultAr: "مليون+ مستخدم نشط",
-    category: "Finance",
-    categoryAr: "مالية"
+    title: "AI-Powered Learning Platform",
+    titleAr: "منصة تعلم بالذكاء الاصطناعي",
+    client: "ilmyst",
+    clientAr: "إلمست",
+    result: "150% increase in engagement",
+    resultAr: "زيادة 150% في المشاركة",
+    category: "EdTech",
+    categoryAr: "تقنية تعليمية"
   },
   {
-    title: "Healthcare Portal",
-    titleAr: "بوابة صحية",
-    client: "Hospital Network",
-    clientAr: "شبكة مستشفيات",
-    result: "50% reduction in wait times",
-    resultAr: "تقليل 50% في أوقات الانتظار",
-    category: "Healthcare",
-    categoryAr: "رعاية صحية"
+    title: "Enterprise Analytics Dashboard",
+    titleAr: "لوحة تحليلات المؤسسات",
+    client: "SparkAI",
+    clientAr: "سبارك إيه آي",
+    result: "Real-time insights for 100+ clients",
+    resultAr: "رؤى فورية لـ 100+ عميل",
+    category: "AI/Analytics",
+    categoryAr: "ذكاء اصطناعي"
+  },
+  {
+    title: "Cybersecurity Threat Portal",
+    titleAr: "بوابة تهديدات الأمن السيبراني",
+    client: "BlueHat Solutions",
+    clientAr: "بلو هات سوليوشنز",
+    result: "1M+ daily threat assessments",
+    resultAr: "مليون+ تقييم تهديد يومياً",
+    category: "Cybersecurity",
+    categoryAr: "أمن سيبراني"
+  },
+  {
+    title: "Travel Booking System",
+    titleAr: "نظام حجز السفر",
+    client: "Thuraya Travel",
+    clientAr: "ثريا للسفر",
+    result: "10x booking capacity increase",
+    resultAr: "زيادة 10 أضعاف في سعة الحجز",
+    category: "Travel",
+    categoryAr: "سياحة"
   }
 ];
 
@@ -667,10 +705,7 @@ export default function Home() {
                     "{language === "ar" ? testimonial.quoteAr : testimonial.quote}"
                   </p>
                   <div className="pt-6 border-t border-white/10">
-                    <div className="font-bold text-white" data-testid={`text-testimonial-author-${i}`}>
-                      {language === "ar" ? testimonial.authorAr : testimonial.author}
-                    </div>
-                    <div className="text-sm text-slate-400" data-testid={`text-testimonial-role-${i}`}>
+                    <div className="font-bold text-white" data-testid={`text-testimonial-role-${i}`}>
                       {language === "ar" ? testimonial.roleAr : testimonial.role}
                     </div>
                   </div>
