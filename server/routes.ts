@@ -185,5 +185,26 @@ export async function registerRoutes(
     }
   });
 
+  // Language selection notification
+  app.post("/api/language-selected", async (req, res) => {
+    try {
+      const { language } = req.body;
+      const languageDisplay = language === "ar" ? "Arabic (العربية)" : "English";
+      
+      await sendToSlack(
+        "New Visitor Language Selection",
+        [
+          { type: "mrkdwn", text: `*Language Selected:*\n${languageDisplay}` },
+          { type: "mrkdwn", text: `*User Agent:*\n${req.headers["user-agent"]?.slice(0, 100) || "Unknown"}` }
+        ]
+      );
+      
+      res.status(200).json({ success: true });
+    } catch (error) {
+      console.error("Language notification error:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   return httpServer;
 }

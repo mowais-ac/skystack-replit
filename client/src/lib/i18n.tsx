@@ -268,7 +268,7 @@ function LanguageSelectionModal({
   onSelect 
 }: { 
   open: boolean; 
-  onSelect: (lang: Language) => void;
+  onSelect: (lang: Language, isFirstVisit: boolean) => void;
 }) {
   return (
     <Dialog open={open}>
@@ -292,7 +292,7 @@ function LanguageSelectionModal({
               variant="outline"
               size="lg"
               className="h-24 flex-col gap-2 border-2 hover:border-primary hover:bg-primary/5"
-              onClick={() => onSelect("en")}
+              onClick={() => onSelect("en", true)}
               data-testid="button-select-english"
             >
               <span className="text-2xl">🇬🇧</span>
@@ -303,7 +303,7 @@ function LanguageSelectionModal({
               variant="outline"
               size="lg"
               className="h-24 flex-col gap-2 border-2 hover:border-primary hover:bg-primary/5"
-              onClick={() => onSelect("ar")}
+              onClick={() => onSelect("ar", true)}
               data-testid="button-select-arabic"
             >
               <span className="text-2xl">🇸🇦</span>
@@ -333,11 +333,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setInitialized(true);
   }, []);
 
-  const setLanguage = (lang: Language) => {
+  const setLanguage = (lang: Language, isFirstVisit: boolean = false) => {
     setLanguageState(lang);
     localStorage.setItem("language", lang);
     localStorage.setItem("hasVisited", "true");
     setShowSelector(false);
+    
+    if (isFirstVisit) {
+      fetch("/api/language-selected", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ language: lang })
+      }).catch(console.error);
+    }
   };
 
   useEffect(() => {
