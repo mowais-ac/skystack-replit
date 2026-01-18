@@ -1,4 +1,7 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Globe } from "lucide-react";
 
 export type Language = "en" | "ar";
 
@@ -260,17 +263,81 @@ const translations: Record<Language, Record<string, string>> = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+function LanguageSelectionModal({ 
+  open, 
+  onSelect 
+}: { 
+  open: boolean; 
+  onSelect: (lang: Language) => void;
+}) {
+  return (
+    <Dialog open={open}>
+      <DialogContent className="sm:max-w-md p-0 overflow-hidden border-0" data-testid="modal-language-selection">
+        <div className="bg-gradient-to-br from-primary to-blue-700 p-8 text-center">
+          <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Globe className="w-8 h-8 text-white" />
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">Welcome to SkyStack</h2>
+          <p className="text-blue-100">أهلاً بك في سكاي ستاك</p>
+        </div>
+        
+        <div className="p-8">
+          <p className="text-center text-slate-600 mb-6">
+            Please select your preferred language<br />
+            <span className="text-slate-500">يرجى اختيار لغتك المفضلة</span>
+          </p>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-24 flex-col gap-2 border-2 hover:border-primary hover:bg-primary/5"
+              onClick={() => onSelect("en")}
+              data-testid="button-select-english"
+            >
+              <span className="text-2xl">🇬🇧</span>
+              <span className="font-semibold">English</span>
+            </Button>
+            
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-24 flex-col gap-2 border-2 hover:border-primary hover:bg-primary/5"
+              onClick={() => onSelect("ar")}
+              data-testid="button-select-arabic"
+            >
+              <span className="text-2xl">🇸🇦</span>
+              <span className="font-semibold">العربية</span>
+            </Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => {
-    if (typeof window !== "undefined") {
-      return (localStorage.getItem("language") as Language) || "ar";
+  const [language, setLanguageState] = useState<Language>("en");
+  const [showSelector, setShowSelector] = useState(false);
+  const [initialized, setInitialized] = useState(false);
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem("language") as Language | null;
+    const hasVisited = localStorage.getItem("hasVisited");
+    
+    if (savedLang) {
+      setLanguageState(savedLang);
+    } else if (!hasVisited) {
+      setShowSelector(true);
     }
-    return "ar";
-  });
+    setInitialized(true);
+  }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem("language", lang);
+    localStorage.setItem("hasVisited", "true");
+    setShowSelector(false);
   };
 
   useEffect(() => {
@@ -287,8 +354,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const dir = language === "ar" ? "rtl" : "ltr";
 
+  if (!initialized) {
+    return null;
+  }
+
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t, dir }}>
+      <LanguageSelectionModal open={showSelector} onSelect={setLanguage} />
       {children}
     </LanguageContext.Provider>
   );
