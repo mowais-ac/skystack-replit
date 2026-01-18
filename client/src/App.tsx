@@ -37,6 +37,7 @@ function Router() {
       <Route path="/services">
         <ServicesList type="service" />
       </Route>
+      <Route path="/services/outsourcing" component={Outsourcing} />
       <Route path="/services/:slug">
         <DynamicPage type="service" />
       </Route>
@@ -61,8 +62,6 @@ function Router() {
       <Route path="/terms-condition">
         <StaticContent type="terms" />
       </Route>
-      
-      <Route path="/services/outsourcing" component={Outsourcing} />
       
       <Route path="/email-templates" component={EmailTemplates} />
 
