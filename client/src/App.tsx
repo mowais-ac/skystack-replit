@@ -62,7 +62,7 @@ function Router() {
         <StaticContent type="terms" />
       </Route>
       
-      <Route path="/outsourcing" component={Outsourcing} />
+      <Route path="/services/outsourcing" component={Outsourcing} />
       
       <Route path="/email-templates" component={EmailTemplates} />
 

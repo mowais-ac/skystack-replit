@@ -47,7 +47,7 @@ export function Footer() {
               <li><Link href="/services" className="hover:text-primary transition-colors" data-testid="link-footer-services">{t("nav.services")}</Link></li>
               <li><Link href="/pre-built-apps" className="hover:text-primary transition-colors" data-testid="link-footer-prebuilt">{t("nav.preBuiltApps")}</Link></li>
               <li><Link href="/business-models" className="hover:text-primary transition-colors" data-testid="link-footer-business">{t("nav.businessModels")}</Link></li>
-              <li><Link href="/outsourcing" className="hover:text-primary transition-colors" data-testid="link-footer-outsourcing">{language === "ar" ? "التعهيد" : "Outsourcing"}</Link></li>
+              <li><Link href="/services/outsourcing" className="hover:text-primary transition-colors" data-testid="link-footer-outsourcing">{language === "ar" ? "التعهيد" : "Outsourcing"}</Link></li>
               <li><Link href="/contact-us" className="hover:text-primary transition-colors" data-testid="link-footer-contact">{t("nav.contact")}</Link></li>
             </ul>
           </div>

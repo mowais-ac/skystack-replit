@@ -467,7 +467,7 @@ export default function Pricing() {
                   {language === "ar" ? "تواصل معنا" : "Contact Us"} <ArrowRight className="w-5 h-5" />
                 </button>
               </Link>
-              <Link href="/outsourcing">
+              <Link href="/services/outsourcing">
                 <button className="bg-transparent border-2 border-white/30 text-white px-10 py-4 rounded-md font-bold text-lg hover:bg-white/10 transition-colors">
                   {language === "ar" ? "خدمات التعهيد" : "Outsourcing Services"}
                 </button>

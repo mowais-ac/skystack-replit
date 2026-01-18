@@ -464,7 +464,7 @@ export default function Outsourcing() {
         descriptionAr="وفر حتى 70% مع فرق تقنية عالمية المستوى من باكستان وجنوب آسيا. ابنِ فرق تطوير مخصصة عالية الأداء بتكلفة أقل بكثير."
         keywords="IT outsourcing, dedicated teams, software outsourcing, offshore development, tech talent, Saudi Arabia outsourcing"
         keywordsAr="التعهيد التقني، فرق مخصصة، تعهيد البرمجيات، تطوير خارجي، مواهب تقنية، التعهيد السعودي"
-        canonicalUrl="/outsourcing"
+        canonicalUrl="/services/outsourcing"
       />
       <Navigation />
       

@@ -308,7 +308,7 @@ export default function Home() {
                       {language === "ar" ? "اعرف المزيد عنا" : "Learn More About Us"}
                     </button>
                   </Link>
-                  <Link href="/outsourcing">
+                  <Link href="/services/outsourcing">
                     <button className="btn-outline" data-testid="button-outsourcing-cta">
                       {language === "ar" ? "خدمات التعهيد" : "Outsourcing Services"}
                     </button>
@@ -410,7 +410,7 @@ export default function Home() {
                     : "Access top-tier tech talent from Pakistan and South Asia at a fraction of the cost."}
                 </p>
               </div>
-              <Link href="/outsourcing">
+              <Link href="/services/outsourcing">
                 <button className="bg-white text-primary px-8 py-4 rounded-md font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all shrink-0 inline-flex items-center gap-2" data-testid="button-outsourcing-banner">
                   {language === "ar" ? "اكتشف المزيد" : "Learn More"} <ArrowRight className="w-5 h-5" />
                 </button>
