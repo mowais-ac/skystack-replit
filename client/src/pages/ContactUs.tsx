@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { useLanguage } from "@/lib/i18n";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
+import { trackLeadFormSubmission } from "@/lib/analytics";
 
 export default function ContactUs() {
   const { language, t } = useLanguage();
@@ -27,6 +28,14 @@ export default function ContactUs() {
   });
 
   const onSubmit = (data: InsertContactSubmission) => {
+    trackLeadFormSubmission("contact_form", {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      company: data.company || "",
+      message_length: data.message?.length || 0,
+      language
+    });
     mutation.mutate(data, {
       onSuccess: () => form.reset(),
     });

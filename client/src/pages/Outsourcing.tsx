@@ -13,6 +13,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { SEO } from "@/components/SEO";
+import { trackLeadFormSubmission } from "@/lib/analytics";
 
 const roleCategories = [
   {
@@ -261,6 +262,18 @@ function OutsourcingForm({ language }: { language: string }) {
       roleId,
       quantity
     }));
+    
+    trackLeadFormSubmission("outsourcing_form", {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      company: data.company,
+      timeline: data.timeline,
+      total_headcount: totalHeadcount,
+      roles_selected: selectedRoles.map(r => r.roleId).join(","),
+      language
+    });
+    
     mutation.mutate({ ...data, selectedRoles });
   };
 

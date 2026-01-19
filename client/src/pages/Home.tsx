@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { trackLeadFormSubmission } from "@/lib/analytics";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -180,6 +181,17 @@ export default function Home() {
 
   const handleLeadSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    trackLeadFormSubmission("home_lead_form", {
+      name: leadForm.name,
+      email: leadForm.email,
+      phone: leadForm.phone,
+      company: leadForm.company,
+      industry: leadForm.industry,
+      challenge_length: leadForm.challenge?.length || 0,
+      language
+    });
+    
     const message = `New Lead:\nName: ${leadForm.name}\nEmail: ${leadForm.email}\nPhone: ${leadForm.phone}\nCompany: ${leadForm.company}\nIndustry: ${leadForm.industry}\nChallenge: ${leadForm.challenge}`;
     window.open(`https://wa.me/966537430455?text=${encodeURIComponent(message)}`, '_blank');
   };

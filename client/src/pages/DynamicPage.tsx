@@ -16,6 +16,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { SEO } from "@/components/SEO";
+import { trackLeadFormSubmission } from "@/lib/analytics";
 
 interface DynamicPageProps {
   type: "service" | "businessModel";
@@ -70,6 +71,17 @@ function ServiceInquiryForm({ language, serviceName }: { language: string; servi
   });
 
   const onSubmit = (data: ServiceFormData) => {
+    trackLeadFormSubmission("service_inquiry_form", {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      company: data.company,
+      service_name: data.serviceName,
+      project_type: data.projectType,
+      budget: data.budget,
+      timeline: data.timeline,
+      language
+    });
     mutation.mutate(data);
   };
 
