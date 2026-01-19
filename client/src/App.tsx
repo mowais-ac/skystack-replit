@@ -7,6 +7,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "@/lib/i18n";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { initMixpanel } from "@/lib/analytics";
+
+initMixpanel();
 
 function ScrollToTop() {
   const [location] = useLocation();
