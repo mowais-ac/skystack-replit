@@ -960,6 +960,393 @@ function ServiceTemplateSection({ service }: { service: ServiceTemplate }) {
   );
 }
 
+// Brand Awareness Template Interface
+interface BrandAwarenessTemplate {
+  id: string;
+  title: string;
+  titleAr: string;
+  subtitle: string;
+  subtitleAr: string;
+  tagline: string;
+  taglineAr: string;
+  description: string;
+  descriptionAr: string;
+  mainContent: string;
+  mainContentAr: string;
+  highlights: string[];
+  highlightsAr: string[];
+  ctaText: string;
+  ctaTextAr: string;
+  ctaLink?: string;
+  stat1?: { value: string; label: string; labelAr: string };
+  stat2?: { value: string; label: string; labelAr: string };
+  stat3?: { value: string; label: string; labelAr: string };
+}
+
+// Generate Brand Awareness Email Template
+const generateBrandAwarenessTemplate = (lang: 'en' | 'ar', content: {
+  title: string;
+  subtitle: string;
+  tagline: string;
+  description: string;
+  mainContent: string;
+  highlights: string[];
+  ctaText: string;
+  ctaLink?: string;
+  stat1?: { value: string; label: string };
+  stat2?: { value: string; label: string };
+  stat3?: { value: string; label: string };
+}) => {
+  const isRtl = lang === 'ar';
+  const dir = isRtl ? 'rtl' : 'ltr';
+  const align = isRtl ? 'right' : 'left';
+  const alignOpp = isRtl ? 'left' : 'right';
+  const fontFamily = isRtl ? "'Segoe UI', Tahoma, 'Arial', sans-serif" : "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+  
+  const labels = {
+    freeConsultation: isRtl ? 'استشارة مجانية' : 'Free Consultation',
+    readyToStart: isRtl ? 'مستعد للبدء؟' : 'Ready to Get Started?',
+    bookConsultation: isRtl ? 'احجز استشارة مجانية لمدة 30 دقيقة مع خبرائنا. سنحلل متطلباتك ونقدم لك عرضًا مفصلاً.' : 'Book a free 30-minute consultation with our experts. We\'ll analyze your requirements and provide a detailed proposal.',
+    whatsappUs: isRtl ? 'تواصل عبر واتساب' : 'WhatsApp Us Now',
+    orCall: isRtl ? 'أو اتصل بنا:' : 'Or call us:',
+    tagline: isRtl ? 'نساعد الشركات السعودية على بناء برمجيات أفضل' : 'Helping Saudi companies build better software',
+    riyadh: isRtl ? 'سكاي ستاك للتقنية | الرياض، المملكة العربية السعودية' : 'SkyStack Technology | Riyadh, Saudi Arabia',
+    whyChoose: isRtl ? 'لماذا سكاي ستاك' : 'Why SkyStack',
+    learnMore: isRtl ? 'اعرف المزيد' : 'Learn More',
+    visitWebsite: isRtl ? 'زيارة الموقع' : 'Visit Website',
+  };
+
+  const ctaUrl = content.ctaLink || WEBSITE_URL;
+
+  return `<!DOCTYPE html>
+<html lang="${lang}" dir="${dir}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>${content.tagline} - SkyStack</title>
+  <style>
+    @media only screen and (max-width: 620px) {
+      .email-container { width: 100% !important; max-width: 100% !important; }
+      .mobile-padding { padding: 16px 12px !important; }
+      .mobile-padding-header { padding: 12px 12px !important; }
+      .mobile-padding-hero { padding: 12px 12px 20px !important; }
+      .stat-cell { display: block !important; width: 100% !important; border-right: none !important; border-left: none !important; border-bottom: 1px solid rgba(255,255,255,0.2) !important; padding: 10px 16px !important; }
+      .stat-cell-last { border-bottom: none !important; }
+      .mobile-h1 { font-size: 20px !important; line-height: 1.3 !important; }
+      .mobile-h3 { font-size: 16px !important; }
+      .mobile-text { font-size: 14px !important; }
+      .mobile-text-sm { font-size: 12px !important; }
+      .logo-header { width: 120px !important; }
+      .logo-footer { width: 100px !important; }
+      .highlight-cell { display: block !important; width: 100% !important; padding: 6px 0 !important; text-align: center !important; }
+      .cta-button { padding: 12px 24px !important; font-size: 14px !important; }
+      .section-padding { padding: 20px 12px !important; }
+      .section-padding-sm { padding: 0 12px 20px !important; }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; font-family: ${fontFamily}; background-color: #f1f5f9; -webkit-font-smoothing: antialiased; direction: ${dir};">
+  <div style="display: none; max-height: 0; overflow: hidden;">${content.description}</div>
+  
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f1f5f9;">
+    <tr>
+      <td align="center" style="padding: 20px 12px;" class="mobile-padding">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" class="email-container" style="background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);">
+          
+          <!-- Hero Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%); padding: 0;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="padding: 16px 24px 12px;" class="mobile-padding-header">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td align="${align}">
+                          <img src="${LOGO_URL}" alt="SkyStack" width="200" class="logo-header" style="display: block; border: 0;" />
+                        </td>
+                        <td align="${alignOpp}">
+                          <span style="color: #34d399; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;" class="mobile-text-sm">${content.subtitle}</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 24px 28px; text-align: ${align};" class="mobile-padding-hero">
+                    <p style="margin: 0 0 8px; color: #34d399; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;" class="mobile-text-sm">${content.title}</p>
+                    <h1 style="margin: 0 0 12px; color: #ffffff; font-size: 26px; font-weight: 700; line-height: 1.3;" class="mobile-h1">${content.tagline}</h1>
+                    <p style="margin: 0 0 16px; color: #94a3b8; font-size: 15px; line-height: 1.6;" class="mobile-text">${content.description}</p>
+                    
+                    <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
+                      <tr>
+                        <td style="border-radius: 6px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); box-shadow: 0 4px 14px 0 rgba(0, 60, 255, 0.4);">
+                          <a href="${ctaUrl}" class="cta-button" style="display: inline-block; padding: 12px 28px; color: #ffffff; text-decoration: none; font-weight: 600; font-size: 14px;">${content.ctaText}</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          ${content.stat1 && content.stat2 && content.stat3 ? `<!-- Stats Bar -->
+          <tr>
+            <td style="background-color: #003cff; padding: 0;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="33.33%" class="stat-cell" style="padding: 14px 12px; text-align: center; border-${isRtl ? 'left' : 'right'}: 1px solid rgba(255,255,255,0.2);">
+                    <p style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700;">${content.stat1.value}</p>
+                    <p style="margin: 2px 0 0; color: rgba(255,255,255,0.8); font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">${content.stat1.label}</p>
+                  </td>
+                  <td width="33.33%" class="stat-cell" style="padding: 14px 12px; text-align: center; border-${isRtl ? 'left' : 'right'}: 1px solid rgba(255,255,255,0.2);">
+                    <p style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700;">${content.stat2.value}</p>
+                    <p style="margin: 2px 0 0; color: rgba(255,255,255,0.8); font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">${content.stat2.label}</p>
+                  </td>
+                  <td width="33.33%" class="stat-cell stat-cell-last" style="padding: 14px 12px; text-align: center;">
+                    <p style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700;">${content.stat3.value}</p>
+                    <p style="margin: 2px 0 0; color: rgba(255,255,255,0.8); font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">${content.stat3.label}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>` : ''}
+          
+          <!-- Main Content Section -->
+          <tr>
+            <td style="padding: 24px; text-align: ${align};" class="section-padding">
+              <div style="color: #374151; font-size: 15px; line-height: 1.8;" class="mobile-text">
+                ${content.mainContent.split('\n\n').map(p => `<p style="margin: 0 0 16px; color: #374151; font-size: 15px; line-height: 1.8;">${p}</p>`).join('')}
+              </div>
+            </td>
+          </tr>
+          
+          ${content.highlights && content.highlights.length > 0 ? `<!-- Highlights Section -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 24px;" class="section-padding">
+              <h3 style="margin: 0 0 14px; color: #0f172a; font-size: 16px; font-weight: 700; text-align: center;" class="mobile-h3">${labels.whyChoose}</h3>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                ${content.highlights.map((highlight, idx) => {
+                  const itemsPerRow = Math.min(3, content.highlights.length);
+                  const width = Math.floor(100 / itemsPerRow);
+                  const isLastInRow = (idx + 1) % itemsPerRow === 0;
+                  return `
+                  <td width="${width}%" class="highlight-cell" style="padding: 0 6px; text-align: center; vertical-align: top; ${!isLastInRow ? `border-${isRtl ? 'left' : 'right'}: 1px solid #e2e8f0;` : ''}">
+                    <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #003cff 0%, #0052ff 100%); border-radius: 8px; margin: 0 auto 8px; line-height: 36px; color: #ffffff; font-size: 16px;">&#9733;</div>
+                    <p style="margin: 0; color: #0f172a; font-weight: 600; font-size: 12px; line-height: 1.4;" class="mobile-text">${highlight}</p>
+                  </td>`;
+                }).join('')}
+                </tr>
+              </table>
+            </td>
+          </tr>` : ''}
+          
+          <!-- CTA Section -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #020617 0%, #0f172a 100%); padding: 28px 24px;" class="section-padding">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="text-align: center;">
+                    <p style="margin: 0 0 4px; color: #34d399; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">${labels.freeConsultation}</p>
+                    <h3 style="margin: 0 0 8px; color: #ffffff; font-size: 20px; font-weight: 700;" class="mobile-h1">${labels.readyToStart}</h3>
+                    <p style="margin: 0 0 16px; color: #94a3b8; font-size: 13px; line-height: 1.5;" class="mobile-text">${labels.bookConsultation}</p>
+                    
+                    <table role="presentation" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
+                      <tr>
+                        <td style="border-radius: 6px; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); box-shadow: 0 4px 14px 0 rgba(52, 211, 153, 0.4);">
+                          <a href="${WHATSAPP_LINK}" class="cta-button" style="display: inline-block; padding: 12px 28px; color: #0f172a; text-decoration: none; font-weight: 700; font-size: 14px;">${labels.whatsappUs}</a>
+                        </td>
+                      </tr>
+                    </table>
+                    <p style="margin: 12px 0 0; color: #64748b; font-size: 11px;">${labels.orCall} <a href="tel:+966537430455" style="color: #34d399; text-decoration: none;">+966 53 743 0455</a></p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #020617; padding: 20px 24px;" class="section-padding">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="text-align: center; padding-bottom: 12px; border-bottom: 1px solid #1e293b;">
+                    <img src="${LOGO_URL}" alt="SkyStack" width="120" class="logo-footer" style="display: inline-block; border: 0;" />
+                    <p style="margin: 6px 0 0; color: #64748b; font-size: 11px;" class="mobile-text-sm">${labels.tagline}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top: 12px; text-align: center;">
+                    <p style="margin: 0 0 4px; color: #94a3b8; font-size: 11px;" class="mobile-text-sm">
+                      <a href="${WHATSAPP_LINK}" style="color: #34d399; text-decoration: none; font-weight: 600;">+966 53 743 0455</a> &nbsp;|&nbsp;
+                      <a href="mailto:info@skystack.sa" style="color: #94a3b8; text-decoration: none;">info@skystack.sa</a>
+                    </p>
+                    <p style="margin: 6px 0 0; color: #475569; font-size: 10px;">
+                      ${labels.riyadh}<br>
+                      <a href="${WEBSITE_URL}" style="color: #475569; text-decoration: none;">skystack.sa</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+};
+
+// Brand Awareness Templates
+const brandAwarenessTemplates: BrandAwarenessTemplate[] = [
+  {
+    id: "welcome-intro",
+    title: "Welcome to SkyStack",
+    titleAr: "مرحباً بك في سكاي ستاك",
+    subtitle: "Brand Awareness",
+    subtitleAr: "الوعي بالعلامة التجارية",
+    tagline: "Your Trusted Technology Partner in Saudi Arabia",
+    taglineAr: "شريكك الموثوق في التقنية في المملكة العربية السعودية",
+    description: "We help Saudi companies build better software. From mobile apps to enterprise platforms, we deliver technology solutions that drive real business results.",
+    descriptionAr: "نساعد الشركات السعودية على بناء برمجيات أفضل. من تطبيقات الجوال إلى المنصات المؤسسية، نقدم حلول تقنية تحقق نتائج أعمال حقيقية.",
+    mainContent: "Welcome to SkyStack!\n\nWe're thrilled to have you join our community of innovative Saudi companies transforming their businesses through technology.\n\nAt SkyStack, we believe that every Saudi business deserves world-class software solutions. Whether you're a startup looking to launch your first app, or an enterprise seeking to modernize your systems, we're here to help you succeed.\n\nOur team of 150+ experienced engineers brings years of expertise in cutting-edge technologies, from React and Node.js to cloud infrastructure and AI-powered solutions. We've successfully delivered 150+ projects, helping companies across industries reduce costs, increase efficiency, and achieve their digital transformation goals.\n\nWhat makes us different? We're not just developers—we're your strategic technology partners. We take the time to understand your business, your challenges, and your vision, then build solutions that truly make a difference.",
+    mainContentAr: "مرحباً بك في سكاي ستاك!\n\nنحن متحمسون لانضمامك إلى مجتمعنا من الشركات السعودية المبتكرة التي تحول أعمالها من خلال التقنية.\n\nفي سكاي ستاك، نؤمن أن كل شركة سعودية تستحق حلول برمجيات عالمية المستوى. سواء كنت شركة ناشئة تبحث عن إطلاق تطبيقك الأول، أو مؤسسة تسعى لتحديث أنظمتك، نحن هنا لمساعدتك على النجاح.\n\nفريقنا المكون من أكثر من 150 مهندساً خبيراً يجلب سنوات من الخبرة في أحدث التقنيات، من React و Node.js إلى البنية التحتية السحابية والحلول المدعومة بالذكاء الاصطناعي. لقد أنجزنا بنجاح أكثر من 150 مشروعاً، مما ساعد الشركات عبر الصناعات على تقليل التكاليف وزيادة الكفاءة وتحقيق أهداف التحول الرقمي.\n\nما الذي يميزنا؟ نحن لسنا مجرد مطورين—نحن شركاؤك الاستراتيجيون في التقنية. نأخذ الوقت لفهم أعمالك وتحدياتك ورؤيتك، ثم نبني حلولاً تحدث فرقاً حقيقياً.",
+    highlights: ["150+ Projects Delivered", "50+ Enterprise Clients", "8+ Years Experience"],
+    highlightsAr: ["150+ مشروع منجز", "50+ عميل مؤسسي", "8+ سنوات خبرة"],
+    ctaText: "Explore Our Services",
+    ctaTextAr: "اكتشف خدماتنا",
+    ctaLink: WEBSITE_URL + "/services",
+    stat1: { value: "150+", label: "Projects", labelAr: "مشروع" },
+    stat2: { value: "50+", label: "Clients", labelAr: "عميل" },
+    stat3: { value: "8+", label: "Years", labelAr: "سنة" }
+  },
+  {
+    id: "company-story",
+    title: "Our Story & Values",
+    titleAr: "قصتنا وقيمنا",
+    subtitle: "Brand Awareness",
+    subtitleAr: "الوعي بالعلامة التجارية",
+    tagline: "Building the Future of Software in Saudi Arabia",
+    taglineAr: "بناء مستقبل البرمجيات في المملكة العربية السعودية",
+    description: "Learn about SkyStack's mission, vision, and commitment to helping Saudi businesses thrive in the digital age.",
+    descriptionAr: "تعرف على مهمة ورؤية والتزام سكاي ستاك بمساعدة الشركات السعودية على الازدهار في العصر الرقمي.",
+    mainContent: "Our Story\n\nFounded in 2016, SkyStack began with a simple mission: to help Saudi companies build better software. We saw that many businesses were struggling with outdated technology, high development costs, and lack of local expertise. We decided to change that.\n\nOur Vision\n\nWe envision a future where every Saudi business has access to world-class software solutions that drive growth, efficiency, and innovation. We're building a technology ecosystem that empowers Saudi companies to compete globally while staying true to local values and culture.\n\nOur Values\n\n• Excellence: We never settle for good enough. Every line of code, every design decision, every project is executed with precision and care.\n• Integrity: We build trust through transparency, honesty, and delivering on our promises.\n• Innovation: We stay ahead of the curve, continuously learning and adopting the latest technologies to solve complex business challenges.\n• Partnership: We don't just build software—we build lasting relationships. Your success is our success.\n• Local Focus: We understand the Saudi market, culture, and business landscape like no one else.\n\nToday, SkyStack is proud to be one of the leading software development companies in Saudi Arabia, trusted by enterprises, startups, and government organizations alike.",
+    mainContentAr: "قصتنا\n\nتأسست سكاي ستاك في عام 2016 بمهمة بسيطة: مساعدة الشركات السعودية على بناء برمجيات أفضل. رأينا أن العديد من الشركات تكافح مع التقنيات القديمة وتكاليف التطوير العالية ونقص الخبرة المحلية. قررنا تغيير ذلك.\n\nرؤيتنا\n\nنتخيل مستقبلاً حيث يكون لكل شركة سعودية إمكانية الوصول إلى حلول برمجيات عالمية المستوى تحفز النمو والكفاءة والابتكار. نحن نبني نظاماً بيئياً تقنياً يمكّن الشركات السعودية من المنافسة عالمياً مع البقاء مخلصين للقيم والثقافة المحلية.\n\nقيمنا\n\n• التميز: لا نرضى أبداً بما هو جيد بما فيه الكفاية. كل سطر كود، كل قرار تصميم، كل مشروع يُنفذ بدقة وعناية.\n• النزاهة: نبني الثقة من خلال الشفافية والأمانة والوفاء بوعودنا.\n• الابتكار: نظل في المقدمة، نتعلم باستمرار ونتبنى أحدث التقنيات لحل تحديات الأعمال المعقدة.\n• الشراكة: لا نبني البرمجيات فقط—نبني علاقات دائمة. نجاحك هو نجاحنا.\n• التركيز المحلي: نفهم السوق السعودي والثقافة ومشهد الأعمال مثل لا أحد آخر.\n\nاليوم، تفخر سكاي ستاك بأن تكون واحدة من الشركات الرائدة في تطوير البرمجيات في المملكة العربية السعودية، موثوقة من قبل المؤسسات والشركات الناشئة والمنظمات الحكومية على حد سواء.",
+    highlights: ["Excellence First", "Trusted Partner", "Local Expertise"],
+    highlightsAr: ["التميز أولاً", "شريك موثوق", "خبرة محلية"],
+    ctaText: "Learn More About Us",
+    ctaTextAr: "اعرف المزيد عنا",
+    ctaLink: WEBSITE_URL + "/about-us"
+  },
+  {
+    id: "industry-insights",
+    title: "Industry Insights",
+    titleAr: "رؤى الصناعة",
+    subtitle: "Brand Awareness",
+    subtitleAr: "الوعي بالعلامة التجارية",
+    tagline: "Stay Ahead with Latest Technology Trends",
+    taglineAr: "ابقَ في المقدمة مع أحدث اتجاهات التقنية",
+    description: "Discover key insights and trends shaping the future of software development in Saudi Arabia and beyond.",
+    descriptionAr: "اكتشف الرؤى والاتجاهات الرئيسية التي تشكل مستقبل تطوير البرمجيات في المملكة العربية السعودية وخارجها.",
+    mainContent: "The Digital Transformation Landscape in Saudi Arabia\n\nSaudi Arabia is experiencing unprecedented digital transformation. Vision 2030 has accelerated the adoption of technology across all sectors, creating massive opportunities for businesses willing to innovate.\n\nKey Trends We're Seeing:\n\n1. Cloud-First Strategy\nMost enterprises are migrating to cloud infrastructure, reducing costs by up to 40% while improving scalability and security.\n\n2. AI and Machine Learning\nSaudi companies are increasingly leveraging AI for process automation, customer insights, and predictive analytics.\n\n3. Mobile-First Approach\nWith smartphone penetration at 98%, businesses that prioritize mobile experiences see 2-3x higher engagement rates.\n\n4. API-Driven Architecture\nMicroservices and API-first development enable faster time-to-market and easier system integration.\n\n5. Cybersecurity Focus\nAs digital adoption grows, investing in robust security measures is no longer optional—it's essential.\n\nWhat This Means for Your Business\n\nThese trends aren't just buzzwords—they represent real opportunities to transform your operations, reduce costs, and deliver better customer experiences. The companies that act now will have a significant competitive advantage.\n\nAt SkyStack, we help businesses navigate these trends and implement the right technologies at the right time. Our team stays current with industry developments so you don't have to.",
+    mainContentAr: "مشهد التحول الرقمي في المملكة العربية السعودية\n\nتشهد المملكة العربية السعودية تحولاً رقمياً غير مسبوق. رؤية 2030 تسارعت اعتماد التقنية عبر جميع القطاعات، مما يخلق فرصاً ضخمة للشركات الراغبة في الابتكار.\n\nالاتجاهات الرئيسية التي نراها:\n\n1. استراتيجية السحابة أولاً\nمعظم المؤسسات تهاجر إلى البنية التحتية السحابية، مما يقلل التكاليف بنسبة تصل إلى 40% مع تحسين قابلية التوسع والأمان.\n\n2. الذكاء الاصطناعي والتعلم الآلي\nتستفيد الشركات السعودية بشكل متزايد من الذكاء الاصطناعي لأتمتة العمليات ورؤى العملاء والتحليلات التنبؤية.\n\n3. نهج الجوال أولاً\nمع انتشار الهواتف الذكية بنسبة 98%، الشركات التي تعطي أولوية لتجارب الجوال ترى معدلات تفاعل أعلى بمقدار 2-3 مرات.\n\n4. البنية المدعومة بواجهات برمجية\nالخدمات المصغرة والتطوير الذي يعطي أولوية للواجهات البرمجية يتيحان وقتاً أسرع للوصول للسوق وتكامل أسهل للأنظمة.\n\n5. التركيز على الأمن السيبراني\nمع نمو الاعتماد الرقمي، الاستثمار في تدابير أمنية قوية لم يعد اختيارياً—إنه أساسي.\n\nماذا يعني هذا لأعمالك\n\nهذه الاتجاهات ليست مجرد كلمات طنانة—إنها تمثل فرصاً حقيقية لتحويل عملياتك وتقليل التكاليف وتقديم تجارب عملاء أفضل. الشركات التي تعمل الآن ستحصل على ميزة تنافسية كبيرة.\n\nفي سكاي ستاك، نساعد الشركات على التنقل في هذه الاتجاهات وتنفيذ التقنيات المناسبة في الوقت المناسب. فريقنا يبقى على اطلاع بالتطورات الصناعية حتى لا تضطر أنت.",
+    highlights: ["Cloud Migration", "AI Integration", "Mobile Optimization"],
+    highlightsAr: ["الهجرة السحابية", "تكامل الذكاء الاصطناعي", "تحسين الجوال"],
+    ctaText: "Get Technology Consultation",
+    ctaTextAr: "احصل على استشارة تقنية",
+    ctaLink: WEBSITE_URL + "/services/technology-consulting-services"
+  },
+  {
+    id: "educational-resource",
+    title: "Free Resources & Guides",
+    titleAr: "موارد ودلائل مجانية",
+    subtitle: "Brand Awareness",
+    subtitleAr: "الوعي بالعلامة التجارية",
+    tagline: "Expert Knowledge to Help You Succeed",
+    taglineAr: "معرفة خبيرة لمساعدتك على النجاح",
+    description: "Access our library of free guides, best practices, and expert insights to accelerate your digital transformation journey.",
+    descriptionAr: "اطلع على مكتبتنا من الدلائل المجانية وأفضل الممارسات والرؤى الخبيرة لتسريع رحلة التحول الرقمي الخاصة بك.",
+    mainContent: "Empower Your Team with Expert Knowledge\n\nAt SkyStack, we believe in sharing knowledge. Over the years, we've helped hundreds of companies navigate complex technology decisions, and we want to make that expertise accessible to you.\n\nWhat You'll Get:\n\n📚 Comprehensive Guides\nStep-by-step guides covering everything from choosing the right tech stack to implementing DevOps best practices.\n\n💡 Best Practices\nLearn from our 150+ projects: proven methodologies, architecture patterns, and development workflows that actually work.\n\n🔍 Case Studies\nReal examples from real companies. See how others have successfully transformed their businesses.\n\n📊 Checklists & Templates\nPractical tools you can use immediately: architecture decision frameworks, project planning templates, and security audit checklists.\n\n🎓 Webinars & Workshops\nJoin our regular sessions where our experts share insights on the latest technologies and trends.\n\nPopular Resources:\n\n• The Complete Guide to Choosing Your Tech Stack\n• Mobile App Development: Native vs Cross-Platform\n• Cloud Migration Checklist for Saudi Businesses\n• API-First Architecture: A Practical Guide\n• Security Best Practices for Modern Web Apps\n\nAll our resources are designed with the Saudi market in mind, considering local regulations, cultural nuances, and business practices.",
+    mainContentAr: "مكن فريقك بالمعرفة الخبيرة\n\nفي سكاي ستاك، نؤمن بمشاركة المعرفة. على مر السنين، ساعدنا مئات الشركات على التنقل في قرارات التقنية المعقدة، ونريد أن نجعل هذه الخبرة متاحة لك.\n\nما ستحصل عليه:\n\n📚 دلائل شاملة\nدلائل خطوة بخطوة تغطي كل شيء من اختيار البنية التقنية المناسبة إلى تنفيذ أفضل ممارسات DevOps.\n\n💡 أفضل الممارسات\nتعلم من 150+ مشروعاً لدينا: منهجيات مُثبتة وأنماط معمارية وتدفقات عمل تطوير تعمل بالفعل.\n\n🔍 دراسات الحالة\nأمثلة حقيقية من شركات حقيقية. شاهد كيف نجح آخرون في تحويل أعمالهم.\n\n📊 قوائم التحقق والقوالب\nأدوات عملية يمكنك استخدامها فوراً: أطر قرارات البنية وقوالب تخطيط المشاريع وقوائم تدقيق الأمان.\n\n🎓 الندوات والدورات\nانضم إلى جلساتنا المنتظمة حيث يشارك خبراؤنا رؤى حول أحدث التقنيات والاتجاهات.\n\nالموارد الشائعة:\n\n• الدليل الكامل لاختيار البنية التقنية الخاصة بك\n• تطوير تطبيقات الجوال: الأصلية مقابل منصات متعددة\n• قائمة التحقق للهجرة السحابية للشركات السعودية\n• البنية التي تعطي أولوية لواجهات برمجية: دليل عملي\n• أفضل ممارسات الأمان لتطبيقات الويب الحديثة\n\nجميع مواردنا مصممة مع مراعاة السوق السعودي، مع الأخذ في الاعتبار اللوائح المحلية والفروقات الثقافية وممارسات الأعمال.",
+    highlights: ["Free Guides", "Expert Insights", "Practical Tools"],
+    highlightsAr: ["دلائل مجانية", "رؤى خبيرة", "أدوات عملية"],
+    ctaText: "Browse Resources",
+    ctaTextAr: "تصفح الموارد",
+    ctaLink: WEBSITE_URL
+  },
+  {
+    id: "newsletter-update",
+    title: "Monthly Newsletter",
+    titleAr: "النشرة الشهرية",
+    subtitle: "Brand Awareness",
+    subtitleAr: "الوعي بالعلامة التجارية",
+    tagline: "Stay Updated with SkyStack News & Insights",
+    taglineAr: "ابقَ على اطلاع بأخبار ورؤى سكاي ستاك",
+    description: "Your monthly digest of technology trends, company updates, and valuable insights to help your business grow.",
+    descriptionAr: "ملخصك الشهري لاتجاهات التقنية وتحديثات الشركة ورؤى قيمة لمساعدة عملك على النمو.",
+    mainContent: "Welcome to Our Monthly Newsletter\n\nThank you for staying connected with SkyStack! This month, we're excited to share some great updates and insights.\n\n📢 Company Updates\n\n• New Office Opening: We're expanding our presence in Riyadh with a new development center.\n• Team Growth: Welcomed 25 new engineers to our team across mobile, web, and cloud specializations.\n• New Service: Launching our AI/ML consulting practice to help businesses leverage artificial intelligence.\n\n💡 Industry Insights\n\nThis month, we've seen significant interest in:\n• Cloud migration projects (up 40% from last quarter)\n• Mobile app development for B2B platforms\n• AI-powered automation solutions\n• Cybersecurity assessments and implementations\n\n🎯 Success Story\n\nWe're proud to share that one of our clients, a leading retail chain, achieved a 60% reduction in operational costs after implementing our custom ERP solution. Read the full case study on our website.\n\n📚 Featured Resource\n\nThis month's featured guide: \"The Complete Guide to Mobile App Development in Saudi Arabia.\" Learn about market trends, user preferences, and best practices specifically tailored for the Saudi market. Download it for free on our website.\n\n🔮 What's Next\n\nKeep an eye out for our upcoming webinar on \"Digital Transformation Strategies for 2024\" featuring insights from industry leaders. Registration opens next week!",
+    mainContentAr: "مرحباً بك في نشرتنا الشهرية\n\nشكراً لبقائك متصلاً بسكاي ستاك! هذا الشهر، نحن متحمسون لمشاركة بعض التحديثات والرؤى الرائعة.\n\n📢 تحديثات الشركة\n\n• افتتاح مكتب جديد: نتوسع في الرياض بمركز تطوير جديد.\n• نمو الفريق: رحبنا بـ 25 مهندساً جديداً لفريقنا عبر تخصصات الجوال والويب والسحابة.\n• خدمة جديدة: إطلاق ممارسة الاستشارات في الذكاء الاصطناعي/التعلم الآلي لمساعدة الشركات على الاستفادة من الذكاء الاصطناعي.\n\n💡 رؤى الصناعة\n\nهذا الشهر، رأينا اهتماماً كبيراً في:\n• مشاريع الهجرة السحابية (زيادة 40% من الربع الأخير)\n• تطوير تطبيقات الجوال لمنصات B2B\n• حلول الأتمتة المدعومة بالذكاء الاصطناعي\n• تقييمات وتنفيذات الأمن السيبراني\n\n🎯 قصة نجاح\n\nنفخر بمشاركة أن أحد عملائنا، سلسلة بيع بالتجزئة رائدة، حققت تقليلاً بنسبة 60% في التكاليف التشغيلية بعد تنفيذ حل ERP المخصص لدينا. اقرأ دراسة الحالة الكاملة على موقعنا.\n\n📚 مورد مميز\n\nدليل هذا الشهر المميز: \"الدليل الكامل لتطوير تطبيقات الجوال في المملكة العربية السعودية.\" تعرف على اتجاهات السوق وتفضيلات المستخدمين وأفضل الممارسات المصممة خصيصاً للسوق السعودي. حمّله مجاناً على موقعنا.\n\n🔮 ما التالي\n\nاحترس من ندوتنا القادمة حول \"استراتيجيات التحول الرقمي لعام 2024\" والتي تضم رؤى من قادة الصناعة. التسجيل يفتح الأسبوع القادم!",
+    highlights: ["Latest Updates", "Industry Trends", "Free Resources"],
+    highlightsAr: ["أحدث التحديثات", "اتجاهات الصناعة", "موارد مجانية"],
+    ctaText: "Visit Our Website",
+    ctaTextAr: "زيارة موقعنا",
+    ctaLink: WEBSITE_URL,
+    stat1: { value: "150+", label: "Projects", labelAr: "مشروع" },
+    stat2: { value: "50+", label: "Clients", labelAr: "عميل" },
+    stat3: { value: "8+", label: "Years", labelAr: "سنة" }
+  }
+];
+
+// Brand Awareness Template Section Component
+function BrandAwarenessTemplateSection({ template }: { template: BrandAwarenessTemplate }) {
+  const [selectedLang, setSelectedLang] = useState<'en' | 'ar'>('en');
+  
+  const enContent = {
+    title: template.title,
+    subtitle: template.subtitle,
+    tagline: template.tagline,
+    description: template.description,
+    mainContent: template.mainContent,
+    highlights: template.highlights,
+    ctaText: template.ctaText,
+    ctaLink: template.ctaLink,
+    stat1: template.stat1 ? { value: template.stat1.value, label: template.stat1.label } : undefined,
+    stat2: template.stat2 ? { value: template.stat2.value, label: template.stat2.label } : undefined,
+    stat3: template.stat3 ? { value: template.stat3.value, label: template.stat3.label } : undefined,
+  };
+  
+  const arContent = {
+    title: template.titleAr,
+    subtitle: template.subtitleAr,
+    tagline: template.taglineAr,
+    description: template.descriptionAr,
+    mainContent: template.mainContentAr,
+    highlights: template.highlightsAr,
+    ctaText: template.ctaTextAr,
+    ctaLink: template.ctaLink,
+    stat1: template.stat1 ? { value: template.stat1.value, label: template.stat1.labelAr } : undefined,
+    stat2: template.stat2 ? { value: template.stat2.value, label: template.stat2.labelAr } : undefined,
+    stat3: template.stat3 ? { value: template.stat3.value, label: template.stat3.labelAr } : undefined,
+  };
+
+  const currentContent = selectedLang === 'en' ? enContent : arContent;
+  const currentTitle = selectedLang === 'en' ? template.title : template.titleAr;
+
+  return (
+    <div className="max-w-[800px] mx-auto">
+      <TemplateBlock
+        title={currentTitle}
+        html={generateBrandAwarenessTemplate(selectedLang, currentContent)}
+        lang={selectedLang}
+        onLanguageToggle={() => setSelectedLang(selectedLang === 'en' ? 'ar' : 'en')}
+      />
+    </div>
+  );
+}
+
 // Categorize templates
 const templateCategories = {
   services: {
@@ -982,6 +1369,11 @@ const templateCategories = {
     templates: serviceTemplates.filter(t => 
       ["outsourcing", "offshore"].includes(t.id)
     )
+  },
+  "brand-awareness": {
+    label: "Brand Awareness",
+    description: "Top-of-funnel marketing templates for brand recognition and engagement",
+    templates: brandAwarenessTemplates
   }
 };
 
@@ -1052,14 +1444,20 @@ export default function EmailTemplates() {
                       data-testid={`tab-${template.id}`}
                       className="px-4 data-[state=active]:bg-slate-800 data-[state=active]:text-white"
                     >
-                      {template.title}
+                      {key === "brand-awareness" 
+                        ? (template as BrandAwarenessTemplate).title 
+                        : (template as ServiceTemplate).title}
                     </TabsTrigger>
                   ))}
                 </TabsList>
 
                 {category.templates.map((template) => (
                   <TabsContent key={template.id} value={template.id}>
-                    <ServiceTemplateSection service={template} />
+                    {key === "brand-awareness" ? (
+                      <BrandAwarenessTemplateSection template={template as BrandAwarenessTemplate} />
+                    ) : (
+                      <ServiceTemplateSection service={template as ServiceTemplate} />
+                    )}
                   </TabsContent>
                 ))}
               </Tabs>
