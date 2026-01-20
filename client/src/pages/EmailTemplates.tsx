@@ -10,6 +10,13 @@ const LOGO_URL = "https://www.skystack.sa/logo-white-circle.png";
 const WHATSAPP_LINK = "https://wa.me/966537430455";
 const WEBSITE_URL = "https://skystack.sa";
 
+interface EmailSubjectLine {
+  subject: string;
+  subjectAr: string;
+  preview: string;
+  previewAr: string;
+}
+
 interface ServiceTemplate {
   id: string;
   title: string;
@@ -35,6 +42,7 @@ interface ServiceTemplate {
   stat1: { value: string; label: string; labelAr: string };
   stat2: { value: string; label: string; labelAr: string };
   stat3: { value: string; label: string; labelAr: string };
+  subjectLines: EmailSubjectLine[];
 }
 
 const generateEmailTemplate = (lang: 'en' | 'ar', content: {
@@ -505,7 +513,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "احصل على تقييم فريقك المجاني",
     stat1: { value: "150+", label: "Engineers Available", labelAr: "مهندس متاح" },
     stat2: { value: "48hrs", label: "Deployment Time", labelAr: "وقت النشر" },
-    stat3: { value: "60%", label: "Cost Savings", labelAr: "توفير في التكاليف" }
+    stat3: { value: "60%", label: "Cost Savings", labelAr: "توفير في التكاليف" },
+    subjectLines: [
+      {
+        subject: "Reduce Your Development Costs by 60% - Ready in 48 Hours",
+        subjectAr: "خفّض تكاليف التطوير بنسبة 60% - جاهز خلال 48 ساعة",
+        preview: "Access pre-vetted Saudi developers. Same timezone, enterprise-grade quality.",
+        previewAr: "احصل على مطورين سعوديين معتمدين. نفس المنطقة الزمنية، جودة مؤسسية."
+      },
+      {
+        subject: "Stop Paying SAR 50K/Month for Developers - Here's How",
+        subjectAr: "توقف عن دفع 50 ألف ريال شهرياً للمطورين - إليك كيف",
+        preview: "Get senior engineers at 60% less cost. Deploy within 48 hours.",
+        previewAr: "احصل على مهندسين خبراء بتكلفة أقل 60%. نشر خلال 48 ساعة."
+      },
+      {
+        subject: "Your Next Developer Could Be Ready in 48 Hours",
+        subjectAr: "مطورك القادم يمكن أن يكون جاهزاً خلال 48 ساعة",
+        preview: "Skip the 6-month hiring process. Access 150+ pre-vetted engineers now.",
+        previewAr: "تخطى عملية التوظيف التي تستغرق 6 أشهر. احصل على 150+ مهندس معتمد الآن."
+      },
+      {
+        subject: "Why Saudi Companies Are Switching to Staff Augmentation",
+        subjectAr: "لماذا تتحول الشركات السعودية إلى تعزيز الكوادر",
+        preview: "Save 60% on development costs while scaling your team instantly.",
+        previewAr: "وفر 60% من تكاليف التطوير بينما توسع فريقك فوراً."
+      },
+      {
+        subject: "The Hidden Cost of Hiring Local Developers (And How to Avoid It)",
+        subjectAr: "التكلفة الخفية لتوظيف المطورين المحليين (وكيفية تجنبها)",
+        preview: "Discover how staff augmentation saves time and money for Saudi businesses.",
+        previewAr: "اكتشف كيف يوفر تعزيز الكوادر الوقت والمال للشركات السعودية."
+      },
+      {
+        subject: "150+ Senior Engineers Ready to Join Your Team",
+        subjectAr: "150+ مهندس خبير جاهز للانضمام لفريقك",
+        preview: "Same timezone, seamless integration, full IP protection. Start in 48 hours.",
+        previewAr: "نفس المنطقة الزمنية، تكامل سلس، حماية كاملة للملكية الفكرية. ابدأ خلال 48 ساعة."
+      },
+      {
+        subject: "Cut Your Development Budget Without Cutting Quality",
+        subjectAr: "قلل ميزانية التطوير دون تقليل الجودة",
+        preview: "Enterprise-grade developers at 60% less cost. See how it works.",
+        previewAr: "مطورون على مستوى المؤسسات بتكلفة أقل 60%. شاهد كيف يعمل."
+      },
+      {
+        subject: "The 48-Hour Solution to Your Developer Shortage",
+        subjectAr: "الحل خلال 48 ساعة لنقص المطورين لديك",
+        preview: "No more 6-month hiring cycles. Get senior engineers deployed in 2 days.",
+        previewAr: "لا مزيد من دورات التوظيف التي تستغرق 6 أشهر. احصل على مهندسين خبراء خلال يومين."
+      },
+      {
+        subject: "How We Helped a Saudi Company Save SAR 300K/Year on Development",
+        subjectAr: "كيف ساعدنا شركة سعودية على توفير 300 ألف ريال سنوياً في التطوير",
+        preview: "Real results from staff augmentation. Read the case study.",
+        previewAr: "نتائج حقيقية من تعزيز الكوادر. اقرأ دراسة الحالة."
+      },
+      {
+        subject: "Your Competitors Are Scaling Faster - Here's Their Secret",
+        subjectAr: "منافسوك يتوسعون أسرع - هذا سرهم",
+        preview: "Staff augmentation is helping Saudi companies move 10x faster. Learn how.",
+        previewAr: "تعزيز الكوادر يساعد الشركات السعودية على التحرك أسرع 10 مرات. تعلم كيف."
+      }
+    ]
   },
   {
     id: "all-services",
@@ -531,7 +601,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "احجز استشارة مجانية",
     stat1: { value: "150+", label: "Projects Delivered", labelAr: "مشروع منجز" },
     stat2: { value: "50+", label: "Enterprise Clients", labelAr: "عميل مؤسسي" },
-    stat3: { value: "8+", label: "Years Experience", labelAr: "سنوات خبرة" }
+    stat3: { value: "8+", label: "Years Experience", labelAr: "سنوات خبرة" },
+    subjectLines: [
+      {
+        subject: "Transform Your Business with Custom Software Solutions",
+        subjectAr: "حوّل أعمالك بحلول برمجية مخصصة",
+        preview: "From mobile apps to enterprise platforms - we deliver technology that drives real results.",
+        previewAr: "من تطبيقات الجوال إلى المنصات المؤسسية - نقدم تقنية تحقق نتائج حقيقية."
+      },
+      {
+        subject: "150+ Projects Delivered: How We Help Saudi Companies Succeed",
+        subjectAr: "150+ مشروع منجز: كيف نساعد الشركات السعودية على النجاح",
+        preview: "Enterprise-grade software development. See our proven track record.",
+        previewAr: "تطوير برمجيات على مستوى المؤسسات. شاهد سجلنا المُثبت."
+      },
+      {
+        subject: "Stop Struggling with Legacy Systems - Modernize Now",
+        subjectAr: "توقف عن المعاناة مع الأنظمة القديمة - حدّث الآن",
+        preview: "We help Saudi companies build and modernize business software that scales.",
+        previewAr: "نساعد الشركات السعودية على بناء وتحديث برمجيات الأعمال القابلة للتوسع."
+      },
+      {
+        subject: "The Complete Guide to Software Development in Saudi Arabia",
+        subjectAr: "الدليل الكامل لتطوير البرمجيات في المملكة العربية السعودية",
+        preview: "Everything you need to know about building software for your business.",
+        previewAr: "كل ما تحتاج معرفته عن بناء البرمجيات لأعمالك."
+      },
+      {
+        subject: "Why 50+ Enterprise Clients Trust SkyStack for Their Software",
+        subjectAr: "لماذا يثق 50+ عميل مؤسسي بسكاي ستاك لبرمجياتهم",
+        preview: "8+ years of experience delivering world-class software solutions.",
+        previewAr: "8+ سنوات من الخبرة في تقديم حلول برمجيات عالمية المستوى."
+      },
+      {
+        subject: "From Idea to Launch: Your Software Development Partner",
+        subjectAr: "من الفكرة إلى الإطلاق: شريكك في تطوير البرمجيات",
+        preview: "End-to-end software solutions tailored to your business needs.",
+        previewAr: "حلول برمجية شاملة مصممة لاحتياجات أعمالك."
+      },
+      {
+        subject: "How to Choose the Right Software Development Partner",
+        subjectAr: "كيفية اختيار شريك تطوير البرمجيات المناسب",
+        preview: "Key factors to consider when building software for your Saudi business.",
+        previewAr: "عوامل رئيسية يجب مراعاتها عند بناء البرمجيات لعملك السعودي."
+      },
+      {
+        subject: "The Real Cost of Building Software In-House vs Outsourcing",
+        subjectAr: "التكلفة الحقيقية لبناء البرمجيات داخلياً مقابل الاستعانة بمصادر خارجية",
+        preview: "A detailed comparison to help you make the right decision.",
+        previewAr: "مقارنة مفصلة لمساعدتك على اتخاذ القرار الصحيح."
+      },
+      {
+        subject: "5 Signs Your Business Needs Custom Software Development",
+        subjectAr: "5 علامات تشير إلى أن عملك يحتاج تطوير برمجيات مخصصة",
+        preview: "Is it time to modernize your technology stack? Find out here.",
+        previewAr: "هل حان الوقت لتحديث البنية التقنية لديك؟ اكتشف هنا."
+      },
+      {
+        subject: "Success Story: How We Helped a Saudi Company Scale 10x",
+        subjectAr: "قصة نجاح: كيف ساعدنا شركة سعودية على التوسع 10 مرات",
+        preview: "Real results from our software development approach. Read the case study.",
+        previewAr: "نتائج حقيقية من نهجنا في تطوير البرمجيات. اقرأ دراسة الحالة."
+      }
+    ]
   },
   {
     id: "mobile-app",
@@ -557,7 +689,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "احصل على تقدير مجاني للتطبيق",
     stat1: { value: "12 Wks", label: "Avg Launch Time", labelAr: "متوسط وقت الإطلاق" },
     stat2: { value: "50+", label: "Apps Delivered", labelAr: "تطبيق تم تسليمه" },
-    stat3: { value: "4.8", label: "App Store Rating", labelAr: "تقييم المتجر" }
+    stat3: { value: "4.8", label: "App Store Rating", labelAr: "تقييم المتجر" },
+    subjectLines: [
+      {
+        subject: "Launch Your Mobile App in 12 Weeks - Here's How",
+        subjectAr: "أطلق تطبيقك الجوال في 12 أسبوع - إليك كيف",
+        preview: "Native iOS and Android apps with cross-platform efficiency. 50+ apps delivered.",
+        previewAr: "تطبيقات iOS و Android أصلية بكفاءة منصات متعددة. 50+ تطبيق تم تسليمه."
+      },
+      {
+        subject: "Your Customers Expect Mobile Apps - Are You Ready?",
+        subjectAr: "عملاؤك يتوقعون تطبيقات جوال - هل أنت جاهز؟",
+        preview: "Build high-performance mobile applications that your customers love.",
+        previewAr: "ابنِ تطبيقات جوال عالية الأداء يحبها عملاؤك."
+      },
+      {
+        subject: "Native vs Cross-Platform: Which Mobile Strategy is Right for You?",
+        subjectAr: "الأصلي مقابل منصات متعددة: أي استراتيجية جوال مناسبة لك؟",
+        preview: "Expert guidance on choosing the right mobile development approach.",
+        previewAr: "إرشادات خبيرة حول اختيار نهج تطوير الجوال المناسب."
+      },
+      {
+        subject: "How to Build a Mobile App That Gets 4.8 Stars",
+        subjectAr: "كيف تبني تطبيق جوال يحصل على 4.8 نجمة",
+        preview: "Learn from our 50+ successful app launches. Get the blueprint.",
+        previewAr: "تعلم من 50+ إطلاق تطبيق ناجح. احصل على المخطط."
+      },
+      {
+        subject: "The Complete Mobile App Development Guide for Saudi Businesses",
+        subjectAr: "دليل تطوير تطبيقات الجوال الكامل للشركات السعودية",
+        preview: "Everything you need to know about building mobile apps in Saudi Arabia.",
+        previewAr: "كل ما تحتاج معرفته عن بناء تطبيقات الجوال في المملكة العربية السعودية."
+      },
+      {
+        subject: "Why Your Business Needs a Mobile App in 2024",
+        subjectAr: "لماذا يحتاج عملك تطبيق جوال في 2024",
+        preview: "98% smartphone penetration in Saudi Arabia. Don't miss the opportunity.",
+        previewAr: "98% انتشار الهواتف الذكية في المملكة. لا تفوت الفرصة."
+      },
+      {
+        subject: "From Concept to App Store: Your 12-Week Roadmap",
+        subjectAr: "من المفهوم إلى متجر التطبيقات: خارطة طريقك لـ 12 أسبوع",
+        preview: "Step-by-step guide to launching your mobile app successfully.",
+        previewAr: "دليل خطوة بخطوة لإطلاق تطبيقك الجوال بنجاح."
+      },
+      {
+        subject: "Mobile App Development: What It Really Costs (And How to Save)",
+        subjectAr: "تطوير تطبيقات الجوال: التكلفة الحقيقية (وكيفية التوفير)",
+        preview: "Breakdown of mobile app development costs and how to optimize your budget.",
+        previewAr: "تفصيل تكاليف تطوير تطبيقات الجوال وكيفية تحسين ميزانيتك."
+      },
+      {
+        subject: "5 Mobile App Features That Drive User Engagement",
+        subjectAr: "5 ميزات تطبيق جوال تحفز تفاعل المستخدمين",
+        preview: "Learn which features make mobile apps successful in the Saudi market.",
+        previewAr: "تعلم الميزات التي تجعل تطبيقات الجوال ناجحة في السوق السعودي."
+      },
+      {
+        subject: "Case Study: How We Built a 4.8-Star App in 10 Weeks",
+        subjectAr: "دراسة حالة: كيف بنينا تطبيق 4.8 نجمة في 10 أسابيع",
+        preview: "Real example of successful mobile app development. Read the full story.",
+        previewAr: "مثال حقيقي لتطوير تطبيق جوال ناجح. اقرأ القصة الكاملة."
+      }
+    ]
   },
   {
     id: "web-dev",
@@ -583,7 +777,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "ابدأ مشروع الويب الخاص بك",
     stat1: { value: "99.9%", label: "Uptime", labelAr: "وقت التشغيل" },
     stat2: { value: "<2s", label: "Load Time", labelAr: "وقت التحميل" },
-    stat3: { value: "100+", label: "Web Apps Built", labelAr: "تطبيق ويب مبني" }
+    stat3: { value: "100+", label: "Web Apps Built", labelAr: "تطبيق ويب مبني" },
+    subjectLines: [
+      {
+        subject: "Modern Web Apps That Scale to Millions of Users",
+        subjectAr: "تطبيقات ويب حديثة تتوسع لملايين المستخدمين",
+        preview: "Enterprise-grade web applications with 99.9% uptime and <2s load time.",
+        previewAr: "تطبيقات ويب مؤسسية مع 99.9% وقت تشغيل و<2 ثانية وقت تحميل."
+      },
+      {
+        subject: "Is Your Website Losing Customers? Here's Why (And How to Fix It)",
+        subjectAr: "هل موقعك يفقد العملاء؟ إليك السبب (وكيفية إصلاحه)",
+        preview: "Slow websites cost businesses millions. Modernize your web platform now.",
+        previewAr: "المواقع البطيئة تكلف الشركات الملايين. حدّث منصة الويب الخاصة بك الآن."
+      },
+      {
+        subject: "The Complete Guide to Enterprise Web Development",
+        subjectAr: "الدليل الكامل لتطوير الويب المؤسسي",
+        preview: "Everything you need to know about building scalable web applications.",
+        previewAr: "كل ما تحتاج معرفته عن بناء تطبيقات ويب قابلة للتوسع."
+      },
+      {
+        subject: "100+ Web Apps Built: What We Learned About Success",
+        subjectAr: "100+ تطبيق ويب مبني: ما تعلمناه عن النجاح",
+        preview: "Key insights from building enterprise web applications for Saudi companies.",
+        previewAr: "رؤى رئيسية من بناء تطبيقات ويب مؤسسية للشركات السعودية."
+      },
+      {
+        subject: "Why 99.9% Uptime Matters for Your Business",
+        subjectAr: "لماذا 99.9% وقت تشغيل مهم لأعمالك",
+        preview: "Every minute of downtime costs money. Learn how to achieve maximum uptime.",
+        previewAr: "كل دقيقة من التوقف تكلف المال. تعلم كيفية تحقيق أقصى وقت تشغيل."
+      },
+      {
+        subject: "From Legacy Systems to Modern Web Apps: A Transformation Guide",
+        subjectAr: "من الأنظمة القديمة إلى تطبيقات الويب الحديثة: دليل التحول",
+        preview: "Step-by-step guide to modernizing your web infrastructure.",
+        previewAr: "دليل خطوة بخطوة لتحديث البنية التحتية للويب الخاصة بك."
+      },
+      {
+        subject: "Web Development Costs: What You Should Really Expect",
+        subjectAr: "تكاليف تطوير الويب: ما يجب أن تتوقعه حقاً",
+        preview: "Transparent breakdown of web development pricing and timelines.",
+        previewAr: "تفصيل شفاف لتسعير وجداول تطوير الويب."
+      },
+      {
+        subject: "5 Web Development Trends Shaping 2024",
+        subjectAr: "5 اتجاهات تطوير ويب تشكل 2024",
+        preview: "Stay ahead with the latest web development technologies and practices.",
+        previewAr: "ابقَ في المقدمة مع أحدث تقنيات وممارسات تطوير الويب."
+      },
+      {
+        subject: "Customer Portals That Actually Work: A Case Study",
+        subjectAr: "بوابات عملاء تعمل فعلاً: دراسة حالة",
+        preview: "How we built a customer portal that increased engagement by 300%.",
+        previewAr: "كيف بنينا بوابة عملاء زادت التفاعل بنسبة 300%."
+      },
+      {
+        subject: "The Secret to Building Web Apps That Load in Under 2 Seconds",
+        subjectAr: "سر بناء تطبيقات ويب تحمل في أقل من ثانيتين",
+        preview: "Performance optimization techniques that actually work. Learn our approach.",
+        previewAr: "تقنيات تحسين الأداء التي تعمل فعلاً. تعلم نهجنا."
+      }
+    ]
   },
   {
     id: "on-demand",
@@ -609,7 +865,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "أطلق منصتك",
     stat1: { value: "10 Wks", label: "To Launch", labelAr: "للإطلاق" },
     stat2: { value: "100K+", label: "Daily Orders", labelAr: "طلب يومي" },
-    stat3: { value: "15+", label: "Platforms Built", labelAr: "منصة مبنية" }
+    stat3: { value: "15+", label: "Platforms Built", labelAr: "منصة مبنية" },
+    subjectLines: [
+      {
+        subject: "Build Your Own Uber-Style Platform in 10 Weeks",
+        subjectAr: "ابنِ منصتك الخاصة على غرار أوبر في 10 أسابيع",
+        preview: "Complete on-demand platform with real-time GPS, AI dispatching, and multi-payment support.",
+        previewAr: "منصة حسب الطلب كاملة مع GPS فوري وتوزيع ذكي بالذكاء الاصطناعي ودعم مدفوعات متعددة."
+      },
+      {
+        subject: "The Complete Guide to Building On-Demand Service Platforms",
+        subjectAr: "الدليل الكامل لبناء منصات الخدمات حسب الطلب",
+        preview: "Learn how to build multi-sided marketplaces that scale to 100K+ daily orders.",
+        previewAr: "تعلم كيفية بناء أسواق متعددة الأطراف تتوسع لأكثر من 100 ألف طلب يومياً."
+      },
+      {
+        subject: "How We Built 15+ On-Demand Platforms (And What We Learned)",
+        subjectAr: "كيف بنينا 15+ منصة حسب الطلب (وما تعلمناه)",
+        preview: "Key insights from building Uber-like platforms for Saudi businesses.",
+        previewAr: "رؤى رئيسية من بناء منصات على غرار أوبر للشركات السعودية."
+      },
+      {
+        subject: "Real-Time GPS Tracking: The Secret to On-Demand Success",
+        subjectAr: "تتبع GPS فوري: سر نجاح الخدمات حسب الطلب",
+        preview: "Discover how intelligent logistics make or break on-demand platforms.",
+        previewAr: "اكتشف كيف تجعل اللوجستيات الذكية منصات حسب الطلب تنجح أو تفشل."
+      },
+      {
+        subject: "From Idea to Launch: Your 10-Week On-Demand Platform Roadmap",
+        subjectAr: "من الفكرة إلى الإطلاق: خارطة طريق منصتك حسب الطلب لـ 10 أسابيع",
+        preview: "Step-by-step guide to launching your on-demand service platform.",
+        previewAr: "دليل خطوة بخطوة لإطلاق منصة الخدمات حسب الطلب الخاصة بك."
+      },
+      {
+        subject: "Why On-Demand Platforms Are Booming in Saudi Arabia",
+        subjectAr: "لماذا تزدهر منصات حسب الطلب في المملكة العربية السعودية",
+        preview: "Market insights and opportunities in the Saudi on-demand economy.",
+        previewAr: "رؤى السوق والفرص في الاقتصاد السعودي حسب الطلب."
+      },
+      {
+        subject: "The Technology Stack Behind Successful On-Demand Platforms",
+        subjectAr: "البنية التقنية وراء منصات حسب الطلب الناجحة",
+        preview: "Learn which technologies power platforms that handle 100K+ orders daily.",
+        previewAr: "تعلم التقنيات التي تشغل المنصات التي تتعامل مع أكثر من 100 ألف طلب يومياً."
+      },
+      {
+        subject: "Case Study: How We Built a Food Delivery Platform in 8 Weeks",
+        subjectAr: "دراسة حالة: كيف بنينا منصة توصيل طعام في 8 أسابيع",
+        preview: "Real example of rapid on-demand platform development. Read the full story.",
+        previewAr: "مثال حقيقي لتطوير منصة حسب الطلب السريع. اقرأ القصة الكاملة."
+      },
+      {
+        subject: "Multi-Payment Processing: Essential for On-Demand Success",
+        subjectAr: "معالجة مدفوعات متعددة: ضرورية لنجاح الخدمات حسب الطلب",
+        preview: "Why supporting multiple payment methods is critical for on-demand platforms.",
+        previewAr: "لماذا دعم طرق دفع متعددة أمر بالغ الأهمية لمنصات حسب الطلب."
+      },
+      {
+        subject: "Scale Your On-Demand Platform to 100K+ Daily Orders",
+        subjectAr: "وسّع منصتك حسب الطلب لأكثر من 100 ألف طلب يومياً",
+        preview: "Architecture patterns and best practices for scaling on-demand services.",
+        previewAr: "أنماط البنية وأفضل الممارسات لتوسيع الخدمات حسب الطلب."
+      }
+    ]
   },
   {
     id: "clone-app",
@@ -635,7 +953,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "شاهد القوالب المتاحة",
     stat1: { value: "8 Wks", label: "To Launch", labelAr: "للإطلاق" },
     stat2: { value: "70%", label: "Cost Savings", labelAr: "توفير في التكاليف" },
-    stat3: { value: "20+", label: "Templates", labelAr: "قالب" }
+    stat3: { value: "20+", label: "Templates", labelAr: "قالب" },
+    subjectLines: [
+      {
+        subject: "Launch Your App 3X Faster with White-Label Solutions",
+        subjectAr: "أطلق تطبيقك أسرع 3 مرات بحلول وايت ليبل",
+        preview: "Production-ready templates. Save 70% on costs and launch in 8 weeks.",
+        previewAr: "قوالب جاهزة للإنتاج. وفر 70% من التكاليف وأطلق خلال 8 أسابيع."
+      },
+      {
+        subject: "Skip 12-18 Months of Development - Launch in 8 Weeks",
+        subjectAr: "تخطى 12-18 شهراً من التطوير - أطلق خلال 8 أسابيع",
+        preview: "Proven app templates that can be fully customized to match your brand.",
+        previewAr: "قوالب تطبيقات مُثبتة يمكن تخصيصها بالكامل لتناسب علامتك التجارية."
+      },
+      {
+        subject: "20+ Production-Ready App Templates Available Now",
+        subjectAr: "20+ قالب تطبيق جاهز للإنتاج متاح الآن",
+        preview: "From Uber clones to e-commerce platforms - find your perfect template.",
+        previewAr: "من استنساخ أوبر إلى منصات التجارة الإلكترونية - ابحث عن القالب المثالي."
+      },
+      {
+        subject: "The Real Cost of Building Apps from Scratch (And the Alternative)",
+        subjectAr: "التكلفة الحقيقية لبناء التطبيقات من الصفر (والبديل)",
+        preview: "Why white-label solutions save time and money without sacrificing quality.",
+        previewAr: "لماذا توفر حلول وايت ليبل الوقت والمال دون التضحية بالجودة."
+      },
+      {
+        subject: "How to Go to Market 3X Faster Than Your Competitors",
+        subjectAr: "كيف تذهب للسوق أسرع 3 مرات من منافسيك",
+        preview: "The secret weapon successful startups use to launch faster.",
+        previewAr: "السلاح السري الذي تستخدمه الشركات الناشئة الناجحة لإطلاق أسرع."
+      },
+      {
+        subject: "White-Label vs Custom Development: Which is Right for You?",
+        subjectAr: "وايت ليبل مقابل التطوير المخصص: أيهما مناسب لك؟",
+        preview: "A detailed comparison to help you make the right decision for your business.",
+        previewAr: "مقارنة مفصلة لمساعدتك على اتخاذ القرار الصحيح لأعمالك."
+      },
+      {
+        subject: "Case Study: How We Launched an App in 6 Weeks Using Templates",
+        subjectAr: "دراسة حالة: كيف أطلقنا تطبيقاً في 6 أسابيع باستخدام القوالب",
+        preview: "Real example of rapid app development. Read the full story.",
+        previewAr: "مثال حقيقي لتطوير تطبيق سريع. اقرأ القصة الكاملة."
+      },
+      {
+        subject: "Customize Your App Template: What's Possible?",
+        subjectAr: "خصص قالب تطبيقك: ما الممكن؟",
+        preview: "Learn how much you can customize white-label solutions to match your brand.",
+        previewAr: "تعلم كم يمكنك تخصيص حلول وايت ليبل لتناسب علامتك التجارية."
+      },
+      {
+        subject: "The Hidden Costs of Building Apps from Scratch",
+        subjectAr: "التكاليف الخفية لبناء التطبيقات من الصفر",
+        preview: "Beyond development: discover all the costs you might not be considering.",
+        previewAr: "بعد التطوير: اكتشف جميع التكاليف التي قد لا تفكر فيها."
+      },
+      {
+        subject: "From Template to Launch: Your 8-Week Roadmap",
+        subjectAr: "من القالب إلى الإطلاق: خارطة طريقك لـ 8 أسابيع",
+        preview: "Step-by-step guide to customizing and launching your white-label app.",
+        previewAr: "دليل خطوة بخطوة لتخصيص وإطلاق تطبيق وايت ليبل الخاص بك."
+      }
+    ]
   },
   {
     id: "ui-ux",
@@ -661,7 +1041,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "احجز مراجعة تصميم",
     stat1: { value: "40%+", label: "Conversion Lift", labelAr: "زيادة التحويلات" },
     stat2: { value: "200+", label: "Projects", labelAr: "مشروع" },
-    stat3: { value: "5 Days", label: "First Concepts", labelAr: "المفاهيم الأولى" }
+    stat3: { value: "5 Days", label: "First Concepts", labelAr: "المفاهيم الأولى" },
+    subjectLines: [
+      {
+        subject: "Increase Conversions by 40%+ with Better UI/UX Design",
+        subjectAr: "زد التحويلات بأكثر من 40% بتصميم UI/UX أفضل",
+        preview: "Research-backed design that converts visitors to customers. 200+ projects delivered.",
+        previewAr: "تصميم مدعوم بالبحث يحول الزوار إلى عملاء. 200+ مشروع منجز."
+      },
+      {
+        subject: "Is Poor UX Costing You Customers? Here's How to Fix It",
+        subjectAr: "هل تجربة المستخدم السيئة تكلفك العملاء؟ إليك كيفية إصلاحها",
+        preview: "High bounce rates and abandoned carts? Learn how good design solves these problems.",
+        previewAr: "معدلات ارتداد عالية وسلات متروكة؟ تعلم كيف يحل التصميم الجيد هذه المشاكل."
+      },
+      {
+        subject: "The Complete Guide to UI/UX Design for Saudi Businesses",
+        subjectAr: "الدليل الكامل لتصميم UI/UX للشركات السعودية",
+        preview: "Everything you need to know about creating designs that convert in the Saudi market.",
+        previewAr: "كل ما تحتاج معرفته عن إنشاء تصاميم تحول في السوق السعودي."
+      },
+      {
+        subject: "From Wireframe to Launch: Your 5-Day Design Process",
+        subjectAr: "من النموذج الأولي إلى الإطلاق: عملية التصميم الخاصة بك لـ 5 أيام",
+        preview: "See how we deliver pixel-perfect designs in just 5 days.",
+        previewAr: "شاهد كيف نقدم تصاميم دقيقة في 5 أيام فقط."
+      },
+      {
+        subject: "Why User Research Matters (And How to Do It Right)",
+        subjectAr: "لماذا يهم بحث المستخدم (وكيفية القيام به بشكل صحيح)",
+        preview: "Learn how understanding your users leads to better design decisions.",
+        previewAr: "تعلم كيف يؤدي فهم مستخدميك إلى قرارات تصميم أفضل."
+      },
+      {
+        subject: "Design Systems: The Secret to Consistent, Scalable Products",
+        subjectAr: "أنظمة التصميم: سر المنتجات المتسقة والقابلة للتوسع",
+        preview: "How design systems help teams build faster and maintain consistency.",
+        previewAr: "كيف تساعد أنظمة التصميم الفرق على البناء أسرع والحفاظ على الاتساق."
+      },
+      {
+        subject: "Accessibility in Design: Why WCAG Compliance Matters",
+        subjectAr: "إمكانية الوصول في التصميم: لماذا يهم الامتثال لـ WCAG",
+        preview: "Learn how accessible design expands your market and improves UX for everyone.",
+        previewAr: "تعلم كيف يوسع التصميم القابل للوصول سوقك ويحسن تجربة المستخدم للجميع."
+      },
+      {
+        subject: "Case Study: How Better Design Increased Sales by 300%",
+        subjectAr: "دراسة حالة: كيف زاد التصميم الأفضل المبيعات بنسبة 300%",
+        preview: "Real results from redesigning a Saudi e-commerce platform. Read the full story.",
+        previewAr: "نتائج حقيقية من إعادة تصميم منصة تجارة إلكترونية سعودية. اقرأ القصة الكاملة."
+      },
+      {
+        subject: "Mobile-First Design: Why It's Essential in 2024",
+        subjectAr: "التصميم الذي يعطي أولوية للجوال: لماذا هو ضروري في 2024",
+        preview: "With 98% smartphone penetration in Saudi Arabia, mobile-first is no longer optional.",
+        previewAr: "مع 98% انتشار الهواتف الذكية في المملكة، التصميم الذي يعطي أولوية للجوال لم يعد اختيارياً."
+      },
+      {
+        subject: "The ROI of Good Design: What 200+ Projects Taught Us",
+        subjectAr: "عائد الاستثمار من التصميم الجيد: ما تعلمناه من 200+ مشروع",
+        preview: "Key insights on how design impacts business metrics and user satisfaction.",
+        previewAr: "رؤى رئيسية حول كيف يؤثر التصميم على مقاييس الأعمال ورضا المستخدمين."
+      }
+    ]
   },
   {
     id: "consulting",
@@ -687,7 +1129,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "جدول مكالمة استراتيجية",
     stat1: { value: "50+", label: "Years Experience", labelAr: "سنة خبرة" },
     stat2: { value: "30+", label: "Enterprises", labelAr: "مؤسسة" },
-    stat3: { value: "SAR 10M+", label: "Savings Delivered", labelAr: "توفير محقق" }
+    stat3: { value: "SAR 10M+", label: "Savings Delivered", labelAr: "توفير محقق" },
+    subjectLines: [
+      {
+        subject: "Avoid Costly Tech Mistakes: Get Expert Technology Consulting",
+        subjectAr: "تجنب أخطاء تقنية مكلفة: احصل على استشارات تقنية خبيرة",
+        preview: "50+ years of combined experience. We've helped 30+ enterprises save SAR 10M+.",
+        previewAr: "50+ سنة خبرة مجتمعة. ساعدنا 30+ مؤسسة على توفير أكثر من 10 ملايين ريال."
+      },
+      {
+        subject: "The Technology Roadmap Your Business Needs in 2024",
+        subjectAr: "خارطة الطريق التقنية التي يحتاجها عملك في 2024",
+        preview: "Strategic guidance on technology decisions that align with your business goals.",
+        previewAr: "إرشادات استراتيجية حول قرارات التقنية التي تتماشى مع أهداف أعمالك."
+      },
+      {
+        subject: "How to Choose the Right Technology Stack (Without the Risk)",
+        subjectAr: "كيفية اختيار البنية التقنية المناسبة (بدون المخاطرة)",
+        preview: "Expert guidance on selecting technologies that scale with your business.",
+        previewAr: "إرشادات خبيرة حول اختيار التقنيات التي تتوسع مع أعمالك."
+      },
+      {
+        subject: "Digital Transformation: Where to Start?",
+        subjectAr: "التحول الرقمي: من أين تبدأ؟",
+        preview: "A practical guide to digital transformation for Saudi businesses.",
+        previewAr: "دليل عملي للتحول الرقمي للشركات السعودية."
+      },
+      {
+        subject: "The Real Cost of Wrong Technology Decisions",
+        subjectAr: "التكلفة الحقيقية لقرارات التقنية الخاطئة",
+        preview: "Learn how poor tech choices lead to wasted budgets and failed projects.",
+        previewAr: "تعلم كيف تؤدي خيارات التقنية السيئة لميزانيات ضائعة ومشاريع فاشلة."
+      },
+      {
+        subject: "Cloud Migration Strategy: A Step-by-Step Guide",
+        subjectAr: "استراتيجية الهجرة السحابية: دليل خطوة بخطوة",
+        preview: "Expert advice on migrating to the cloud safely and efficiently.",
+        previewAr: "نصائح خبيرة حول الهجرة إلى السحابة بأمان وكفاءة."
+      },
+      {
+        subject: "Vendor Evaluation: How to Choose the Right Tech Partner",
+        subjectAr: "تقييم الموردين: كيفية اختيار شريك التقنية المناسب",
+        preview: "Framework for evaluating and selecting technology vendors.",
+        previewAr: "إطار عمل لتقييم واختيار موردي التقنية."
+      },
+      {
+        subject: "Case Study: How We Saved a Company SAR 2M in Tech Costs",
+        subjectAr: "دراسة حالة: كيف وفرنا لشركة 2 مليون ريال في التكاليف التقنية",
+        preview: "Real example of strategic technology consulting. Read the full story.",
+        previewAr: "مثال حقيقي للاستشارات التقنية الاستراتيجية. اقرأ القصة الكاملة."
+      },
+      {
+        subject: "Building Internal Tech Capabilities: A Strategic Approach",
+        subjectAr: "بناء القدرات التقنية الداخلية: نهج استراتيجي",
+        preview: "Learn how to build and train internal teams for long-term success.",
+        previewAr: "تعلم كيفية بناء وتدريب الفرق الداخلية للنجاح طويل المدى."
+      },
+      {
+        subject: "Technology Audit: Is Your Current Stack Holding You Back?",
+        subjectAr: "تدقيق التقنية: هل البنية الحالية تعيقك؟",
+        preview: "Comprehensive assessment of your technology infrastructure and recommendations.",
+        previewAr: "تقييم شامل للبنية التحتية التقنية الخاصة بك والتوصيات."
+      }
+    ]
   },
   {
     id: "marketing",
@@ -713,7 +1217,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "احصل على مراجعة تسويقية مجانية",
     stat1: { value: "3X", label: "Avg ROI", labelAr: "متوسط عائد الاستثمار" },
     stat2: { value: "50+", label: "Campaigns", labelAr: "حملة" },
-    stat3: { value: "1M+", label: "Leads Generated", labelAr: "عميل محتمل" }
+    stat3: { value: "1M+", label: "Leads Generated", labelAr: "عميل محتمل" },
+    subjectLines: [
+      {
+        subject: "Stop Wasting Money on Ads That Don't Work",
+        subjectAr: "توقف عن إهدار المال على إعلانات لا تعمل",
+        preview: "Data-driven marketing that delivers 3X ROI. 50+ successful campaigns, 1M+ leads generated.",
+        previewAr: "تسويق مبني على البيانات يحقق 3 أضعاف عائد الاستثمار. 50+ حملة ناجحة، أكثر من مليون عميل محتمل."
+      },
+      {
+        subject: "Why Your Competitors Rank Higher on Google (And How to Beat Them)",
+        subjectAr: "لماذا يتصدر منافسوك جوجل (وكيفية التغلب عليهم)",
+        preview: "SEO strategies that actually work for Saudi businesses. Get your free audit.",
+        previewAr: "استراتيجيات SEO تعمل فعلاً للشركات السعودية. احصل على مراجعتك المجانية."
+      },
+      {
+        subject: "The Complete Digital Marketing Guide for Saudi Businesses",
+        subjectAr: "الدليل الكامل للتسويق الرقمي للشركات السعودية",
+        preview: "Everything you need to know about digital marketing in the Saudi market.",
+        previewAr: "كل ما تحتاج معرفته عن التسويق الرقمي في السوق السعودي."
+      },
+      {
+        subject: "How We Generated 1M+ Leads for Our Clients",
+        subjectAr: "كيف ولدنا أكثر من مليون عميل محتمل لعملائنا",
+        preview: "Proven strategies for lead generation that work in the Saudi market.",
+        previewAr: "استراتيجيات مُثبتة لتوليد العملاء المحتملين تعمل في السوق السعودي."
+      },
+      {
+        subject: "Marketing Automation: The Secret to Scaling Your Business",
+        subjectAr: "أتمتة التسويق: سر توسيع أعمالك",
+        preview: "Learn how automation helps you reach more customers with less effort.",
+        previewAr: "تعلم كيف تساعدك الأتمتة على الوصول لمزيد من العملاء بجهد أقل."
+      },
+      {
+        subject: "Social Media Marketing: What Works in Saudi Arabia",
+        subjectAr: "التسويق عبر وسائل التواصل: ما الذي يعمل في المملكة العربية السعودية",
+        preview: "Platform-specific strategies for engaging Saudi audiences effectively.",
+        previewAr: "استراتيجيات خاصة بالمنصة لإشراك الجماهير السعودية بفعالية."
+      },
+      {
+        subject: "Conversion Rate Optimization: Turn More Visitors into Customers",
+        subjectAr: "تحسين معدل التحويل: حوّل المزيد من الزوار إلى عملاء",
+        preview: "Data-driven techniques to improve your website's conversion rate.",
+        previewAr: "تقنيات مبنية على البيانات لتحسين معدل تحويل موقعك."
+      },
+      {
+        subject: "Case Study: How We Increased ROI by 300% for a Saudi Company",
+        subjectAr: "دراسة حالة: كيف زدنا عائد الاستثمار بنسبة 300% لشركة سعودية",
+        preview: "Real results from our digital marketing approach. Read the full story.",
+        previewAr: "نتائج حقيقية من نهجنا في التسويق الرقمي. اقرأ القصة الكاملة."
+      },
+      {
+        subject: "Google Ads vs Meta Ads: Which Should You Use?",
+        subjectAr: "إعلانات جوجل مقابل إعلانات ميتا: أيهما يجب أن تستخدم؟",
+        preview: "Expert guidance on choosing the right advertising platform for your business.",
+        previewAr: "إرشادات خبيرة حول اختيار منصة الإعلانات المناسبة لأعمالك."
+      },
+      {
+        subject: "Free Marketing Audit: Discover What's Holding You Back",
+        subjectAr: "مراجعة تسويقية مجانية: اكتشف ما يعيقك",
+        preview: "Get a comprehensive analysis of your current marketing efforts and recommendations.",
+        previewAr: "احصل على تحليل شامل لجهودك التسويقية الحالية والتوصيات."
+      }
+    ]
   },
   {
     id: "offshore",
@@ -739,7 +1305,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "ابنِ فريقك",
     stat1: { value: "60%", label: "Cost Savings", labelAr: "توفير في التكاليف" },
     stat2: { value: "150+", label: "Engineers", labelAr: "مهندس" },
-    stat3: { value: "48hrs", label: "To Deploy", labelAr: "للنشر" }
+    stat3: { value: "48hrs", label: "To Deploy", labelAr: "للنشر" },
+    subjectLines: [
+      {
+        subject: "Scale Your Development Team Without the Overhead",
+        subjectAr: "وسّع فريق التطوير الخاص بك بدون أعباء",
+        preview: "Dedicated offshore teams. Save 60% on costs, deploy in 48 hours.",
+        previewAr: "فرق خارجية متخصصة. وفر 60% من التكاليف، انشر خلال 48 ساعة."
+      },
+      {
+        subject: "The Offshore Development Model That Actually Works",
+        subjectAr: "نموذج التطوير الخارجي الذي يعمل فعلاً",
+        preview: "Learn how dedicated offshore teams integrate seamlessly with your organization.",
+        previewAr: "تعلم كيف تندمج الفرق الخارجية المتخصصة بسلاسة مع مؤسستك."
+      },
+      {
+        subject: "150+ Engineers Ready to Join Your Team",
+        subjectAr: "150+ مهندس جاهز للانضمام لفريقك",
+        preview: "Pre-vetted developers across all tech stacks. Same timezone, full IP protection.",
+        previewAr: "مطورون مُعتمدون عبر جميع البنى التقنية. نفس المنطقة الزمنية، حماية كاملة للملكية الفكرية."
+      },
+      {
+        subject: "Why Offshore Development Makes Sense for Saudi Companies",
+        subjectAr: "لماذا التطوير الخارجي منطقي للشركات السعودية",
+        preview: "Cost savings, faster deployment, and access to global talent pool.",
+        previewAr: "توفير في التكاليف، نشر أسرع، وإمكانية الوصول لمجموعة مواهب عالمية."
+      },
+      {
+        subject: "The Complete Guide to Offshore Development",
+        subjectAr: "الدليل الكامل للتطوير الخارجي",
+        preview: "Everything you need to know about working with offshore development teams.",
+        previewAr: "كل ما تحتاج معرفته عن العمل مع فرق التطوير الخارجية."
+      },
+      {
+        subject: "How to Manage Offshore Teams Effectively",
+        subjectAr: "كيفية إدارة الفرق الخارجية بفعالية",
+        preview: "Best practices for communication, collaboration, and project management.",
+        previewAr: "أفضل الممارسات للتواصل والتعاون وإدارة المشاريع."
+      },
+      {
+        subject: "Offshore vs Local: Which Development Model is Right for You?",
+        subjectAr: "الخارجي مقابل المحلي: أي نموذج تطوير مناسب لك؟",
+        preview: "A detailed comparison to help you make the right decision.",
+        previewAr: "مقارنة مفصلة لمساعدتك على اتخاذ القرار الصحيح."
+      },
+      {
+        subject: "Case Study: How Offshore Development Saved a Company SAR 500K",
+        subjectAr: "دراسة حالة: كيف وفر التطوير الخارجي لشركة 500 ألف ريال",
+        preview: "Real example of cost savings and efficiency gains. Read the full story.",
+        previewAr: "مثال حقيقي لتوفير التكاليف وزيادة الكفاءة. اقرأ القصة الكاملة."
+      },
+      {
+        subject: "IP Protection in Offshore Development: What You Need to Know",
+        subjectAr: "حماية الملكية الفكرية في التطوير الخارجي: ما تحتاج معرفته",
+        preview: "Learn how to protect your intellectual property when working with offshore teams.",
+        previewAr: "تعلم كيفية حماية ملكيتك الفكرية عند العمل مع فرق خارجية."
+      },
+      {
+        subject: "From Hiring to Deployment: Your 48-Hour Offshore Team Setup",
+        subjectAr: "من التوظيف إلى النشر: إعداد فريقك الخارجي خلال 48 ساعة",
+        preview: "See how quickly you can get started with dedicated offshore development teams.",
+        previewAr: "شاهد كيف يمكنك البدء بسرعة مع فرق التطوير الخارجية المتخصصة."
+      }
+    ]
   },
   {
     id: "food-delivery",
@@ -765,7 +1393,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "أطلق تطبيق التوصيل",
     stat1: { value: "8 Wks", label: "To Launch", labelAr: "للإطلاق" },
     stat2: { value: "10+", label: "Platforms Built", labelAr: "منصة مبنية" },
-    stat3: { value: "1M+", label: "Orders Processed", labelAr: "طلب معالج" }
+    stat3: { value: "1M+", label: "Orders Processed", labelAr: "طلب معالج" },
+    subjectLines: [
+      {
+        subject: "Launch Your Food Delivery App in 8 Weeks",
+        subjectAr: "أطلق تطبيق توصيل الطعام في 8 أسابيع",
+        preview: "Complete food delivery platform with 50+ features. 10+ platforms built, 1M+ orders processed.",
+        previewAr: "منصة توصيل طعام كاملة مع 50+ ميزة. 10+ منصات مبنية، أكثر من مليون طلب معالج."
+      },
+      {
+        subject: "The Complete Food Delivery Platform Guide",
+        subjectAr: "دليل منصة توصيل الطعام الكامل",
+        preview: "Everything you need to know about building a food delivery business in Saudi Arabia.",
+        previewAr: "كل ما تحتاج معرفته عن بناء أعمال توصيل الطعام في المملكة العربية السعودية."
+      },
+      {
+        subject: "How to Build a Food Delivery App That Actually Works",
+        subjectAr: "كيف تبني تطبيق توصيل طعام يعمل فعلاً",
+        preview: "Learn from 10+ successful food delivery platforms. Get the blueprint.",
+        previewAr: "تعلم من 10+ منصة توصيل طعام ناجحة. احصل على المخطط."
+      },
+      {
+        subject: "Food Delivery Market in Saudi Arabia: Opportunities & Challenges",
+        subjectAr: "سوق توصيل الطعام في المملكة: الفرص والتحديات",
+        preview: "Market insights and strategies for entering the food delivery space.",
+        previewAr: "رؤى السوق واستراتيجيات دخول مجال توصيل الطعام."
+      },
+      {
+        subject: "Real-Time GPS Tracking: Essential for Food Delivery Success",
+        subjectAr: "تتبع GPS فوري: ضروري لنجاح توصيل الطعام",
+        preview: "How intelligent logistics make or break food delivery platforms.",
+        previewAr: "كيف تجعل اللوجستيات الذكية منصات توصيل الطعام تنجح أو تفشل."
+      },
+      {
+        subject: "From Restaurant to Customer: Building the Complete Food Delivery Ecosystem",
+        subjectAr: "من المطعم إلى العميل: بناء نظام توصيل طعام كامل",
+        preview: "Learn how to connect customers, drivers, and restaurants seamlessly.",
+        previewAr: "تعلم كيفية ربط العملاء والسائقين والمطاعم بسلاسة."
+      },
+      {
+        subject: "Case Study: How We Built a Food Delivery Platform in 6 Weeks",
+        subjectAr: "دراسة حالة: كيف بنينا منصة توصيل طعام في 6 أسابيع",
+        preview: "Real example of rapid food delivery platform development. Read the full story.",
+        previewAr: "مثال حقيقي لتطوير منصة توصيل طعام سريع. اقرأ القصة الكاملة."
+      },
+      {
+        subject: "Payment Integration for Food Delivery: What You Need to Know",
+        subjectAr: "تكامل الدفع لتوصيل الطعام: ما تحتاج معرفته",
+        preview: "Learn how to integrate local payment gateways for Saudi food delivery platforms.",
+        previewAr: "تعلم كيفية دمج بوابات الدفع المحلية لمنصات توصيل الطعام السعودية."
+      },
+      {
+        subject: "Promo Codes & Loyalty Programs: Boost Your Food Delivery Business",
+        subjectAr: "أكواد ترويجية وبرامج ولاء: عزز أعمال توصيل الطعام الخاصة بك",
+        preview: "Strategies for customer retention and engagement in food delivery.",
+        previewAr: "استراتيجيات للاحتفاظ بالعملاء والتفاعل في توصيل الطعام."
+      },
+      {
+        subject: "Scale Your Food Delivery Platform to 1M+ Orders",
+        subjectAr: "وسّع منصة توصيل الطعام الخاصة بك لأكثر من مليون طلب",
+        preview: "Architecture patterns and best practices for scaling food delivery services.",
+        previewAr: "أنماط البنية وأفضل الممارسات لتوسيع خدمات توصيل الطعام."
+      }
+    ]
   },
   {
     id: "ecommerce",
@@ -791,7 +1481,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "ابنِ متجرك",
     stat1: { value: "SAR 50M+", label: "GMV Processed", labelAr: "حجم معاملات معالج" },
     stat2: { value: "25+", label: "Stores Built", labelAr: "متجر مبني" },
-    stat3: { value: "99.9%", label: "Uptime", labelAr: "وقت التشغيل" }
+    stat3: { value: "99.9%", label: "Uptime", labelAr: "وقت التشغيل" },
+    subjectLines: [
+      {
+        subject: "Build a Scalable E-Commerce Platform That Grows With You",
+        subjectAr: "ابنِ منصة تجارة إلكترونية قابلة للتوسع تنمو معك",
+        preview: "Custom e-commerce solutions. 25+ stores built, SAR 50M+ GMV processed, 99.9% uptime.",
+        previewAr: "حلول تجارة إلكترونية مخصصة. 25+ متجر مبني، أكثر من 50 مليون ريال حجم معاملات معالج، 99.9% وقت تشغيل."
+      },
+      {
+        subject: "Why Shopify Isn't Enough: When You Need Custom E-Commerce",
+        subjectAr: "لماذا شوبيفاي لا يكفي: متى تحتاج تجارة إلكترونية مخصصة",
+        preview: "Learn when off-the-shelf platforms fall short and custom solutions make sense.",
+        previewAr: "تعلم متى تفشل المنصات الجاهزة وتكون الحلول المخصصة منطقية."
+      },
+      {
+        subject: "Multi-Vendor Marketplaces: The Complete Guide",
+        subjectAr: "أسواق متعددة البائعين: الدليل الكامل",
+        preview: "Everything you need to know about building marketplaces like Amazon or Noon.",
+        previewAr: "كل ما تحتاج معرفته عن بناء أسواق مثل أمازون أو نون."
+      },
+      {
+        subject: "E-Commerce in Saudi Arabia: Market Trends & Opportunities",
+        subjectAr: "التجارة الإلكترونية في المملكة: اتجاهات السوق والفرص",
+        preview: "Insights into the growing Saudi e-commerce market and how to succeed.",
+        previewAr: "رؤى في السوق السعودي للتجارة الإلكترونية المتنامي وكيفية النجاح."
+      },
+      {
+        subject: "B2B E-Commerce: Building Wholesale Portals That Work",
+        subjectAr: "تجارة B2B الإلكترونية: بناء بوابات جملة تعمل",
+        preview: "Learn how to build e-commerce platforms for B2B transactions.",
+        previewAr: "تعلم كيفية بناء منصات تجارة إلكترونية لمعاملات B2B."
+      },
+      {
+        subject: "Inventory Management: The Backbone of Successful E-Commerce",
+        subjectAr: "إدارة المخزون: العمود الفقري للتجارة الإلكترونية الناجحة",
+        preview: "How proper inventory management systems drive e-commerce success.",
+        previewAr: "كيف تدفع أنظمة إدارة المخزون المناسبة نجاح التجارة الإلكترونية."
+      },
+      {
+        subject: "Payment Gateways for Saudi E-Commerce: What You Need to Know",
+        subjectAr: "بوابات الدفع للتجارة الإلكترونية السعودية: ما تحتاج معرفته",
+        preview: "Learn about local payment methods and how to integrate them.",
+        previewAr: "تعرف على طرق الدفع المحلية وكيفية دمجها."
+      },
+      {
+        subject: "Case Study: How We Built an E-Commerce Platform Processing SAR 10M Monthly",
+        subjectAr: "دراسة حالة: كيف بنينا منصة تجارة إلكترونية تعالج 10 ملايين ريال شهرياً",
+        preview: "Real example of successful e-commerce development. Read the full story.",
+        previewAr: "مثال حقيقي لتطوير تجارة إلكترونية ناجح. اقرأ القصة الكاملة."
+      },
+      {
+        subject: "Subscription Commerce: The Future of E-Commerce",
+        subjectAr: "التجارة بالاشتراك: مستقبل التجارة الإلكترونية",
+        preview: "Learn how subscription models are transforming e-commerce in Saudi Arabia.",
+        previewAr: "تعلم كيف تحول نماذج الاشتراك التجارة الإلكترونية في المملكة."
+      },
+      {
+        subject: "E-Commerce Analytics: Make Data-Driven Decisions",
+        subjectAr: "تحليلات التجارة الإلكترونية: اتخذ قرارات مبنية على البيانات",
+        preview: "How analytics and reporting help you optimize your e-commerce platform.",
+        previewAr: "كيف تساعد التحليلات والتقارير على تحسين منصة التجارة الإلكترونية الخاصة بك."
+      }
+    ]
   },
   {
     id: "elearning",
@@ -817,7 +1569,69 @@ const serviceTemplates: ServiceTemplate[] = [
     ctaTextAr: "ابنِ أكاديميتك",
     stat1: { value: "100K+", label: "Students Served", labelAr: "طالب خُدم" },
     stat2: { value: "15+", label: "Platforms Built", labelAr: "منصة مبنية" },
-    stat3: { value: "4.9", label: "Avg Rating", labelAr: "متوسط التقييم" }
+    stat3: { value: "4.9", label: "Avg Rating", labelAr: "متوسط التقييم" },
+    subjectLines: [
+      {
+        subject: "Create Your Online Learning Academy",
+        subjectAr: "أنشئ أكاديميتك التعليمية عبر الإنترنت",
+        preview: "Custom e-learning platforms. 15+ platforms built, 100K+ students served, 4.9 avg rating.",
+        previewAr: "منصات تعليم إلكتروني مخصصة. 15+ منصة مبنية، أكثر من 100 ألف طالب خُدم، 4.9 متوسط تقييم."
+      },
+      {
+        subject: "Monetize Your Expertise: Build an Online Learning Platform",
+        subjectAr: "حقق دخل من خبرتك: ابنِ منصة تعلم عبر الإنترنت",
+        preview: "Turn your knowledge into a profitable online education business.",
+        previewAr: "حوّل معرفتك إلى أعمال تعليم عبر الإنترنت مربحة."
+      },
+      {
+        subject: "The Complete Guide to E-Learning Platform Development",
+        subjectAr: "الدليل الكامل لتطوير منصات التعلم الإلكتروني",
+        preview: "Everything you need to know about building online learning platforms.",
+        previewAr: "كل ما تحتاج معرفته عن بناء منصات التعلم عبر الإنترنت."
+      },
+      {
+        subject: "Why Existing LMS Platforms Fall Short (And What to Do About It)",
+        subjectAr: "لماذا تفشل منصات LMS الموجودة (وماذا تفعل حيال ذلك)",
+        preview: "Learn when you need a custom e-learning platform vs off-the-shelf solutions.",
+        previewAr: "تعلم متى تحتاج منصة تعلم إلكتروني مخصصة مقابل الحلول الجاهزة."
+      },
+      {
+        subject: "Video Course Hosting: Best Practices for E-Learning",
+        subjectAr: "استضافة دورات الفيديو: أفضل الممارسات للتعلم الإلكتروني",
+        preview: "Learn how to deliver high-quality video courses that engage students.",
+        previewAr: "تعلم كيفية تقديم دورات فيديو عالية الجودة تجذب الطلاب."
+      },
+      {
+        subject: "Live Classes & Interactive Learning: Engage Your Students",
+        subjectAr: "الفصول المباشرة والتعلم التفاعلي: اجذب طلابك",
+        preview: "How live streaming and interactive features improve learning outcomes.",
+        previewAr: "كيف يحسن البث المباشر والميزات التفاعلية نتائج التعلم."
+      },
+      {
+        subject: "E-Learning in Saudi Arabia: Market Opportunities",
+        subjectAr: "التعليم الإلكتروني في المملكة: فرص السوق",
+        preview: "Insights into the growing online education market in Saudi Arabia.",
+        previewAr: "رؤى في سوق التعليم عبر الإنترنت المتنامي في المملكة العربية السعودية."
+      },
+      {
+        subject: "Progress Tracking & Certificates: Motivate Your Students",
+        subjectAr: "تتبع التقدم والشهادات: حفز طلابك",
+        preview: "How progress tracking and certification systems improve student engagement.",
+        previewAr: "كيف تحسن أنظمة تتبع التقدم والشهادات تفاعل الطلاب."
+      },
+      {
+        subject: "Case Study: How We Built an E-Learning Platform with 50K Students",
+        subjectAr: "دراسة حالة: كيف بنينا منصة تعلم إلكتروني مع 50 ألف طالب",
+        preview: "Real example of successful e-learning platform development. Read the full story.",
+        previewAr: "مثال حقيقي لتطوير منصة تعلم إلكتروني ناجح. اقرأ القصة الكاملة."
+      },
+      {
+        subject: "Payment & Subscriptions: Monetize Your E-Learning Platform",
+        subjectAr: "الدفع والاشتراكات: حقق دخل من منصة التعلم الإلكتروني الخاصة بك",
+        preview: "Learn how to set up payment systems and subscription models for your courses.",
+        previewAr: "تعلم كيفية إعداد أنظمة الدفع ونماذج الاشتراك لدوراتك."
+      }
+    ]
   }
 ];
 
@@ -826,6 +1640,92 @@ interface TemplateBlockProps {
   html: string;
   lang: 'en' | 'ar';
   onLanguageToggle?: () => void;
+}
+
+interface SubjectLinesBlockProps {
+  subjectLines: EmailSubjectLine[];
+  lang: 'en' | 'ar';
+}
+
+function SubjectLinesBlock({ subjectLines, lang }: SubjectLinesBlockProps) {
+  const [expanded, setExpanded] = useState(false);
+  const { toast } = useToast();
+
+  const copySubjectLine = async (subject: string, preview: string) => {
+    try {
+      const text = `Subject: ${subject}\nPreview: ${preview}`;
+      await navigator.clipboard.writeText(text);
+      toast({
+        title: lang === 'ar' ? "تم النسخ!" : "Copied!",
+        description: lang === 'ar' ? "تم نسخ السطر الموضوع والنص المعاين" : "Subject line and preview text copied",
+      });
+    } catch (err) {
+      toast({
+        title: lang === 'ar' ? "فشل النسخ" : "Failed to copy",
+        variant: "destructive",
+      });
+    }
+  };
+
+  return (
+    <Card className="mb-6 border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/20">
+      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg">
+            {lang === 'ar' ? 'عناوين البريد الإلكتروني للنشر على LinkedIn' : 'Email Subject Lines for LinkedIn Outreach'}
+          </CardTitle>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? <ChevronUp className="h-4 w-4 mr-2" /> : <ChevronDown className="h-4 w-4 mr-2" />}
+            {expanded ? (lang === 'ar' ? "إخفاء" : "Hide") : (lang === 'ar' ? "إظهار" : "Show")}
+          </Button>
+        </div>
+        <p className="text-sm text-muted-foreground mt-2">
+          {lang === 'ar' 
+            ? 'اختر من هذه العناوين الجذابة لاستخدامها في حملاتك التسويقية على LinkedIn'
+            : 'Choose from these attractive subject lines for your LinkedIn outreach campaigns'}
+        </p>
+      </CardHeader>
+      {expanded && (
+        <CardContent>
+          <div className="space-y-4">
+            {subjectLines.map((item, idx) => {
+              const subject = lang === 'ar' ? item.subjectAr : item.subject;
+              const preview = lang === 'ar' ? item.previewAr : item.preview;
+              return (
+                <div key={idx} className="border rounded-lg p-4 bg-white dark:bg-slate-900 hover:border-primary transition-colors">
+                  <div className="flex items-start justify-between gap-4 mb-2">
+                    <div className="flex-1">
+                      <p className="text-xs font-semibold text-muted-foreground mb-1">
+                        {lang === 'ar' ? 'الموضوع:' : 'Subject:'}
+                      </p>
+                      <p className="font-semibold text-base mb-3">{subject}</p>
+                      <p className="text-xs font-semibold text-muted-foreground mb-1">
+                        {lang === 'ar' ? 'النص المعاين:' : 'Preview Text:'}
+                      </p>
+                      <p className="text-sm text-muted-foreground">{preview}</p>
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => copySubjectLine(subject, preview)}
+                      className="flex-shrink-0"
+                    >
+                      <Copy className="h-3 w-3 mr-1" />
+                      {lang === 'ar' ? 'نسخ' : 'Copy'}
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </CardContent>
+      )}
+    </Card>
+  );
 }
 
 function TemplateBlock({ title, html, lang, onLanguageToggle }: TemplateBlockProps) {
@@ -950,6 +1850,7 @@ function ServiceTemplateSection({ service }: { service: ServiceTemplate }) {
 
   return (
     <div className="max-w-[800px] mx-auto">
+      <SubjectLinesBlock subjectLines={service.subjectLines} lang={selectedLang} />
       <TemplateBlock
         title={currentTitle}
         html={generateEmailTemplate(selectedLang, currentContent)}
@@ -981,6 +1882,7 @@ interface BrandAwarenessTemplate {
   stat1?: { value: string; label: string; labelAr: string };
   stat2?: { value: string; label: string; labelAr: string };
   stat3?: { value: string; label: string; labelAr: string };
+  subjectLines: EmailSubjectLine[];
 }
 
 // Generate Brand Awareness Email Template
@@ -1221,7 +2123,69 @@ const brandAwarenessTemplates: BrandAwarenessTemplate[] = [
     ctaLink: WEBSITE_URL + "/services",
     stat1: { value: "150+", label: "Projects", labelAr: "مشروع" },
     stat2: { value: "50+", label: "Clients", labelAr: "عميل" },
-    stat3: { value: "8+", label: "Years", labelAr: "سنة" }
+    stat3: { value: "8+", label: "Years", labelAr: "سنة" },
+    subjectLines: [
+      {
+        subject: "Welcome to SkyStack: Your Trusted Technology Partner",
+        subjectAr: "مرحباً بك في سكاي ستاك: شريكك الموثوق في التقنية",
+        preview: "We help Saudi companies build better software. 150+ projects, 50+ clients, 8+ years of excellence.",
+        previewAr: "نساعد الشركات السعودية على بناء برمجيات أفضل. 150+ مشروع، 50+ عميل، 8+ سنوات من التميز."
+      },
+      {
+        subject: "Meet SkyStack: Transforming Saudi Businesses Through Technology",
+        subjectAr: "تعرف على سكاي ستاك: تحويل الشركات السعودية من خلال التقنية",
+        preview: "From mobile apps to enterprise platforms - we deliver solutions that drive real results.",
+        previewAr: "من تطبيقات الجوال إلى المنصات المؤسسية - نقدم حلولاً تحقق نتائج حقيقية."
+      },
+      {
+        subject: "Why 50+ Saudi Companies Trust SkyStack for Their Software",
+        subjectAr: "لماذا يثق 50+ شركة سعودية بسكاي ستاك لبرمجياتهم",
+        preview: "Learn what makes us different and how we help businesses succeed.",
+        previewAr: "تعلم ما يميزنا وكيف نساعد الشركات على النجاح."
+      },
+      {
+        subject: "Your Strategic Technology Partner in Saudi Arabia",
+        subjectAr: "شريكك الاستراتيجي في التقنية في المملكة العربية السعودية",
+        preview: "We're not just developers—we're your partners in digital transformation.",
+        previewAr: "لسنا مجرد مطورين—نحن شركاؤك في التحول الرقمي."
+      },
+      {
+        subject: "150+ Projects Delivered: Success Stories from SkyStack",
+        subjectAr: "150+ مشروع منجز: قصص نجاح من سكاي ستاك",
+        preview: "Discover how we've helped Saudi companies achieve their digital goals.",
+        previewAr: "اكتشف كيف ساعدنا الشركات السعودية على تحقيق أهدافها الرقمية."
+      },
+      {
+        subject: "Building Better Software for Saudi Companies",
+        subjectAr: "بناء برمجيات أفضل للشركات السعودية",
+        preview: "Our mission: empower every Saudi business with world-class software solutions.",
+        previewAr: "مهمتنا: تمكين كل شركة سعودية بحلول برمجيات عالمية المستوى."
+      },
+      {
+        subject: "From Startup to Enterprise: We Help You Scale",
+        subjectAr: "من الشركة الناشئة إلى المؤسسة: نساعدك على التوسع",
+        preview: "Whether you're launching your first app or modernizing systems, we're here to help.",
+        previewAr: "سواء كنت تطلق تطبيقك الأول أو تحدث الأنظمة، نحن هنا للمساعدة."
+      },
+      {
+        subject: "8+ Years of Excellence in Software Development",
+        subjectAr: "8+ سنوات من التميز في تطوير البرمجيات",
+        preview: "Experience, expertise, and commitment to helping Saudi businesses thrive.",
+        previewAr: "خبرة وخبرة والتزام بمساعدة الشركات السعودية على الازدهار."
+      },
+      {
+        subject: "Join 50+ Companies Transforming Their Business with SkyStack",
+        subjectAr: "انضم إلى 50+ شركة تحول أعمالها مع سكاي ستاك",
+        preview: "Be part of a community of innovative Saudi companies driving digital transformation.",
+        previewAr: "كن جزءاً من مجتمع الشركات السعودية المبتكرة التي تقود التحول الرقمي."
+      },
+      {
+        subject: "Technology Solutions That Drive Real Business Results",
+        subjectAr: "حلول تقنية تحقق نتائج أعمال حقيقية",
+        preview: "See how our approach to software development delivers measurable impact.",
+        previewAr: "شاهد كيف يقدم نهجنا في تطوير البرمجيات تأثيراً قابلاً للقياس."
+      }
+    ]
   },
   {
     id: "company-story",
@@ -1239,7 +2203,69 @@ const brandAwarenessTemplates: BrandAwarenessTemplate[] = [
     highlightsAr: ["التميز أولاً", "شريك موثوق", "خبرة محلية"],
     ctaText: "Learn More About Us",
     ctaTextAr: "اعرف المزيد عنا",
-    ctaLink: WEBSITE_URL + "/about-us"
+    ctaLink: WEBSITE_URL + "/about-us",
+    subjectLines: [
+      {
+        subject: "The Story Behind SkyStack: Building the Future of Software in Saudi Arabia",
+        subjectAr: "القصة وراء سكاي ستاك: بناء مستقبل البرمجيات في المملكة",
+        preview: "Learn about our mission, vision, and commitment to helping Saudi businesses thrive.",
+        previewAr: "تعرف على مهمتنا ورؤيتنا والتزامنا بمساعدة الشركات السعودية على الازدهار."
+      },
+      {
+        subject: "Excellence, Integrity, Innovation: The Values That Drive Us",
+        subjectAr: "التميز، النزاهة، الابتكار: القيم التي تحفزنا",
+        preview: "Discover the core values that guide everything we do at SkyStack.",
+        previewAr: "اكتشف القيم الأساسية التي توجه كل ما نقوم به في سكاي ستاك."
+      },
+      {
+        subject: "From 2016 to Today: SkyStack's Journey",
+        subjectAr: "من 2016 إلى اليوم: رحلة سكاي ستاك",
+        preview: "How we started with a simple mission and became a leading software development company.",
+        previewAr: "كيف بدأنا بمهمة بسيطة وأصبحنا شركة رائدة في تطوير البرمجيات."
+      },
+      {
+        subject: "Why Local Expertise Matters in Software Development",
+        subjectAr: "لماذا الخبرة المحلية مهمة في تطوير البرمجيات",
+        preview: "Understanding the Saudi market, culture, and business landscape like no one else.",
+        previewAr: "فهم السوق السعودي والثقافة ومشهد الأعمال مثل لا أحد آخر."
+      },
+      {
+        subject: "Partnership Over Projects: Our Approach to Client Success",
+        subjectAr: "الشراكة على المشاريع: نهجنا لنجاح العملاء",
+        preview: "We don't just build software—we build lasting relationships. Your success is our success.",
+        previewAr: "لا نبني البرمجيات فقط—نبني علاقات دائمة. نجاحك هو نجاحنا."
+      },
+      {
+        subject: "Innovation at SkyStack: Staying Ahead of the Curve",
+        subjectAr: "الابتكار في سكاي ستاك: البقاء في المقدمة",
+        preview: "How we continuously learn and adopt the latest technologies to solve complex challenges.",
+        previewAr: "كيف نتعلم باستمرار ونتبنى أحدث التقنيات لحل التحديات المعقدة."
+      },
+      {
+        subject: "Trust Through Transparency: Our Commitment to Integrity",
+        subjectAr: "الثقة من خلال الشفافية: التزامنا بالنزاهة",
+        preview: "Building trust through transparency, honesty, and delivering on our promises.",
+        previewAr: "بناء الثقة من خلال الشفافية والأمانة والوفاء بوعودنا."
+      },
+      {
+        subject: "Excellence in Every Line of Code: Our Quality Promise",
+        subjectAr: "التميز في كل سطر كود: وعدنا بالجودة",
+        preview: "We never settle for good enough. Every project is executed with precision and care.",
+        previewAr: "لا نرضى أبداً بما هو جيد بما فيه الكفاية. كل مشروع يُنفذ بدقة وعناية."
+      },
+      {
+        subject: "Empowering Saudi Companies to Compete Globally",
+        subjectAr: "تمكين الشركات السعودية للمنافسة عالمياً",
+        preview: "Our vision: a technology ecosystem that helps Saudi businesses compete globally.",
+        previewAr: "رؤيتنا: نظام بيئي تقني يساعد الشركات السعودية على المنافسة عالمياً."
+      },
+      {
+        subject: "Leading Software Development in Saudi Arabia: Our Story",
+        subjectAr: "الريادة في تطوير البرمجيات في المملكة: قصتنا",
+        preview: "Proud to be one of the leading software development companies trusted by enterprises and startups.",
+        previewAr: "نفخر بأن نكون واحدة من الشركات الرائدة في تطوير البرمجيات الموثوقة من المؤسسات والشركات الناشئة."
+      }
+    ]
   },
   {
     id: "industry-insights",
@@ -1257,7 +2283,69 @@ const brandAwarenessTemplates: BrandAwarenessTemplate[] = [
     highlightsAr: ["الهجرة السحابية", "تكامل الذكاء الاصطناعي", "تحسين الجوال"],
     ctaText: "Get Technology Consultation",
     ctaTextAr: "احصل على استشارة تقنية",
-    ctaLink: WEBSITE_URL + "/services/technology-consulting-services"
+    ctaLink: WEBSITE_URL + "/services/technology-consulting-services",
+    subjectLines: [
+      {
+        subject: "5 Technology Trends Shaping Saudi Arabia in 2024",
+        subjectAr: "5 اتجاهات تقنية تشكل المملكة في 2024",
+        preview: "Cloud migration, AI integration, mobile-first - discover what's driving digital transformation.",
+        previewAr: "الهجرة السحابية، تكامل الذكاء الاصطناعي، الجوال أولاً - اكتشف ما يدفع التحول الرقمي."
+      },
+      {
+        subject: "Digital Transformation in Saudi Arabia: What You Need to Know",
+        subjectAr: "التحول الرقمي في المملكة: ما تحتاج معرفته",
+        preview: "Key insights into how Vision 2030 is accelerating technology adoption across sectors.",
+        previewAr: "رؤى رئيسية حول كيف تسرع رؤية 2030 اعتماد التقنية عبر القطاعات."
+      },
+      {
+        subject: "Cloud-First Strategy: Why 40% Cost Reduction is Possible",
+        subjectAr: "استراتيجية السحابة أولاً: لماذا تقليل 40% من التكاليف ممكن",
+        preview: "Learn how cloud migration is helping Saudi enterprises reduce costs and improve scalability.",
+        previewAr: "تعلم كيف تساعد الهجرة السحابية المؤسسات السعودية على تقليل التكاليف وتحسين قابلية التوسع."
+      },
+      {
+        subject: "AI and Machine Learning: The Future of Saudi Business",
+        subjectAr: "الذكاء الاصطناعي والتعلم الآلي: مستقبل الأعمال السعودية",
+        preview: "How Saudi companies are leveraging AI for automation, insights, and predictive analytics.",
+        previewAr: "كيف تستفيد الشركات السعودية من الذكاء الاصطناعي للأتمتة والرؤى والتحليلات التنبؤية."
+      },
+      {
+        subject: "Mobile-First: Why 98% Smartphone Penetration Changes Everything",
+        subjectAr: "الجوال أولاً: لماذا 98% انتشار الهواتف الذكية يغير كل شيء",
+        preview: "Businesses prioritizing mobile see 2-3x higher engagement. Here's how to capitalize.",
+        previewAr: "الشركات التي تعطي أولوية للجوال ترى تفاعلاً أعلى 2-3 مرات. إليك كيفية الاستفادة."
+      },
+      {
+        subject: "API-Driven Architecture: Building for Scale and Speed",
+        subjectAr: "البنية المدعومة بواجهات برمجية: بناء للتوسع والسرعة",
+        preview: "How microservices and API-first development enable faster time-to-market.",
+        previewAr: "كيف تتيح الخدمات المصغرة والتطوير الذي يعطي أولوية للواجهات البرمجية وقتاً أسرع للوصول للسوق."
+      },
+      {
+        subject: "Cybersecurity: No Longer Optional in 2024",
+        subjectAr: "الأمن السيبراني: لم يعد اختيارياً في 2024",
+        preview: "As digital adoption grows, robust security measures are essential. Learn what to prioritize.",
+        previewAr: "مع نمو الاعتماد الرقمي، تدابير الأمان القوية ضرورية. تعلم ما يجب إعطاؤه أولوية."
+      },
+      {
+        subject: "Technology Trends: What Saudi Companies Are Investing In",
+        subjectAr: "اتجاهات التقنية: ما تستثمر فيه الشركات السعودية",
+        preview: "Insights into the technologies and strategies driving business growth in Saudi Arabia.",
+        previewAr: "رؤى في التقنيات والاستراتيجيات التي تحفز نمو الأعمال في المملكة."
+      },
+      {
+        subject: "The Competitive Advantage: Acting on Technology Trends Now",
+        subjectAr: "الميزة التنافسية: التصرف على اتجاهات التقنية الآن",
+        preview: "Companies that act on these trends now will have significant competitive advantage.",
+        previewAr: "الشركات التي تتصرف على هذه الاتجاهات الآن ستحصل على ميزة تنافسية كبيرة."
+      },
+      {
+        subject: "Stay Ahead: Expert Insights on Technology Trends",
+        subjectAr: "ابقَ في المقدمة: رؤى خبيرة حول اتجاهات التقنية",
+        preview: "Our team stays current with industry developments so you don't have to.",
+        previewAr: "فريقنا يبقى على اطلاع بالتطورات الصناعية حتى لا تضطر أنت."
+      }
+    ]
   },
   {
     id: "educational-resource",
@@ -1275,7 +2363,69 @@ const brandAwarenessTemplates: BrandAwarenessTemplate[] = [
     highlightsAr: ["دلائل مجانية", "رؤى خبيرة", "أدوات عملية"],
     ctaText: "Browse Resources",
     ctaTextAr: "تصفح الموارد",
-    ctaLink: WEBSITE_URL
+    ctaLink: WEBSITE_URL,
+    subjectLines: [
+      {
+        subject: "Free Resources to Accelerate Your Digital Transformation",
+        subjectAr: "موارد مجانية لتسريع التحول الرقمي الخاص بك",
+        preview: "Comprehensive guides, best practices, and expert insights - all free.",
+        previewAr: "دلائل شاملة وأفضل الممارسات ورؤى خبيرة - كلها مجانية."
+      },
+      {
+        subject: "Expert Knowledge: Free Guides from 150+ Projects",
+        subjectAr: "معرفة خبيرة: دلائل مجانية من 150+ مشروع",
+        preview: "Learn from our proven methodologies and architecture patterns that actually work.",
+        previewAr: "تعلم من منهجياتنا المُثبتة وأنماط البنية التي تعمل فعلاً."
+      },
+      {
+        subject: "The Complete Guide to Choosing Your Tech Stack (Free Download)",
+        subjectAr: "الدليل الكامل لاختيار البنية التقنية (تحميل مجاني)",
+        preview: "Step-by-step guide to making the right technology decisions for your business.",
+        previewAr: "دليل خطوة بخطوة لاتخاذ قرارات التقنية الصحيحة لأعمالك."
+      },
+      {
+        subject: "Case Studies: Real Examples from Real Companies",
+        subjectAr: "دراسات الحالة: أمثلة حقيقية من شركات حقيقية",
+        preview: "See how others have successfully transformed their businesses with technology.",
+        previewAr: "شاهد كيف نجح آخرون في تحويل أعمالهم بالتقنية."
+      },
+      {
+        subject: "Practical Tools: Checklists & Templates You Can Use Today",
+        subjectAr: "أدوات عملية: قوائم تحقق وقوالب يمكنك استخدامها اليوم",
+        preview: "Architecture decision frameworks, project planning templates, and security audit checklists.",
+        previewAr: "أطر قرارات البنية وقوالب تخطيط المشاريع وقوائم تدقيق الأمان."
+      },
+      {
+        subject: "Join Our Webinars: Learn from Technology Experts",
+        subjectAr: "انضم إلى ندواتنا: تعلم من خبراء التقنية",
+        preview: "Regular sessions where our experts share insights on latest technologies and trends.",
+        previewAr: "جلسات منتظمة حيث يشارك خبراؤنا رؤى حول أحدث التقنيات والاتجاهات."
+      },
+      {
+        subject: "Best Practices from 150+ Successful Projects",
+        subjectAr: "أفضل الممارسات من 150+ مشروع ناجح",
+        preview: "Proven methodologies, architecture patterns, and development workflows.",
+        previewAr: "منهجيات مُثبتة وأنماط معمارية وتدفقات عمل تطوير."
+      },
+      {
+        subject: "Free Resource: Mobile App Development Guide for Saudi Businesses",
+        subjectAr: "مورد مجاني: دليل تطوير تطبيقات الجوال للشركات السعودية",
+        preview: "Market trends, user preferences, and best practices tailored for Saudi market.",
+        previewAr: "اتجاهات السوق وتفضيلات المستخدمين وأفضل الممارسات المصممة للسوق السعودي."
+      },
+      {
+        subject: "Cloud Migration Checklist: Free Download",
+        subjectAr: "قائمة التحقق للهجرة السحابية: تحميل مجاني",
+        preview: "Comprehensive checklist to help Saudi businesses migrate to the cloud successfully.",
+        previewAr: "قائمة تحقق شاملة لمساعدة الشركات السعودية على الهجرة إلى السحابة بنجاح."
+      },
+      {
+        subject: "Empower Your Team: Free Expert Knowledge",
+        subjectAr: "مكن فريقك: معرفة خبيرة مجانية",
+        preview: "We believe in sharing knowledge. Access our library of free guides and resources.",
+        previewAr: "نؤمن بمشاركة المعرفة. اطلع على مكتبتنا من الدلائل والموارد المجانية."
+      }
+    ]
   },
   {
     id: "newsletter-update",
@@ -1296,7 +2446,69 @@ const brandAwarenessTemplates: BrandAwarenessTemplate[] = [
     ctaLink: WEBSITE_URL,
     stat1: { value: "150+", label: "Projects", labelAr: "مشروع" },
     stat2: { value: "50+", label: "Clients", labelAr: "عميل" },
-    stat3: { value: "8+", label: "Years", labelAr: "سنة" }
+    stat3: { value: "8+", label: "Years", labelAr: "سنة" },
+    subjectLines: [
+      {
+        subject: "SkyStack Monthly Newsletter: Technology Trends & Company Updates",
+        subjectAr: "النشرة الشهرية لسكاي ستاك: اتجاهات التقنية وتحديثات الشركة",
+        preview: "Your monthly digest of technology trends, company updates, and valuable insights.",
+        previewAr: "ملخصك الشهري لاتجاهات التقنية وتحديثات الشركة ورؤى قيمة."
+      },
+      {
+        subject: "What's New at SkyStack: Monthly Updates & Insights",
+        subjectAr: "ما الجديد في سكاي ستاك: تحديثات ورؤى شهرية",
+        preview: "Company updates, industry insights, success stories, and featured resources.",
+        previewAr: "تحديثات الشركة ورؤى الصناعة وقصص النجاح والموارد المميزة."
+      },
+      {
+        subject: "This Month at SkyStack: Growth, Trends & Success Stories",
+        subjectAr: "هذا الشهر في سكاي ستاك: النمو والاتجاهات وقصص النجاح",
+        preview: "Stay updated with our latest developments and industry insights.",
+        previewAr: "ابقَ على اطلاع بأحدث تطوراتنا ورؤى الصناعة."
+      },
+      {
+        subject: "Technology Trends This Month: What's Driving Digital Transformation",
+        subjectAr: "اتجاهات التقنية هذا الشهر: ما يدفع التحول الرقمي",
+        preview: "Key trends we're seeing: cloud migration, AI, mobile-first, and more.",
+        previewAr: "الاتجاهات الرئيسية التي نراها: الهجرة السحابية والذكاء الاصطناعي والجوال أولاً والمزيد."
+      },
+      {
+        subject: "Success Story: How We Helped a Client Save 60% on Costs",
+        subjectAr: "قصة نجاح: كيف ساعدنا عميلاً على توفير 60% من التكاليف",
+        preview: "Real results from our custom ERP solution. Read the full case study.",
+        previewAr: "نتائج حقيقية من حل ERP المخصص لدينا. اقرأ دراسة الحالة الكاملة."
+      },
+      {
+        subject: "Featured Resource: Free Guide to Mobile App Development in Saudi Arabia",
+        subjectAr: "مورد مميز: دليل مجاني لتطوير تطبيقات الجوال في المملكة",
+        preview: "This month's featured guide with market trends and best practices.",
+        previewAr: "دليل هذا الشهر المميز مع اتجاهات السوق وأفضل الممارسات."
+      },
+      {
+        subject: "Upcoming Webinar: Digital Transformation Strategies for 2024",
+        subjectAr: "ندوة قادمة: استراتيجيات التحول الرقمي لعام 2024",
+        preview: "Join our webinar featuring insights from industry leaders. Registration opens soon!",
+        previewAr: "انضم إلى ندوتنا التي تضم رؤى من قادة الصناعة. التسجيل يفتح قريباً!"
+      },
+      {
+        subject: "Team Growth & New Services: SkyStack Monthly Update",
+        subjectAr: "نمو الفريق وخدمات جديدة: تحديث سكاي ستاك الشهري",
+        preview: "25 new engineers joined, new office opening, and AI/ML consulting service launch.",
+        previewAr: "25 مهندس جديد انضم، افتتاح مكتب جديد، وإطلاق خدمة استشارات الذكاء الاصطناعي/التعلم الآلي."
+      },
+      {
+        subject: "Industry Insights: What Saudi Companies Are Investing In",
+        subjectAr: "رؤى الصناعة: ما تستثمر فيه الشركات السعودية",
+        preview: "Cloud migration up 40%, B2B mobile apps, AI automation, and cybersecurity focus.",
+        previewAr: "الهجرة السحابية زادت 40%، تطبيقات B2B الجوال، أتمتة الذكاء الاصطناعي، والتركيز على الأمن السيبراني."
+      },
+      {
+        subject: "Stay Connected: Your Monthly Technology Digest",
+        subjectAr: "ابقَ متصلاً: ملخصك الشهري للتقنية",
+        preview: "Thank you for staying connected with SkyStack! Here's what's new this month.",
+        previewAr: "شكراً لبقائك متصلاً بسكاي ستاك! إليك ما الجديد هذا الشهر."
+      }
+    ]
   }
 ];
 
@@ -1337,6 +2549,7 @@ function BrandAwarenessTemplateSection({ template }: { template: BrandAwarenessT
 
   return (
     <div className="max-w-[800px] mx-auto">
+      <SubjectLinesBlock subjectLines={template.subjectLines} lang={selectedLang} />
       <TemplateBlock
         title={currentTitle}
         html={generateBrandAwarenessTemplate(selectedLang, currentContent)}
