@@ -102,10 +102,33 @@ export function identifyUser(userId: string, traits: Record<string, any> = {}) {
   }
 }
 
-export function trackPageView(pageName?: string) {
-  if (typeof window !== "undefined" && mixpanelInitialized) {
+export function trackPageView(pageName?: string, pagePath?: string) {
+  if (typeof window === "undefined") return;
+
+  // Get page info - use provided values or fallback to current page info
+  const pageTitle = pageName || document.title || "SkyStack";
+  const path = pagePath || window.location.pathname || "/";
+  const fullUrl = window.location.href;
+
+  // Track in Google Analytics
+  // Use gtag('config') to update page_path and page_title for proper tracking
+  if (window.gtag && typeof window.gtag === "function") {
+    try {
+      window.gtag("config", "G-95H3KK9GL4", {
+        page_path: path,
+        page_title: pageTitle,
+        page_location: fullUrl,
+      });
+    } catch (error) {
+      console.warn("Failed to track page view in Google Analytics:", error);
+    }
+  }
+
+  // Track in Mixpanel
+  if (mixpanelInitialized) {
     trackMixpanelEvent("Page Viewed", {
-      page_name: pageName || document.title,
+      page_name: pageTitle,
+      page_path: path,
     });
   }
 }
