@@ -1,4 +1,5 @@
 import mixpanel from "mixpanel-browser";
+import Hotjar from '@hotjar/browser';
 
 declare global {
   interface Window {
@@ -7,6 +8,7 @@ declare global {
 }
 
 let mixpanelInitialized = false;
+let hotjarInitialized = false;
 
 export function initMixpanel() {
   if (typeof window !== "undefined" && !mixpanelInitialized) {
@@ -16,6 +18,20 @@ export function initMixpanel() {
       record_sessions_percent: 100,
     });
     mixpanelInitialized = true;
+  }
+}
+
+export function initHotjar() {
+  if (typeof window !== "undefined" && !hotjarInitialized) {
+    const siteId = 6629450;
+    const version = 6;
+    
+    try {
+      Hotjar.init(siteId, version);
+      hotjarInitialized = true;
+    } catch (error) {
+      console.warn("Failed to initialize Hotjar:", error);
+    }
   }
 }
 
