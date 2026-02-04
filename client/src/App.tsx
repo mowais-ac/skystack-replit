@@ -40,6 +40,8 @@ import StaticContent from "@/pages/StaticContent";
 import BusinessModels from "@/pages/BusinessModels";
 import Outsourcing from "@/pages/Outsourcing";
 import EmailTemplates from "@/pages/EmailTemplates";
+import BlogList from "@/pages/BlogList";
+import BlogDetail from "@/pages/BlogDetail";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -77,6 +79,9 @@ function Router() {
       </Route>
       
       <Route path="/email-templates" component={EmailTemplates} />
+      
+      <Route path="/blog" component={BlogList} />
+      <Route path="/blog/:slug" component={BlogDetail} />
 
       <Route component={NotFound} />
     </Switch>
