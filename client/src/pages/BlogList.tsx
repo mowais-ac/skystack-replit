@@ -92,9 +92,13 @@ export default function BlogList() {
     : allBlogs;
 
   const categories = [
-    { value: "outsourcing", label: isArabic ? "التطوير الخارجي" : "Outsourcing" },
-    { value: "development", label: isArabic ? "التطوير" : "Development" },
-    { value: "business", label: isArabic ? "الأعمال" : "Business" },
+    { value: "mobile-development", label: isArabic ? "تطوير التطبيقات" : "Mobile Development" },
+    { value: "web-development", label: isArabic ? "تطوير الويب" : "Web Development" },
+    { value: "on-demand-apps", label: isArabic ? "تطبيقات الطلب" : "On-Demand Apps" },
+    { value: "clone-apps", label: isArabic ? "تطبيقات مستنسخة" : "Clone Apps" },
+    { value: "ui-ux-design", label: isArabic ? "تصميم UI/UX" : "UI/UX Design" },
+    { value: "technology-consulting", label: isArabic ? "الاستشارات التقنية" : "Tech Consulting" },
+    { value: "outsourcing", label: isArabic ? "التعهيد" : "Outsourcing" },
   ];
 
   const title = isArabic ? "المدونة" : "Blog";
