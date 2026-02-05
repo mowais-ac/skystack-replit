@@ -148,8 +148,9 @@ export default function BlogList() {
               </p>
 
               {/* Search and Filter */}
-              <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
-                <div className="relative flex-1">
+              <div className="flex flex-col gap-6 max-w-4xl mx-auto">
+                {/* Search Input */}
+                <div className="relative w-full max-w-xl mx-auto">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <input
                     type="text"
@@ -160,13 +161,14 @@ export default function BlogList() {
                   />
                 </div>
                 
-                <div className="flex gap-2">
+                {/* Category Filter */}
+                <div className="flex items-center justify-center gap-2 flex-wrap">
                   <button
                     onClick={() => setSelectedCategory(null)}
-                    className={`px-4 py-3 rounded-lg border transition-colors ${
+                    className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 ${
                       selectedCategory === null
-                        ? "bg-primary border-primary text-white"
-                        : "bg-white/10 border-white/20 text-white hover:bg-white/20"
+                        ? "bg-primary border-primary text-white shadow-lg shadow-primary/25"
+                        : "bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:text-white"
                     }`}
                   >
                     {isArabic ? "الكل" : "All"}
@@ -175,10 +177,10 @@ export default function BlogList() {
                     <button
                       key={cat.value}
                       onClick={() => setSelectedCategory(cat.value)}
-                      className={`px-4 py-3 rounded-lg border transition-colors ${
+                      className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                         selectedCategory === cat.value
-                          ? "bg-primary border-primary text-white"
-                          : "bg-white/10 border-white/20 text-white hover:bg-white/20"
+                          ? "bg-primary border-primary text-white shadow-lg shadow-primary/25"
+                          : "bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:text-white"
                       }`}
                     >
                       {cat.label}
