@@ -24,6 +24,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.allServices": "All Services",
     "nav.preBuiltApps": "Pre-Built Apps",
     "nav.businessModels": "Business Models",
+    "nav.blog": "Blog",
     
     "hero.badge": "Saudi-Based Technology Partner",
     "hero.title": "Build & Modernize",
@@ -147,6 +148,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.allServices": "جميع الخدمات",
     "nav.preBuiltApps": "التطبيقات الجاهزة",
     "nav.businessModels": "نماذج الأعمال",
+    "nav.blog": "المدونة",
     
     "hero.badge": "شريكك التقني في السعودية",
     "hero.title": "بناء وتحديث",

@@ -101,6 +101,9 @@ export function Navigation() {
           <Link href="/services/outsourcing" className="hover:text-primary transition-colors" data-testid="link-outsourcing">
             {language === "ar" ? "التعهيد" : "Outsourcing"}
           </Link>
+          <Link href="/blog" className="hover:text-primary transition-colors" data-testid="link-blog">
+            {t("nav.blog")}
+          </Link>
           <Link href="/contact-us" className="hover:text-primary transition-colors" data-testid="link-contact">
             {t("nav.contact")}
           </Link>
@@ -174,6 +177,7 @@ export function Navigation() {
               </div>
 
               <Link href="/services/outsourcing" className="border-b border-slate-100 pb-4">{language === "ar" ? "التعهيد" : "Outsourcing"}</Link>
+              <Link href="/blog" className="border-b border-slate-100 pb-4">{t("nav.blog")}</Link>
               
               <Link href="/contact-us" className="bg-primary text-white text-center py-4 rounded-md font-bold mt-2">
                 {t("nav.getQuote")}
