@@ -1,16 +1,17 @@
 import { useRoute, Link } from "wouter";
-import { services, businessModels } from "@/lib/data";
+import { services, businessModels, ScreenshotItem } from "@/lib/data";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/lib/i18n";
 import NotFound from "./not-found";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   ArrowRight, Check, Shield, Clock, Users, Zap, Star, 
   MessageCircle, Phone, ChevronDown, Award, Target, Rocket,
-  CheckCircle2, Building2, HeartHandshake, Smartphone, Monitor, Tablet, Bike, Send
+  CheckCircle2, Building2, HeartHandshake, Smartphone, Monitor, Tablet, Bike, Send,
+  ChevronLeft, ChevronRight, Maximize2
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -202,6 +203,316 @@ function ServiceInquiryForm({ language, serviceName }: { language: string; servi
         )}
       </button>
     </form>
+  );
+}
+
+// Mobile Screenshot Gallery with phone mockup
+function MobileScreenshotGallery({ screenshots, language }: { screenshots: ScreenshotItem[]; language: string }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isArabic = language === "ar";
+
+  const scrollToIndex = useCallback((index: number) => {
+    const clamped = Math.max(0, Math.min(index, screenshots.length - 1));
+    setActiveIndex(clamped);
+    if (scrollRef.current) {
+      const child = scrollRef.current.children[clamped] as HTMLElement;
+      if (child) {
+        child.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    }
+  }, [screenshots.length]);
+
+  return (
+    <div className="space-y-8">
+      {/* Featured phone mockup */}
+      <div className="flex items-center justify-center gap-6">
+        <button
+          onClick={() => scrollToIndex(activeIndex - 1)}
+          disabled={activeIndex === 0}
+          className="hidden md:flex w-12 h-12 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        
+        <div className="relative">
+          {/* Phone frame */}
+          <div className="relative mx-auto w-[280px] sm:w-[300px]">
+            {/* Phone bezel */}
+            <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-[3rem] p-3 shadow-2xl shadow-black/50 border border-white/10">
+              {/* Notch */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-slate-800 rounded-b-2xl z-10" />
+              {/* Screen */}
+              <div className="rounded-[2.25rem] overflow-hidden bg-white aspect-[9/19.5] relative">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeIndex}
+                    src={screenshots[activeIndex].src}
+                    alt={isArabic ? screenshots[activeIndex].labelAr : screenshots[activeIndex].label}
+                    className="w-full h-full object-cover object-top"
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+          
+          {/* Screen label */}
+          <div className="text-center mt-6">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              {isArabic ? screenshots[activeIndex].labelAr : screenshots[activeIndex].label}
+            </span>
+          </div>
+        </div>
+
+        <button
+          onClick={() => scrollToIndex(activeIndex + 1)}
+          disabled={activeIndex === screenshots.length - 1}
+          className="hidden md:flex w-12 h-12 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Thumbnail strip */}
+      <div className="relative">
+        <div 
+          ref={scrollRef}
+          className="flex gap-3 overflow-x-auto pb-4 px-4 snap-x snap-mandatory scrollbar-hide"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {screenshots.map((screenshot, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToIndex(index)}
+              className={`group relative flex-shrink-0 snap-center transition-all duration-300 ${
+                activeIndex === index 
+                  ? "scale-105" 
+                  : "opacity-60 hover:opacity-90"
+              }`}
+            >
+              <div className={`w-16 sm:w-20 rounded-xl overflow-hidden border-2 transition-colors ${
+                activeIndex === index ? "border-primary shadow-lg shadow-primary/30" : "border-white/10"
+              }`}>
+                <img 
+                  src={screenshot.src} 
+                  alt={isArabic ? screenshot.labelAr : screenshot.label}
+                  className="w-full aspect-[9/16] object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div className={`text-center mt-1.5 text-[10px] sm:text-xs font-medium transition-colors max-w-16 sm:max-w-20 truncate ${
+                activeIndex === index ? "text-primary" : "text-slate-400"
+              }`}>
+                {isArabic ? screenshot.labelAr : screenshot.label}
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile prev/next */}
+      <div className="flex md:hidden items-center justify-center gap-4">
+        <button
+          onClick={() => scrollToIndex(activeIndex - 1)}
+          disabled={activeIndex === 0}
+          className="flex w-10 h-10 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <span className="text-slate-400 text-sm tabular-nums">
+          {activeIndex + 1} / {screenshots.length}
+        </span>
+        <button
+          onClick={() => scrollToIndex(activeIndex + 1)}
+          disabled={activeIndex === screenshots.length - 1}
+          className="flex w-10 h-10 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Admin Screenshot Gallery with browser mockup
+function AdminScreenshotGallery({ screenshots, language }: { screenshots: ScreenshotItem[]; language: string }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const isArabic = language === "ar";
+  const [isLightbox, setIsLightbox] = useState(false);
+
+  return (
+    <>
+      <div className="space-y-6">
+        {/* Browser mockup */}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="bg-slate-800 rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/40">
+            {/* Browser chrome */}
+            <div className="flex items-center gap-3 px-4 py-3 bg-slate-900/80 border-b border-white/10">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+              </div>
+              <div className="flex-1 flex items-center">
+                <div className="bg-slate-800 rounded-md px-4 py-1.5 text-xs text-slate-400 flex items-center gap-2 max-w-md mx-auto w-full">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                  admin.freshfold.com/{isArabic ? screenshots[activeIndex].labelAr : screenshots[activeIndex].label.toLowerCase().replace(/\s+/g, '-')}
+                </div>
+              </div>
+              <button 
+                onClick={() => setIsLightbox(true)}
+                className="p-1.5 rounded-md hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+                title="Fullscreen"
+              >
+                <Maximize2 className="w-4 h-4" />
+              </button>
+            </div>
+            {/* Screen content */}
+            <div className="relative">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={activeIndex}
+                  src={screenshots[activeIndex].src}
+                  alt={isArabic ? screenshots[activeIndex].labelAr : screenshots[activeIndex].label}
+                  className="w-full"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Navigation arrows */}
+          <button
+            onClick={() => setActiveIndex(Math.max(0, activeIndex - 1))}
+            disabled={activeIndex === 0}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 items-center justify-center rounded-full bg-slate-900 border border-white/20 text-white hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-xl hidden md:flex"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => setActiveIndex(Math.min(screenshots.length - 1, activeIndex + 1))}
+            disabled={activeIndex === screenshots.length - 1}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-12 h-12 items-center justify-center rounded-full bg-slate-900 border border-white/20 text-white hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-xl hidden md:flex"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Screen name and navigation dots */}
+        <div className="text-center">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary text-sm font-medium mb-4">
+            <Monitor className="w-4 h-4" />
+            {isArabic ? screenshots[activeIndex].labelAr : screenshots[activeIndex].label}
+          </span>
+        </div>
+
+        {/* Thumbnail strip */}
+        <div className="flex gap-3 overflow-x-auto pb-2 justify-center flex-wrap px-4">
+          {screenshots.map((screenshot, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`group relative flex-shrink-0 transition-all duration-300 ${
+                activeIndex === index 
+                  ? "scale-105" 
+                  : "opacity-50 hover:opacity-90"
+              }`}
+            >
+              <div className={`w-28 sm:w-36 rounded-lg overflow-hidden border-2 transition-colors ${
+                activeIndex === index ? "border-primary shadow-lg shadow-primary/30" : "border-white/10"
+              }`}>
+                <img 
+                  src={screenshot.src} 
+                  alt={isArabic ? screenshot.labelAr : screenshot.label}
+                  className="w-full aspect-video object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div className={`text-center mt-1.5 text-xs font-medium transition-colors ${
+                activeIndex === index ? "text-primary" : "text-slate-400"
+              }`}>
+                {isArabic ? screenshot.labelAr : screenshot.label}
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Mobile prev/next */}
+        <div className="flex md:hidden items-center justify-center gap-4">
+          <button
+            onClick={() => setActiveIndex(Math.max(0, activeIndex - 1))}
+            disabled={activeIndex === 0}
+            className="flex w-10 h-10 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <span className="text-slate-400 text-sm tabular-nums">
+            {activeIndex + 1} / {screenshots.length}
+          </span>
+          <button
+            onClick={() => setActiveIndex(Math.min(screenshots.length - 1, activeIndex + 1))}
+            disabled={activeIndex === screenshots.length - 1}
+            className="flex w-10 h-10 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {isLightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
+            onClick={() => setIsLightbox(false)}
+          >
+            <button
+              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-all z-10"
+              onClick={() => setIsLightbox(false)}
+            >
+              ✕
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); setActiveIndex(Math.max(0, activeIndex - 1)); }}
+              disabled={activeIndex === 0}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 disabled:opacity-30 transition-all z-10"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <motion.img
+              key={activeIndex}
+              src={screenshots[activeIndex].src}
+              alt={isArabic ? screenshots[activeIndex].labelAr : screenshots[activeIndex].label}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              onClick={(e) => { e.stopPropagation(); setActiveIndex(Math.min(screenshots.length - 1, activeIndex + 1)); }}
+              disabled={activeIndex === screenshots.length - 1}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 disabled:opacity-30 transition-all z-10"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+              {isArabic ? screenshots[activeIndex].labelAr : screenshots[activeIndex].label} — {activeIndex + 1} / {screenshots.length}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -510,13 +821,22 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                 <h2 className="section-heading mt-3 text-white">
                   {language === "ar" ? "ما الذي يتضمنه الحل" : "What's Included"}
                 </h2>
+                {item.screenshots && (
+                  <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
+                    {language === "ar" 
+                      ? "تصفح لقطات الشاشة الحقيقية لتطبيق الجوال ولوحة الإدارة"
+                      : "Browse real screenshots of the mobile app and admin dashboard"}
+                  </p>
+                )}
               </div>
 
               {/* Tabs */}
               <div className="flex flex-wrap justify-center gap-4 mb-12">
                 {[
-                  { id: "mobile", icon: Smartphone, label: language === "ar" ? "تطبيق الجوال" : "Mobile App" },
-                  { id: "admin", icon: Monitor, label: language === "ar" ? "لوحة الإدارة" : "Admin Panel" },
+                  { id: "mobile", icon: Smartphone, label: language === "ar" ? "تطبيق الجوال" : "Mobile App",
+                    count: item.screenshots?.mobile?.length },
+                  { id: "admin", icon: Monitor, label: language === "ar" ? "لوحة الإدارة" : "Admin Panel",
+                    count: item.screenshots?.admin?.length },
                   { id: "website", icon: Tablet, label: language === "ar" ? "الموقع الإلكتروني" : "Website" },
                   ...(item.slug.includes("delivery") || item.slug.includes("gojek") || item.slug.includes("car-wash") || item.slug.includes("laundry") 
                     ? [{ id: "rider", icon: Bike, label: language === "ar" ? "تطبيق السائق" : "Rider App" }] 
@@ -534,43 +854,55 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                   >
                     <tab.icon className="w-5 h-5" />
                     {tab.label}
+                    {"count" in tab && tab.count && (
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${
+                        activeTab === tab.id ? "bg-white/20" : "bg-primary/20 text-primary"
+                      }`}>
+                        {tab.count}
+                      </span>
+                    )}
                   </button>
                 ))}
               </div>
 
               {/* Tab Content */}
-              <div className="max-w-4xl mx-auto">
+              <div className={item.screenshots ? "max-w-6xl mx-auto" : "max-w-4xl mx-auto"}>
                 {activeTab === "mobile" && (
                   <motion.div 
                     key="mobile"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
                   >
-                    <div className="bg-white/5 backdrop-blur-sm rounded-md border border-white/10 p-8">
-                      <Smartphone className="w-12 h-12 text-primary mb-6" />
-                      <h3 className="text-xl font-bold text-white mb-4">
-                        {language === "ar" ? "تطبيق iOS & Android" : "iOS & Android App"}
-                      </h3>
-                      <ul className="space-y-3">
-                        {[
-                          language === "ar" ? "واجهة مستخدم سهلة وبديهية" : "User-friendly intuitive interface",
-                          language === "ar" ? "إشعارات فورية" : "Real-time push notifications",
-                          language === "ar" ? "دعم الوضع الداكن" : "Dark mode support",
-                          language === "ar" ? "دعم متعدد اللغات" : "Multi-language support",
-                          language === "ar" ? "تكامل الدفع الإلكتروني" : "Payment gateway integration",
-                          language === "ar" ? "تسجيل دخول اجتماعي" : "Social login options"
-                        ].map((feature, i) => (
-                          <li key={i} className="flex items-center gap-3 text-slate-300">
-                            <Check className="w-4 h-4 text-primary shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="aspect-[9/16] max-w-[280px] mx-auto bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-[2rem] border-4 border-white/10 flex items-center justify-center">
-                      <Smartphone className="w-24 h-24 text-primary/50" />
-                    </div>
+                    {item.screenshots?.mobile ? (
+                      <MobileScreenshotGallery screenshots={item.screenshots.mobile} language={language} />
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="bg-white/5 backdrop-blur-sm rounded-md border border-white/10 p-8">
+                          <Smartphone className="w-12 h-12 text-primary mb-6" />
+                          <h3 className="text-xl font-bold text-white mb-4">
+                            {language === "ar" ? "تطبيق iOS & Android" : "iOS & Android App"}
+                          </h3>
+                          <ul className="space-y-3">
+                            {[
+                              language === "ar" ? "واجهة مستخدم سهلة وبديهية" : "User-friendly intuitive interface",
+                              language === "ar" ? "إشعارات فورية" : "Real-time push notifications",
+                              language === "ar" ? "دعم الوضع الداكن" : "Dark mode support",
+                              language === "ar" ? "دعم متعدد اللغات" : "Multi-language support",
+                              language === "ar" ? "تكامل الدفع الإلكتروني" : "Payment gateway integration",
+                              language === "ar" ? "تسجيل دخول اجتماعي" : "Social login options"
+                            ].map((feature, i) => (
+                              <li key={i} className="flex items-center gap-3 text-slate-300">
+                                <Check className="w-4 h-4 text-primary shrink-0" />
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="aspect-[9/16] max-w-[280px] mx-auto bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-[2rem] border-4 border-white/10 flex items-center justify-center">
+                          <Smartphone className="w-24 h-24 text-primary/50" />
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 )}
 
@@ -579,32 +911,37 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                     key="admin"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
                   >
-                    <div className="bg-white/5 backdrop-blur-sm rounded-md border border-white/10 p-8">
-                      <Monitor className="w-12 h-12 text-primary mb-6" />
-                      <h3 className="text-xl font-bold text-white mb-4">
-                        {language === "ar" ? "لوحة تحكم المسؤول" : "Admin Dashboard"}
-                      </h3>
-                      <ul className="space-y-3">
-                        {[
-                          language === "ar" ? "إدارة المستخدمين والصلاحيات" : "User & role management",
-                          language === "ar" ? "تحليلات وتقارير شاملة" : "Comprehensive analytics & reports",
-                          language === "ar" ? "إدارة الطلبات والمعاملات" : "Order & transaction management",
-                          language === "ar" ? "إعدادات النظام" : "System configuration",
-                          language === "ar" ? "إدارة المحتوى" : "Content management",
-                          language === "ar" ? "سجلات النشاط" : "Activity logs"
-                        ].map((feature, i) => (
-                          <li key={i} className="flex items-center gap-3 text-slate-300">
-                            <Check className="w-4 h-4 text-primary shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="aspect-video bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-md border border-white/10 flex items-center justify-center">
-                      <Monitor className="w-24 h-24 text-primary/50" />
-                    </div>
+                    {item.screenshots?.admin ? (
+                      <AdminScreenshotGallery screenshots={item.screenshots.admin} language={language} />
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="bg-white/5 backdrop-blur-sm rounded-md border border-white/10 p-8">
+                          <Monitor className="w-12 h-12 text-primary mb-6" />
+                          <h3 className="text-xl font-bold text-white mb-4">
+                            {language === "ar" ? "لوحة تحكم المسؤول" : "Admin Dashboard"}
+                          </h3>
+                          <ul className="space-y-3">
+                            {[
+                              language === "ar" ? "إدارة المستخدمين والصلاحيات" : "User & role management",
+                              language === "ar" ? "تحليلات وتقارير شاملة" : "Comprehensive analytics & reports",
+                              language === "ar" ? "إدارة الطلبات والمعاملات" : "Order & transaction management",
+                              language === "ar" ? "إعدادات النظام" : "System configuration",
+                              language === "ar" ? "إدارة المحتوى" : "Content management",
+                              language === "ar" ? "سجلات النشاط" : "Activity logs"
+                            ].map((feature, i) => (
+                              <li key={i} className="flex items-center gap-3 text-slate-300">
+                                <Check className="w-4 h-4 text-primary shrink-0" />
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="aspect-video bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-md border border-white/10 flex items-center justify-center">
+                          <Monitor className="w-24 h-24 text-primary/50" />
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 )}
 

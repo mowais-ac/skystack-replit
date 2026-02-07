@@ -26,6 +26,17 @@ import {
   Utensils
 } from "lucide-react";
 
+export interface ScreenshotItem {
+  src: string;
+  label: string;
+  labelAr: string;
+}
+
+export interface ScreenshotGroup {
+  mobile?: ScreenshotItem[];
+  admin?: ScreenshotItem[];
+}
+
 export interface ServiceItem {
   slug: string;
   title: string;
@@ -44,6 +55,7 @@ export interface ServiceItem {
   techStack: string[];
   useCases: string[];
   useCasesAr: string[];
+  screenshots?: ScreenshotGroup;
 }
 
 export interface IndustryItem {
@@ -303,7 +315,32 @@ export const businessModels: ServiceItem[] = [
     featuresAr: ["جدولة الاستلام", "تتبع الطلب", "حاسبة الأسعار"],
     techStack: ["React Native", "Node.js", "PostgreSQL", "Google Maps", "Twilio", "Stripe"],
     useCases: ["Laundry startups", "Dry cleaning chains", "Hotel laundry", "Campus laundry"],
-    useCasesAr: ["شركات الغسيل الناشئة", "سلاسل التنظيف الجاف", "غسيل الفنادق"]
+    useCasesAr: ["شركات الغسيل الناشئة", "سلاسل التنظيف الجاف", "غسيل الفنادق"],
+    screenshots: {
+      mobile: [
+        { src: "/solution-laundry/mobileapp/1.jpg", label: "Home & Services", labelAr: "الرئيسية والخدمات" },
+        { src: "/solution-laundry/mobileapp/6.jpg", label: "Choose Service", labelAr: "اختيار الخدمة" },
+        { src: "/solution-laundry/mobileapp/7.jpg", label: "Select Items", labelAr: "اختيار العناصر" },
+        { src: "/solution-laundry/mobileapp/8.jpg", label: "Schedule Pickup", labelAr: "جدولة الاستلام" },
+        { src: "/solution-laundry/mobileapp/9.jpg", label: "Order Summary", labelAr: "ملخص الطلب" },
+        { src: "/solution-laundry/mobileapp/10.jpg", label: "Order Confirmed", labelAr: "تأكيد الطلب" },
+        { src: "/solution-laundry/mobileapp/11.jpg", label: "Live Tracking", labelAr: "تتبع مباشر" },
+        { src: "/solution-laundry/mobileapp/2.jpg", label: "My Orders", labelAr: "طلباتي" },
+        { src: "/solution-laundry/mobileapp/3.jpg", label: "Schedule & Subscriptions", labelAr: "الجدول والاشتراكات" },
+        { src: "/solution-laundry/mobileapp/4.jpg", label: "Wallet & Promos", labelAr: "المحفظة والعروض" },
+        { src: "/solution-laundry/mobileapp/5.jpg", label: "Profile & Settings", labelAr: "الملف الشخصي" },
+      ],
+      admin: [
+        { src: "/solution-laundry/admin/1.png", label: "Dashboard Overview", labelAr: "نظرة عامة على لوحة التحكم" },
+        { src: "/solution-laundry/admin/2.png", label: "Order Management", labelAr: "إدارة الطلبات" },
+        { src: "/solution-laundry/admin/3.png", label: "Customer Database", labelAr: "قاعدة بيانات العملاء" },
+        { src: "/solution-laundry/admin/4.png", label: "Staff Management", labelAr: "إدارة الموظفين" },
+        { src: "/solution-laundry/admin/5.png", label: "Delivery Riders", labelAr: "سائقي التوصيل" },
+        { src: "/solution-laundry/admin/6.png", label: "Branch Management", labelAr: "إدارة الفروع" },
+        { src: "/solution-laundry/admin/7.png", label: "Reports & Analytics", labelAr: "التقارير والتحليلات" },
+        { src: "/solution-laundry/admin/8.png", label: "Settings", labelAr: "الإعدادات" },
+      ]
+    }
   },
   {
     slug: "elearning-app-development",
