@@ -72,18 +72,73 @@ const packageFeatures = [
   }
 ];
 
+const freeAddons = [
+  {
+    icon: Eye,
+    title: "Google Analytics 4",
+    description: "Full GA4 setup with custom events, conversion tracking, and audience insights dashboard.",
+    value: "$200"
+  },
+  {
+    icon: Target,
+    title: "Hotjar Heatmaps",
+    description: "Heatmaps, session recordings, and user behavior analytics to see exactly how visitors interact.",
+    value: "$150"
+  },
+  {
+    icon: TrendingUp,
+    title: "Mixpanel Analytics",
+    description: "Advanced product analytics with user funnels, retention analysis, and custom event tracking.",
+    value: "$200"
+  },
+  {
+    icon: Layers,
+    title: "Google Tag Manager",
+    description: "GTM container setup with all marketing tags pre-configured. Easy to add future tracking pixels.",
+    value: "$150"
+  },
+  {
+    icon: Search,
+    title: "Google Search Console",
+    description: "Full Search Console setup with sitemap submission, indexing requests, and performance monitoring.",
+    value: "$100"
+  },
+  {
+    icon: Globe,
+    title: "Bing Webmaster Tools",
+    description: "Bing Webmaster setup for additional search engine visibility and SEO insights.",
+    value: "$50"
+  },
+  {
+    icon: Rocket,
+    title: "Meta Pixel (Facebook)",
+    description: "Facebook/Instagram pixel installed and configured for retargeting and conversion tracking.",
+    value: "$100"
+  },
+  {
+    icon: Monitor,
+    title: "Speed & Core Web Vitals",
+    description: "PageSpeed optimization to score 90+ on Google Lighthouse. Core Web Vitals compliance included.",
+    value: "$200"
+  }
+];
+
 const whatsIncluded = [
   "Up to 5 custom-designed pages",
   "Professional copywriting guidance",
   "High-quality image sourcing & optimization",
   "Blog/articles section (optional)",
   "Social media integration",
-  "Google Analytics setup",
+  "Google Analytics 4 + Mixpanel setup",
+  "Hotjar heatmaps & session recording",
+  "Google Tag Manager configured",
+  "Search Console & Webmaster Tools",
   "WhatsApp chat widget",
   "Contact form with email alerts",
+  "Meta Pixel for retargeting",
   "1 month free support after launch",
   "Full source code ownership",
-  "Performance optimization",
+  "Performance & Core Web Vitals optimization",
   "Cross-browser testing"
 ];
 
@@ -121,30 +176,30 @@ const processSteps = [
     number: "02",
     title: "Design Concept",
     description: "We create 2 unique design concepts for your review and feedback.",
-    duration: "Days 2-5"
+    duration: "Days 2-3"
   },
   {
     number: "03",
     title: "Development",
     description: "We build your site with clean code, animations, and all features.",
-    duration: "Days 6-12"
+    duration: "Days 4-6"
   },
   {
     number: "04",
     title: "Review & Launch",
-    description: "Final review, revisions, and launch. Your site goes live!",
-    duration: "Days 13-14"
+    description: "Final review, revisions, analytics setup, and launch. Your site goes live!",
+    duration: "Day 7"
   }
 ];
 
 const faqs = [
   {
     q: "What's included in the $2,000 package?",
-    a: "You get up to 5 custom-designed pages, mobile responsiveness, SEO optimization, contact forms, social media integration, analytics setup, 1 month post-launch support, and full source code ownership. No hidden costs."
+    a: "You get up to 5 custom-designed pages, mobile responsiveness, SEO optimization, contact forms, social media integration, and full source code ownership. Plus $1,150+ worth of free addons: Google Analytics 4, Hotjar, Mixpanel, Google Tag Manager, Search Console, Bing Webmaster Tools, Meta Pixel, and Core Web Vitals optimization. No hidden costs."
   },
   {
     q: "How long does it take to build?",
-    a: "Most personal websites are completed within 10-14 business days from the discovery call. We follow a streamlined process to deliver fast without compromising quality."
+    a: "Most personal websites are completed within 7 business days from the discovery call. We follow a streamlined process to deliver fast without compromising quality."
   },
   {
     q: "Can I update the website myself after launch?",
@@ -279,8 +334,8 @@ export default function PersonalWebsite() {
       <SEO
         title="Professional Personal Website — $2,000 | SkyStack"
         titleAr="موقع شخصي احترافي — 2,000 دولار | سكاي ستاك"
-        description="Get a stunning, custom-designed personal website for $2,000. Mobile responsive, SEO optimized, blazing fast. Ready in 14 days. Free discovery call included."
-        descriptionAr="احصل على موقع شخصي مذهل ومصمم خصيصاً بـ 2,000 دولار. متجاوب مع الجوال، محسن لمحركات البحث، سريع البرق. جاهز خلال 14 يوم."
+        description="Get a stunning, custom-designed personal website for $2,000. Mobile responsive, SEO optimized, blazing fast. Ready in 7 days. $1,150+ in free analytics addons included."
+        descriptionAr="احصل على موقع شخصي مذهل ومصمم خصيصاً بـ 2,000 دولار. متجاوب مع الجوال، محسن لمحركات البحث، سريع البرق. جاهز خلال 7 أيام. إضافات تحليلات مجانية بقيمة 1,150+ دولار."
         keywords="personal website, portfolio website, professional website, custom website design, personal branding, website development"
         keywordsAr="موقع شخصي، موقع بورتفوليو، موقع احترافي، تصميم موقع مخصص، علامة تجارية شخصية"
         canonicalUrl="/personal-website"
@@ -318,7 +373,7 @@ export default function PersonalWebsite() {
                 <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.05] mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.02em' }}>
                   Your Professional{" "}
                   <span className="gradient-text">Personal Website</span>{" "}
-                  in 14 Days
+                  in 7 Days
                 </motion.h1>
 
                 <motion.p variants={fadeIn} className="text-lg lg:text-xl text-slate-300 mb-4 leading-relaxed max-w-2xl mx-auto">
@@ -329,7 +384,7 @@ export default function PersonalWebsite() {
                   <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Custom Design</span>
                   <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Mobile Ready</span>
                   <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> SEO Built-in</span>
-                  <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> 14-Day Delivery</span>
+                  <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> 7-Day Delivery</span>
                 </motion.div>
 
                 <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
@@ -359,7 +414,7 @@ export default function PersonalWebsite() {
                     </div>
                     <div className="w-px h-10 bg-white/20" />
                     <div className="text-center">
-                      <div className="text-sm text-white font-semibold">14 Days</div>
+                      <div className="text-sm text-white font-semibold">7 Days</div>
                       <div className="text-xs text-slate-500">Delivery Time</div>
                     </div>
                   </div>
@@ -374,9 +429,9 @@ export default function PersonalWebsite() {
           <div className="container-width">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center text-white">
               {[
-                { value: "500+", label: "Websites Delivered" },
+                { value: "100+", label: "Websites Delivered" },
                 { value: "98%", label: "Client Satisfaction" },
-                { value: "14 Days", label: "Average Delivery" },
+                { value: "7 Days", label: "Average Delivery" },
                 { value: "10+", label: "Years Experience" }
               ].map((stat, i) => (
                 <div key={i}>
@@ -482,8 +537,9 @@ export default function PersonalWebsite() {
                     <ul className="space-y-3 mb-8">
                       {[
                         "Up to 5 custom pages",
-                        "14-day delivery",
+                        "7-day delivery",
                         "2 design revisions included",
+                        "$1,150+ in free analytics addons",
                         "1 month free support",
                         "Full code ownership"
                       ].map((item, i) => (
@@ -510,8 +566,71 @@ export default function PersonalWebsite() {
           </div>
         </section>
 
-        {/* Who Is This For */}
+        {/* Free Addons Section */}
         <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/3 -right-20 w-[500px] h-[500px] bg-emerald-50 rounded-full blur-3xl" />
+            <div className="absolute bottom-1/4 -left-20 w-[300px] h-[300px] bg-primary/5 rounded-full blur-3xl" />
+          </div>
+          <div className="container-width relative z-10">
+            <div className="text-center max-w-2xl mx-auto mb-6">
+              <span className="section-eyebrow">🎁 Free Bonus</span>
+              <h2 className="section-heading mt-3">
+                <span className="gradient-text">$1,150+</span> in Free Analytics & Marketing Tools
+              </h2>
+              <p className="section-subheading mx-auto mt-4">
+                Every personal website comes with a complete analytics and marketing stack — set up and configured at no extra cost.
+              </p>
+            </div>
+
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-700 rounded-full text-sm font-semibold border border-emerald-200">
+                <Sparkles className="w-4 h-4" />
+                All included FREE with your $2,000 package
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {freeAddons.map((addon, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05, duration: 0.4 }}
+                  className="group bg-white p-6 rounded-md border border-slate-100 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 relative"
+                >
+                  <div className="absolute -top-2 -right-2">
+                    <span className="inline-flex items-center px-2 py-0.5 bg-emerald-500 text-white text-xs font-bold rounded-full shadow-sm">
+                      FREE
+                    </span>
+                  </div>
+                  <div className="w-14 h-14 rounded-md bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center mb-5 group-hover:shadow-lg group-hover:shadow-emerald-200/50 transition-all">
+                    <addon.icon className="w-6 h-6 text-emerald-600" />
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors">
+                    {addon.title}
+                  </h4>
+                  <div className="text-xs font-semibold text-slate-400 line-through mb-2">
+                    Worth {addon.value}
+                  </div>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    {addon.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <button onClick={scrollToForm} className="btn-primary-gradient inline-flex items-center gap-2 group">
+                Get Everything for $2,000 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Who Is This For */}
+        <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
           </div>
@@ -592,7 +711,7 @@ export default function PersonalWebsite() {
           <div className="container-width relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="section-eyebrow">Our Process</span>
-              <h2 className="section-heading mt-3">From Idea to Launch in <span className="gradient-text">14 Days</span></h2>
+              <h2 className="section-heading mt-3">From Idea to Launch in <span className="gradient-text">7 Days</span></h2>
               <p className="section-subheading mx-auto mt-4">
                 A proven, streamlined process that delivers results fast without cutting corners.
               </p>
@@ -677,7 +796,8 @@ export default function PersonalWebsite() {
                     { feature: "SEO Optimization", diy: false, agency: true, skystack: true },
                     { feature: "Fast Performance", diy: false, agency: true, skystack: true },
                     { feature: "Affordable Price", diy: true, agency: false, skystack: true },
-                    { feature: "Ready in 14 Days", diy: true, agency: false, skystack: true },
+                    { feature: "Ready in 7 Days", diy: true, agency: false, skystack: true },
+                    { feature: "Free Analytics Suite", diy: false, agency: false, skystack: true },
                     { feature: "Full Code Ownership", diy: false, agency: false, skystack: true },
                     { feature: "Free Post-Launch Support", diy: false, agency: false, skystack: true },
                   ].map((row, i) => (
@@ -715,7 +835,7 @@ export default function PersonalWebsite() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
-                  quote: "SkyStack delivered my personal website in just 12 days. The design blew me away — it perfectly captures my brand. Highly recommend!",
+                  quote: "SkyStack delivered my personal website in just 5 days. The design blew me away — it perfectly captures my brand. Plus they set up all my analytics for free!",
                   role: "CEO, Tech Startup",
                   rating: 5
                 },
@@ -944,7 +1064,7 @@ export default function PersonalWebsite() {
                   Every day without a professional website is a missed opportunity. Get yours for just $2,000.
                 </p>
                 <p className="text-sm text-slate-400 mb-10">
-                  ✓ Custom design &nbsp;&nbsp; ✓ 14-day delivery &nbsp;&nbsp; ✓ Full ownership &nbsp;&nbsp; ✓ Free support
+                  ✓ Custom design &nbsp;&nbsp; ✓ 7-day delivery &nbsp;&nbsp; ✓ Full ownership &nbsp;&nbsp; ✓ $1,150+ free addons
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button onClick={scrollToForm} className="bg-primary text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/30 flex items-center justify-center gap-2">

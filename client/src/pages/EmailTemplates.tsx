@@ -1641,35 +1641,35 @@ const serviceTemplates: ServiceTemplate[] = [
     subtitleAr: "العلامة الشخصية",
     tagline: "Your Professional Personal Website — Just $2,000",
     taglineAr: "موقعك الشخصي الاحترافي — فقط 2,000 دولار",
-    description: "Get a stunning, custom-designed personal website that showcases your expertise, attracts clients, and builds your brand. Ready in 14 days.",
-    descriptionAr: "احصل على موقع شخصي مذهل ومصمم خصيصاً يعرض خبرتك، يجذب العملاء، ويبني علامتك التجارية. جاهز خلال 14 يوم.",
+    description: "Get a stunning, custom-designed personal website that showcases your expertise, attracts clients, and builds your brand. Ready in 7 days. Includes $1,150+ in free analytics addons.",
+    descriptionAr: "احصل على موقع شخصي مذهل ومصمم خصيصاً يعرض خبرتك، يجذب العملاء، ويبني علامتك التجارية. جاهز خلال 7 أيام. يشمل إضافات تحليلات مجانية بقيمة 1,150+ دولار.",
     problem: "You don't have a professional online presence. Potential clients Google you and find nothing — or worse, an outdated LinkedIn profile. You're losing credibility and business every day.",
     problemAr: "ليس لديك حضور رقمي احترافي. العملاء المحتملون يبحثون عنك في جوجل ولا يجدون شيئاً — أو الأسوأ، ملف لينكدإن قديم. تخسر المصداقية والعملاء كل يوم.",
-    solution: "A custom-designed personal website built in 14 days for $2,000. Mobile responsive, SEO optimized, blazing fast. Up to 5 pages, contact forms, social media integration, and full code ownership.",
-    solutionAr: "موقع شخصي مصمم خصيصاً يُبنى خلال 14 يوم بـ 2,000 دولار. متجاوب مع الجوال، محسّن لمحركات البحث، سريع البرق. حتى 5 صفحات، نماذج اتصال، تكامل وسائل التواصل، وملكية كاملة للكود.",
-    features: ["Custom premium design — no templates", "Mobile responsive on all devices", "SEO optimization built-in", "Contact forms with email alerts", "Social media integration", "Google Analytics setup", "1 month free post-launch support", "Full source code ownership"],
-    featuresAr: ["تصميم مخصص فاخر — بدون قوالب", "متجاوب مع جميع الأجهزة", "تحسين محركات البحث مدمج", "نماذج اتصال مع تنبيهات البريد", "تكامل وسائل التواصل الاجتماعي", "إعداد تحليلات جوجل", "شهر دعم مجاني بعد الإطلاق", "ملكية كاملة للكود المصدري"],
-    benefits: ["14-day delivery", "60% cheaper than agencies", "100% code ownership"],
-    benefitsAr: ["تسليم خلال 14 يوم", "أرخص 60% من الوكالات", "ملكية كاملة 100% للكود"],
+    solution: "A custom-designed personal website built in 7 days for $2,000. Mobile responsive, SEO optimized, blazing fast. Up to 5 pages, contact forms, social media integration, full code ownership, plus $1,150+ in free analytics tools (GA4, Hotjar, Mixpanel, GTM, Search Console & more).",
+    solutionAr: "موقع شخصي مصمم خصيصاً يُبنى خلال 7 أيام بـ 2,000 دولار. متجاوب مع الجوال، محسّن لمحركات البحث، سريع البرق. حتى 5 صفحات، نماذج اتصال، تكامل وسائل التواصل، وملكية كاملة للكود، بالإضافة إلى أدوات تحليلات مجانية بقيمة 1,150+ دولار.",
+    features: ["Custom premium design — no templates", "Mobile responsive on all devices", "SEO optimization built-in", "Contact forms with email alerts", "Social media integration", "Google Analytics 4 + Mixpanel + Hotjar", "Google Tag Manager pre-configured", "Search Console & Bing Webmaster Tools", "Meta Pixel for retargeting", "Core Web Vitals optimization", "1 month free post-launch support", "Full source code ownership"],
+    featuresAr: ["تصميم مخصص فاخر — بدون قوالب", "متجاوب مع جميع الأجهزة", "تحسين محركات البحث مدمج", "نماذج اتصال مع تنبيهات البريد", "تكامل وسائل التواصل الاجتماعي", "Google Analytics 4 + Mixpanel + Hotjar", "Google Tag Manager مُعدّ مسبقاً", "Search Console و Bing Webmaster Tools", "Meta Pixel لإعادة الاستهداف", "تحسين Core Web Vitals", "شهر دعم مجاني بعد الإطلاق", "ملكية كاملة للكود المصدري"],
+    benefits: ["7-day delivery", "60% cheaper than agencies", "100% code ownership", "$1,150+ in free analytics tools"],
+    benefitsAr: ["تسليم خلال 7 أيام", "أرخص 60% من الوكالات", "ملكية كاملة 100% للكود", "أدوات تحليلات مجانية بقيمة 1,150+ دولار"],
     techStack: ["React", "Next.js", "Tailwind CSS", "Vercel", "TypeScript", "Framer Motion"],
     slug: "personal-website",
     ctaText: "Get Your Website — $2,000",
     ctaTextAr: "احصل على موقعك — 2,000 دولار",
     stat1: { value: "$2K", label: "Fixed Price", labelAr: "سعر ثابت" },
-    stat2: { value: "14", label: "Days Delivery", labelAr: "يوم للتسليم" },
+    stat2: { value: "7", label: "Days Delivery", labelAr: "أيام للتسليم" },
     stat3: { value: "5", label: "Custom Pages", labelAr: "صفحات مخصصة" },
     subjectLines: [
       {
-        subject: "Your Professional Personal Website — Ready in 14 Days for $2,000",
-        subjectAr: "موقعك الشخصي الاحترافي — جاهز خلال 14 يوم بـ 2,000 دولار",
-        preview: "Custom design, mobile ready, SEO optimized. No templates, no subscriptions.",
-        previewAr: "تصميم مخصص، جاهز للجوال، محسّن لمحركات البحث. بدون قوالب، بدون اشتراكات."
+        subject: "Your Professional Personal Website — Ready in 7 Days for $2,000 + $1,150 in Free Tools",
+        subjectAr: "موقعك الشخصي الاحترافي — جاهز خلال 7 أيام بـ 2,000 دولار + أدوات مجانية بقيمة 1,150 دولار",
+        preview: "Custom design, mobile ready, SEO optimized. Plus free GA4, Hotjar, Mixpanel & more.",
+        previewAr: "تصميم مخصص، جاهز للجوال، محسّن لمحركات البحث. بالإضافة إلى GA4 و Hotjar و Mixpanel مجاناً."
       },
       {
         subject: "93% of People Google You Before Doing Business — What Do They Find?",
         subjectAr: "93% من الأشخاص يبحثون عنك في جوجل قبل التعامل معك — ماذا يجدون؟",
-        preview: "A professional personal website costs just $2,000. Custom designed in 14 days.",
-        previewAr: "الموقع الشخصي الاحترافي يكلف فقط 2,000 دولار. مصمم خصيصاً خلال 14 يوم."
+        preview: "A professional personal website costs just $2,000. Custom designed in 7 days. Free analytics included.",
+        previewAr: "الموقع الشخصي الاحترافي يكلف فقط 2,000 دولار. مصمم خصيصاً خلال 7 أيام. تحليلات مجانية مشمولة."
       },
       {
         subject: "Stop Losing Clients Because You Don't Have a Website",
@@ -1678,26 +1678,26 @@ const serviceTemplates: ServiceTemplate[] = [
         previewAr: "احصل على موقع شخصي مذهل بـ 2,000 دولار — أرخص 60% من الوكالات."
       },
       {
-        subject: "Your Personal Website: Custom Design, 14 Days, $2,000. Done.",
-        subjectAr: "موقعك الشخصي: تصميم مخصص، 14 يوم، 2,000 دولار. تم.",
+        subject: "Your Personal Website: Custom Design, 7 Days, $2,000. Done.",
+        subjectAr: "موقعك الشخصي: تصميم مخصص، 7 أيام، 2,000 دولار. تم.",
         preview: "No templates. No monthly fees. Full code ownership. Let's build your online presence.",
         previewAr: "بدون قوالب. بدون رسوم شهرية. ملكية كاملة للكود. لنبني حضورك الرقمي."
       },
       {
         subject: "Why Pay $5,000+ When You Can Get the Same Quality for $2,000?",
         subjectAr: "لماذا تدفع 5,000+ دولار عندما يمكنك الحصول على نفس الجودة بـ 2,000 دولار؟",
-        preview: "Custom personal website. React/Next.js. SEO. Mobile ready. Launch in 14 days.",
-        previewAr: "موقع شخصي مخصص. React/Next.js. تحسين محركات البحث. جاهز للجوال. إطلاق خلال 14 يوم."
+        preview: "Custom personal website. React/Next.js. SEO. Mobile ready. Launch in 7 days. Free analytics suite.",
+        previewAr: "موقع شخصي مخصص. React/Next.js. تحسين محركات البحث. جاهز للجوال. إطلاق خلال 7 أيام. باقة تحليلات مجانية."
       },
       {
         subject: "Your Competitors Have a Website. Do You?",
         subjectAr: "منافسوك لديهم موقع إلكتروني. هل لديك؟",
-        preview: "Stand out online with a custom personal website. Just $2,000. Ready in 14 days.",
-        previewAr: "تميز عبر الإنترنت بموقع شخصي مخصص. فقط 2,000 دولار. جاهز خلال 14 يوم."
+        preview: "Stand out online with a custom personal website. Just $2,000. Ready in 7 days. Free analytics tools included.",
+        previewAr: "تميز عبر الإنترنت بموقع شخصي مخصص. فقط 2,000 دولار. جاهز خلال 7 أيام. أدوات تحليلات مجانية."
       },
       {
-        subject: "From Zero to Online Presence in 14 Days — Here's How",
-        subjectAr: "من الصفر إلى الحضور الرقمي خلال 14 يوم — إليك كيف",
+        subject: "From Zero to Online Presence in 7 Days — Here's How",
+        subjectAr: "من الصفر إلى الحضور الرقمي خلال 7 أيام — إليك كيف",
         preview: "We build stunning personal websites for professionals. $2,000 all-inclusive.",
         previewAr: "نبني مواقع شخصية مذهلة للمحترفين. 2,000 دولار شاملة كل شيء."
       },
