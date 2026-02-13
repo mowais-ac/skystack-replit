@@ -78,6 +78,15 @@ const outsourcingInquirySchema = z.object({
   message: z.string().optional()
 });
 
+const personalWebsiteInquirySchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  phone: z.string().min(9),
+  currentWebsite: z.string().optional(),
+  profession: z.string().optional(),
+  goals: z.string().optional()
+});
+
 const serviceInquirySchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
@@ -180,6 +189,35 @@ export async function registerRoutes(
         res.status(400).json({ message: "Invalid input", details: error.errors });
       } else {
         console.error("Service inquiry error:", error);
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+  });
+
+  // Personal website inquiry form
+  app.post("/api/personal-website-inquiry", async (req, res) => {
+    try {
+      const data = personalWebsiteInquirySchema.parse(req.body);
+      
+      await sendToSlack(
+        "🌐 New Personal Website Inquiry — $2,000 Package",
+        [
+          { type: "mrkdwn", text: `*Name:*\n${data.name}` },
+          { type: "mrkdwn", text: `*Email:*\n${data.email}` },
+          { type: "mrkdwn", text: `*Phone:*\n${data.phone}` },
+          { type: "mrkdwn", text: `*Profession:*\n${data.profession || "Not specified"}` },
+          { type: "mrkdwn", text: `*Current Website:*\n${data.currentWebsite || "None"}` },
+          { type: "mrkdwn", text: `*Package:*\nPersonal Website ($2,000)` }
+        ],
+        data.goals ? `*Goals:*\n${data.goals}` : undefined
+      );
+      
+      res.status(201).json({ success: true, message: "Inquiry sent successfully" });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: "Invalid input", details: error.errors });
+      } else {
+        console.error("Personal website inquiry error:", error);
         res.status(500).json({ message: "Internal server error" });
       }
     }

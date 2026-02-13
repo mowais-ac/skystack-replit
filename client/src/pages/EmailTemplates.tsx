@@ -1632,6 +1632,94 @@ const serviceTemplates: ServiceTemplate[] = [
         previewAr: "تعلم كيفية إعداد أنظمة الدفع ونماذج الاشتراك لدوراتك."
       }
     ]
+  },
+  {
+    id: "personal-website",
+    title: "Personal Website",
+    titleAr: "موقع شخصي",
+    subtitle: "Personal Brand",
+    subtitleAr: "العلامة الشخصية",
+    tagline: "Your Professional Personal Website — Just $2,000",
+    taglineAr: "موقعك الشخصي الاحترافي — فقط 2,000 دولار",
+    description: "Get a stunning, custom-designed personal website that showcases your expertise, attracts clients, and builds your brand. Ready in 14 days.",
+    descriptionAr: "احصل على موقع شخصي مذهل ومصمم خصيصاً يعرض خبرتك، يجذب العملاء، ويبني علامتك التجارية. جاهز خلال 14 يوم.",
+    problem: "You don't have a professional online presence. Potential clients Google you and find nothing — or worse, an outdated LinkedIn profile. You're losing credibility and business every day.",
+    problemAr: "ليس لديك حضور رقمي احترافي. العملاء المحتملون يبحثون عنك في جوجل ولا يجدون شيئاً — أو الأسوأ، ملف لينكدإن قديم. تخسر المصداقية والعملاء كل يوم.",
+    solution: "A custom-designed personal website built in 14 days for $2,000. Mobile responsive, SEO optimized, blazing fast. Up to 5 pages, contact forms, social media integration, and full code ownership.",
+    solutionAr: "موقع شخصي مصمم خصيصاً يُبنى خلال 14 يوم بـ 2,000 دولار. متجاوب مع الجوال، محسّن لمحركات البحث، سريع البرق. حتى 5 صفحات، نماذج اتصال، تكامل وسائل التواصل، وملكية كاملة للكود.",
+    features: ["Custom premium design — no templates", "Mobile responsive on all devices", "SEO optimization built-in", "Contact forms with email alerts", "Social media integration", "Google Analytics setup", "1 month free post-launch support", "Full source code ownership"],
+    featuresAr: ["تصميم مخصص فاخر — بدون قوالب", "متجاوب مع جميع الأجهزة", "تحسين محركات البحث مدمج", "نماذج اتصال مع تنبيهات البريد", "تكامل وسائل التواصل الاجتماعي", "إعداد تحليلات جوجل", "شهر دعم مجاني بعد الإطلاق", "ملكية كاملة للكود المصدري"],
+    benefits: ["14-day delivery", "60% cheaper than agencies", "100% code ownership"],
+    benefitsAr: ["تسليم خلال 14 يوم", "أرخص 60% من الوكالات", "ملكية كاملة 100% للكود"],
+    techStack: ["React", "Next.js", "Tailwind CSS", "Vercel", "TypeScript", "Framer Motion"],
+    slug: "personal-website",
+    ctaText: "Get Your Website — $2,000",
+    ctaTextAr: "احصل على موقعك — 2,000 دولار",
+    stat1: { value: "$2K", label: "Fixed Price", labelAr: "سعر ثابت" },
+    stat2: { value: "14", label: "Days Delivery", labelAr: "يوم للتسليم" },
+    stat3: { value: "5", label: "Custom Pages", labelAr: "صفحات مخصصة" },
+    subjectLines: [
+      {
+        subject: "Your Professional Personal Website — Ready in 14 Days for $2,000",
+        subjectAr: "موقعك الشخصي الاحترافي — جاهز خلال 14 يوم بـ 2,000 دولار",
+        preview: "Custom design, mobile ready, SEO optimized. No templates, no subscriptions.",
+        previewAr: "تصميم مخصص، جاهز للجوال، محسّن لمحركات البحث. بدون قوالب، بدون اشتراكات."
+      },
+      {
+        subject: "93% of People Google You Before Doing Business — What Do They Find?",
+        subjectAr: "93% من الأشخاص يبحثون عنك في جوجل قبل التعامل معك — ماذا يجدون؟",
+        preview: "A professional personal website costs just $2,000. Custom designed in 14 days.",
+        previewAr: "الموقع الشخصي الاحترافي يكلف فقط 2,000 دولار. مصمم خصيصاً خلال 14 يوم."
+      },
+      {
+        subject: "Stop Losing Clients Because You Don't Have a Website",
+        subjectAr: "توقف عن خسارة العملاء لأنك لا تملك موقعاً إلكترونياً",
+        preview: "Get a stunning personal website for $2,000 — 60% less than agencies charge.",
+        previewAr: "احصل على موقع شخصي مذهل بـ 2,000 دولار — أرخص 60% من الوكالات."
+      },
+      {
+        subject: "Your Personal Website: Custom Design, 14 Days, $2,000. Done.",
+        subjectAr: "موقعك الشخصي: تصميم مخصص، 14 يوم، 2,000 دولار. تم.",
+        preview: "No templates. No monthly fees. Full code ownership. Let's build your online presence.",
+        previewAr: "بدون قوالب. بدون رسوم شهرية. ملكية كاملة للكود. لنبني حضورك الرقمي."
+      },
+      {
+        subject: "Why Pay $5,000+ When You Can Get the Same Quality for $2,000?",
+        subjectAr: "لماذا تدفع 5,000+ دولار عندما يمكنك الحصول على نفس الجودة بـ 2,000 دولار؟",
+        preview: "Custom personal website. React/Next.js. SEO. Mobile ready. Launch in 14 days.",
+        previewAr: "موقع شخصي مخصص. React/Next.js. تحسين محركات البحث. جاهز للجوال. إطلاق خلال 14 يوم."
+      },
+      {
+        subject: "Your Competitors Have a Website. Do You?",
+        subjectAr: "منافسوك لديهم موقع إلكتروني. هل لديك؟",
+        preview: "Stand out online with a custom personal website. Just $2,000. Ready in 14 days.",
+        previewAr: "تميز عبر الإنترنت بموقع شخصي مخصص. فقط 2,000 دولار. جاهز خلال 14 يوم."
+      },
+      {
+        subject: "From Zero to Online Presence in 14 Days — Here's How",
+        subjectAr: "من الصفر إلى الحضور الرقمي خلال 14 يوم — إليك كيف",
+        preview: "We build stunning personal websites for professionals. $2,000 all-inclusive.",
+        previewAr: "نبني مواقع شخصية مذهلة للمحترفين. 2,000 دولار شاملة كل شيء."
+      },
+      {
+        subject: "A Personal Website That Actually Gets You Clients",
+        subjectAr: "موقع شخصي يجلب لك العملاء فعلاً",
+        preview: "Not just pretty — conversion-optimized. Custom design, SEO, lead capture. $2,000.",
+        previewAr: "ليس جميلاً فقط — محسّن للتحويل. تصميم مخصص، SEO، التقاط العملاء. 2,000 دولار."
+      },
+      {
+        subject: "The $2,000 Investment That Pays for Itself",
+        subjectAr: "الاستثمار بقيمة 2,000 دولار الذي يدفع ثمنه بنفسه",
+        preview: "One new client from your website pays for it many times over. Get started today.",
+        previewAr: "عميل جديد واحد من موقعك يدفع ثمنه عدة مرات. ابدأ اليوم."
+      },
+      {
+        subject: "Free Discovery Call: Let's Design Your Personal Website",
+        subjectAr: "مكالمة استكشافية مجانية: لنصمم موقعك الشخصي",
+        preview: "Book a 30-min call to discuss your vision. We'll create 2 custom design concepts.",
+        previewAr: "احجز مكالمة 30 دقيقة لمناقشة رؤيتك. سننشئ مفهومين تصميميين مخصصين."
+      }
+    ]
   }
 ];
 
@@ -2581,6 +2669,13 @@ const templateCategories = {
     description: "Staff augmentation and dedicated team services",
     templates: serviceTemplates.filter(t => 
       ["outsourcing", "offshore"].includes(t.id)
+    )
+  },
+  packages: {
+    label: "Packages",
+    description: "Fixed-price package marketing templates for specific product offerings",
+    templates: serviceTemplates.filter(t => 
+      ["personal-website"].includes(t.id)
     )
   },
   "brand-awareness": {

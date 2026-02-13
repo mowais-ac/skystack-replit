@@ -40,6 +40,7 @@ import StaticContent from "@/pages/StaticContent";
 import BusinessModels from "@/pages/BusinessModels";
 import Outsourcing from "@/pages/Outsourcing";
 import EmailTemplates from "@/pages/EmailTemplates";
+import PersonalWebsite from "@/pages/PersonalWebsite";
 import BlogList from "@/pages/BlogList";
 import BlogDetail from "@/pages/BlogDetail";
 import NotFound from "@/pages/not-found";
@@ -78,6 +79,7 @@ function Router() {
         <StaticContent type="terms" />
       </Route>
       
+      <Route path="/personal-website" component={PersonalWebsite} />
       <Route path="/email-templates" component={EmailTemplates} />
       
       <Route path="/blog" component={BlogList} />
