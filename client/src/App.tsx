@@ -79,7 +79,7 @@ function Router() {
         <StaticContent type="terms" />
       </Route>
       
-      <Route path="/personal-website" component={PersonalWebsite} />
+      <Route path="/services/personal-website" component={PersonalWebsite} />
       <Route path="/email-templates" component={EmailTemplates} />
       
       <Route path="/blog" component={BlogList} />
