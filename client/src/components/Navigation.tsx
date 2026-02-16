@@ -67,6 +67,14 @@ export function Navigation() {
                     {language === "ar" ? s.titleAr : s.title}
                   </Link>
                 ))}
+                <div className="h-px bg-slate-100 my-1"></div>
+                <Link 
+                  href="/services/personal-website" 
+                  className="block px-4 py-2 rounded-md hover:bg-slate-50 hover:text-primary text-sm font-semibold"
+                  data-testid="link-service-personal-website"
+                >
+                  {language === "ar" ? "🌐 الموقع الشخصي — $2,000" : "🌐 Personal Website — $2,000"}
+                </Link>
               </div>
             </div>
           </div>
@@ -164,6 +172,9 @@ export function Navigation() {
                     {language === "ar" ? s.titleAr : s.title}
                   </Link>
                 ))}
+                <Link href="/services/personal-website" className="block pl-2 text-primary font-semibold">
+                  {language === "ar" ? "🌐 الموقع الشخصي — $2,000" : "🌐 Personal Website — $2,000"}
+                </Link>
               </div>
 
               <div className="space-y-2 border-b border-slate-100 pb-4">

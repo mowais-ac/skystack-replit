@@ -54,6 +54,7 @@ function Router() {
         <ServicesList type="service" />
       </Route>
       <Route path="/services/outsourcing" component={Outsourcing} />
+      <Route path="/services/personal-website" component={PersonalWebsite} />
       <Route path="/services/:slug">
         <DynamicPage type="service" />
       </Route>
@@ -79,7 +80,6 @@ function Router() {
         <StaticContent type="terms" />
       </Route>
       
-      <Route path="/services/personal-website" component={PersonalWebsite} />
       <Route path="/email-templates" component={EmailTemplates} />
       
       <Route path="/blog" component={BlogList} />
