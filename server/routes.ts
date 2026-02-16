@@ -223,6 +223,72 @@ export async function registerRoutes(
     }
   });
 
+  // Chatbot lead capture
+  const chatbotLeadSchema = z.object({
+    name: z.string().min(2),
+    email: z.string().email(),
+    phone: z.string().min(9),
+    interest: z.string().optional()
+  });
+
+  app.post("/api/chatbot-lead", async (req, res) => {
+    try {
+      const data = chatbotLeadSchema.parse(req.body);
+
+      await sendToSlack(
+        "💬 New Chatbot Lead",
+        [
+          { type: "mrkdwn", text: `*Name:*\n${data.name}` },
+          { type: "mrkdwn", text: `*Email:*\n${data.email}` },
+          { type: "mrkdwn", text: `*Phone:*\n${data.phone}` },
+          { type: "mrkdwn", text: `*Interest:*\n${data.interest || "Not specified"}` }
+        ]
+      );
+
+      res.status(201).json({ success: true, message: "Chatbot lead captured" });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: "Invalid input", details: error.errors });
+      } else {
+        console.error("Chatbot lead error:", error);
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+  });
+
+  // Chatbot unmatched question notification
+  const chatbotQuestionSchema = z.object({
+    name: z.string(),
+    email: z.string().email(),
+    phone: z.string(),
+    question: z.string().min(1)
+  });
+
+  app.post("/api/chatbot-question", async (req, res) => {
+    try {
+      const data = chatbotQuestionSchema.parse(req.body);
+
+      await sendToSlack(
+        "❓ Chatbot — Unmatched Question (Needs Follow-up)",
+        [
+          { type: "mrkdwn", text: `*Name:*\n${data.name}` },
+          { type: "mrkdwn", text: `*Email:*\n${data.email}` },
+          { type: "mrkdwn", text: `*Phone:*\n${data.phone}` }
+        ],
+        `*Question:*\n${data.question}`
+      );
+
+      res.status(201).json({ success: true, message: "Question forwarded" });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: "Invalid input", details: error.errors });
+      } else {
+        console.error("Chatbot question error:", error);
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+  });
+
   // Language selection notification
   app.post("/api/language-selected", async (req, res) => {
     try {
