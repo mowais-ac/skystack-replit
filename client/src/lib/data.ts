@@ -381,6 +381,25 @@ export const businessModels: ServiceItem[] = [
     useCasesAr: ["التطبيقات الفائقة الإقليمية", "تطبيقات المؤسسات", "خدمات المدن"]
   },
   {
+    slug: "on-demand-service-solution",
+    title: "On-Demand Service Solution",
+    titleAr: "حل الخدمات حسب الطلب",
+    subtitle: "Multi-Service Booking & Dispatch Platform",
+    subtitleAr: "منصة حجز وإرسال متعددة الخدمات",
+    description: "Launch an on-demand platform for home services, maintenance, beauty, cleaning, and more with customer, provider, and admin apps.",
+    descriptionAr: "أطلق منصة خدمات حسب الطلب للخدمات المنزلية والصيانة والجمال والتنظيف وغيرها مع تطبيقات العميل ومقدم الخدمة ولوحة الإدارة.",
+    icon: Layers,
+    problem: "Service businesses lose leads due to manual booking, delayed confirmations, and poor field-team coordination. Scaling operations across multiple cities becomes difficult without automation.",
+    problemAr: "تفقد شركات الخدمات عملاء محتملين بسبب الحجز اليدوي وتأخر التأكيد وضعف تنسيق فرق العمل الميدانية. ويصبح التوسع عبر مدن متعددة صعبًا بدون الأتمتة.",
+    solution: "Our on-demand architecture automates booking, provider assignment, route planning, payments, and customer communication in one unified platform for rapid launch and growth.",
+    solutionAr: "تقوم بنيتنا للخدمات حسب الطلب بأتمتة الحجز وتعيين مقدمي الخدمة وتخطيط المسارات والمدفوعات والتواصل مع العملاء في منصة موحدة للإطلاق السريع والنمو.",
+    features: ["Instant booking", "Smart provider dispatch", "Live tracking", "Service packages & subscriptions", "Secure online payments", "Ratings & reviews"],
+    featuresAr: ["حجز فوري", "تعيين ذكي لمقدم الخدمة", "تتبع مباشر", "باقات خدمة واشتراكات", "مدفوعات إلكترونية آمنة", "التقييمات والمراجعات"],
+    techStack: ["React Native", "React", "Node.js", "PostgreSQL", "Redis", "Google Maps API", "Stripe"],
+    useCases: ["Home services apps", "Cleaning services", "Beauty at home", "Maintenance & repairs"],
+    useCasesAr: ["تطبيقات الخدمات المنزلية", "خدمات التنظيف", "خدمات التجميل المنزلية", "الصيانة والإصلاحات"]
+  },
+  {
     slug: "fintech-wallet",
     title: "Digital Wallet Solution",
     titleAr: "حل المحفظة الرقمية",

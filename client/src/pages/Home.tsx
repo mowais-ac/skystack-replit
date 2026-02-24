@@ -788,7 +788,8 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {businessModels.slice(0, 4).map((model, index) => (
-                <div key={index} className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-md p-6 hover:bg-white/10 hover:border-primary/30 transition-all duration-300">
+                <Link key={index} href={`/business-models/${model.slug}`}>
+                  <div className="group h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-md p-6 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer">
                   <div className="icon-badge mb-5">
                     <model.icon className="w-6 h-6 text-primary" />
                   </div>
@@ -798,7 +799,12 @@ export default function Home() {
                   <p className="text-slate-400 text-sm leading-relaxed">
                     {language === "ar" ? model.subtitleAr : model.subtitle}
                   </p>
-                </div>
+                  <span className="inline-flex items-center gap-2 text-primary text-sm font-semibold mt-4">
+                    {language === "ar" ? "عرض التفاصيل" : "View Details"}
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>

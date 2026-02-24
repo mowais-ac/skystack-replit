@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, MessageCircle, Phone } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { engagementModels } from "@/lib/data";
@@ -42,6 +42,20 @@ export default function BusinessModels() {
                   ? "اختر نموذج التعاون الذي يناسب مشروعك وميزانيتك ومتطلباتك."
                   : "Choose the engagement model that best fits your project scope, budget, and requirements."}
               </p>
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <Link href="/contact-us">
+                  <button className="btn-primary-gradient inline-flex items-center justify-center gap-2" data-testid="button-hero-consultation">
+                    {language === "ar" ? "احجز استشارة مجانية" : "Book Free Consultation"}
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </Link>
+                <a href="https://wa.me/966537430455" target="_blank" rel="noopener noreferrer">
+                  <button className="bg-white/10 border border-white/20 px-6 py-3 rounded-md font-semibold inline-flex items-center gap-2 hover:bg-white/20 transition-all" data-testid="button-hero-whatsapp">
+                    <MessageCircle className="w-4 h-4" />
+                    {language === "ar" ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
+                  </button>
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -140,11 +154,19 @@ export default function BusinessModels() {
                 ? "تحدث مع خبرائنا لتحديد أفضل نموذج تعاون لمشروعك."
                 : "Talk to our experts to determine the best engagement model for your project."}
             </p>
-            <Link href="/contact-us">
-              <button className="btn-primary text-lg px-10 py-4 inline-flex items-center gap-2" data-testid="button-contact-cta">
-                {language === "ar" ? "تواصل معنا" : "Contact Us"} <ArrowRight className="w-5 h-5" />
-              </button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact-us">
+                <button className="btn-primary text-lg px-10 py-4 inline-flex items-center gap-2" data-testid="button-contact-cta">
+                  {language === "ar" ? "تواصل معنا" : "Contact Us"} <ArrowRight className="w-5 h-5" />
+                </button>
+              </Link>
+              <a href="tel:+966537430455">
+                <button className="bg-slate-900 text-white text-lg px-10 py-4 rounded-md inline-flex items-center gap-2 hover:bg-slate-800 transition-all" data-testid="button-call-cta">
+                  <Phone className="w-5 h-5" />
+                  {language === "ar" ? "اتصل الآن" : "Call Now"}
+                </button>
+              </a>
+            </div>
           </div>
         </section>
       </main>
