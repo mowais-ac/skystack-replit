@@ -132,12 +132,12 @@ function ServiceInquiryForm({
       <h3 className="text-2xl font-bold mb-2">
         {isSolutionPage
           ? (language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo")
-          : (language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo")}
+          : (language === "ar" ? "احجز مكالمة استراتيجية" : "Book a Strategy Call")}
       </h3>
       <p className="text-slate-600 text-sm mb-6">
         {isSolutionPage
-          ? (language === "ar" ? "اكتشف كيف يعمل الحل وما يناسب نشاطك التجاري." : "See the solution in action and discuss your business requirements.")
-          : (language === "ar" ? "شارك متطلباتك وسنرسل عرضًا مفصلًا خلال 24 ساعة." : "Share your requirements and receive a detailed proposal within 24 hours.")}
+          ? (language === "ar" ? "اكتشف كيف يعمل الحل، وما العائد المتوقع، وخطة الإطلاق المناسبة لنشاطك." : "See the solution in action, expected ROI, and the right launch plan for your business.")
+          : (language === "ar" ? "شارك أهدافك التجارية وسنقترح خطة تنفيذ واضحة خلال 24 ساعة." : "Share your business goals and get a clear execution plan within 24 hours.")}
       </p>
       
       <input type="hidden" {...register("serviceName")} />
@@ -206,7 +206,7 @@ function ServiceInquiryForm({
       <textarea
         {...register("message")}
         rows={3}
-        placeholder={language === "ar" ? "تفاصيل المشروع" : "Project details"}
+        placeholder={language === "ar" ? "ما الهدف التجاري الذي تريد تحقيقه؟" : "What business outcome do you want to achieve?"}
         className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent mb-4"
         data-testid="textarea-service-message"
       />
@@ -224,7 +224,7 @@ function ServiceInquiryForm({
             <Send className="w-5 h-5" />
             {isSolutionPage
               ? (language === "ar" ? "احجز العرض التوضيحي" : "Book Demo")
-              : (language === "ar" ? "إرسال الطلب" : "Submit Request")}
+              : (language === "ar" ? "احصل على خطة تنفيذ" : "Get My Plan")}
           </>
         )}
       </button>
@@ -632,6 +632,23 @@ export default function DynamicPage({ type }: DynamicPageProps) {
         : "Long-term dedicated team for continuous product development."
     }
   ];
+  const businessImpactItems = [
+    {
+      icon: Rocket,
+      title: language === "ar" ? "إطلاق أسرع" : "Faster Launch",
+      desc: language === "ar" ? "خفض وقت الوصول للسوق والتركيز على اكتساب العملاء." : "Reduce time-to-market and start acquiring customers sooner."
+    },
+    {
+      icon: Shield,
+      title: language === "ar" ? "مخاطر أقل" : "Lower Delivery Risk",
+      desc: language === "ar" ? "نهج مجرب يقلل المفاجآت التقنية وتجاوزات الميزانية." : "A proven approach that minimizes technical surprises and budget overruns."
+    },
+    {
+      icon: Users,
+      title: language === "ar" ? "قرار تجاري أوضح" : "Clear Business Direction",
+      desc: language === "ar" ? "خطة تنفيذ مرتبطة بالأهداف والـ KPI بدل تفاصيل تقنية فقط." : "Execution aligned to business goals and KPIs, not just technical tasks."
+    }
+  ];
 
   const stats = [
     { value: "98%", label: language === "ar" ? "رضا العملاء" : "Client Satisfaction", icon: Star },
@@ -733,7 +750,9 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <a href="#get-quote">
                     <button className="btn-primary-gradient flex items-center justify-center gap-2 group" data-testid="button-hero-quote">
-                      {language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo"} 
+                      {type === "businessModel"
+                        ? (language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo")
+                        : (language === "ar" ? "احجز مكالمة استراتيجية" : "Book a Strategy Call")} 
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </a>
@@ -803,9 +822,30 @@ export default function DynamicPage({ type }: DynamicPageProps) {
               </p>
               <a href="#get-quote">
                 <button className="btn-primary-gradient whitespace-nowrap">
-                  {language === "ar" ? "ابدأ الآن" : "Start Now"}
+                  {language === "ar" ? "احصل على خطة العمل" : "Get My Launch Plan"}
                 </button>
               </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Business Impact */}
+        <section className="py-16 bg-white">
+          <div className="container-width">
+            <div className="text-center mb-10">
+              <span className="section-eyebrow">{language === "ar" ? "نتائج الأعمال" : "Business Outcomes"}</span>
+              <h2 className="section-heading mt-3">
+                {language === "ar" ? "ماذا سيحدث لعملك بعد التنفيذ؟" : "What Changes in Your Business After Launch?"}
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {businessImpactItems.map((item, i) => (
+                <div key={i} className="p-6 rounded-md border border-slate-200 bg-slate-50 hover:bg-white hover:border-primary/30 transition-all">
+                  <item.icon className="w-6 h-6 text-primary mb-4" />
+                  <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -1446,31 +1486,31 @@ export default function DynamicPage({ type }: DynamicPageProps) {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="text-center lg:text-left">
                 <span className="section-eyebrow">
-                  {language === "ar" ? "ابدأ الآن" : "Get Started"}
+                  {language === "ar" ? "تخطيط الأعمال" : "Business Planning"}
                 </span>
                 <h2 className="text-3xl lg:text-5xl font-bold text-white mt-4 mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   {type === "businessModel"
-                    ? (language === "ar" ? `هل أنت مستعد لرؤية ${title}؟` : `Ready to see ${title} in action?`)
-                    : (language === "ar" ? `هل أنت مستعد لبناء ${title}؟` : `Ready to build your ${title}?`)}
+                    ? (language === "ar" ? `هل أنت مستعد لإطلاق ${title} بنتائج واضحة؟` : `Ready to launch ${title} with clear business outcomes?`)
+                    : (language === "ar" ? `هل أنت مستعد لتحويل ${title} إلى نمو فعلي؟` : `Ready to turn ${title} into measurable growth?`)}
                 </h2>
                 <p className="text-slate-400 text-lg mb-8">
                   {type === "businessModel"
                     ? (language === "ar"
-                      ? "احجز عرضًا توضيحيًا مخصصًا لفهم سير العمل، وخيارات التخصيص، وخطة الإطلاق."
-                      : "Book a tailored demo to explore workflows, customization options, and your launch plan.")
+                      ? "احجز عرضًا توضيحيًا مخصصًا لمراجعة العائد المتوقع، سرعة الإطلاق، وخطة التنفيذ."
+                      : "Book a tailored demo to review expected ROI, launch speed, and execution plan.")
                     : (language === "ar"
-                      ? "تواصل مع فريقنا للحصول على استشارة مجانية ومناقشة متطلبات مشروعك."
-                      : "Contact our team for a free consultation and discuss your project requirements.")}
+                      ? "ناقش أهدافك التجارية مع فريقنا واحصل على خطة تنفيذ عملية مرتبطة بمؤشرات الأداء."
+                      : "Discuss your business goals with our team and get a practical KPI-driven execution plan.")}
                 </p>
                 <div className="space-y-4 mb-8">
                   {[
                     type === "businessModel"
                       ? (language === "ar" ? "عرض توضيحي مباشر بدون التزام" : "Live demo with no obligation")
-                      : (language === "ar" ? "استشارة مجانية بدون التزام" : "Free consultation with no obligation"),
+                      : (language === "ar" ? "جلسة استراتيجية بدون التزام" : "Strategy call with no obligation"),
                     type === "businessModel"
                       ? (language === "ar" ? "توصية بالخطة المناسبة (Fixed أو Custom)" : "Plan recommendation (Fixed or Custom)")
-                      : (language === "ar" ? "عرض سعر مفصل خلال 24 ساعة" : "Detailed quote within 24 hours"),
-                    language === "ar" ? "فريق خبراء مخصص لمشروعك" : "Dedicated expert team for your project"
+                      : (language === "ar" ? "خطة تنفيذ مبدئية خلال 24 ساعة" : "Initial execution roadmap within 24 hours"),
+                    language === "ar" ? "وضوح كامل في النطاق والزمن والأولويات" : "Clear scope, timeline, and business priorities"
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
                       <Check className="w-5 h-5 text-emerald-400" />
