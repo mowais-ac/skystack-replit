@@ -228,6 +228,11 @@ function ServiceInquiryForm({
           </>
         )}
       </button>
+      <p className="text-xs text-slate-500 mt-3">
+        {language === "ar"
+          ? "نلتزم بسرية معلوماتك. عادةً نرد خلال ساعات العمل في نفس اليوم."
+          : "Your information stays private. We usually respond within business hours on the same day."}
+      </p>
     </form>
   );
 }
@@ -579,6 +584,54 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const sarFormatter = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0
   });
+  const pricingHighlights = features.slice(0, 4);
+  const buyVsBuildRows = [
+    {
+      label: language === "ar" ? "وقت الإطلاق" : "Time to Market",
+      solution: language === "ar" ? "2-4 أسابيع مع أساس جاهز" : "2-4 weeks with production-ready base",
+      scratch: language === "ar" ? "4-8 أشهر من الصفر" : "4-8 months from scratch"
+    },
+    {
+      label: language === "ar" ? "التكلفة والمخاطر" : "Cost & Risk",
+      solution: language === "ar" ? "تكلفة أقل ومخاطر تنفيذ أقل" : "Lower cost and reduced delivery risk",
+      scratch: language === "ar" ? "تكلفة أعلى واحتمال تعديلات متكررة" : "Higher cost with more rework risk"
+    },
+    {
+      label: language === "ar" ? "الوظائف الأساسية" : "Core Features",
+      solution: language === "ar" ? "ميزات مجرّبة جاهزة للتشغيل" : "Battle-tested features ready to use",
+      scratch: language === "ar" ? "تطوير كل ميزة واختبارها من البداية" : "Every feature built and validated from zero"
+    },
+    {
+      label: language === "ar" ? "التركيز التجاري" : "Business Focus",
+      solution: language === "ar" ? "ابدأ المبيعات مبكرًا وطوّر تدريجيًا" : "Start selling earlier and iterate faster",
+      scratch: language === "ar" ? "وقت أطول قبل أول عائد فعلي" : "Longer wait before first real revenue"
+    }
+  ];
+  const quickDecisionPoints = [
+    language === "ar" ? "جلسة استكشاف مجانية 30 دقيقة" : "Free 30-minute discovery session",
+    language === "ar" ? "خطة تنفيذ مبدئية خلال 24 ساعة" : "Initial execution plan within 24 hours",
+    language === "ar" ? "فريق متخصص حسب نوع المشروع" : "Specialized team based on project type"
+  ];
+  const serviceEngagementOptions = [
+    {
+      title: language === "ar" ? "Launch Sprint" : "Launch Sprint",
+      desc: language === "ar"
+        ? "لإطلاق MVP سريع مع أهم الوظائف الأساسية."
+        : "For rapid MVP launch with essential business features."
+    },
+    {
+      title: language === "ar" ? "Growth Build" : "Growth Build",
+      desc: language === "ar"
+        ? "لتوسعة المنتج وتطوير وظائف متقدمة وتكاملات."
+        : "For scaling your product with advanced features and integrations."
+    },
+    {
+      title: language === "ar" ? "Dedicated Team" : "Dedicated Team",
+      desc: language === "ar"
+        ? "فريق مخصص طويل المدى للتطوير المستمر."
+        : "Long-term dedicated team for continuous product development."
+    }
+  ];
 
   const stats = [
     { value: "98%", label: language === "ar" ? "رضا العملاء" : "Client Satisfaction", icon: Star },
@@ -690,6 +743,12 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                       {language === "ar" ? "واتساب" : "WhatsApp"}
                     </button>
                   </a>
+                  <a href="tel:+966537430455">
+                    <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-6 py-4 rounded-md font-semibold hover:bg-white/20 transition-all flex items-center justify-center gap-2" data-testid="button-call">
+                      <Phone className="w-5 h-5" />
+                      {language === "ar" ? "اتصل الآن" : "Call Now"}
+                    </button>
+                  </a>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-6">
@@ -721,6 +780,32 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                   </div>
                 </div>
               </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Conversion Strip */}
+        <section className="py-10 bg-white border-b border-slate-100">
+          <div className="container-width">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              {quickDecisionPoints.map((point, i) => (
+                <div key={i} className="flex items-center gap-3 p-4 rounded-md border border-slate-200 bg-slate-50">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                  <span className="text-slate-700 text-sm font-medium">{point}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-md bg-slate-950 text-white">
+              <p className="text-sm sm:text-base text-slate-300">
+                {language === "ar"
+                  ? `غير متأكد أي خيار يناسب ${title}؟ سنرشدك للخطة المناسبة خلال مكالمة قصيرة.`
+                  : `Not sure which approach fits your ${title} goals? We will guide you to the right plan in one short call.`}
+              </p>
+              <a href="#get-quote">
+                <button className="btn-primary-gradient whitespace-nowrap">
+                  {language === "ar" ? "ابدأ الآن" : "Start Now"}
+                </button>
+              </a>
             </div>
           </div>
         </section>
@@ -1107,6 +1192,54 @@ export default function DynamicPage({ type }: DynamicPageProps) {
           </div>
         </section>
 
+        {/* Fit Section */}
+        <section className="py-20 bg-white">
+          <div className="container-width">
+            <div className="text-center mb-12">
+              <span className="section-eyebrow">{language === "ar" ? "هل هذا مناسب لك؟" : "Is This Right For You?"}</span>
+              <h2 className="section-heading mt-3">
+                {language === "ar" ? "مناسب لهذه الحالات" : "Best Fit Use Cases"}
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {useCases.slice(0, 8).map((useCase, i) => (
+                <div key={i} className="p-5 rounded-md border border-slate-200 bg-slate-50 hover:border-primary/40 hover:bg-white transition-all">
+                  <div className="flex items-start gap-3">
+                    <Target className="w-4 h-4 text-primary mt-1 shrink-0" />
+                    <span className="text-sm text-slate-700 font-medium">{useCase}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Service Engagement Options */}
+        {type === "service" && (
+          <section className="py-24 lg:py-28 bg-gradient-to-b from-slate-50 to-white">
+            <div className="container-width">
+              <div className="text-center mb-12">
+                <span className="section-eyebrow">{language === "ar" ? "نماذج التنفيذ" : "Engagement Options"}</span>
+                <h2 className="section-heading mt-3">
+                  {language === "ar" ? "اختر النموذج المناسب لسرعة النمو" : "Pick the Model That Matches Your Growth Stage"}
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {serviceEngagementOptions.map((option, i) => (
+                  <div key={i} className="bg-white border border-slate-200 rounded-md p-7 hover:border-primary/30 hover:shadow-md transition-all">
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{option.title}</h3>
+                    <p className="text-slate-600 mb-5">{option.desc}</p>
+                    <a href="#get-quote" className="inline-flex items-center text-primary font-semibold text-sm">
+                      {language === "ar" ? "احجز استشارة" : "Book Consultation"}
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Pricing - Solutions Only */}
         {type === "businessModel" && fixedUsd && (
           <section className="py-24 lg:py-32 bg-white">
@@ -1120,8 +1253,8 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                 </h2>
                 <p className="section-subheading mx-auto mt-4">
                   {language === "ar"
-                    ? "سعر ابتدائي واضح مع خيار تنفيذ مخصص بالكامل."
-                    : "Clear starting price with a fully custom implementation option."}
+                    ? `باقة جاهزة تتضمن أهم وظائف ${title} مع سرعة إطلاق عالية.`
+                    : `Launch faster with a pre-built ${title} foundation and essential production features.`}
                 </p>
               </div>
 
@@ -1135,6 +1268,14 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                       ? `حوالي ${sarFormatter.format(toSar(fixedUsd))} ر.س`
                       : `~ ${sarFormatter.format(toSar(fixedUsd))} SAR`}
                   </div>
+                  <div className="space-y-2 mb-6">
+                    {pricingHighlights.map((feature, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm text-slate-700">
+                        <Check className="w-4 h-4 text-primary shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
                   <a href="#get-quote">
                     <button className="w-full btn-primary">{language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo"}</button>
                   </a>
@@ -1143,6 +1284,18 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                 <div className="bg-slate-950 rounded-md border border-slate-800 p-8 text-white">
                   <h3 className="text-2xl font-bold mb-2">{language === "ar" ? "خطة Custom" : "Custom Build"}</h3>
                   <p className="text-slate-300 mb-5">{language === "ar" ? "تخصيص كامل للوظائف والتصميم والتكاملات." : "Fully tailored features, branding, and integrations for your business."}</p>
+                  <div className="space-y-2 mb-5">
+                    {[
+                      language === "ar" ? "تعديل كامل لواجهة المستخدم وهوية العلامة" : "Fully customized UI and brand identity",
+                      language === "ar" ? "تكاملات خاصة بأنظمة شركتك" : "Custom integrations with your business systems",
+                      language === "ar" ? "توسعة الوظائف حسب نموذج العمل" : "Feature expansion based on your operating model",
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm text-slate-300">
+                        <Check className="w-4 h-4 text-primary shrink-0" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
                   <p className="text-sm text-slate-400 mb-6">
                     {language === "ar"
                       ? "دعنا نفهم متطلباتك ونقترح خطة تنفيذ مناسبة."
@@ -1153,6 +1306,26 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                       {language === "ar" ? "احجز مكالمة" : "Book a Call"}
                     </button>
                   </a>
+                </div>
+              </div>
+
+              <div className="max-w-5xl mx-auto mt-12 bg-slate-50 border border-slate-200 rounded-md p-6 md:p-8">
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                  {language === "ar" ? "لماذا شراء حل جاهز أفضل من البناء من الصفر؟" : "Why buy a ready solution instead of building from scratch?"}
+                </h3>
+                <p className="text-slate-600 mb-6">
+                  {language === "ar"
+                    ? "الفرق ليس فقط في السعر، بل في سرعة الوصول للسوق وتقليل المخاطر التشغيلية."
+                    : "The difference is not only cost, but speed to market and lower execution risk."}
+                </p>
+                <div className="space-y-3">
+                  {buyVsBuildRows.map((row, i) => (
+                    <div key={i} className="grid grid-cols-1 md:grid-cols-3 gap-3 items-start bg-white border border-slate-200 rounded-md p-4">
+                      <div className="font-semibold text-slate-900">{row.label}</div>
+                      <div className="text-sm text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-md px-3 py-2">{row.solution}</div>
+                      <div className="text-sm text-rose-700 bg-rose-50 border border-rose-100 rounded-md px-3 py-2">{row.scratch}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
