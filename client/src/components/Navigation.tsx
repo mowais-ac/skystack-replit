@@ -92,7 +92,7 @@ export function Navigation() {
                   {t("nav.businessModels")}
                 </Link>
                 <div className="h-px bg-slate-100 my-1"></div>
-                {businessModels.slice(0, 5).map((m) => (
+                {businessModels.map((m) => (
                   <Link 
                     key={m.slug} 
                     href={`/business-models/${m.slug}`} 
