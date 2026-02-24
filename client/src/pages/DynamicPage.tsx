@@ -678,15 +678,10 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                 <p className="text-xl text-slate-300 leading-relaxed mb-8">{description}</p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                  <Link href="/contact-us">
+                  <a href="#get-quote">
                     <button className="btn-primary-gradient flex items-center justify-center gap-2 group" data-testid="button-hero-quote">
                       {language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo"} 
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </Link>
-                  <a href="#get-quote">
-                    <button className="bg-primary/20 backdrop-blur-sm text-white border border-primary/30 px-6 py-4 rounded-md font-semibold hover:bg-primary/30 transition-all flex items-center justify-center gap-2" data-testid="button-hero-demo">
-                      {language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo"}
                     </button>
                   </a>
                   <a href="https://wa.me/966537430455" target="_blank" rel="noopener noreferrer">
