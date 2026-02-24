@@ -111,6 +111,7 @@ function ServiceInquiryForm({
   ];
 
   const budgetOptions = [
+    { value: "25k-50k", label: language === "ar" ? "25,000 - 50,000 ر.س" : "25,000 - 50,000 SAR" },
     { value: "50k-100k", label: language === "ar" ? "50,000 - 100,000 ر.س" : "50,000 - 100,000 SAR" },
     { value: "100k-250k", label: language === "ar" ? "100,000 - 250,000 ر.س" : "100,000 - 250,000 SAR" },
     { value: "250k-500k", label: language === "ar" ? "250,000 - 500,000 ر.س" : "250,000 - 500,000 SAR" },
@@ -131,7 +132,7 @@ function ServiceInquiryForm({
       <h3 className="text-2xl font-bold mb-2">
         {isSolutionPage
           ? (language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo")
-          : (language === "ar" ? "احصل على عرض سعر مجاني" : "Get a Free Quote")}
+          : (language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo")}
       </h3>
       <p className="text-slate-600 text-sm mb-6">
         {isSolutionPage
@@ -181,11 +182,11 @@ function ServiceInquiryForm({
           ))}
         </select>
         <select
-          {...register("budget", { required: true })}
+          {...register("budget")}
           className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
           data-testid="select-service-budget"
         >
-          <option value="">{language === "ar" ? "الميزانية *" : "Budget *"}</option>
+          <option value="">{language === "ar" ? "الميزانية (اختياري)" : "Budget (Optional)"}</option>
           {budgetOptions.map(opt => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
@@ -679,7 +680,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link href="/contact-us">
                     <button className="btn-primary-gradient flex items-center justify-center gap-2 group" data-testid="button-hero-quote">
-                      {language === "ar" ? "احصل على عرض سعر مجاني" : "Get Free Quote"} 
+                      {language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo"} 
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </Link>

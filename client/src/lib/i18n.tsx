@@ -116,7 +116,7 @@ const translations: Record<Language, Record<string, string>> = {
     "cta.title": "Let's Build Your Product",
     "cta.subtitle": "Partner with us to transform your vision into reality. Schedule a strategy call with our experts.",
     "cta.button1": "Schedule a Strategy Call",
-    "cta.button2": "Get a Free Quote",
+    "cta.button2": "Book a Demo",
     
     "footer.tagline": "Building the future of digital business in the Middle East and beyond.",
     "footer.quickLinks": "Quick Links",
@@ -240,7 +240,7 @@ const translations: Record<Language, Record<string, string>> = {
     "cta.title": "لنبني منتجك",
     "cta.subtitle": "شاركنا لتحويل رؤيتك إلى واقع. جدول مكالمة استراتيجية مع خبرائنا.",
     "cta.button1": "جدول مكالمة استراتيجية",
-    "cta.button2": "احصل على عرض سعر مجاني",
+    "cta.button2": "احجز عرضًا توضيحيًا",
     
     "footer.tagline": "نبني مستقبل الأعمال الرقمية في الشرق الأوسط وخارجه.",
     "footer.quickLinks": "روابط سريعة",

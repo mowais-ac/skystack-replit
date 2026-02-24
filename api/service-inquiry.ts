@@ -8,7 +8,7 @@ const serviceInquirySchema = z.object({
   company: z.string().optional(),
   serviceName: z.string(),
   projectType: z.string(),
-  budget: z.string(),
+  budget: z.string().optional(),
   timeline: z.string(),
   message: z.string().optional(),
   pageUrl: z.string().url().optional()
@@ -59,7 +59,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         { type: "mrkdwn", text: `*Company:*\n${data.company || "Not provided"}` },
         { type: "mrkdwn", text: `*Service:*\n${data.serviceName}` },
         { type: "mrkdwn", text: `*Project Type:*\n${data.projectType}` },
-        { type: "mrkdwn", text: `*Budget:*\n${data.budget}` },
+        { type: "mrkdwn", text: `*Budget:*\n${data.budget || "Not provided"}` },
         { type: "mrkdwn", text: `*Timeline:*\n${data.timeline}` },
         { type: "mrkdwn", text: `*Page URL:*\n${data.pageUrl || "Not provided"}` }
       ],

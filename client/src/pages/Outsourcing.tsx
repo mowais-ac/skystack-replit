@@ -287,7 +287,7 @@ function OutsourcingForm({ language }: { language: string }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-md p-8 text-slate-900">
       <h3 className="text-2xl font-bold mb-6">
-        {language === "ar" ? "احصل على عرض سعر مجاني" : "Get a Free Quote"}
+        {language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo"}
       </h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
