@@ -33,10 +33,20 @@ interface ServiceFormData {
   budget: string;
   timeline: string;
   message: string;
+  pageUrl?: string;
 }
 
-function ServiceInquiryForm({ language, serviceName }: { language: string; serviceName: string }) {
+function ServiceInquiryForm({
+  language,
+  serviceName,
+  pageType,
+}: {
+  language: string;
+  serviceName: string;
+  pageType: "service" | "businessModel";
+}) {
   const { toast } = useToast();
+  const isSolutionPage = pageType === "businessModel";
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ServiceFormData>({
     defaultValues: {
       name: "",
@@ -44,7 +54,7 @@ function ServiceInquiryForm({ language, serviceName }: { language: string; servi
       phone: "",
       company: "",
       serviceName: serviceName,
-      projectType: "",
+      projectType: isSolutionPage ? "demo" : "",
       budget: "",
       timeline: "",
       message: ""
@@ -72,6 +82,10 @@ function ServiceInquiryForm({ language, serviceName }: { language: string; servi
   });
 
   const onSubmit = (data: ServiceFormData) => {
+    const submissionData: ServiceFormData = {
+      ...data,
+      pageUrl: typeof window !== "undefined" ? window.location.href : ""
+    };
     trackLeadFormSubmission("service_inquiry_form", {
       name: data.name,
       email: data.email,
@@ -81,12 +95,14 @@ function ServiceInquiryForm({ language, serviceName }: { language: string; servi
       project_type: data.projectType,
       budget: data.budget,
       timeline: data.timeline,
+      page_url: submissionData.pageUrl,
       language
     });
-    mutation.mutate(data);
+    mutation.mutate(submissionData);
   };
 
   const projectTypeOptions = [
+    { value: "demo", label: language === "ar" ? "عرض توضيحي للمنتج" : "Product Demo" },
     { value: "new", label: language === "ar" ? "مشروع جديد" : "New Project" },
     { value: "redesign", label: language === "ar" ? "إعادة تصميم" : "Redesign/Revamp" },
     { value: "migration", label: language === "ar" ? "ترحيل نظام" : "System Migration" },
@@ -112,9 +128,16 @@ function ServiceInquiryForm({ language, serviceName }: { language: string; servi
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-md p-8 text-slate-900">
-      <h3 className="text-2xl font-bold mb-6">
-        {language === "ar" ? "احصل على عرض سعر مجاني" : "Get a Free Quote"}
+      <h3 className="text-2xl font-bold mb-2">
+        {isSolutionPage
+          ? (language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo")
+          : (language === "ar" ? "احصل على عرض سعر مجاني" : "Get a Free Quote")}
       </h3>
+      <p className="text-slate-600 text-sm mb-6">
+        {isSolutionPage
+          ? (language === "ar" ? "اكتشف كيف يعمل الحل وما يناسب نشاطك التجاري." : "See the solution in action and discuss your business requirements.")
+          : (language === "ar" ? "شارك متطلباتك وسنرسل عرضًا مفصلًا خلال 24 ساعة." : "Share your requirements and receive a detailed proposal within 24 hours.")}
+      </p>
       
       <input type="hidden" {...register("serviceName")} />
       
@@ -152,7 +175,7 @@ function ServiceInquiryForm({ language, serviceName }: { language: string; servi
           className="w-full px-4 py-3 border border-slate-200 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
           data-testid="select-service-projecttype"
         >
-          <option value="">{language === "ar" ? "نوع المشروع *" : "Project Type *"}</option>
+          <option value="">{isSolutionPage ? (language === "ar" ? "نوع العرض *" : "Demo Type *") : (language === "ar" ? "نوع المشروع *" : "Project Type *")}</option>
           {projectTypeOptions.map(opt => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
@@ -198,7 +221,9 @@ function ServiceInquiryForm({ language, serviceName }: { language: string; servi
         ) : (
           <>
             <Send className="w-5 h-5" />
-            {language === "ar" ? "إرسال الطلب" : "Submit Request"}
+            {isSolutionPage
+              ? (language === "ar" ? "احجز العرض التوضيحي" : "Book Demo")
+              : (language === "ar" ? "إرسال الطلب" : "Submit Request")}
           </>
         )}
       </button>
@@ -543,6 +568,16 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const solution = language === "ar" ? item.solutionAr : item.solution;
   const features = language === "ar" ? item.featuresAr : item.features;
   const useCases = language === "ar" ? item.useCasesAr : item.useCases;
+  const fixedUsd = item.pricing?.fixedUsd;
+  const toSar = (usd: number) => Math.round(usd * 3.75);
+  const usdFormatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0
+  });
+  const sarFormatter = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 0
+  });
 
   const stats = [
     { value: "98%", label: language === "ar" ? "رضا العملاء" : "Client Satisfaction", icon: Star },
@@ -648,6 +683,11 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </Link>
+                  <a href="#get-quote">
+                    <button className="bg-primary/20 backdrop-blur-sm text-white border border-primary/30 px-6 py-4 rounded-md font-semibold hover:bg-primary/30 transition-all flex items-center justify-center gap-2" data-testid="button-hero-demo">
+                      {language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo"}
+                    </button>
+                  </a>
                   <a href="https://wa.me/966537430455" target="_blank" rel="noopener noreferrer">
                     <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-6 py-4 rounded-md font-semibold hover:bg-white/20 transition-all flex items-center justify-center gap-2" data-testid="button-whatsapp">
                       <MessageCircle className="w-5 h-5" />
@@ -1071,6 +1111,58 @@ export default function DynamicPage({ type }: DynamicPageProps) {
           </div>
         </section>
 
+        {/* Pricing - Solutions Only */}
+        {type === "businessModel" && fixedUsd && (
+          <section className="py-24 lg:py-32 bg-white">
+            <div className="container-width">
+              <div className="text-center mb-14">
+                <span className="section-eyebrow">
+                  {language === "ar" ? "الأسعار" : "Pricing"}
+                </span>
+                <h2 className="section-heading mt-3">
+                  {language === "ar" ? "اختر الباقة المناسبة" : "Choose Your Plan"}
+                </h2>
+                <p className="section-subheading mx-auto mt-4">
+                  {language === "ar"
+                    ? "سعر ابتدائي واضح مع خيار تنفيذ مخصص بالكامل."
+                    : "Clear starting price with a fully custom implementation option."}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div className="bg-white rounded-md border border-slate-200 p-8">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">{language === "ar" ? "خطة Fixed" : "Fixed Package"}</h3>
+                  <p className="text-slate-500 mb-5">{language === "ar" ? "حل جاهز مع تخصيص محدود وسرعة إطلاق." : "Ready solution with limited customization and faster launch."}</p>
+                  <div className="text-4xl font-bold text-slate-900 mb-2">{usdFormatter.format(fixedUsd)}</div>
+                  <div className="text-xs text-slate-500 mb-6">
+                    {language === "ar"
+                      ? `حوالي ${sarFormatter.format(toSar(fixedUsd))} ر.س`
+                      : `~ ${sarFormatter.format(toSar(fixedUsd))} SAR`}
+                  </div>
+                  <a href="#get-quote">
+                    <button className="w-full btn-primary">{language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo"}</button>
+                  </a>
+                </div>
+
+                <div className="bg-slate-950 rounded-md border border-slate-800 p-8 text-white">
+                  <h3 className="text-2xl font-bold mb-2">{language === "ar" ? "خطة Custom" : "Custom Build"}</h3>
+                  <p className="text-slate-300 mb-5">{language === "ar" ? "تخصيص كامل للوظائف والتصميم والتكاملات." : "Fully tailored features, branding, and integrations for your business."}</p>
+                  <p className="text-sm text-slate-400 mb-6">
+                    {language === "ar"
+                      ? "دعنا نفهم متطلباتك ونقترح خطة تنفيذ مناسبة."
+                      : "Let us understand your requirements and recommend the right execution plan."}
+                  </p>
+                  <a href="tel:+966537430455">
+                    <button className="w-full bg-primary text-white px-6 py-3 rounded-md font-semibold hover:opacity-90 transition-all">
+                      {language === "ar" ? "احجز مكالمة" : "Book a Call"}
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Process - Premium */}
         <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-50 via-white to-slate-50">
           <div className="container-width">
@@ -1188,17 +1280,27 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                   {language === "ar" ? "ابدأ الآن" : "Get Started"}
                 </span>
                 <h2 className="text-3xl lg:text-5xl font-bold text-white mt-4 mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  {language === "ar" ? `هل أنت مستعد لبناء ${title}؟` : `Ready to build your ${title}?`}
+                  {type === "businessModel"
+                    ? (language === "ar" ? `هل أنت مستعد لرؤية ${title}؟` : `Ready to see ${title} in action?`)
+                    : (language === "ar" ? `هل أنت مستعد لبناء ${title}؟` : `Ready to build your ${title}?`)}
                 </h2>
                 <p className="text-slate-400 text-lg mb-8">
-                  {language === "ar" 
-                    ? "تواصل مع فريقنا للحصول على استشارة مجانية ومناقشة متطلبات مشروعك."
-                    : "Contact our team for a free consultation and discuss your project requirements."}
+                  {type === "businessModel"
+                    ? (language === "ar"
+                      ? "احجز عرضًا توضيحيًا مخصصًا لفهم سير العمل، وخيارات التخصيص، وخطة الإطلاق."
+                      : "Book a tailored demo to explore workflows, customization options, and your launch plan.")
+                    : (language === "ar"
+                      ? "تواصل مع فريقنا للحصول على استشارة مجانية ومناقشة متطلبات مشروعك."
+                      : "Contact our team for a free consultation and discuss your project requirements.")}
                 </p>
                 <div className="space-y-4 mb-8">
                   {[
-                    language === "ar" ? "استشارة مجانية بدون التزام" : "Free consultation with no obligation",
-                    language === "ar" ? "عرض سعر مفصل خلال 24 ساعة" : "Detailed quote within 24 hours",
+                    type === "businessModel"
+                      ? (language === "ar" ? "عرض توضيحي مباشر بدون التزام" : "Live demo with no obligation")
+                      : (language === "ar" ? "استشارة مجانية بدون التزام" : "Free consultation with no obligation"),
+                    type === "businessModel"
+                      ? (language === "ar" ? "توصية بالخطة المناسبة (Fixed أو Custom)" : "Plan recommendation (Fixed or Custom)")
+                      : (language === "ar" ? "عرض سعر مفصل خلال 24 ساعة" : "Detailed quote within 24 hours"),
                     language === "ar" ? "فريق خبراء مخصص لمشروعك" : "Dedicated expert team for your project"
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
@@ -1213,7 +1315,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                 </a>
               </div>
               
-              <ServiceInquiryForm language={language} serviceName={title} />
+              <ServiceInquiryForm language={language} serviceName={title} pageType={type} />
             </div>
           </div>
         </section>

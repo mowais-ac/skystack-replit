@@ -56,6 +56,10 @@ export interface ServiceItem {
   useCases: string[];
   useCasesAr: string[];
   screenshots?: ScreenshotGroup;
+  pricing?: {
+    fixedUsd: number;
+    customUsd: number;
+  };
 }
 
 export interface IndustryItem {
@@ -238,6 +242,7 @@ export const businessModels: ServiceItem[] = [
     features: ["Real-time Leaderboards", "Live Video Streaming", "Cash Prize Payouts", "Push Notifications", "Anti-cheat systems", "Analytics dashboard"],
     featuresAr: ["لوحات المتصدرين في الوقت الحقيقي", "البث المباشر للفيديو", "مدفوعات الجوائز النقدية"],
     techStack: ["WebSockets", "Redis", "Node.js", "AWS Lambda", "React Native", "FFmpeg"],
+    pricing: { fixedUsd: 7000, customUsd: 16000 },
     useCases: ["Entertainment apps", "Brand engagement", "Educational games", "Corporate events"],
     useCasesAr: ["تطبيقات الترفيه", "تفاعل العلامات التجارية", "الألعاب التعليمية"]
   },
@@ -257,6 +262,7 @@ export const businessModels: ServiceItem[] = [
     features: ["Live GPS Tracking", "Order Management", "Driver Wallet", "Restaurant Dashboard", "Promo codes", "Multi-language"],
     featuresAr: ["تتبع GPS المباشر", "إدارة الطلبات", "محفظة السائق"],
     techStack: ["Google Maps API", "Stripe Connect", "MongoDB", "Express", "React Native", "Firebase"],
+    pricing: { fixedUsd: 5500, customUsd: 12500 },
     useCases: ["Food delivery startups", "Restaurant chains", "Ghost kitchens", "Grocery delivery"],
     useCasesAr: ["شركات توصيل الطعام الناشئة", "سلاسل المطاعم", "توصيل البقالة"]
   },
@@ -276,6 +282,7 @@ export const businessModels: ServiceItem[] = [
     features: ["Product catalog", "Shopping cart", "Multiple payment gateways", "Inventory management", "Shipping integration", "Vendor dashboard"],
     featuresAr: ["كتالوج المنتجات", "سلة التسوق", "بوابات دفع متعددة"],
     techStack: ["Next.js", "Stripe", "PostgreSQL", "Redis", "Elasticsearch", "AWS S3"],
+    pricing: { fixedUsd: 5000, customUsd: 11000 },
     useCases: ["B2C retail", "B2B wholesale", "Marketplace platforms", "Subscription boxes"],
     useCasesAr: ["البيع بالتجزئة B2C", "الجملة B2B", "منصات السوق"]
   },
@@ -295,6 +302,7 @@ export const businessModels: ServiceItem[] = [
     features: ["Service booking", "Real-time tracking", "Multiple service packages", "Subscription plans", "Provider ratings", "Push notifications"],
     featuresAr: ["حجز الخدمة", "التتبع في الوقت الحقيقي", "باقات خدمة متعددة"],
     techStack: ["React Native", "Node.js", "MongoDB", "Google Maps", "Stripe", "Firebase"],
+    pricing: { fixedUsd: 3500, customUsd: 8000 },
     useCases: ["Car wash startups", "Detailing services", "Fleet management", "Corporate services"],
     useCasesAr: ["شركات غسيل السيارات الناشئة", "خدمات التفصيل", "إدارة الأسطول"]
   },
@@ -314,6 +322,7 @@ export const businessModels: ServiceItem[] = [
     features: ["Schedule pickup", "Order tracking", "Price calculator", "Recurring orders", "Driver app", "Business dashboard"],
     featuresAr: ["جدولة الاستلام", "تتبع الطلب", "حاسبة الأسعار"],
     techStack: ["React Native", "Node.js", "PostgreSQL", "Google Maps", "Twilio", "Stripe"],
+    pricing: { fixedUsd: 4000, customUsd: 9000 },
     useCases: ["Laundry startups", "Dry cleaning chains", "Hotel laundry", "Campus laundry"],
     useCasesAr: ["شركات الغسيل الناشئة", "سلاسل التنظيف الجاف", "غسيل الفنادق"],
     screenshots: {
@@ -358,6 +367,7 @@ export const businessModels: ServiceItem[] = [
     features: ["Video courses", "Live classes", "Quizzes & exams", "Progress tracking", "Certificates", "Discussion forums"],
     featuresAr: ["دورات الفيديو", "الفصول المباشرة", "الاختبارات", "تتبع التقدم"],
     techStack: ["Next.js", "Node.js", "PostgreSQL", "AWS S3", "WebRTC", "Stripe"],
+    pricing: { fixedUsd: 5200, customUsd: 12000 },
     useCases: ["Online academies", "Corporate training", "K-12 education", "Skill development"],
     useCasesAr: ["الأكاديميات عبر الإنترنت", "التدريب المؤسسي", "التعليم K-12"]
   },
@@ -377,6 +387,7 @@ export const businessModels: ServiceItem[] = [
     features: ["Multiple service modules", "Unified wallet", "Single sign-on", "Cross-promotion", "Unified analytics", "Modular architecture"],
     featuresAr: ["وحدات خدمة متعددة", "محفظة موحدة", "تسجيل دخول واحد"],
     techStack: ["React Native", "Node.js", "Microservices", "Kubernetes", "Redis", "PostgreSQL"],
+    pricing: { fixedUsd: 8500, customUsd: 20000 },
     useCases: ["Regional super apps", "Enterprise apps", "City services", "Lifestyle platforms"],
     useCasesAr: ["التطبيقات الفائقة الإقليمية", "تطبيقات المؤسسات", "خدمات المدن"]
   },
@@ -396,6 +407,7 @@ export const businessModels: ServiceItem[] = [
     features: ["Instant booking", "Smart provider dispatch", "Live tracking", "Service packages & subscriptions", "Secure online payments", "Ratings & reviews"],
     featuresAr: ["حجز فوري", "تعيين ذكي لمقدم الخدمة", "تتبع مباشر", "باقات خدمة واشتراكات", "مدفوعات إلكترونية آمنة", "التقييمات والمراجعات"],
     techStack: ["React Native", "React", "Node.js", "PostgreSQL", "Redis", "Google Maps API", "Stripe"],
+    pricing: { fixedUsd: 5800, customUsd: 13500 },
     useCases: ["Home services apps", "Cleaning services", "Beauty at home", "Maintenance & repairs"],
     useCasesAr: ["تطبيقات الخدمات المنزلية", "خدمات التنظيف", "خدمات التجميل المنزلية", "الصيانة والإصلاحات"]
   },
@@ -415,6 +427,7 @@ export const businessModels: ServiceItem[] = [
     features: ["P2P Transfers", "QR Code Payments", "Virtual Cards", "Transaction History", "KYC verification", "Fraud detection"],
     featuresAr: ["التحويلات P2P", "مدفوعات QR", "البطاقات الافتراضية", "سجل المعاملات"],
     techStack: ["Plaid API", "Stripe", "Node.js", "PostgreSQL", "Docker", "AWS"],
+    pricing: { fixedUsd: 8000, customUsd: 19000 },
     useCases: ["Neobanks", "Corporate expense", "Remittance apps", "Loyalty programs"],
     useCasesAr: ["البنوك الرقمية", "نفقات الشركات", "تطبيقات التحويلات"]
   }

@@ -96,7 +96,8 @@ const serviceInquirySchema = z.object({
   projectType: z.string(),
   budget: z.string(),
   timeline: z.string(),
-  message: z.string().optional()
+  message: z.string().optional(),
+  pageUrl: z.string().url().optional()
 });
 
 export async function registerRoutes(
@@ -178,7 +179,8 @@ export async function registerRoutes(
           { type: "mrkdwn", text: `*Service:*\n${data.serviceName}` },
           { type: "mrkdwn", text: `*Project Type:*\n${data.projectType}` },
           { type: "mrkdwn", text: `*Budget:*\n${data.budget}` },
-          { type: "mrkdwn", text: `*Timeline:*\n${data.timeline}` }
+          { type: "mrkdwn", text: `*Timeline:*\n${data.timeline}` },
+          { type: "mrkdwn", text: `*Page URL:*\n${data.pageUrl || "Not provided"}` }
         ],
         data.message ? `*Project Details:*\n${data.message}` : undefined
       );
