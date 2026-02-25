@@ -42,6 +42,7 @@ import BusinessModels from "@/pages/BusinessModels";
 import Outsourcing from "@/pages/Outsourcing";
 import EmailTemplates from "@/pages/EmailTemplates";
 import PersonalWebsite from "@/pages/PersonalWebsite";
+import MarketingCampaigns from "@/pages/MarketingCampaigns";
 import BlogList from "@/pages/BlogList";
 import BlogDetail from "@/pages/BlogDetail";
 import NotFound from "@/pages/not-found";
@@ -82,6 +83,7 @@ function Router() {
       </Route>
       
       <Route path="/email-templates" component={EmailTemplates} />
+      <Route path="/marketing-campaigns" component={MarketingCampaigns} />
       
       <Route path="/blog" component={BlogList} />
       <Route path="/blog/:slug" component={BlogDetail} />
