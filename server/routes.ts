@@ -87,6 +87,17 @@ const personalWebsiteInquirySchema = z.object({
   goals: z.string().optional()
 });
 
+const consultationLeadSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  phone: z.string().min(9),
+  company: z.string().optional(),
+  industry: z.string().optional(),
+  message: z.string().optional(),
+  sourcePage: z.string().url().optional(),
+  sourceContext: z.string().optional()
+});
+
 const serviceInquirySchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
@@ -191,6 +202,36 @@ export async function registerRoutes(
         res.status(400).json({ message: "Invalid input", details: error.errors });
       } else {
         console.error("Service inquiry error:", error);
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+  });
+
+  // Generic consultation lead form
+  app.post("/api/consultation-lead", async (req, res) => {
+    try {
+      const data = consultationLeadSchema.parse(req.body);
+
+      await sendToSlack(
+        "New Consultation Lead",
+        [
+          { type: "mrkdwn", text: `*Name:*\n${data.name}` },
+          { type: "mrkdwn", text: `*Email:*\n${data.email}` },
+          { type: "mrkdwn", text: `*Phone:*\n${data.phone}` },
+          { type: "mrkdwn", text: `*Company:*\n${data.company || "Not provided"}` },
+          { type: "mrkdwn", text: `*Industry:*\n${data.industry || "Not provided"}` },
+          { type: "mrkdwn", text: `*Source:*\n${data.sourceContext || "Consultation Form"}` },
+          { type: "mrkdwn", text: `*Page URL:*\n${data.sourcePage || "Not provided"}` }
+        ],
+        data.message ? `*Business Challenge:*\n${data.message}` : undefined
+      );
+
+      res.status(201).json({ success: true, message: "Consultation lead sent successfully" });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: "Invalid input", details: error.errors });
+      } else {
+        console.error("Consultation lead error:", error);
         res.status(500).json({ message: "Internal server error" });
       }
     }

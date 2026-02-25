@@ -5,11 +5,17 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { Link } from "wouter";
 import { useLanguage } from "@/lib/i18n";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { 
   ArrowRight, Shield, Clock, Users, Zap, Star, Award, 
-  MessageCircle, Phone, CheckCircle2, Target, Rocket, Building2, HeartHandshake
+  MessageCircle, Phone, CheckCircle2, Target, Rocket, Building2, HeartHandshake, Send
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import { trackLeadFormSubmission } from "@/lib/analytics";
 
 interface ServicesListProps {
   type: "service" | "businessModel";
@@ -23,7 +29,16 @@ const fadeIn = {
 
 export default function ServicesList({ type }: ServicesListProps) {
   const { language, t } = useLanguage();
+  const { toast } = useToast();
   const isService = type === "service";
+  const [isSubmittingConsultation, setIsSubmittingConsultation] = useState(false);
+  const [consultationForm, setConsultationForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    message: ""
+  });
   const items = isService ? services : businessModels;
   
   const title = isService 
@@ -82,6 +97,60 @@ export default function ServicesList({ type }: ServicesListProps) {
     ? "خدمات تطوير برمجيات شاملة تشمل تطبيقات الويب والجوال وحلول الذكاء الاصطناعي وأنظمة المؤسسات للشركات السعودية."
     : "أطلق بشكل أسرع مع تطبيقاتنا الجاهزة. التجارة الإلكترونية والرعاية الصحية والعقارات والمزيد - جاهزة للتخصيص.";
 
+  const consultationSourceContext = isService
+    ? "Services List - Free Consultation"
+    : "Pre-Built Applications - Free Consultation";
+
+  const handleConsultationSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const sourcePage = typeof window !== "undefined" ? window.location.href : "";
+
+    trackLeadFormSubmission("services_list_consultation_form", {
+      name: consultationForm.name,
+      email: consultationForm.email,
+      phone: consultationForm.phone,
+      company: consultationForm.company,
+      message_length: consultationForm.message?.length || 0,
+      page_url: sourcePage,
+      source_context: consultationSourceContext,
+      language
+    });
+
+    setIsSubmittingConsultation(true);
+    try {
+      await apiRequest("POST", "/api/consultation-lead", {
+        name: consultationForm.name,
+        email: consultationForm.email,
+        phone: consultationForm.phone,
+        company: consultationForm.company,
+        industry: isService ? "Service Inquiry" : "Pre-Built App Inquiry",
+        message: consultationForm.message,
+        sourcePage,
+        sourceContext: consultationSourceContext
+      });
+
+      toast({
+        title: language === "ar" ? "تم إرسال الطلب" : "Consultation Request Sent",
+        description: language === "ar" ? "سنتواصل معك قريبًا." : "Our team will contact you shortly."
+      });
+      setConsultationForm({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        message: ""
+      });
+    } catch (error) {
+      toast({
+        title: language === "ar" ? "تعذر الإرسال" : "Submission Failed",
+        description: language === "ar" ? "يرجى المحاولة مرة أخرى." : "Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmittingConsultation(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <SEO 
@@ -124,12 +193,12 @@ export default function ServicesList({ type }: ServicesListProps) {
                 <p className="text-xl text-slate-300 leading-relaxed mb-8">{subtitle}</p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                  <Link href="/contact-us">
+                  <a href="#consultation-form">
                     <button className="btn-primary-gradient flex items-center justify-center gap-2 group" data-testid="button-hero-quote">
                       {language === "ar" ? "احصل على استشارة مجانية" : "Get Free Consultation"} 
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
-                  </Link>
+                  </a>
                   <a href="https://wa.me/966537430455" target="_blank" rel="noopener noreferrer">
                     <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-6 py-4 rounded-md font-semibold hover:bg-white/20 transition-all flex items-center justify-center gap-2" data-testid="button-whatsapp">
                       <MessageCircle className="w-5 h-5" />
@@ -148,6 +217,80 @@ export default function ServicesList({ type }: ServicesListProps) {
                   ))}
                 </div>
               </motion.div>
+            </div>
+          </div>
+        </section>
+
+        <section id="consultation-form" className="py-16 bg-white border-y border-slate-100 scroll-mt-28">
+          <div className="container-width">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-8">
+                <span className="section-eyebrow">
+                  {language === "ar" ? "استشارة مجانية" : "Free Consultation"}
+                </span>
+                <h2 className="section-heading mt-3">
+                  {isService
+                    ? (language === "ar" ? "أخبرنا عن مشروعك" : "Tell us about your project")
+                    : (language === "ar" ? "احجز عرضًا توضيحيًا مناسبًا لعملك" : "Book a demo tailored to your business")}
+                </h2>
+                <p className="text-slate-600 mt-4">
+                  {language === "ar"
+                    ? "سيرسل هذا النموذج طلبك مباشرة إلى فريقنا مع رابط الصفحة الحالية."
+                    : "This form sends your request directly to our team with the current page URL."}
+                </p>
+              </div>
+
+              <form onSubmit={handleConsultationSubmit} className="bg-slate-50 rounded-md border border-slate-200 p-6 md:p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <Input
+                    required
+                    value={consultationForm.name}
+                    onChange={(e) => setConsultationForm({ ...consultationForm, name: e.target.value })}
+                    placeholder={language === "ar" ? "الاسم *" : "Name *"}
+                    data-testid="input-services-consultation-name"
+                  />
+                  <Input
+                    required
+                    type="email"
+                    value={consultationForm.email}
+                    onChange={(e) => setConsultationForm({ ...consultationForm, email: e.target.value })}
+                    placeholder={language === "ar" ? "البريد الإلكتروني *" : "Email *"}
+                    data-testid="input-services-consultation-email"
+                  />
+                  <Input
+                    required
+                    value={consultationForm.phone}
+                    onChange={(e) => setConsultationForm({ ...consultationForm, phone: e.target.value })}
+                    placeholder={language === "ar" ? "رقم الهاتف *" : "Phone *"}
+                    data-testid="input-services-consultation-phone"
+                  />
+                  <Input
+                    value={consultationForm.company}
+                    onChange={(e) => setConsultationForm({ ...consultationForm, company: e.target.value })}
+                    placeholder={language === "ar" ? "اسم الشركة (اختياري)" : "Company (Optional)"}
+                    data-testid="input-services-consultation-company"
+                  />
+                </div>
+                <Textarea
+                  rows={4}
+                  value={consultationForm.message}
+                  onChange={(e) => setConsultationForm({ ...consultationForm, message: e.target.value })}
+                  placeholder={language === "ar" ? "ما الذي تحتاجه؟" : "What do you need help with?"}
+                  data-testid="textarea-services-consultation-message"
+                  className="mb-4"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmittingConsultation}
+                  className="btn-primary-gradient w-full flex items-center justify-center gap-2 disabled:opacity-60"
+                  data-testid="button-services-consultation-submit"
+                >
+                  {isSubmittingConsultation
+                    ? (language === "ar" ? "جاري الإرسال..." : "Sending...")
+                    : (language === "ar" ? "احصل على استشارة مجانية" : "Get Free Consultation")}
+                  <Send className="w-5 h-5" />
+                </button>
+              </form>
             </div>
           </div>
         </section>

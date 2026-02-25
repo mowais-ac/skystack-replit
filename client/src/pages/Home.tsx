@@ -19,6 +19,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trackLeadFormSubmission } from "@/lib/analytics";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -170,6 +172,8 @@ const caseStudies = [
 
 export default function Home() {
   const { t, language } = useLanguage();
+  const { toast } = useToast();
+  const [isSubmittingLead, setIsSubmittingLead] = useState(false);
   const [leadForm, setLeadForm] = useState({
     name: "",
     email: "",
@@ -179,9 +183,10 @@ export default function Home() {
     challenge: ""
   });
 
-  const handleLeadSubmit = (e: React.FormEvent) => {
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    const sourcePage = typeof window !== "undefined" ? window.location.href : "";
     trackLeadFormSubmission("home_lead_form", {
       name: leadForm.name,
       email: leadForm.email,
@@ -189,11 +194,44 @@ export default function Home() {
       company: leadForm.company,
       industry: leadForm.industry,
       challenge_length: leadForm.challenge?.length || 0,
+      page_url: sourcePage,
       language
     });
-    
-    const message = `New Lead:\nName: ${leadForm.name}\nEmail: ${leadForm.email}\nPhone: ${leadForm.phone}\nCompany: ${leadForm.company}\nIndustry: ${leadForm.industry}\nChallenge: ${leadForm.challenge}`;
-    window.open(`https://wa.me/966537430455?text=${encodeURIComponent(message)}`, '_blank');
+
+    setIsSubmittingLead(true);
+    try {
+      await apiRequest("POST", "/api/consultation-lead", {
+        name: leadForm.name,
+        email: leadForm.email,
+        phone: leadForm.phone,
+        company: leadForm.company,
+        industry: leadForm.industry,
+        message: leadForm.challenge,
+        sourcePage,
+        sourceContext: "Home - Free Consultation"
+      });
+
+      toast({
+        title: language === "ar" ? "تم إرسال الطلب" : "Consultation Request Sent",
+        description: language === "ar" ? "سنقوم بالتواصل معك قريبًا." : "Our team will contact you shortly."
+      });
+      setLeadForm({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        industry: "",
+        challenge: ""
+      });
+    } catch (error) {
+      toast({
+        title: language === "ar" ? "تعذر الإرسال" : "Submission Failed",
+        description: language === "ar" ? "يرجى المحاولة مرة أخرى." : "Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmittingLead(false);
+    }
   };
 
   const processSteps = [
@@ -591,8 +629,16 @@ export default function Home() {
                     data-testid="textarea-lead-challenge"
                   />
                 </div>
-                <button type="submit" className="btn-primary-gradient w-full text-lg flex items-center justify-center gap-2" data-testid="button-lead-submit">
-                  {t("leadForm.submit")} <Send className="w-5 h-5" />
+                <button
+                  type="submit"
+                  disabled={isSubmittingLead}
+                  className="btn-primary-gradient w-full text-lg flex items-center justify-center gap-2 disabled:opacity-60"
+                  data-testid="button-lead-submit"
+                >
+                  {isSubmittingLead
+                    ? (language === "ar" ? "جاري الإرسال..." : "Sending...")
+                    : t("leadForm.submit")}{" "}
+                  <Send className="w-5 h-5" />
                 </button>
                 <p className="text-center text-sm text-slate-500 mt-4">
                   <Lock className="w-4 h-4 inline mr-1" />
