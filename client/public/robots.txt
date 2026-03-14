@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://skystack.sa/sitemap.xml
+Sitemap: https://www.skystack.sa/sitemap.xml

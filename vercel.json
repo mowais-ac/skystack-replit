@@ -2,6 +2,14 @@
   "buildCommand": "npm install && npx vite build",
   "outputDirectory": "dist/public",
   "framework": null,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "skystack.sa" }],
+      "destination": "https://www.skystack.sa/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]

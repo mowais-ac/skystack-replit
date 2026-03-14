@@ -16,8 +16,8 @@ interface SEOProps {
 
 const SITE_NAME = "SkyStack";
 const SITE_NAME_AR = "سكاي ستاك";
-const BASE_URL = "https://skystack.sa";
-const DEFAULT_OG_IMAGE = "https://skystack.sa/og-image.png";
+const BASE_URL = "https://www.skystack.sa";
+const DEFAULT_OG_IMAGE = "https://www.skystack.sa/og-image.png";
 
 export function SEO({
   title,

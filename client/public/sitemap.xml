@@ -2,522 +2,522 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Core Pages -->
   <url>
-    <loc>https://skystack.sa/</loc>
+    <loc>https://www.skystack.sa/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/about-us</loc>
+    <loc>https://www.skystack.sa/about-us</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services</loc>
+    <loc>https://www.skystack.sa/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services/outsourcing</loc>
+    <loc>https://www.skystack.sa/services/outsourcing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services/personal-website</loc>
+    <loc>https://www.skystack.sa/services/personal-website</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/pre-built-apps</loc>
+    <loc>https://www.skystack.sa/pre-built-apps</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/business-models</loc>
+    <loc>https://www.skystack.sa/business-models</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/contact-us</loc>
+    <loc>https://www.skystack.sa/contact-us</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/pricing</loc>
+    <loc>https://www.skystack.sa/pricing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/privacy-policy</loc>
+    <loc>https://www.skystack.sa/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/terms-condition</loc>
+    <loc>https://www.skystack.sa/terms-condition</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <!-- Service Pages -->
   <url>
-    <loc>https://skystack.sa/services/custom-mobile-app-development</loc>
+    <loc>https://www.skystack.sa/services/custom-mobile-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services/custom-web-development</loc>
+    <loc>https://www.skystack.sa/services/custom-web-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services/on-demand-app-development</loc>
+    <loc>https://www.skystack.sa/services/on-demand-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services/clone-app-development</loc>
+    <loc>https://www.skystack.sa/services/clone-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services/ui-ux-design-services</loc>
+    <loc>https://www.skystack.sa/services/ui-ux-design-services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services/technology-consulting-services</loc>
+    <loc>https://www.skystack.sa/services/technology-consulting-services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services/digital-marketing-services</loc>
+    <loc>https://www.skystack.sa/services/digital-marketing-services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/services/offshore-office-services</loc>
+    <loc>https://www.skystack.sa/services/offshore-office-services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Business Model / Pre-built App Pages -->
   <url>
-    <loc>https://skystack.sa/business-models/hq-trivia-clone</loc>
+    <loc>https://www.skystack.sa/business-models/hq-trivia-clone</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/business-models/food-delivery-app-development</loc>
+    <loc>https://www.skystack.sa/business-models/food-delivery-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/business-models/ecommerce-app-development</loc>
+    <loc>https://www.skystack.sa/business-models/ecommerce-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/business-models/car-wash-app-development</loc>
+    <loc>https://www.skystack.sa/business-models/car-wash-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/business-models/laundry-app-development</loc>
+    <loc>https://www.skystack.sa/business-models/laundry-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/business-models/elearning-app-development</loc>
+    <loc>https://www.skystack.sa/business-models/elearning-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/business-models/gojek-app-development</loc>
+    <loc>https://www.skystack.sa/business-models/gojek-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/business-models/on-demand-service-solution</loc>
+    <loc>https://www.skystack.sa/business-models/on-demand-service-solution</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/business-models/fintech-wallet</loc>
+    <loc>https://www.skystack.sa/business-models/fintech-wallet</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Blog Main Page -->
   <url>
-    <loc>https://skystack.sa/blog</loc>
+    <loc>https://www.skystack.sa/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Blog Posts - Outsourcing -->
   <url>
-    <loc>https://skystack.sa/blog/complete-guide-offshore-development-saudi-arabia</loc>
+    <loc>https://www.skystack.sa/blog/complete-guide-offshore-development-saudi-arabia</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/cost-benefits-offshore-development-teams</loc>
+    <loc>https://www.skystack.sa/blog/cost-benefits-offshore-development-teams</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/managing-offshore-development-team-success</loc>
+    <loc>https://www.skystack.sa/blog/managing-offshore-development-team-success</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/choosing-right-offshore-development-partner</loc>
+    <loc>https://www.skystack.sa/blog/choosing-right-offshore-development-partner</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/offshore-development-vs-in-house-team</loc>
+    <loc>https://www.skystack.sa/blog/offshore-development-vs-in-house-team</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/offshore-development-team-management-guide</loc>
+    <loc>https://www.skystack.sa/blog/offshore-development-team-management-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/outsourcing-vs-in-house-development-comparison</loc>
+    <loc>https://www.skystack.sa/blog/outsourcing-vs-in-house-development-comparison</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/offshore-development-best-practices-guide</loc>
+    <loc>https://www.skystack.sa/blog/offshore-development-best-practices-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/nearshore-vs-offshore-development-comparison</loc>
+    <loc>https://www.skystack.sa/blog/nearshore-vs-offshore-development-comparison</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/outsourcing-success-factors-complete-guide</loc>
+    <loc>https://www.skystack.sa/blog/outsourcing-success-factors-complete-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Blog Posts - Mobile Development -->
   <url>
-    <loc>https://skystack.sa/blog/complete-guide-custom-mobile-app-development</loc>
+    <loc>https://www.skystack.sa/blog/complete-guide-custom-mobile-app-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/react-native-vs-flutter-which-to-choose-2025</loc>
+    <loc>https://www.skystack.sa/blog/react-native-vs-flutter-which-to-choose-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/ios-app-development-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/ios-app-development-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/android-app-development-kotlin-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/android-app-development-kotlin-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/mobile-app-development-cost-complete-breakdown</loc>
+    <loc>https://www.skystack.sa/blog/mobile-app-development-cost-complete-breakdown</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/mobile-app-security-best-practices-2025</loc>
+    <loc>https://www.skystack.sa/blog/mobile-app-security-best-practices-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/mobile-app-performance-optimization-guide</loc>
+    <loc>https://www.skystack.sa/blog/mobile-app-performance-optimization-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/mobile-app-testing-strategies-complete-guide</loc>
+    <loc>https://www.skystack.sa/blog/mobile-app-testing-strategies-complete-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/mobile-app-monetization-strategies-2025</loc>
+    <loc>https://www.skystack.sa/blog/mobile-app-monetization-strategies-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/mobile-app-marketing-launch-strategy-2025</loc>
+    <loc>https://www.skystack.sa/blog/mobile-app-marketing-launch-strategy-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Blog Posts - Web Development -->
   <url>
-    <loc>https://skystack.sa/blog/custom-web-development-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/custom-web-development-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/react-vs-vue-vs-angular-which-framework-2025</loc>
+    <loc>https://www.skystack.sa/blog/react-vs-vue-vs-angular-which-framework-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/nextjs-vs-react-which-to-choose-2025</loc>
+    <loc>https://www.skystack.sa/blog/nextjs-vs-react-which-to-choose-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/progressive-web-apps-pwa-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/progressive-web-apps-pwa-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/web-application-security-best-practices-2025</loc>
+    <loc>https://www.skystack.sa/blog/web-application-security-best-practices-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/web-development-cost-complete-breakdown-2025</loc>
+    <loc>https://www.skystack.sa/blog/web-development-cost-complete-breakdown-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/api-development-best-practices-2025</loc>
+    <loc>https://www.skystack.sa/blog/api-development-best-practices-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/microservices-architecture-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/microservices-architecture-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/cloud-deployment-strategies-web-applications-2025</loc>
+    <loc>https://www.skystack.sa/blog/cloud-deployment-strategies-web-applications-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/web-performance-optimization-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/web-performance-optimization-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/ecommerce-web-development-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/ecommerce-web-development-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Blog Posts - On-Demand Apps -->
   <url>
-    <loc>https://skystack.sa/blog/on-demand-app-development-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/on-demand-app-development-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/uber-clone-app-development-complete-guide</loc>
+    <loc>https://www.skystack.sa/blog/uber-clone-app-development-complete-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/food-delivery-app-development-complete-guide</loc>
+    <loc>https://www.skystack.sa/blog/food-delivery-app-development-complete-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/on-demand-service-app-features-essential-guide</loc>
+    <loc>https://www.skystack.sa/blog/on-demand-service-app-features-essential-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/real-time-tracking-on-demand-apps-implementation</loc>
+    <loc>https://www.skystack.sa/blog/real-time-tracking-on-demand-apps-implementation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/on-demand-app-payment-integration-guide</loc>
+    <loc>https://www.skystack.sa/blog/on-demand-app-payment-integration-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/on-demand-app-cost-development-breakdown</loc>
+    <loc>https://www.skystack.sa/blog/on-demand-app-cost-development-breakdown</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/multi-sided-marketplace-architecture-guide</loc>
+    <loc>https://www.skystack.sa/blog/multi-sided-marketplace-architecture-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/on-demand-app-testing-strategies-guide</loc>
+    <loc>https://www.skystack.sa/blog/on-demand-app-testing-strategies-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/on-demand-app-launch-marketing-strategy</loc>
+    <loc>https://www.skystack.sa/blog/on-demand-app-launch-marketing-strategy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Blog Posts - Clone Apps -->
   <url>
-    <loc>https://skystack.sa/blog/clone-app-development-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/clone-app-development-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/uber-clone-vs-custom-ride-hailing-app</loc>
+    <loc>https://www.skystack.sa/blog/uber-clone-vs-custom-ride-hailing-app</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/airbnb-clone-app-development-guide</loc>
+    <loc>https://www.skystack.sa/blog/airbnb-clone-app-development-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/instagram-clone-app-development-guide</loc>
+    <loc>https://www.skystack.sa/blog/instagram-clone-app-development-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/tiktok-clone-app-development-guide</loc>
+    <loc>https://www.skystack.sa/blog/tiktok-clone-app-development-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/white-label-app-solutions-complete-guide</loc>
+    <loc>https://www.skystack.sa/blog/white-label-app-solutions-complete-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/clone-app-customization-complete-guide</loc>
+    <loc>https://www.skystack.sa/blog/clone-app-customization-complete-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/clone-app-cost-vs-custom-development</loc>
+    <loc>https://www.skystack.sa/blog/clone-app-cost-vs-custom-development</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/clone-app-maintenance-support-guide</loc>
+    <loc>https://www.skystack.sa/blog/clone-app-maintenance-support-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/clone-app-deployment-launch-strategy</loc>
+    <loc>https://www.skystack.sa/blog/clone-app-deployment-launch-strategy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Blog Posts - UI/UX Design -->
   <url>
-    <loc>https://skystack.sa/blog/ui-ux-design-services-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/ui-ux-design-services-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/user-experience-design-principles-guide</loc>
+    <loc>https://www.skystack.sa/blog/user-experience-design-principles-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/mobile-app-ui-ux-design-best-practices</loc>
+    <loc>https://www.skystack.sa/blog/mobile-app-ui-ux-design-best-practices</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/wireframing-prototyping-complete-guide</loc>
+    <loc>https://www.skystack.sa/blog/wireframing-prototyping-complete-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/design-systems-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/design-systems-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/usability-testing-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/usability-testing-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/accessibility-ui-ux-design-guide</loc>
+    <loc>https://www.skystack.sa/blog/accessibility-ui-ux-design-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/ui-ux-design-tools-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/ui-ux-design-tools-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/conversion-rate-optimization-ui-ux</loc>
+    <loc>https://www.skystack.sa/blog/conversion-rate-optimization-ui-ux</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/ui-ux-design-cost-complete-breakdown</loc>
+    <loc>https://www.skystack.sa/blog/ui-ux-design-cost-complete-breakdown</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Blog Posts - Technology Consulting -->
   <url>
-    <loc>https://skystack.sa/blog/technology-consulting-services-complete-guide-2025</loc>
+    <loc>https://www.skystack.sa/blog/technology-consulting-services-complete-guide-2025</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/digital-transformation-consulting-guide</loc>
+    <loc>https://www.skystack.sa/blog/digital-transformation-consulting-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/cloud-migration-consulting-complete-guide</loc>
+    <loc>https://www.skystack.sa/blog/cloud-migration-consulting-complete-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/it-architecture-consulting-guide</loc>
+    <loc>https://www.skystack.sa/blog/it-architecture-consulting-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/vendor-selection-technology-consulting</loc>
+    <loc>https://www.skystack.sa/blog/vendor-selection-technology-consulting</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/legacy-system-modernization-consulting</loc>
+    <loc>https://www.skystack.sa/blog/legacy-system-modernization-consulting</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/technology-roadmap-consulting-guide</loc>
+    <loc>https://www.skystack.sa/blog/technology-roadmap-consulting-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/devops-consulting-services-guide</loc>
+    <loc>https://www.skystack.sa/blog/devops-consulting-services-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/cybersecurity-consulting-services-guide</loc>
+    <loc>https://www.skystack.sa/blog/cybersecurity-consulting-services-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://skystack.sa/blog/technology-consulting-cost-guide</loc>
+    <loc>https://www.skystack.sa/blog/technology-consulting-cost-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
