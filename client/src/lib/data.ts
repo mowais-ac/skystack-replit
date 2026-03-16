@@ -227,6 +227,26 @@ export const services: ServiceItem[] = [
 
 export const businessModels: ServiceItem[] = [
   {
+    slug: "instagram-community-app-development",
+    title: "Instagram & Community App",
+    titleAr: "تطبيق Instagram ومنصات المجتمعات",
+    subtitle: "Social Media & Community Platform",
+    subtitleAr: "منصة التواصل والمجتمعات",
+    description: "Launch a production-ready social platform with reels-style content, messaging, moderation, and monetization support.",
+    descriptionAr: "أطلق منصة اجتماعية جاهزة للإنتاج مع محتوى بأسلوب الريلز والرسائل والإشراف ودعم تحقيق الدخل.",
+    icon: Smartphone,
+    problem: "Building a social app from scratch is expensive and risky because feed ranking, moderation, notifications, and scale are hard to get right quickly.",
+    problemAr: "بناء تطبيق اجتماعي من الصفر مكلف وعالي المخاطر لأن ترتيب المحتوى والإشراف والإشعارات والتوسع يصعب تنفيذها بسرعة.",
+    solution: "We deliver a ready-to-deploy social ecosystem with mobile apps, admin panel, backend APIs, analytics, and launch support tailored to your niche.",
+    solutionAr: "نقدم نظامًا اجتماعيًا جاهزًا للنشر يشمل تطبيقات الجوال ولوحة الإدارة وواجهات الخلفية والتحليلات ودعم الإطلاق حسب تخصصك.",
+    features: ["User onboarding", "Profiles, feed, stories/reels", "Likes, comments, shares", "Groups and communities", "In-app chat & notifications", "Admin moderation & analytics"],
+    featuresAr: ["تهيئة المستخدم", "الملفات الشخصية والخلاصة والقصص/الريلز", "الإعجابات والتعليقات والمشاركات", "المجموعات والمجتمعات", "الدردشة داخل التطبيق والإشعارات", "إشراف وتحليلات لوحة الإدارة"],
+    techStack: ["React Native", "Node.js", "PostgreSQL", "Redis", "WebSockets", "AWS"],
+    pricing: { fixedUsd: 9800, customUsd: 24000 },
+    useCases: ["Instagram-like niche apps", "Private social communities", "Creator networks", "Professional member communities"],
+    useCasesAr: ["تطبيقات متخصصة شبيهة Instagram", "مجتمعات اجتماعية خاصة", "شبكات صنّاع المحتوى", "مجتمعات الأعضاء المهنية"]
+  },
+  {
     slug: "hq-trivia-clone",
     title: "Live Trivia Game Platform",
     titleAr: "منصة ألعاب التريفيا المباشرة",
