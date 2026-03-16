@@ -570,6 +570,10 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const Icon = item.icon;
   const hasInstagramPreview = item.slug === "instagram-community-app-development";
   const isInstagramSolution = item.slug === "instagram-community-app-development";
+  useEffect(() => {
+    setActiveTab(hasInstagramPreview ? "live-preview" : "mobile");
+  }, [item.slug, hasInstagramPreview]);
+
   const title = language === "ar" ? item.titleAr : item.title;
   const subtitle = language === "ar" ? item.subtitleAr : item.subtitle;
   const description = language === "ar" ? item.descriptionAr : item.description;
@@ -1003,14 +1007,16 @@ export default function DynamicPage({ type }: DynamicPageProps) {
               {/* Tabs */}
               <div className="flex flex-wrap justify-center gap-4 mb-12">
                 {[
-                  { id: "mobile", icon: Smartphone, label: language === "ar" ? "تطبيق الجوال" : "Mobile App",
-                    count: item.screenshots?.mobile?.length },
-                  { id: "admin", icon: Monitor, label: language === "ar" ? "لوحة الإدارة" : "Admin Panel",
-                    count: item.screenshots?.admin?.length },
-                  { id: "website", icon: Tablet, label: language === "ar" ? "الموقع الإلكتروني" : "Website" },
+                  ...(!hasInstagramPreview
+                    ? [{ id: "mobile", icon: Smartphone, label: language === "ar" ? "تطبيق الجوال" : "Mobile App",
+                        count: item.screenshots?.mobile?.length }]
+                    : []),
                   ...(hasInstagramPreview
                     ? [{ id: "live-preview", icon: Globe, label: language === "ar" ? "معاينة التطبيق" : "Live App Preview" }]
                     : []),
+                  { id: "admin", icon: Monitor, label: language === "ar" ? "لوحة الإدارة" : "Admin Panel",
+                    count: item.screenshots?.admin?.length },
+                  { id: "website", icon: Tablet, label: language === "ar" ? "الموقع الإلكتروني" : "Website" },
                   ...(item.slug.includes("delivery") || item.slug.includes("gojek") || item.slug.includes("car-wash") || item.slug.includes("laundry") 
                     ? [{ id: "rider", icon: Bike, label: language === "ar" ? "تطبيق السائق" : "Rider App" }] 
                     : [])
@@ -1218,7 +1224,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                           src={instagramPreviewUrl}
                           title="Instagram Clone Frontend Preview"
                           loading="lazy"
-                          className="w-full h-[680px]"
+                          className="w-full h-[860px]"
                           referrerPolicy="no-referrer-when-downgrade"
                           allow="clipboard-write; fullscreen"
                         />
