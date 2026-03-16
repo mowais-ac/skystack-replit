@@ -558,6 +558,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const { language } = useLanguage();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<string>("mobile");
+  const instagramPreviewUrl = "https://instagram-clone-two-sage.vercel.app/";
   
   if (!match || !params) return <NotFound />;
 
@@ -567,6 +568,8 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   if (!item) return <NotFound />;
 
   const Icon = item.icon;
+  const hasInstagramPreview = item.slug === "instagram-community-app-development";
+  const isInstagramSolution = item.slug === "instagram-community-app-development";
   const title = language === "ar" ? item.titleAr : item.title;
   const subtitle = language === "ar" ? item.subtitleAr : item.subtitle;
   const description = language === "ar" ? item.descriptionAr : item.description;
@@ -575,6 +578,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const features = language === "ar" ? item.featuresAr : item.features;
   const useCases = language === "ar" ? item.useCasesAr : item.useCases;
   const fixedUsd = item.pricing?.fixedUsd;
+  const fixedPriceUsd = isInstagramSolution ? 15000 : fixedUsd;
   const toSar = (usd: number) => Math.round(usd * 3.75);
   const usdFormatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -584,7 +588,12 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const sarFormatter = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0
   });
-  const pricingHighlights = features.slice(0, 4);
+  const pricingHighlights = isInstagramSolution ? features : features.slice(0, 4);
+  const instagramBonusItems = [
+    language === "ar" ? "دعم فني مجاني لمدة 3 أشهر بعد الإطلاق" : "3 months free post-launch support",
+    language === "ar" ? "مساعدة كاملة في الإطلاق والنشر" : "Go-live and deployment assistance included",
+    language === "ar" ? "تسليم الكود المصدري الكامل" : "Full source-code handover",
+  ];
   const buyVsBuildRows = [
     {
       label: language === "ar" ? "وقت الإطلاق" : "Time to Market",
@@ -999,6 +1008,9 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                   { id: "admin", icon: Monitor, label: language === "ar" ? "لوحة الإدارة" : "Admin Panel",
                     count: item.screenshots?.admin?.length },
                   { id: "website", icon: Tablet, label: language === "ar" ? "الموقع الإلكتروني" : "Website" },
+                  ...(hasInstagramPreview
+                    ? [{ id: "live-preview", icon: Globe, label: language === "ar" ? "معاينة التطبيق" : "Live App Preview" }]
+                    : []),
                   ...(item.slug.includes("delivery") || item.slug.includes("gojek") || item.slug.includes("car-wash") || item.slug.includes("laundry") 
                     ? [{ id: "rider", icon: Bike, label: language === "ar" ? "تطبيق السائق" : "Rider App" }] 
                     : [])
@@ -1173,6 +1185,47 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                     </div>
                   </motion.div>
                 )}
+
+                {activeTab === "live-preview" && hasInstagramPreview && (
+                  <motion.div
+                    key="live-preview"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-5"
+                  >
+                    <div className="bg-white/5 backdrop-blur-sm rounded-md border border-white/10 p-5 md:p-6">
+                      <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                        <h3 className="text-xl font-bold text-white">
+                          {language === "ar" ? "معاينة مباشرة لواجهة التطبيق" : "Live Frontend Preview"}
+                        </h3>
+                        <a
+                          href={instagramPreviewUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+                        >
+                          {language === "ar" ? "فتح في نافذة جديدة" : "Open in New Tab"}
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
+                      </div>
+                      <p className="text-slate-300 mb-4">
+                        {language === "ar"
+                          ? "يمكنك استعراض واجهة تطبيق Instagram التجريبية مباشرة داخل الصفحة."
+                          : "Explore the Instagram-style app frontend directly inside this page."}
+                      </p>
+                      <div className="rounded-md overflow-hidden border border-white/10 bg-slate-900">
+                        <iframe
+                          src={instagramPreviewUrl}
+                          title="Instagram Clone Frontend Preview"
+                          loading="lazy"
+                          className="w-full h-[680px]"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          allow="clipboard-write; fullscreen"
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
               </div>
             </div>
           </section>
@@ -1281,7 +1334,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
         )}
 
         {/* Pricing - Solutions Only */}
-        {type === "businessModel" && fixedUsd && (
+        {type === "businessModel" && fixedPriceUsd && (
           <section className="py-24 lg:py-32 bg-white">
             <div className="container-width">
               <div className="text-center mb-14">
@@ -1292,21 +1345,29 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                   {language === "ar" ? "اختر الباقة المناسبة" : "Choose Your Plan"}
                 </h2>
                 <p className="section-subheading mx-auto mt-4">
-                  {language === "ar"
-                    ? `باقة جاهزة تتضمن أهم وظائف ${title} مع سرعة إطلاق عالية.`
-                    : `Launch faster with a pre-built ${title} foundation and essential production features.`}
+                  {isInstagramSolution
+                    ? (language === "ar"
+                        ? "ابدأ بمنصة Instagram جاهزة بالكامل بسعر واضح، أو اطلب تنفيذًا مخصصًا بالكامل مع فريقنا."
+                        : "Start with a complete Instagram-ready platform at a fixed price, or choose a fully custom build with our team.")
+                    : (language === "ar"
+                        ? `باقة جاهزة تتضمن أهم وظائف ${title} مع سرعة إطلاق عالية.`
+                        : `Launch faster with a pre-built ${title} foundation and essential production features.`)}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 <div className="bg-white rounded-md border border-slate-200 p-8">
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">{language === "ar" ? "خطة Fixed" : "Fixed Package"}</h3>
-                  <p className="text-slate-500 mb-5">{language === "ar" ? "حل جاهز مع تخصيص محدود وسرعة إطلاق." : "Ready solution with limited customization and faster launch."}</p>
-                  <div className="text-4xl font-bold text-slate-900 mb-2">{usdFormatter.format(fixedUsd)}</div>
+                  <p className="text-slate-500 mb-5">
+                    {isInstagramSolution
+                      ? (language === "ar" ? "كل الميزات الأساسية مدمجة وجاهزة للإطلاق." : "All core platform features included and launch-ready.")
+                      : (language === "ar" ? "حل جاهز مع تخصيص محدود وسرعة إطلاق." : "Ready solution with limited customization and faster launch.")}
+                  </p>
+                  <div className="text-4xl font-bold text-slate-900 mb-2">{usdFormatter.format(fixedPriceUsd)}</div>
                   <div className="text-xs text-slate-500 mb-6">
                     {language === "ar"
-                      ? `حوالي ${sarFormatter.format(toSar(fixedUsd))} ر.س`
-                      : `~ ${sarFormatter.format(toSar(fixedUsd))} SAR`}
+                      ? `حوالي ${sarFormatter.format(toSar(fixedPriceUsd))} ر.س`
+                      : `~ ${sarFormatter.format(toSar(fixedPriceUsd))} SAR`}
                   </div>
                   <div className="space-y-2 mb-6">
                     {pricingHighlights.map((feature, i) => (
@@ -1315,9 +1376,19 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                         <span>{feature}</span>
                       </div>
                     ))}
+                    {isInstagramSolution && instagramBonusItems.map((item, i) => (
+                      <div key={`bonus-${i}`} className="flex items-center gap-2 text-sm text-slate-700">
+                        <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
                   </div>
                   <a href="#get-quote">
-                    <button className="w-full btn-primary">{language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo"}</button>
+                    <button className="w-full btn-primary">
+                      {isInstagramSolution
+                        ? (language === "ar" ? "احجز عرضًا توضيحيًا الآن" : "Book a Demo")
+                        : (language === "ar" ? "احجز عرضًا توضيحيًا" : "Book a Demo")}
+                    </button>
                   </a>
                 </div>
 
@@ -1343,7 +1414,9 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                   </p>
                   <a href="tel:+966537430455">
                     <button className="w-full bg-primary text-white px-6 py-3 rounded-md font-semibold hover:opacity-90 transition-all">
-                      {language === "ar" ? "احجز مكالمة" : "Book a Call"}
+                      {language === "ar"
+                        ? "تحدث مع المبيعات"
+                        : "Talk to Sales"}
                     </button>
                   </a>
                 </div>
