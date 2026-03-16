@@ -91,6 +91,20 @@ export function Navigation() {
                 <Link href="/business-models" className="block px-4 py-2.5 rounded-md hover:bg-slate-50 hover:text-primary font-semibold" data-testid="link-business-models">
                   {t("nav.businessModels")}
                 </Link>
+                <Link
+                  href="/services/clone-app-development"
+                  className="block px-4 py-2.5 rounded-md hover:bg-slate-50 hover:text-primary font-semibold"
+                  data-testid="link-solution-instagram-app-development"
+                >
+                  {language === "ar" ? "تطوير تطبيق شبيه Instagram" : "Instagram App Development"}
+                </Link>
+                <Link
+                  href="/services/custom-mobile-app-development"
+                  className="block px-4 py-2.5 rounded-md hover:bg-slate-50 hover:text-primary font-semibold"
+                  data-testid="link-solution-community-development-app"
+                >
+                  {language === "ar" ? "تطوير تطبيقات المجتمعات" : "Community Development App"}
+                </Link>
                 <div className="h-px bg-slate-100 my-1"></div>
                 {businessModels.map((m) => (
                   <Link 
@@ -181,6 +195,12 @@ export function Navigation() {
                 <div className="text-slate-400 text-xs uppercase tracking-wider font-bold">{t("nav.solutions")}</div>
                 <Link href="/pre-built-apps" className="block pl-2 text-primary font-semibold">{t("nav.preBuiltApps")}</Link>
                 <Link href="/business-models" className="block pl-2 text-primary font-semibold">{t("nav.businessModels")}</Link>
+                <Link href="/services/clone-app-development" className="block pl-2 text-primary font-semibold">
+                  {language === "ar" ? "تطوير تطبيق شبيه Instagram" : "Instagram App Development"}
+                </Link>
+                <Link href="/services/custom-mobile-app-development" className="block pl-2 text-primary font-semibold">
+                  {language === "ar" ? "تطوير تطبيقات المجتمعات" : "Community Development App"}
+                </Link>
                 {businessModels.map(m => (
                   <Link key={m.slug} href={`/business-models/${m.slug}`} className="block pl-2 text-slate-600">
                     {language === "ar" ? m.titleAr : m.title}
