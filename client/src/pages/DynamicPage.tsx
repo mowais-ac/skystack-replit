@@ -9,7 +9,7 @@ import {
   ArrowRight, Check, Shield, Clock, Users, Zap, Star, 
   MessageCircle, Phone, ChevronDown, Award, Target, Rocket,
   CheckCircle2, Building2, HeartHandshake, Smartphone, Monitor, Tablet, Bike, Send,
-  ChevronLeft, ChevronRight, Maximize2
+  ChevronLeft, ChevronRight, Maximize2, Globe
 } from "lucide-react";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
