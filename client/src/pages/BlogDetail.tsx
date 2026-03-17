@@ -78,6 +78,86 @@ export default function BlogDetail() {
   };
 
   const relatedBlogs = getRelatedBlogs(blog.id, 3);
+  const canonicalPath = `/blog/${blog.slug}`;
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.skystack.sa/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.skystack.sa/blog" },
+      { "@type": "ListItem", position: 3, name: blog.title, item: `https://www.skystack.sa${canonicalPath}` },
+    ],
+  };
+  const faqSchemaBySlug: Record<string, Record<string, unknown>> = {
+    "onlyfans-clone-app-development-cost-guide-2026": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "How much does an OnlyFans-like app cost to build?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "A clone-based MVP typically starts around $15,000 to $45,000, while fully custom platforms often exceed $120,000 depending on video stack, subscriptions, moderation, and compliance needs.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What drives the cost the most?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Major cost drivers are media infrastructure, payment/subscription logic, creator payouts, compliance, moderation tooling, and whether you launch on web only or web plus mobile apps.",
+          },
+        },
+      ],
+    },
+    "airbnb-clone-calendar-scheduling-implementation-guide": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is the hardest part of Airbnb clone scheduling?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Concurrency control and booking conflict prevention are the hardest parts. You need robust availability logic, booking locks, and timezone-safe calculations.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How long does booking calendar implementation take?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "For a production-ready MVP, calendar and scheduling modules usually take 2-4 weeks depending on pricing rules, channel sync, and cancellation policies.",
+          },
+        },
+      ],
+    },
+    "technology-roadmap-consulting-deliverables-guide": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What deliverables should a technology roadmap include?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "A solid roadmap package includes current-state audit, target architecture, prioritized initiatives, delivery timeline, cost model, risk register, KPI framework, and implementation playbook.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How quickly can roadmap deliverables be prepared?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Most consulting engagements deliver a first executive-ready version in 2-4 weeks, then refine by stakeholder feedback and budget constraints.",
+          },
+        },
+      ],
+    },
+  };
+  const faqSchema = faqSchemaBySlug[blog.slug];
+  const structuredData = faqSchema ? [breadcrumbSchema, faqSchema] : breadcrumbSchema;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -88,7 +168,8 @@ export default function BlogDetail() {
         descriptionAr={blog.seoMeta.metaDescriptionAr || blog.excerptAr}
         keywords={blog.seoMeta.keywords}
         keywordsAr={blog.seoMeta.keywordsAr}
-        canonicalUrl={`/blog/${blog.slug}`}
+        canonicalUrl={canonicalPath}
+        structuredData={structuredData}
       />
       <Navigation />
       

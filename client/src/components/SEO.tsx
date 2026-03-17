@@ -12,6 +12,7 @@ interface SEOProps {
   ogImage?: string;
   ogType?: "website" | "article" | "product";
   noIndex?: boolean;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const SITE_NAME = "SkyStack";
@@ -30,6 +31,7 @@ export function SEO({
   ogImage = DEFAULT_OG_IMAGE,
   ogType = "website",
   noIndex = false,
+  structuredData,
 }: SEOProps) {
   const { language } = useLanguage();
   const isArabic = language === "ar";
@@ -41,6 +43,9 @@ export function SEO({
   
   const fullTitle = `${currentTitle} | ${siteName}`;
   const fullCanonicalUrl = canonicalUrl ? `${BASE_URL}${canonicalUrl}` : undefined;
+  const structuredDataItems = structuredData
+    ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+    : [];
 
   return (
     <Helmet>
@@ -71,6 +76,12 @@ export function SEO({
       
       <meta name="author" content="SkyStack Technology" />
       <meta name="publisher" content="SkyStack Technology" />
+
+      {structuredDataItems.map((item, index) => (
+        <script key={`structured-data-${index}`} type="application/ld+json">
+          {JSON.stringify(item)}
+        </script>
+      ))}
     </Helmet>
   );
 }

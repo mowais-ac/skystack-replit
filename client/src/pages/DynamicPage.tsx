@@ -18,6 +18,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { SEO } from "@/components/SEO";
 import { trackLeadFormSubmission } from "@/lib/analytics";
+import { getBlogBySlug } from "@/lib/blogs";
 
 interface DynamicPageProps {
   type: "service" | "businessModel";
@@ -579,8 +580,13 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const description = language === "ar" ? item.descriptionAr : item.description;
   const problem = language === "ar" ? item.problemAr : item.problem;
   const solution = language === "ar" ? item.solutionAr : item.solution;
-  const features = language === "ar" ? item.featuresAr : item.features;
-  const useCases = language === "ar" ? item.useCasesAr : item.useCases;
+  const hasArabic = language === "ar";
+  const localizedFeatures = hasArabic
+    ? (item.featuresAr?.length ? item.featuresAr : item.features)
+    : (item.features?.length ? item.features : item.featuresAr);
+  const localizedUseCases = hasArabic
+    ? (item.useCasesAr?.length ? item.useCasesAr : item.useCases)
+    : (item.useCases?.length ? item.useCases : item.useCasesAr);
   const fixedUsd = item.pricing?.fixedUsd;
   const fixedPriceUsd = isInstagramSolution ? 15000 : fixedUsd;
   const toSar = (usd: number) => Math.round(usd * 3.75);
@@ -592,7 +598,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const sarFormatter = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0
   });
-  const pricingHighlights = isInstagramSolution ? features : features.slice(0, 4);
+  const pricingHighlights = isInstagramSolution ? localizedFeatures : localizedFeatures.slice(0, 4);
   const instagramBonusItems = [
     language === "ar" ? "دعم فني مجاني لمدة 3 أشهر بعد الإطلاق" : "3 months free post-launch support",
     language === "ar" ? "مساعدة كاملة في الإطلاق والنشر" : "Go-live and deployment assistance included",
@@ -718,6 +724,68 @@ export default function DynamicPage({ type }: DynamicPageProps) {
   const seoKeywordsAr = type === "service" 
     ? `${item.titleAr}، تطوير البرمجيات، ${item.slug}، السعودية، برمجيات مخصصة`
     : `${item.titleAr}، تطبيق جاهز، وايت ليبل، ${item.slug}، السعودية`;
+  const canonicalPath = type === "service" ? `/services/${item.slug}` : `/business-models/${item.slug}`;
+  const guideSlugMap: Record<string, string[]> = {
+    "clone-app-development": [
+      "clone-app-development-complete-guide-2025",
+      "clone-app-cost-vs-custom-development",
+      "white-label-app-solutions-complete-guide",
+    ],
+    "technology-consulting-services": [
+      "technology-roadmap-consulting-guide",
+      "vendor-selection-technology-consulting",
+      "technology-consulting-cost-guide",
+    ],
+    "instagram-community-app-development": [
+      "instagram-clone-app-development-guide",
+      "clone-app-development-complete-guide-2025",
+      "clone-app-customization-complete-guide",
+    ],
+    "food-delivery-app-development": [
+      "food-delivery-app-development-complete-guide",
+      "on-demand-app-development-complete-guide-2025",
+      "on-demand-app-cost-development-breakdown",
+    ],
+    "ecommerce-app-development": [
+      "ecommerce-web-development-complete-guide-2025",
+      "web-development-cost-complete-breakdown-2025",
+      "ui-ux-design-services-complete-guide-2025",
+    ],
+  };
+  const relatedGuides = (guideSlugMap[item.slug] || [])
+    .map((slug) => getBlogBySlug(slug))
+    .filter((guide): guide is NonNullable<typeof guide> => Boolean(guide));
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.skystack.sa/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: type === "service" ? "Services" : "Business Models",
+        item: `https://www.skystack.sa/${type === "service" ? "services" : "business-models"}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: item.title,
+        item: `https://www.skystack.sa${canonicalPath}`,
+      },
+    ],
+  };
+  const serviceSchema = type === "service"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: item.title,
+        description: item.description,
+        serviceType: item.subtitle,
+        provider: { "@type": "Organization", name: "SkyStack", url: "https://www.skystack.sa" },
+        areaServed: "Saudi Arabia",
+        url: `https://www.skystack.sa${canonicalPath}`,
+      }
+    : null;
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
@@ -728,7 +796,8 @@ export default function DynamicPage({ type }: DynamicPageProps) {
         descriptionAr={item.descriptionAr}
         keywords={seoKeywords}
         keywordsAr={seoKeywordsAr}
-        canonicalUrl={type === "service" ? `/services/${item.slug}` : `/business-models/${item.slug}`}
+        canonicalUrl={canonicalPath}
+        structuredData={serviceSchema ? [breadcrumbSchema, serviceSchema] : breadcrumbSchema}
       />
       <Navigation />
       
@@ -1249,7 +1318,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                   {language === "ar" ? "الميزات الرئيسية" : "Key Features"}
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {features.map((feature, i) => (
+                  {localizedFeatures.map((feature, i) => (
                     <div key={i} className="flex items-start gap-3 bg-white p-4 rounded-md border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all">
                       <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
                         <Check className="w-3.5 h-3.5" />
@@ -1279,7 +1348,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
                   {language === "ar" ? "حالات الاستخدام" : "Use Cases"}
                 </h3>
                 <ul className="space-y-3">
-                  {useCases.map((useCase, i) => (
+                  {localizedUseCases.map((useCase, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-600">
                       <div className="w-2 h-2 rounded-full bg-primary" />
                       {useCase}
@@ -1301,7 +1370,7 @@ export default function DynamicPage({ type }: DynamicPageProps) {
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {useCases.slice(0, 8).map((useCase, i) => (
+              {localizedUseCases.slice(0, 8).map((useCase, i) => (
                 <div key={i} className="p-5 rounded-md border border-slate-200 bg-slate-50 hover:border-primary/40 hover:bg-white transition-all">
                   <div className="flex items-start gap-3">
                     <Target className="w-4 h-4 text-primary mt-1 shrink-0" />
@@ -1480,6 +1549,39 @@ export default function DynamicPage({ type }: DynamicPageProps) {
             </div>
           </div>
         </section>
+
+        {relatedGuides.length > 0 && (
+          <section className="py-16 bg-white border-y border-slate-100">
+            <div className="container-width">
+              <div className="max-w-5xl mx-auto">
+                <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-2xl lg:text-3xl font-bold text-slate-900">
+                    {language === "ar" ? "أدلة مرتبطة" : "Related Guides"}
+                  </h2>
+                  <Link href="/blog" className="text-primary font-semibold hover:underline">
+                    {language === "ar" ? "عرض كل المقالات" : "View all articles"}
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {relatedGuides.map((guide) => (
+                    <Link
+                      key={guide.id}
+                      href={`/blog/${guide.slug}`}
+                      className="block p-5 rounded-md border border-slate-200 hover:border-primary/40 hover:shadow-sm transition-all"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-wide text-primary mb-2">
+                        {language === "ar" ? "دليل" : "Guide"}
+                      </p>
+                      <h3 className="font-bold text-slate-900 leading-snug">
+                        {language === "ar" ? guide.titleAr : guide.title}
+                      </h3>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Testimonial */}
         <section className="py-20 bg-slate-950 relative overflow-hidden">

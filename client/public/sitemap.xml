@@ -120,6 +120,12 @@
 
   <!-- Business Model / Pre-built App Pages -->
   <url>
+    <loc>https://www.skystack.sa/business-models/instagram-community-app-development</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.skystack.sa/business-models/hq-trivia-clone</loc>
     <lastmod>2026-03-14</lastmod>
     <changefreq>monthly</changefreq>
@@ -620,5 +626,23 @@
     <lastmod>2026-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.skystack.sa/blog/onlyfans-clone-app-development-cost-guide-2026</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skystack.sa/blog/airbnb-clone-calendar-scheduling-implementation-guide</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skystack.sa/blog/technology-roadmap-consulting-deliverables-guide</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
