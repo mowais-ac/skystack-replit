@@ -141,7 +141,8 @@ export function trackLeadFormSubmission(
     }
   });
 
-  trackEvent("generate_lead", {
+  // Track submit intent on click/submit, but reserve generate_lead for confirmed success.
+  trackEvent("lead_form_submission_attempt", {
     form_name: formName,
     ...gaSafeData
   });
@@ -167,6 +168,13 @@ export function trackLeadFormSuccess(
     if (!piiKeys.has(key)) {
       gaSafeData[key] = value;
     }
+  });
+
+  // GA4 standard lead event (shows in Leads/Key events when marked as conversion).
+  trackEvent("generate_lead", {
+    form_name: formName,
+    lead_source: "website_form",
+    ...gaSafeData,
   });
 
   trackEvent("lead_form_submission_success", {
