@@ -17,7 +17,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { SEO } from "@/components/SEO";
-import { trackLeadFormSubmission } from "@/lib/analytics";
+import { trackLeadFormSubmission, trackLeadFormSuccess } from "@/lib/analytics";
 import { getBlogBySlug } from "@/lib/blogs";
 
 interface DynamicPageProps {
@@ -66,10 +66,18 @@ function ServiceInquiryForm({
     mutationFn: async (data: ServiceFormData) => {
       return apiRequest("POST", "/api/service-inquiry", data);
     },
-    onSuccess: () => {
+    onSuccess: (_response, variables) => {
       toast({
         title: language === "ar" ? "تم الإرسال بنجاح" : "Inquiry Sent!",
         description: language === "ar" ? "سنتواصل معك قريباً" : "We'll get back to you shortly."
+      });
+      trackLeadFormSuccess("service_inquiry_form", {
+        service_name: variables.serviceName,
+        project_type: variables.projectType,
+        budget: variables.budget,
+        timeline: variables.timeline,
+        page_type: pageType,
+        language
       });
       reset();
     },

@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { trackLeadFormSubmission } from "@/lib/analytics";
+import { trackLeadFormSubmission, trackLeadFormSuccess } from "@/lib/analytics";
 
 interface ServicesListProps {
   type: "service" | "businessModel";
@@ -127,6 +127,11 @@ export default function ServicesList({ type }: ServicesListProps) {
         message: consultationForm.message,
         sourcePage,
         sourceContext: consultationSourceContext
+      });
+      trackLeadFormSuccess("services_list_consultation_form", {
+        source_context: consultationSourceContext,
+        language,
+        page_type: isService ? "service" : "business_model"
       });
 
       toast({

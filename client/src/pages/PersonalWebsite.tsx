@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { trackLeadFormSubmission } from "@/lib/analytics";
+import { trackLeadFormSubmission, trackLeadFormSuccess } from "@/lib/analytics";
 import { useLanguage } from "@/lib/i18n";
 
 const fadeIn = {
@@ -382,6 +382,11 @@ export default function PersonalWebsite() {
       if (!res.ok) {
         throw new Error("Failed to submit");
       }
+      trackLeadFormSuccess("personal_website_landing", {
+        profession: formData.profession,
+        has_current_website: !!formData.currentWebsite,
+        language
+      });
 
       toast({
         title: isArabic ? "تم استلام الطلب! 🎉" : "Request Received! 🎉",

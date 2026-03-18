@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, Phone, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { services, businessModels } from "@/lib/data";
 import { useLanguage } from "@/lib/i18n";
+import { trackFeatureInteraction } from "@/lib/analytics";
 import logo from "@assets/logo_1767806484099.png";
 
 export function Navigation() {
@@ -25,6 +26,11 @@ export function Navigation() {
   }, [location]);
 
   const toggleLanguage = () => {
+    trackFeatureInteraction("navigation", "language_toggle", {
+      from_language: language,
+      to_language: language === "en" ? "ar" : "en",
+      page_path: location,
+    });
     setLanguage(language === "en" ? "ar" : "en");
   };
 
@@ -152,7 +158,12 @@ export function Navigation() {
 
         <button 
           className="lg:hidden z-50 p-2"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            trackFeatureInteraction("navigation", isOpen ? "mobile_menu_close" : "mobile_menu_open", {
+              page_path: location,
+            });
+            setIsOpen(!isOpen);
+          }}
           data-testid="button-mobile-menu"
         >
           {isOpen ? <X className="w-6 h-6 text-slate-800" /> : <Menu className="w-6 h-6 text-slate-800" />}

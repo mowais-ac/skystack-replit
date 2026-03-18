@@ -13,7 +13,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { SEO } from "@/components/SEO";
-import { trackLeadFormSubmission } from "@/lib/analytics";
+import { trackLeadFormSubmission, trackLeadFormSuccess } from "@/lib/analytics";
 
 const roleCategories = [
   {
@@ -232,10 +232,16 @@ function OutsourcingForm({ language }: { language: string }) {
     mutationFn: async (data: OutsourcingFormData) => {
       return apiRequest("POST", "/api/outsourcing-inquiry", data);
     },
-    onSuccess: () => {
+    onSuccess: (_response, variables) => {
       toast({
         title: language === "ar" ? "تم الإرسال بنجاح" : "Inquiry Sent!",
         description: language === "ar" ? "سنتواصل معك قريباً" : "We'll get back to you shortly."
+      });
+      trackLeadFormSuccess("outsourcing_form", {
+        timeline: variables.timeline,
+        total_headcount: variables.selectedRoles.reduce((sum, role) => sum + role.quantity, 0),
+        roles_selected: variables.selectedRoles.map((role) => role.roleId).join(","),
+        language
       });
       reset();
       setFormRoleCounts({});

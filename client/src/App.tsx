@@ -8,7 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "@/lib/i18n";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { ChatBot } from "@/components/ChatBot";
-import { initMixpanel, initHotjar, trackPageView } from "@/lib/analytics";
+import { initMixpanel, initHotjar, trackCTAClick, trackPageView } from "@/lib/analytics";
 
 initMixpanel();
 initHotjar();
@@ -28,6 +28,46 @@ function ScrollToTop() {
     
     return () => clearTimeout(timeoutId);
   }, [location]);
+
+  useEffect(() => {
+    const handleGlobalClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
+
+      const clickable = target.closest("a,button,[data-testid]") as HTMLElement | null;
+      if (!clickable) return;
+
+      const testId = clickable.getAttribute("data-testid") || "";
+      const tagName = clickable.tagName.toLowerCase();
+      const href = tagName === "a" ? (clickable as HTMLAnchorElement).getAttribute("href") || "" : "";
+      const isExternalHttpLink = href.startsWith("http://") || href.startsWith("https://");
+      const isInternalHttpLink = isExternalHttpLink && href.includes("skystack.sa");
+
+      let ctaName: string | null = null;
+      if (href.includes("wa.me")) ctaName = "whatsapp_click";
+      else if (href.startsWith("tel:")) ctaName = "phone_click";
+      else if (href === "/contact-us") ctaName = "contact_page_click";
+      else if (href.startsWith("/services/")) ctaName = "service_page_click";
+      else if (href.startsWith("/business-models/")) ctaName = "business_model_click";
+      else if (href === "/blog") ctaName = "blog_listing_click";
+      else if (href.startsWith("/blog/")) ctaName = "blog_article_click";
+      else if (href === "/pricing") ctaName = "pricing_page_click";
+      else if (isExternalHttpLink && !isInternalHttpLink) ctaName = "external_link_click";
+      else if (testId.includes("submit")) ctaName = "form_submit_click";
+      else if (testId.includes("cta") || testId.includes("quote") || testId.includes("contact")) ctaName = "cta_button_click";
+
+      if (!ctaName) return;
+
+      trackCTAClick(ctaName, {
+        data_testid: testId || undefined,
+        href: href || undefined,
+        page_path: window.location.pathname,
+      });
+    };
+
+    document.addEventListener("click", handleGlobalClick);
+    return () => document.removeEventListener("click", handleGlobalClick);
+  }, []);
   
   return null;
 }

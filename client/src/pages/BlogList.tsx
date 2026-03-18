@@ -9,6 +9,7 @@ import {
 import { SEO } from "@/components/SEO";
 import { getAllPublishedBlogs, getBlogsByCategory, BlogPost } from "@/lib/blogs";
 import { useState } from "react";
+import { trackFeatureInteraction } from "@/lib/analytics";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -72,6 +73,22 @@ export default function BlogList() {
   const isArabic = language === "ar";
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const handleCategorySelect = (category: string | null) => {
+    setSelectedCategory(category);
+    trackFeatureInteraction("blog", "category_filter_selected", {
+      category: category || "all",
+      language,
+    });
+  };
+
+  const handleSearchBlur = () => {
+    if (!searchQuery.trim()) return;
+    trackFeatureInteraction("blog", "search_used", {
+      query_length: searchQuery.trim().length,
+      language,
+    });
+  };
 
   const allBlogs = selectedCategory 
     ? getBlogsByCategory(selectedCategory)
@@ -157,6 +174,7 @@ export default function BlogList() {
                     placeholder={isArabic ? "ابحث في المقالات..." : "Search articles..."}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    onBlur={handleSearchBlur}
                     className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
@@ -164,7 +182,7 @@ export default function BlogList() {
                 {/* Category Filter */}
                 <div className="flex items-center justify-center gap-2 flex-wrap">
                   <button
-                    onClick={() => setSelectedCategory(null)}
+                    onClick={() => handleCategorySelect(null)}
                     className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 ${
                       selectedCategory === null
                         ? "bg-primary border-primary text-white shadow-lg shadow-primary/25"
@@ -176,7 +194,7 @@ export default function BlogList() {
                   {categories.map(cat => (
                     <button
                       key={cat.value}
-                      onClick={() => setSelectedCategory(cat.value)}
+                      onClick={() => handleCategorySelect(cat.value)}
                       className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                         selectedCategory === cat.value
                           ? "bg-primary border-primary text-white shadow-lg shadow-primary/25"

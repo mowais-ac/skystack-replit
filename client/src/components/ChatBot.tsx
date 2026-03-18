@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { useToast } from "@/hooks/use-toast";
-import { trackLeadFormSubmission } from "@/lib/analytics";
+import { trackFeatureInteraction, trackLeadFormSubmission, trackLeadFormSuccess } from "@/lib/analytics";
 
 interface Message {
   id: string;
@@ -223,10 +223,18 @@ export function ChatBot() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userDetails)
       });
+      trackLeadFormSuccess("chatbot_lead", {
+        interest: userDetails.interest,
+        language,
+      });
     } catch {
       // silently continue — the chat should still work
     }
 
+    trackFeatureInteraction("chatbot", "session_started", {
+      interest: userDetails.interest || "unspecified",
+      language,
+    });
     setPhase("chat");
     setDetailsSubmitting(false);
 
@@ -249,6 +257,11 @@ export function ChatBot() {
     }]);
 
     setShowQuestions(false);
+    trackFeatureInteraction("chatbot", "quick_question_selected", {
+      question_id: question.id,
+      category: question.category,
+      language,
+    });
     addBotMessage(aText);
   };
 
@@ -265,6 +278,10 @@ export function ChatBot() {
     }]);
     setUserInput("");
     setShowQuestions(false);
+    trackFeatureInteraction("chatbot", "free_text_submitted", {
+      query_length: text.length,
+      language,
+    });
 
     // Simple keyword matching for free text
     const lower = text.toLowerCase();
@@ -323,6 +340,10 @@ export function ChatBot() {
   };
 
   const toggleChat = () => {
+    trackFeatureInteraction("chatbot", isOpen ? "chat_closed" : "chat_opened", {
+      phase,
+      language,
+    });
     setIsOpen(!isOpen);
     setHasNewMessage(false);
   };

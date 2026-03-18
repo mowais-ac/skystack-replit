@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { trackLeadFormSubmission } from "@/lib/analytics";
+import { trackLeadFormSubmission, trackLeadFormSuccess } from "@/lib/analytics";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -209,6 +209,11 @@ export default function Home() {
         message: leadForm.challenge,
         sourcePage,
         sourceContext: "Home - Free Consultation"
+      });
+      trackLeadFormSuccess("home_lead_form", {
+        industry: leadForm.industry,
+        source_context: "Home - Free Consultation",
+        language
       });
 
       toast({

@@ -64,6 +64,44 @@ export function trackEvent(
   }
 }
 
+export function trackCTAClick(
+  ctaName: string,
+  ctaData: Record<string, any> = {}
+) {
+  const sanitizedData: Record<string, any> = {};
+  Object.entries(ctaData).forEach(([key, value]) => {
+    if (typeof value === "string") {
+      sanitizedData[key] = value.slice(0, 120);
+    } else {
+      sanitizedData[key] = value;
+    }
+  });
+
+  trackEvent("cta_click", {
+    cta_name: ctaName,
+    ...sanitizedData,
+  });
+  trackEvent(`cta_click_${ctaName}`, sanitizedData);
+  trackMixpanelEvent("CTA Clicked", {
+    cta_name: ctaName,
+    ...ctaData,
+  });
+}
+
+export function trackFeatureInteraction(
+  featureName: string,
+  action: string,
+  data: Record<string, any> = {}
+) {
+  const payload = {
+    feature_name: featureName,
+    action,
+    ...data,
+  };
+  trackEvent("feature_interaction", payload);
+  trackMixpanelEvent("Feature Interaction", payload);
+}
+
 export function trackMixpanelEvent(
   eventName: string,
   eventParams: Record<string, any> = {}
@@ -95,12 +133,20 @@ export function trackLeadFormSubmission(
     }
   });
 
-  trackEvent("generate_lead", {
-    form_name: formName,
-    ...sanitizedData
+  const gaSafeData: Record<string, any> = {};
+  const piiKeys = new Set(["name", "email", "phone", "message", "currentWebsite"]);
+  Object.entries(sanitizedData).forEach(([key, value]) => {
+    if (!piiKeys.has(key)) {
+      gaSafeData[key] = value;
+    }
   });
 
-  trackEvent(`form_submit_${formName}`, sanitizedData);
+  trackEvent("generate_lead", {
+    form_name: formName,
+    ...gaSafeData
+  });
+
+  trackEvent(`form_submit_${formName}`, gaSafeData);
 
   const mixpanelData = {
     form_name: formName,
@@ -109,6 +155,30 @@ export function trackLeadFormSubmission(
 
   trackMixpanelEvent("Lead Form Submitted", mixpanelData);
   trackMixpanelEvent(`Form: ${formName}`, formData);
+}
+
+export function trackLeadFormSuccess(
+  formName: string,
+  formData: Record<string, any> = {}
+) {
+  const gaSafeData: Record<string, any> = {};
+  const piiKeys = new Set(["name", "email", "phone", "message", "currentWebsite"]);
+  Object.entries(formData).forEach(([key, value]) => {
+    if (!piiKeys.has(key)) {
+      gaSafeData[key] = value;
+    }
+  });
+
+  trackEvent("lead_form_submission_success", {
+    form_name: formName,
+    ...gaSafeData,
+  });
+  trackEvent(`form_success_${formName}`, gaSafeData);
+
+  trackMixpanelEvent("Lead Form Submitted Successfully", {
+    form_name: formName,
+    ...formData,
+  });
 }
 
 export function identifyUser(userId: string, traits: Record<string, any> = {}) {
